@@ -1,0 +1,44 @@
+'use client'
+
+import React from 'react'
+import { NavItemsProps } from '@/constants/navbar-items'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
+import Link from 'next/link'
+import { FaChevronDown } from 'react-icons/fa'
+
+const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
+  return (
+    <li className='hidden lg:block'>
+      <HoverCard openDelay={100} closeDelay={100}>
+        <HoverCardTrigger>
+          <Link
+            href={item.href}
+            className='flex items-center gap-1 text-balance hover:text-primary-main'
+          >
+            {item.label}
+            {item.links.length ? <FaChevronDown /> : ''}
+          </Link>
+        </HoverCardTrigger>
+        {item?.links?.length ? (
+          <HoverCardContent className='absolute left-0 mt-2 rounded-sm bg-white bg-opacity-45 px-2 py-1 dark:bg-gray-800'>
+            <div className='flex flex-col'>
+              {item?.links?.map(({ href, link }) => (
+                <Link
+                  href={href}
+                  key={link}
+                  className='mb-1 border-b border-b-gray-600 pb-2 hover:bg-gray-700 hover:bg-opacity-20'
+                >
+                  {link}
+                </Link>
+              ))}
+            </div>
+          </HoverCardContent>
+        ) : (
+          ''
+        )}
+      </HoverCard>
+    </li>
+  )
+}
+
+export default DesktopNavbar
