@@ -31,17 +31,15 @@ const MainNavbar = () => {
             open={openMenu}
             onOpenChange={() => setOpenMenu(prev => !prev)}
             >
-              <DropdownMenuTrigger>
-                <button onClick={() => setOpenMenu(prev => !prev)}>
+              <DropdownMenuTrigger onClick={() => setOpenMenu(prev => !prev)} >
                   {openMenu ? (
                     <AiOutlineClose size={16} />
                   ) : (
                     <AiOutlineMenu size={16} />
                   )}
-                </button>
               </DropdownMenuTrigger> 
 
-            <DropdownMenuContent className='mt-2 bg-black/50 flex flex-col justify-start items-center w-screen h-max'>
+            <DropdownMenuContent className='mt-2 bg-black/80 flex flex-col justify-start items-center w-screen h-max'>
                 {NAVBAR_ITEMS.map((item, i) => (
                   <MobileMenuItem key={item.key} item={item} index={i} />
                 ))}

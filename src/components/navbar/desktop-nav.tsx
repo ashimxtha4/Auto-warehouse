@@ -1,12 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavItemsProps } from '@/constants/navbar-items'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
 import Link from 'next/link'
 import { FaChevronDown } from 'react-icons/fa'
 
 const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
   return (
     <li className='hidden lg:block'>
       <HoverCard openDelay={100} closeDelay={100}>

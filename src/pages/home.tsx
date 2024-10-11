@@ -19,7 +19,9 @@ const HomePage = () => {
         </div>
         <div className='absolute left-0 top-0 w-full z-10'>
           <Navbar />
+          <div className='sticky top-0 bg-white/50'>
           <MainNavbar />
+          </div>
         </div>
         <div className='absolute inset-0 mb-2 flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>
           <BannerContent />
