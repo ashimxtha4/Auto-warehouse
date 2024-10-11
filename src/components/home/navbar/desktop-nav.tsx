@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { NavItemsProps } from '@/constants/navbar-items'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../ui/hover-card'
 import Link from 'next/link'
 import { FaChevronDown } from 'react-icons/fa'
 

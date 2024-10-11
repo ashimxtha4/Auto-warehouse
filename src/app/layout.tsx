@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Notification from "@/components/notification";
+import Notification from "@/components/home/notification";
 import ReactQueryProvider from "@/services/provider/react-query-provider";
 import "./globals.css";
 

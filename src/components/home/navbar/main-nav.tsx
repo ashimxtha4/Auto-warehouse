@@ -8,7 +8,7 @@ import { NAVBAR_ITEMS } from '@/constants/navbar-items'
 import DesktopNavbar from './desktop-nav'
 import SearchBar from './search-bar'
 import UserCartProfile from './user-cart-profile'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '../../ui/dropdown-menu'
 import MobileMenuItem from './mobile-menu-item'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 

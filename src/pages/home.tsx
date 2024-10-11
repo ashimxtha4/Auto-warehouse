@@ -1,10 +1,11 @@
 import React from 'react'
-import BannerContent from '@/components/banner'
-import Navbar from '@/components/navbar'
+import BannerContent from '@/components/home/banner'
+import Navbar from '@/components/home/navbar'
 import Image from 'next/image'
 import bannerImg from '@/assets/car.jpg'
-import TrustFactors from '@/components/trust-factors'
-import MainNavbar from '@/components/navbar/main-nav'
+import TrustFactors from '@/components/home/trust-factors'
+import MainNavbar from '@/components/home/navbar/main-nav'
+import SearchParts from '@/components/home/search-parts'
 
 const HomePage = () => {
   return (
@@ -29,6 +30,13 @@ const HomePage = () => {
       </section>
       <section className='container my-2 md:my-4'>
         <TrustFactors />
+      </section>
+      <section className='container my-2 md:my-4'>
+        <h3>Search by vehicle</h3>
+        <span>Filter your results by entering  your Vehicle to ensure you find the parts that fit.</span>
+        <div className='border p-2 rounded-lg'>
+        <SearchParts />
+        </div>
       </section>
     </main>
   )
