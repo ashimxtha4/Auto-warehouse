@@ -13,7 +13,7 @@ const SearchBar = () => {
 
   return (
     <form
-      className='flex w-auto gap-0 rounded-md border border-white p-2'
+      className='flex w-[150px] gap-0 rounded-md border border-white p-1 md:w-auto md:p-2'
       onSubmit={handleSearch}
     >
       <input
@@ -21,7 +21,7 @@ const SearchBar = () => {
         onChange={e => setSearch(e.target.value)}
         type='text'
         placeholder='Search'
-        className='border-none bg-transparent outline-none placeholder:pl-1 placeholder:text-xs placeholder:text-white focus:border-none focus:outline-none active:border-none active:outline-none'
+        className='w-[120px] border-none bg-transparent text-xs md:text-base outline-none placeholder:pl-1 placeholder:text-xs placeholder:text-white focus:border-none focus:outline-none active:border-none active:outline-none md:w-auto'
       />
       <button
         type='submit'
