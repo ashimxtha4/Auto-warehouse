@@ -2,18 +2,10 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  Form,
-  FormControl,
-  // FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
+import { Form, FormField } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import FormRow from '@/components/form/form-row'
+import ComboboxDropdown from '@/components/form/combox'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -24,11 +16,10 @@ const searchPartsSchema = z.object({
   series: z.string().optional()
 })
 
-type TSearchPartsProps = z.infer<typeof searchPartsSchema>
+export type TSearchPartsProps = z.infer<typeof searchPartsSchema>
 const SearchForm = () => {
   const form = useForm<Partial<TSearchPartsProps>>({
-    resolver: zodResolver(searchPartsSchema),
-    defaultValues: {}
+    resolver: zodResolver(searchPartsSchema)
   })
 
   const onSubmit = (data: Partial<TSearchPartsProps>) => {
@@ -42,86 +33,105 @@ const SearchForm = () => {
             control={form.control}
             name='make'
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Make</FormLabel>
-                <FormControl>
-                  <Input placeholder='Select Make' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <ComboboxDropdown
+                field={field}
+                form={form}
+                options={[
+                  { label: 'Test', value: 'test' },
+                  { label: 'Test1', value: 'test1' }
+                ]}
+                title='Make'
+                placeholder='Select Make'
+              />
             )}
           />
           <FormField
             control={form.control}
             name='model'
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Modal</FormLabel>
-                <FormControl>
-                  <Input placeholder='Select Make' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <ComboboxDropdown
+                field={field}
+                form={form}
+                options={[
+                  { label: 'Test', value: 'test' },
+                  { label: 'Test1', value: 'test1' }
+                ]}
+                title='Model'
+                placeholder='Select Model'
+              />
             )}
           />
           <FormField
             control={form.control}
             name='group'
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Group</FormLabel>
-                <FormControl>
-                  <Input placeholder='Select Make' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <ComboboxDropdown
+                field={field}
+                form={form}
+                options={[
+                  { label: 'Test', value: 'test' },
+                  { label: 'Test1', value: 'test1' }
+                ]}
+                title='Group'
+                placeholder='Select Group'
+              />
             )}
           />
           <FormField
             control={form.control}
             name='body'
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Body</FormLabel>
-                <FormControl>
-                  <Input placeholder='Select Make' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <ComboboxDropdown
+                field={field}
+                form={form}
+                options={[
+                  { label: 'Test', value: 'test' },
+                  { label: 'Test1', value: 'test1' }
+                ]}
+                title='Body'
+                placeholder='Select Body'
+              />
             )}
           />
           <FormField
             control={form.control}
             name='year'
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Year</FormLabel>
-                <FormControl>
-                  <Input placeholder='Select Make' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <ComboboxDropdown
+                field={field}
+                form={form}
+                options={[
+                  { label: 'Test', value: 'test' },
+                  { label: 'Test1', value: 'test1' }
+                ]}
+                title='Year'
+                placeholder='Select Year'
+              />
             )}
           />
           <FormField
             control={form.control}
             name='series'
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Series</FormLabel>
-                <FormControl>
-                  <Input placeholder='Select Make' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <ComboboxDropdown
+                field={field}
+                form={form}
+                options={[
+                  { label: 'Test', value: 'test' },
+                  { label: 'Test1', value: 'test1' }
+                ]}
+                title='Series'
+                placeholder='Select Series'
+              />
             )}
           />
         </FormRow>
-        <div className='flex gap-2'>
+        <div className='flex gap-2 !mt-1'>
           <Button
             type='reset'
             variant='outline'
-              className='text-primary-main hover:text-primary-main'
+            className='text-primary-main hover:text-primary-main'
+            onClick={() => form.reset()}
           >
             Clear
           </Button>
