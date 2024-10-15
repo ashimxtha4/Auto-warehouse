@@ -22,7 +22,14 @@ const FormSchema = z.object({
   })
 })
 
-type CheckboxGroupProps = { id: string; label: string; quantity: string }
+type CheckboxGroupProps = {
+  title: string
+  content: {
+    id: string
+    label: string
+    quantity?: string
+  }[]
+}
 
 export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -39,52 +46,59 @@ export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-        <FormField
-          control={form.control}
-          name='items'
-          render={() => (
-            <FormItem>
-              <div className='mb-4'>
-                <FormLabel className='text-base'>Sidebar</FormLabel>
-              </div>
-              {items.map(item => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name='items'
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className='flex flex-row items-start space-x-3 space-y-0'
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={checked => {
-                              return checked
-                                ? field.onChange([...field?.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      value => value !== item.id
+        {items.map(item => (
+          <FormField
+            key={item.title}
+            control={form.control}
+            name='items'
+            render={() => (
+              <FormItem>
+                <div className='mb-4'>
+                  <FormLabel className='text-base'>{item.title}</FormLabel>
+                </div>
+                {item.content.map(unit => (
+                  <FormField
+                    key={unit.id}
+                    control={form.control}
+                    name='items'
+                    render={({ field }) => {
+                      return (
+                        <FormItem
+                          key={unit.id}
+                          className='flex flex-row items-start space-x-3 space-y-0'
+                        >
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value?.includes(unit.id)}
+                              onCheckedChange={checked => {
+                                return checked
+                                  ? field.onChange([...field?.value, unit.id])
+                                  : field.onChange(
+                                      field.value?.filter(
+                                        value => value !== unit.id
+                                      )
                                     )
-                                  )
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className='w-full text-sm font-normal'>
-                          {item.label}
-                          <span className='float-end'>({item.quantity})</span>
-                        </FormLabel>
-                      </FormItem>
-                    )
-                  }}
-                />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className='w-full text-sm font-normal'>
+                            {unit.label}
+                            {unit?.quantity && (
+                              <span className='float-end'>
+                                ({unit.quantity})
+                              </span>
+                            )}
+                          </FormLabel>
+                        </FormItem>
+                      )
+                    }}
+                  />
+                ))}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
         <Button type='submit'>Submit</Button>
       </form>
     </Form>
