@@ -27,7 +27,9 @@ type CheckboxGroupProps = { id: string; label: string; quantity: string }
 export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {}
+    defaultValues: {
+      items: []
+    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {

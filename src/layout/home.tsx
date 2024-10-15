@@ -15,14 +15,17 @@ const HomeLayout = () => {
           className='z-0 h-full w-full object-cover'
         />
       </div>
-      <div className='absolute inset-0 !z-[100] w-full'>
+      <div className='absolute inset-0 z-10 w-full'>
         <Navbar />
-        <div className='bg-white/65'>
+        <div
+          className='bg-white/70'
+          style={{ background: 'white', opacity: '70%' }}
+        >
           <MainNavbar />
         </div>
-      <div className='mb-2 flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>
-        <BannerContent />
-      </div>
+        <div className='mb-2 flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>
+          <BannerContent />
+        </div>
       </div>
     </section>
   )
