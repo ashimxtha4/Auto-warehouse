@@ -22,14 +22,14 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
         <HoverCardTrigger>
           <Link
             href={item.href}
-            className='flex items-center gap-1 text-balance hover:text-primary-main'
+            className='flex items-center gap-1 text-nowrap hover:text-primary-main'
           >
             {item.label}
             {item.links.length ? <FaChevronDown /> : ''}
           </Link>
         </HoverCardTrigger>
         {item?.links?.length ? (
-          <HoverCardContent className='absolute left-0 mt-2 rounded-sm bg-white bg-opacity-45 px-2 py-1 dark:bg-gray-800'>
+          <HoverCardContent className='absolute left-0 mt-2 rounded-sm bg-white/45 px-2 py-1 dark:bg-gray-800'>
             <div className='flex flex-col'>
               {item?.links?.map(({ href, link }) => (
                 <Link

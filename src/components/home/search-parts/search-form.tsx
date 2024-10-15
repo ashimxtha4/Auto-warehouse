@@ -6,6 +6,7 @@ import { Form, FormField } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
+import { useRouter } from 'next/navigation'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -18,12 +19,19 @@ const searchPartsSchema = z.object({
 
 export type TSearchPartsProps = z.infer<typeof searchPartsSchema>
 const SearchForm = () => {
+  const router = useRouter()
+
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
   })
 
   const onSubmit = (data: Partial<TSearchPartsProps>) => {
     console.log(data)
+    try {
+      router.push(`${data.make}`)
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <Form {...form}>
@@ -126,7 +134,7 @@ const SearchForm = () => {
             )}
           />
         </FormRow>
-        <div className='flex gap-2 !mt-1'>
+        <div className='!mt-1 flex gap-2'>
           <Button
             type='reset'
             variant='outline'

@@ -1,24 +1,36 @@
 'use client'
 
 import React, { useState } from 'react'
-// import { Menu } from '@mantine/core'
-// import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-// import MobileMenuItem from './mobile-menu-item'
 import { NAVBAR_ITEMS } from '@/constants/navbar-items'
 import DesktopNavbar from './desktop-nav'
 import SearchBar from './search-bar'
 import UserCartProfile from './user-cart-profile'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '../../ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger
+} from '../../ui/dropdown-menu'
 import MobileMenuItem from './mobile-menu-item'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
+import logo from '@/assets/logo.png'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const MainNavbar = () => {
   const [openMenu, setOpenMenu] = useState(false)
+  const router = useRouter()
 
   return (
-    <div className='bg-[#7a7f7b]/75'>
-      <nav className='container flex items-center justify-between py-2 font-medium text-white'>
-        <h2>Logo here</h2>
+    <>
+      <nav className='container flex items-center justify-between py-2 font-medium text-gray-800'>
+        <div>
+          <Image
+            src={logo}
+            alt='auto-glass-shop'
+            className='h-fit w-10 cursor-pointer md:w-14'
+            onClick={() => router.push('/')}
+          />
+        </div>
         <ul className='flex items-center gap-2 md:gap-5'>
           {NAVBAR_ITEMS.map(item => (
             <DesktopNavbar key={item.key} item={item} />
@@ -28,27 +40,27 @@ const MainNavbar = () => {
           {/* mobile menu */}
           <div className='relative flex lg:hidden'>
             <DropdownMenu
-            open={openMenu}
-            onOpenChange={() => setOpenMenu(prev => !prev)}
+              open={openMenu}
+              onOpenChange={() => setOpenMenu(prev => !prev)}
             >
-              <DropdownMenuTrigger onClick={() => setOpenMenu(prev => !prev)} >
-                  {openMenu ? (
-                    <AiOutlineClose size={16} />
-                  ) : (
-                    <AiOutlineMenu size={16} />
-                  )}
-              </DropdownMenuTrigger> 
+              <DropdownMenuTrigger onClick={() => setOpenMenu(prev => !prev)}>
+                {openMenu ? (
+                  <AiOutlineClose size={16} />
+                ) : (
+                  <AiOutlineMenu size={16} />
+                )}
+              </DropdownMenuTrigger>
 
-            <DropdownMenuContent className='mt-2 bg-black/80 flex flex-col justify-start items-center w-screen h-max'>
+              <DropdownMenuContent className='mt-2 flex h-max w-screen flex-col items-center justify-start bg-black/80'>
                 {NAVBAR_ITEMS.map((item, i) => (
                   <MobileMenuItem key={item.key} item={item} index={i} />
                 ))}
               </DropdownMenuContent>
-             </DropdownMenu>
+            </DropdownMenu>
           </div>
         </ul>
       </nav>
-    </div>
+    </>
   )
 }
 
