@@ -2,6 +2,39 @@ import { CheckboxGroup } from '@/components/form/checkbox-group'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import React from 'react'
 
+// const items = [
+//   {
+//     title: 'new title',
+//     content: [
+//       {
+//         id: 'recents',
+//         label: 'Recents',
+//         quantity: '1'
+//       },
+//       {
+//         id: 'recents',
+//         label: 'Recents',
+//         quantity: '1'
+//       }
+//     ]
+//   },
+//   {
+//     title: 'next',
+//     content: [
+//       {
+//         id: 'recents',
+//         label: 'Recents',
+//         quantity: '1'
+//       },
+//       {
+//         id: 'recents',
+//         label: 'Recents',
+//         quantity: '1'
+//       }
+//     ]
+//   }
+// ]
+
 const items = [
   {
     id: 'recents',

@@ -21,46 +21,44 @@ const MainNavbar = () => {
   const router = useRouter()
 
   return (
-    <>
-      <nav className='container flex items-center justify-between py-2 font-medium text-gray-800'>
-        <div>
-          <Image
-            src={logo}
-            alt='auto-glass-shop'
-            className='h-fit w-10 cursor-pointer md:w-14'
-            onClick={() => router.push('/')}
-          />
-        </div>
-        <ul className='flex items-center gap-2 md:gap-5'>
-          {NAVBAR_ITEMS.map(item => (
-            <DesktopNavbar key={item.key} item={item} />
-          ))}
-          <SearchBar />
-          <UserCartProfile />
-          {/* mobile menu */}
-          <div className='relative flex lg:hidden'>
-            <DropdownMenu
-              open={openMenu}
-              onOpenChange={() => setOpenMenu(prev => !prev)}
-            >
-              <DropdownMenuTrigger onClick={() => setOpenMenu(prev => !prev)}>
-                {openMenu ? (
-                  <AiOutlineClose size={16} />
-                ) : (
-                  <AiOutlineMenu size={16} />
-                )}
-              </DropdownMenuTrigger>
+    <nav className='container flex items-center justify-between py-2 font-medium text-gray-800'>
+      <div>
+        <Image
+          src={logo}
+          alt='auto-glass-shop'
+          className='h-fit w-10 cursor-pointer md:w-14'
+          onClick={() => router.push('/')}
+        />
+      </div>
+      <ul className='flex items-center gap-2 md:gap-5'>
+        {NAVBAR_ITEMS.map(item => (
+          <DesktopNavbar key={item.key} item={item} />
+        ))}
+        <SearchBar />
+        <UserCartProfile />
+        {/* mobile menu */}
+        <div className='relative flex lg:hidden'>
+          <DropdownMenu
+            open={openMenu}
+            onOpenChange={() => setOpenMenu(prev => !prev)}
+          >
+            <DropdownMenuTrigger onClick={() => setOpenMenu(prev => !prev)}>
+              {openMenu ? (
+                <AiOutlineClose size={16} />
+              ) : (
+                <AiOutlineMenu size={16} />
+              )}
+            </DropdownMenuTrigger>
 
-              <DropdownMenuContent className='mt-2 flex h-max w-screen flex-col items-center justify-start bg-black/80'>
-                {NAVBAR_ITEMS.map((item, i) => (
-                  <MobileMenuItem key={item.key} item={item} index={i} />
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </ul>
-      </nav>
-    </>
+            <DropdownMenuContent className='mt-2 flex h-max w-screen flex-col items-center justify-start bg-black/80'>
+              {NAVBAR_ITEMS.map((item, i) => (
+                <MobileMenuItem key={item.key} item={item} index={i} />
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </ul>
+    </nav>
   )
 }
 

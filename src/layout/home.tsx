@@ -12,17 +12,17 @@ const HomeLayout = () => {
         <Image
           src={bannerImg}
           alt='auto-glass'
-          className='h-full w-full object-cover'
+          className='z-0 h-full w-full object-cover'
         />
       </div>
-      <div className='absolute left-0 top-0 z-10 w-full'>
+      <div className='absolute inset-0 !z-[100] w-full'>
         <Navbar />
-        <div className='sticky top-0 z-10 w-full bg-white/65'>
+        <div className='bg-white/65'>
           <MainNavbar />
         </div>
-      </div>
-      <div className='absolute inset-0 mb-2 flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>
+      <div className='mb-2 flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>
         <BannerContent />
+      </div>
       </div>
     </section>
   )

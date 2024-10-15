@@ -61,7 +61,7 @@ export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
                             checked={field.value?.includes(item.id)}
                             onCheckedChange={checked => {
                               return checked
-                                ? field.onChange([...field.value, item.id])
+                                ? field.onChange([...field?.value, item.id])
                                 : field.onChange(
                                     field.value?.filter(
                                       value => value !== item.id
@@ -70,7 +70,7 @@ export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
                             }}
                           />
                         </FormControl>
-                        <FormLabel className='text-sm font-normal w-full'>
+                        <FormLabel className='w-full text-sm font-normal'>
                           {item.label}
                           <span className='float-end'>({item.quantity})</span>
                         </FormLabel>
