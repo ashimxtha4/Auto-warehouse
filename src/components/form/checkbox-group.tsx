@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   Form,
@@ -99,7 +99,7 @@ export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
             )}
           />
         ))}
-        <Button type='submit'>Submit</Button>
+        {/* <Button type='submit'>Submit</Button> */}
       </form>
     </Form>
   )

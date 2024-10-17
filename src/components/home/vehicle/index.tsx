@@ -1,9 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
 import SearchParts from '../search-parts'
-import car from '@/assets/auto-glass-car.png'
 import VehicleParts from './vehicle-parts'
+import Suv from './vehicle-type/suv'
 
 const Vehicle = () => {
   return (
@@ -16,12 +14,7 @@ const Vehicle = () => {
           Select Your Preferred Glass Type
         </span>
         <div className='relative my-4 flex w-full justify-center'>
-          <Image src={car} alt='vehicle' className='h-fit w-fit object-cover' />
-          <div className='absolute'>
-            <Link href='/mirror' className='absolute h-[1.4px] w-14 bg-black'>
-              Mirror
-            </Link>
-          </div>
+          <Suv />
         </div>
         <VehicleParts />
       </section>
