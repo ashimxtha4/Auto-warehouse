@@ -12,6 +12,7 @@ import defaultImage from '@/assets/default.png'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
+import SelectForm from '@/components/form/drop-down'
 
 const VehicleParts = () => {
   const {
@@ -64,7 +65,7 @@ const VehicleParts = () => {
             <CiGrid41
               size={28}
               className={cn(
-                'cursor-pointer',
+                'h-full cursor-pointer',
                 viewType === null && 'bg-primary-main text-white'
               )}
               onClick={handleSearch}
@@ -78,16 +79,9 @@ const VehicleParts = () => {
               )}
             />
           </div>
-          <div>
-            Sort
-            {/* <select>
-              <option value='default'>Default</option>
-              <option value='popular'>Most Popular</option>
-              <option value='name'>Name</option>
-              <option value='sku'>SKU</option>
-              <option value='lowest'>Lowest Price</option>
-              <option value='highest'>Highest Price</option>
-            </select> */}
+          <div className='flex items-center gap-1 md:gap-3'>
+            <span>Sort</span>
+            <SelectForm />
           </div>
         </header>
         <div className={cn('flex flex-wrap justify-between gap-2')}>
