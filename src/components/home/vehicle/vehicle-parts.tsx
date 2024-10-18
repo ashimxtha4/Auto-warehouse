@@ -105,7 +105,9 @@ const VehicleParts = () => {
             <SelectForm />
           </div>
         </header>
-        <div className={cn('flex flex-wrap justify-between gap-2')}>
+        <div
+          className={cn('grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3')}
+        >
           {products.map((item, index) => (
             <ProductItem key={index} item={item} />
           ))}

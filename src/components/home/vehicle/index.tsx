@@ -10,10 +10,10 @@ const Vehicle = () => {
         <SearchParts />
       </section>
       <section className='container'>
-        <span className='my-2 flex w-full justify-center rounded-md bg-primary-desaturate px-2 text-center text-2xl font-medium text-white'>
+        <span className='my-2 hidden w-full justify-center rounded-md bg-primary-desaturate px-2 text-center text-2xl font-medium text-white md:flex'>
           Select Your Preferred Glass Type
         </span>
-        <div className='relative my-4 flex w-full justify-center'>
+        <div className='relative my-4 hidden w-full justify-center md:flex'>
           <Suv />
         </div>
         <VehicleParts />

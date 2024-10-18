@@ -5,8 +5,8 @@ import SearchForm from './search-form'
 
 const SearchParts = () => {
   return (
-    <div className='rounded-lg border p-2 relative'>
-      <div className='pb-2 mb-2 border-b'>
+    <div className='relative rounded-lg border p-2'>
+      <div className='mb-2 border-b pb-2'>
         <h3 className='title-text font-bold text-primary-dark'>
           Search by vehicle
         </h3>
@@ -15,7 +15,6 @@ const SearchParts = () => {
           parts that fit.
         </span>
       </div>
-
       <SearchForm />
     </div>
   )
