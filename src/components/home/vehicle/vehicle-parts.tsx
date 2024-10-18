@@ -7,12 +7,33 @@ import { PRODUCT_FILTER_ITEMS } from '@/constants/filter-products-items'
 import { CiGrid41, CiCircleList } from 'react-icons/ci'
 import Link from 'next/link'
 import { CATEGORY_ITEMS } from '@/constants/vehicle-parts-category'
-import Image from 'next/image'
-import defaultImage from '@/assets/default.png'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import SelectForm from '@/components/form/drop-down'
+import ProductItem from './product-item'
+
+const products = [
+  {
+    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    sku: '1233',
+    price: '5243'
+  }
+]
 
 const VehicleParts = () => {
   const {
@@ -85,138 +106,9 @@ const VehicleParts = () => {
           </div>
         </header>
         <div className={cn('flex flex-wrap justify-between gap-2')}>
-          <Card
-            className={cn(viewType === null ? 'max-w-[300px]' : 'flex w-full')}
-          >
-            <CardHeader>
-              <Image
-                src={defaultImage}
-                alt='default-image'
-                className='object-cover'
-              />
-            </CardHeader>
-            <CardContent>
-              <span className='block py-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam alias mollitia deserunt harum, provident sunt!
-              </span>
-              <span className='block py-1'>sku: 12435</span>
-              <span className='block py-1'>Price: $15.98</span>
-              <div
-                className={cn(
-                  viewType === null
-                    ? 'flex justify-between gap-2'
-                    : 'flex justify-start gap-5'
-                )}
-              >
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  Add to Cart
-                </Button>
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  View Details
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-          <Card
-            className={cn(viewType === null ? 'max-w-[300px]' : 'flex w-full')}
-          >
-            <CardHeader>
-              <Image
-                src={defaultImage}
-                alt='default-image'
-                className='object-cover'
-              />
-            </CardHeader>
-            <CardContent>
-              <span className='block py-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam alias mollitia deserunt harum, provident sunt!
-              </span>
-              <span className='block py-1'>sku: 12435</span>
-              <span className='block py-1'>Price: $15.98</span>
-              <div
-                className={cn(
-                  viewType === null
-                    ? 'flex justify-between gap-2'
-                    : 'flex justify-start gap-5'
-                )}
-              >
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  Add to Cart
-                </Button>
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  View Details
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-          <Card
-            className={cn(viewType === null ? 'max-w-[300px]' : 'flex w-full')}
-          >
-            <CardHeader>
-              <Image
-                src={defaultImage}
-                alt='default-image'
-                className='object-cover'
-              />
-            </CardHeader>
-            <CardContent>
-              <span className='block py-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam alias mollitia deserunt harum, provident sunt!
-              </span>
-              <span className='block py-1'>sku: 12435</span>
-              <span className='block py-1'>Price: $15.98</span>
-              <div
-                className={cn(
-                  viewType === null
-                    ? 'flex justify-between gap-2'
-                    : 'flex justify-start gap-5'
-                )}
-              >
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  Add to Cart
-                </Button>
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  View Details
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-          <Card
-            className={cn(viewType === null ? 'max-w-[300px]' : 'flex w-full')}
-          >
-            <CardHeader>
-              <Image
-                src={defaultImage}
-                alt='default-image'
-                className='object-cover'
-              />
-            </CardHeader>
-            <CardContent>
-              <span className='block py-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam alias mollitia deserunt harum, provident sunt!
-              </span>
-              <span className='block py-1'>sku: 12435</span>
-              <span className='block py-1'>Price: $15.98</span>
-              <div
-                className={cn(
-                  viewType === null
-                    ? 'flex justify-between gap-2'
-                    : 'flex justify-start gap-5'
-                )}
-              >
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  Add to Cart
-                </Button>
-                <Button className='bg-primary-main hover:bg-primary-dark'>
-                  View Details
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {products.map((item, index) => (
+            <ProductItem key={index} item={item} />
+          ))}
         </div>
       </aside>
     </section>
