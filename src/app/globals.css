@@ -18,6 +18,14 @@
   @apply text-base tracking-wide sm:text-xl md:text-3xl;
 }
 
+.circle-dot {
+  @apply absolute h-2 w-2 rounded-full bg-primary-main;
+}
+
+.vehicle-line {
+  @apply absolute h-[2px] bg-primary-main;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
