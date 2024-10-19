@@ -31,11 +31,11 @@ const MobileMenuItem = ({ item, index }: MobileMenuItemProps) => {
         <div className='w-full'>
           {item.links.map(inner => (
             <Link
-              key={inner.link}
+              key={inner.label}
               href={inner.href}
               className='block w-full border-b pb-1 text-white'
             >
-              {inner.link}
+              {inner.label}
             </Link>
           ))}
         </div>

@@ -1,42 +1,42 @@
 export const CATEGORY_ITEMS = [
   {
     label: 'Windscreens',
-    href: '/parts?category=wind-screens'
+    href: '/shop?category=wind-screens'
   },
   {
     label: 'Body Side Glass',
-    href: '/parts?category=body-side-glass'
+    href: '/shop?category=body-side-glass'
   },
   {
     label: 'Rear Windows',
-    href: '/parts?category=rear-windows'
+    href: '/shop?category=rear-windows'
   },
   {
     label: 'Mirrors',
-    href: '/parts?category=mirrors'
+    href: '/shop?category=mirrors'
   },
   {
     label: 'Window Regulators',
-    href: '/parts?category=window-regulators'
+    href: '/shop?category=window-regulators'
   },
   {
     label: 'Wiper Blades',
-    href: '/parts?category=wiper-blades'
+    href: '/shop?category=wiper-blades'
   },
   {
     label: 'Misc Items',
-    href: '/parts?category=misc-items'
+    href: '/shop?category=misc-items'
   },
   {
     label: 'Misc Window Accessories',
-    href: '/parts?category=misc-window-accessories'
+    href: '/shop?category=misc-window-accessories'
   },
   {
     label: 'Headlights',
-    href: '/parts?category=headlights'
+    href: '/shop?category=headlights'
   },
   {
     label: 'Tail Lights',
-    href: '/parts?category=tail-lights'
+    href: '/shop?category=tail-lights'
   }
 ]

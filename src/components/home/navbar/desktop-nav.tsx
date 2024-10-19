@@ -33,15 +33,15 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           </Link>
         </HoverCardTrigger>
         {item?.links?.length ? (
-          <HoverCardContent className='absolute left-0 mt-2 rounded-sm bg-white/90 px-2 py-1 dark:bg-gray-800'>
+          <HoverCardContent className='absolute -left-[100px] mt-2 rounded-sm bg-white/90 px-2 py-1 dark:bg-gray-800'>
             <div className='flex flex-col'>
-              {item?.links?.map(({ href, link }) => (
+              {item?.links?.map(({ href, label }) => (
                 <Link
                   href={href}
-                  key={link}
+                  key={label}
                   className='mb-1 border-b border-b-gray-600 pb-2 text-primary-main hover:bg-gray-700 hover:bg-opacity-20 hover:text-primary-dark'
                 >
-                  {link}
+                  {label}
                 </Link>
               ))}
             </div>

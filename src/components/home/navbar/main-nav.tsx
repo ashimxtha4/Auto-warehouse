@@ -15,10 +15,12 @@ import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import logo from '@/assets/logo.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const MainNavbar = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const router = useRouter()
+  const admin = true
 
   return (
     <nav className='container flex items-center justify-between py-2 font-medium text-primary-dark'>
@@ -34,6 +36,11 @@ const MainNavbar = () => {
         {NAVBAR_ITEMS.map(item => (
           <DesktopNavbar key={item.key} item={item} />
         ))}
+        {admin && (
+          <Link href='/admin' className='bg-primary-main text-white'>
+            ADMIN
+          </Link>
+        )}
         <SearchBar />
         <UserCartProfile />
         {/* mobile menu */}
@@ -50,7 +57,7 @@ const MainNavbar = () => {
               )}
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className='mt-2 flex h-max w-screen flex-col items-center justify-start bg-black/80'>
+            <DropdownMenuContent className='mt-3 flex h-max w-screen flex-col items-center justify-start bg-primary-main/90'>
               {NAVBAR_ITEMS.map((item, i) => (
                 <MobileMenuItem key={item.key} item={item} index={i} />
               ))}

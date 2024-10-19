@@ -6,7 +6,7 @@ const UserCartProfile = () => {
     <div className='flex gap-3 md:gap-5'>
       <button type='button' className='relative text-base md:text-2xl'>
         <FaShoppingCart />
-        <span className='absolute -right-4 -top-4 rounded-full bg-black px-2 text-base text-white'>
+        <span className='absolute -right-[10px] -top-[10px] rounded-full bg-black/90 px-1 text-xs text-white md:-right-4 md:-top-4 md:px-2 md:text-base'>
           0
         </span>
       </button>

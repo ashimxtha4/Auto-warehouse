@@ -1,14 +1,17 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { FaSearch } from 'react-icons/fa'
 
 const SearchBar = () => {
   const [search, setSearch] = useState('')
+  const router = useRouter()
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(search, 'text search')
+    router.push(`/parts?part=${search}`)
+    setSearch('')
   }
 
   return (

@@ -6,7 +6,7 @@ import HomeLayout from '@/layout/home'
 import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
-  title: 'Auto Glass Warehouse',
+  title: 'Auto Glass Shop',
   description: 'An online store for selling different parts of cars.'
 }
 
