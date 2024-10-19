@@ -69,7 +69,7 @@ const VehicleParts = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className='text-white hover:bg-primary-saturate'
+                className='p-1 hover:bg-primary-saturate hover:text-white'
               >
                 {item.label}
               </Link>
