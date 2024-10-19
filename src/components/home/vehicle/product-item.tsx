@@ -16,7 +16,7 @@ const ProductItem = ({ item }: { item: ProductItemProps }) => {
   return (
     <Card
       className={cn(
-        viewType === null ? 'm-auto max-w-[250px]' : 'flex w-full items-center'
+        viewType === null ? 'mx-auto max-w-[250px]' : 'flex mb-2 w-full items-center'
       )}
     >
       <CardHeader className='justify-center p-1 md:p-0'>

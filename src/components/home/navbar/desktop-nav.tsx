@@ -2,19 +2,23 @@
 
 import React, { useEffect, useState } from 'react'
 import { NavItemsProps } from '@/constants/navbar-items'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../ui/hover-card'
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger
+} from '../../ui/hover-card'
 import Link from 'next/link'
 import { FaChevronDown } from 'react-icons/fa'
 
 const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
   if (!isMounted) {
-    return null;
+    return null
   }
   return (
     <li className='hidden lg:block'>
@@ -29,13 +33,13 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           </Link>
         </HoverCardTrigger>
         {item?.links?.length ? (
-          <HoverCardContent className='absolute left-0 mt-2 rounded-sm bg-white/45 px-2 py-1 dark:bg-gray-800'>
+          <HoverCardContent className='absolute left-0 mt-2 rounded-sm bg-white/90 px-2 py-1 dark:bg-gray-800'>
             <div className='flex flex-col'>
               {item?.links?.map(({ href, link }) => (
                 <Link
                   href={href}
                   key={link}
-                  className='mb-1 border-b border-b-gray-600 pb-2 hover:bg-gray-700 hover:bg-opacity-20'
+                  className='mb-1 border-b border-b-gray-600 pb-2 text-primary-main hover:bg-gray-700 hover:bg-opacity-20 hover:text-primary-dark'
                 >
                   {link}
                 </Link>

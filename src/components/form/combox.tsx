@@ -62,7 +62,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
               variant='outline'
               role='combobox'
               className={cn(
-                'w-fill-available justify-between',
+                'w-72 justify-between',
                 !field.value && 'text-muted-foreground'
               )}
             >
@@ -73,7 +73,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
             </Button>
           </FormControl>
         </PopoverTrigger>
-        <PopoverContent className='w-fill-available p-0'>
+        <PopoverContent className='p-0'>
           <Command>
             <CommandInput
               placeholder={placeholder ?? 'Search...'}

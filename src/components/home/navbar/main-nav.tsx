@@ -21,7 +21,7 @@ const MainNavbar = () => {
   const router = useRouter()
 
   return (
-    <nav className='container flex items-center justify-between py-2 font-medium text-gray-800'>
+    <nav className='container flex items-center justify-between py-2 font-medium text-primary-dark'>
       <div>
         <Image
           src={logo}

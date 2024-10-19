@@ -14,22 +14,67 @@ import ProductItem from './product-item'
 
 const products = [
   {
-    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
     sku: '1233',
     price: '5243'
   },
   {
-    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias officiis suscipit id dolorem minus.',
     sku: '1233',
     price: '5243'
   },
   {
-    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
     sku: '1233',
     price: '5243'
   },
   {
-    desc: 'jdsjhd hgdhgd dshd sdhgsd sdhgdsbsd dshg',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+    sku: '1233',
+    price: '5243'
+  },
+  {
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
     sku: '1233',
     price: '5243'
   }
@@ -106,7 +151,10 @@ const VehicleParts = () => {
           </div>
         </header>
         <div
-          className={cn('grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3')}
+          className={cn(
+            viewType === null &&
+              'grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3'
+          )}
         >
           {products.map((item, index) => (
             <ProductItem key={index} item={item} />

@@ -3,6 +3,7 @@ import Notification from '@/components/home/notification'
 import ReactQueryProvider from '@/services/provider/react-query-provider'
 import './globals.css'
 import HomeLayout from '@/layout/home'
+import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
   title: 'Auto Glass Warehouse',
@@ -20,6 +21,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <HomeLayout />
           {children}
+          <Footer />
         </ReactQueryProvider>
         <Notification />
       </body>

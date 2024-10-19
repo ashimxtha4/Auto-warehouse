@@ -26,6 +26,10 @@
   @apply absolute h-[2px] bg-primary-main;
 }
 
+.footer-heading {
+  @apply pb-1 text-base font-medium md:pb-2 md:text-2xl;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
