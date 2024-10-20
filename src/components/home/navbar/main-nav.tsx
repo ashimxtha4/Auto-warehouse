@@ -20,7 +20,7 @@ import Link from 'next/link'
 const MainNavbar = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const router = useRouter()
-  const admin = true
+  const admin = false
 
   return (
     <nav className='container flex items-center justify-between py-2 font-medium text-primary-dark'>

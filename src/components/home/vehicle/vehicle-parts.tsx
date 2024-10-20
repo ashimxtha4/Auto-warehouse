@@ -19,7 +19,7 @@ const products = [
     price: '5243'
   },
   {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias officiis suscipit id dolorem minus.',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
     sku: '1233',
     price: '5243'
   },
@@ -126,7 +126,7 @@ const VehicleParts = () => {
         <h4 className='text-xl font-medium md:text-3xl'>
           Auto Glass Solutions for {vehicleName}
         </h4>
-        <header className='my-4 flex justify-between border-b pb-4'>
+        <header className='my-4 flex justify-around border-b pb-4'>
           <div className='flex items-center justify-center gap-1 rounded-md border'>
             <CiGrid41
               size={28}
@@ -152,8 +152,7 @@ const VehicleParts = () => {
         </header>
         <div
           className={cn(
-            viewType === null &&
-              'grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3'
+            viewType === null && 'flex flex-wrap justify-center gap-2'
           )}
         >
           {products.map((item, index) => (

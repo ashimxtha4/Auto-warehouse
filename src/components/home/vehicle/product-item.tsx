@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
 import defaultImage from '@/assets/default.png'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 type ProductItemProps = {
   desc: string
@@ -16,7 +17,7 @@ const ProductItem = ({ item }: { item: ProductItemProps }) => {
   return (
     <Card
       className={cn(
-        viewType === null ? 'mx-auto max-w-[250px]' : 'flex mb-2 w-full items-center'
+        viewType === null ? 'max-w-[250px]' : 'mb-2 flex w-full items-center'
       )}
     >
       <CardHeader className='justify-center p-1 md:p-0'>
@@ -49,12 +50,15 @@ const ProductItem = ({ item }: { item: ProductItemProps }) => {
               : 'flex justify-start gap-5'
           )}
         >
-          <Button className='bg-primary-main text-xs hover:bg-primary-dark md:text-sm'>
+          <Button className='rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'>
             Add to Cart
           </Button>
-          <Button className='bg-primary-main text-xs hover:bg-primary-dark md:text-sm'>
+          <Link
+            href={`/product?sku=${item.sku}`}
+            className='flex items-center justify-center rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'
+          >
             View Details
-          </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>
