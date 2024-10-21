@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Notification from '@/components/home/notification'
 import ReactQueryProvider from '@/services/provider/react-query-provider'
+import AutoGlassShopLayout from '@/layout/autoglass-shop'
 import './globals.css'
-import NavbarFooterLayout from '@/layout/navbar-footer'
 
 export const metadata: Metadata = {
   title: 'Auto Glass Shop',
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <ReactQueryProvider>
-          <NavbarFooterLayout>{children}</NavbarFooterLayout>
+          <AutoGlassShopLayout>{children}</AutoGlassShopLayout>
         </ReactQueryProvider>
         <Notification />
       </body>

@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push(`/parts?part=${search}`)
+    router.push(`/product?part=${search}`)
     setSearch('')
   }
 
