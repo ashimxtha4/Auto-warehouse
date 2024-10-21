@@ -33,7 +33,7 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           </Link>
         </HoverCardTrigger>
         {item?.links?.length ? (
-          <HoverCardContent className='absolute -left-[100px] mt-2 rounded-sm bg-white/90 px-2 py-1 dark:bg-gray-800'>
+          <HoverCardContent className='absolute -left-[100px] mt-2 max-h-60 overflow-auto rounded-sm bg-white/90 px-2 py-1 dark:bg-gray-800'>
             <div className='flex flex-col'>
               {item?.links?.map(({ href, label }) => (
                 <Link

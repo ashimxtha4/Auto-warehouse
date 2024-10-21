@@ -1,3 +1,4 @@
+import Footer from '@/components/footer'
 import MainNavbar from '@/components/home/navbar/main-nav'
 
 const ProfileLayout = ({
@@ -17,6 +18,7 @@ const ProfileLayout = ({
       <MainNavbar />
     </div>
     {children}
+    <Footer />
   </>
 )
 

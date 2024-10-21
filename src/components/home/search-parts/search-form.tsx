@@ -150,9 +150,13 @@ const SearchForm = () => {
             <Button
               type='submit'
               variant='default'
-              className='bg-primary-main hover:bg-primary-main'
+              className='bg-primary-main hover:bg-primary-dark'
             >
-              Submit
+              {form.formState.isSubmitting ? (
+                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
+              ) : (
+                'Submit'
+              )}
             </Button>
           </div>
         </form>

@@ -16,7 +16,11 @@ const AutoGlassShopLayout = ({
     return <AuthLayout>{children}</AuthLayout>
   }
 
-  if (pathname === '/profile') {
+  if (
+    pathname === '/profile' ||
+    pathname === '/contact' ||
+    pathname === '/quote'
+  ) {
     return <ProfileLayout>{children}</ProfileLayout>
   }
 
