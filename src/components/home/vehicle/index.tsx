@@ -2,7 +2,8 @@ import React from 'react'
 import SearchParts from '../search-parts'
 import VehicleParts from './vehicle-parts'
 // import Sedan from './vehicle-type/sedan'
-import Ute from './vehicle-type/ute'
+// import Ute from './vehicle-type/ute'
+import UteTruck from './vehicle-type/ute-truck'
 // import Suv from './vehicle-type/suv'
 
 const Vehicle = () => {
@@ -18,7 +19,8 @@ const Vehicle = () => {
         <div className='relative my-4 mb-12 hidden w-full justify-center md:flex'>
           {/* <Suv /> */}
           {/* <Sedan /> */}
-          <Ute />
+          {/* <Ute /> */}
+          <UteTruck />
         </div>
         <VehicleParts />
       </section>

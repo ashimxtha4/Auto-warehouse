@@ -16,7 +16,8 @@ const Footer = () => {
         <AutoglassAlliance />
       </div>
       <p className='pb-1 text-center text-base font-medium text-white md:pb-2'>
-        Copyright © {new Date().getFullYear()} Autoglass Shop
+        Copyright © {new Date().getFullYear()} All rights reserved | Auto Glass
+        Shop
       </p>
     </footer>
   )

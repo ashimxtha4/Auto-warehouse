@@ -44,7 +44,7 @@ const UteTruckCalloutLines = () => {
         </Link>
       </div>
       {/* left headlight */}
-      <div className='absolute'>
+      {/* <div className='absolute'>
         <span className='circle-dot -left-[120px] top-[95px]' />
         <span className='vehicle-line -left-[299px] top-[97px] w-[180px]' />
         <Link
@@ -53,9 +53,9 @@ const UteTruckCalloutLines = () => {
         >
           Left Headlight
         </Link>
-      </div>
+      </div> */}
       {/* right headlight */}
-      <div className='absolute'>
+      {/* <div className='absolute'>
         <span className='circle-dot left-[105px] top-[95px]' />
         <span className='vehicle-line left-[112px] top-[97px] w-[180px]' />
         <Link
@@ -64,7 +64,7 @@ const UteTruckCalloutLines = () => {
         >
           Right Headlight
         </Link>
-      </div>
+      </div> */}
       {/* Front Left door */}
       <div className='absolute'>
         <span className='circle-dot -left-[120px] top-[322px]' />
@@ -111,36 +111,70 @@ const UteTruckCalloutLines = () => {
       </div>
       {/* Back left vent */}
       <div className='absolute'>
-        <span className='circle-dot -left-[116px] top-[528px]' />
-        <span className='vehicle-line -left-[264px] top-[530px] w-[150px]' />
+        <span className='circle-dot -left-[120px] top-[496px]' />
+        <span className='vehicle-line -left-[264px] top-[499px] w-[150px]' />
         <Link
           href={pathname + '?part=back-left-vent'}
-          className='absolute -left-[20.6rem] top-[32.2rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
+          className='absolute -left-[20.6rem] top-[30rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
         >
           Back left vent
         </Link>
       </div>
       {/* Back right vent */}
       <div className='absolute'>
-        <span className='circle-dot left-[102px] top-[528px]' />
-        <span className='vehicle-line left-[108px] top-[530px] w-[170px]' />
+        <span className='circle-dot left-[106px] top-[496px]' />
+        <span className='vehicle-line left-[108px] top-[499px] w-[170px]' />
         <Link
           href={pathname + '?part=back-right-vent'}
-          className='absolute left-[17rem] top-[32.2rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
+          className='absolute left-[17rem] top-[30rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
         >
           Back right vent
         </Link>
       </div>
-      {/* Back windshield */}
+      {/* Back left quarter */}
       <div className='absolute'>
-        <span className='circle-dot left-0 top-[648px]' />
-        <span className='vehicle-line left-[3px] top-[650px] !h-[58px] w-[2px]' />
-        <span className='vehicle-line left-[5px] top-[706px] w-[270px]' />
+        <span className='circle-dot -left-[115px] top-[595px]' />
+        <span className='vehicle-line -left-[264px] top-[598px] w-[150px]' />
         <Link
-          href={pathname + '?part=back-windshield'}
-          className='absolute left-[16.8rem] top-[43rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
+          href={pathname + '?part=back-left-vent'}
+          className='absolute -left-[20.6rem] top-[36.4rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
         >
-          Back WindShield
+          Back left vent
+        </Link>
+      </div>
+      {/* Back right quarter */}
+      <div className='absolute'>
+        <span className='circle-dot left-[106px] top-[595px]' />
+        <span className='vehicle-line left-[108px] top-[598px] w-[170px]' />
+        <Link
+          href={pathname + '?part=back-right-quarter'}
+          className='absolute left-[17rem] top-[36.3rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
+        >
+          Back right quarter
+        </Link>
+      </div>
+      {/* Rear windshield */}
+      <div className='absolute'>
+        <span className='circle-dot left-0 top-[670px]' />
+        <span className='vehicle-line left-[3px] top-[672px] !h-[58px] w-[2px]' />
+        <span className='vehicle-line left-[5px] top-[728px] w-[270px]' />
+        <Link
+          href={pathname + '?part=rear-windshield'}
+          className='absolute left-[16.8rem] top-[44.5rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
+        >
+          Rear WindShield
+        </Link>
+      </div>
+      {/* Sunroof */}
+      <div className='absolute'>
+        <span className='circle-dot left-0 top-[475px]' />
+        <span className='vehicle-line left-[3px] top-[480px] !h-[66px] w-[2px]' />
+        <span className='vehicle-line left-[5px] top-[544px] w-[270px]' />
+        <Link
+          href={pathname + '?part=rear-sunroof'}
+          className='absolute left-[16.9rem] top-[32.8rem] flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-dark px-2 py-1 text-white hover:bg-primary-main'
+        >
+          Sunroof
         </Link>
       </div>
     </>
