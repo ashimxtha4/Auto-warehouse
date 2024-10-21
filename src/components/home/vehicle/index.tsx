@@ -1,7 +1,8 @@
 import React from 'react'
 import SearchParts from '../search-parts'
 import VehicleParts from './vehicle-parts'
-import Suv from './vehicle-type/suv'
+import Sedan from './vehicle-type/sedan'
+// import Suv from './vehicle-type/suv'
 
 const Vehicle = () => {
   return (
@@ -14,7 +15,8 @@ const Vehicle = () => {
           Select Your Preferred Glass Type
         </span>
         <div className='relative my-4 mb-12 hidden w-full justify-center md:flex'>
-          <Suv />
+          {/* <Suv /> */}
+          <Sedan />
         </div>
         <VehicleParts />
       </section>
