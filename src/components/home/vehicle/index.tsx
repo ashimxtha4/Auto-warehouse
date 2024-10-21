@@ -3,7 +3,8 @@ import SearchParts from '../search-parts'
 import VehicleParts from './vehicle-parts'
 // import Sedan from './vehicle-type/sedan'
 // import Ute from './vehicle-type/ute'
-import UteTruck from './vehicle-type/ute-truck'
+// import UteTruck from './vehicle-type/ute-truck'
+import Van from './vehicle-type/van'
 // import Suv from './vehicle-type/suv'
 
 const Vehicle = () => {
@@ -20,7 +21,8 @@ const Vehicle = () => {
           {/* <Suv /> */}
           {/* <Sedan /> */}
           {/* <Ute /> */}
-          <UteTruck />
+          {/* <UteTruck /> */}
+          <Van />
         </div>
         <VehicleParts />
       </section>

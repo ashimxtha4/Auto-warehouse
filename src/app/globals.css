@@ -26,6 +26,10 @@
   @apply absolute h-[2px] bg-primary-main;
 }
 
+.callout-line-title {
+  @apply absolute flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-main px-2 py-1 text-white hover:bg-primary-dark;
+}
+
 .footer-heading {
   @apply pb-1 text-base font-medium md:pb-2 md:text-2xl;
 }
