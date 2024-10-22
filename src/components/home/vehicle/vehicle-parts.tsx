@@ -123,10 +123,10 @@ const VehicleParts = () => {
         </Card>
       </aside>
       <aside className='flex-[2]'>
-        <h4 className='text-xl font-medium md:text-3xl'>
+        <h4 className='py-1 text-center text-xl font-medium md:py-2 md:text-3xl'>
           Auto Glass Solutions for {vehicleName}
         </h4>
-        <header className='my-4 flex justify-around border-b pb-4'>
+        <header className='my-4 flex justify-start gap-2 border-b pb-4 md:gap-5'>
           <div className='flex items-center justify-center gap-1 rounded-md border'>
             <CiGrid41
               size={28}
@@ -146,13 +146,13 @@ const VehicleParts = () => {
             />
           </div>
           <div className='flex items-center gap-1 md:gap-3'>
-            <span>Sort</span>
+            <span className='text-sm font-medium md:text-xl'>Sort</span>
             <SelectForm />
           </div>
         </header>
         <div
           className={cn(
-            viewType === null && 'flex flex-wrap justify-center gap-2'
+            viewType === null && 'flex flex-wrap justify-start gap-2'
           )}
         >
           {products.map((item, index) => (

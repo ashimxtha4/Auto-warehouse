@@ -7,7 +7,7 @@ const ProfileLayout = ({
   children: React.ReactNode
 }>) => (
   <>
-    <div
+    <section
       style={{
         background: '#f2e9e9',
         position: 'sticky',
@@ -16,7 +16,7 @@ const ProfileLayout = ({
       }}
     >
       <MainNavbar />
-    </div>
+    </section>
     {children}
     <Footer />
   </>
