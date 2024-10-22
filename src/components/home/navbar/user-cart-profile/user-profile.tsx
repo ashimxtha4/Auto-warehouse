@@ -5,8 +5,8 @@ import {
   HoverCardContent,
   HoverCardTrigger
 } from '@/components/ui/hover-card'
-import { PROFILE_LINKS } from '@/constants/profile-links'
 import { FaUserCircle } from 'react-icons/fa'
+import { PROFILE_LINKS } from '@/constants/profile-links'
 
 const UserProfile = () => {
   return (
