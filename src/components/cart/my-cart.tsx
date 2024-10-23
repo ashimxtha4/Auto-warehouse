@@ -1,10 +1,19 @@
 import React from 'react'
-import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import defaultImage from '@/assets/default.png'
-import { IoMdArrowDropupCircle, IoMdArrowDropdownCircle } from 'react-icons/io'
-import { ImCross } from 'react-icons/im'
 import type { CartProductsProps } from '.'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
+import Image from 'next/image'
+import { cn } from '@/lib/utils'
+import defaultImage from '@/assets/default.png'
+import { IoMdArrowDropdownCircle, IoMdArrowDropupCircle } from 'react-icons/io'
+import { ImCross } from 'react-icons/im'
 
 type MyCartProps = {
   increaseQty: (id: number) => void
@@ -21,50 +30,47 @@ const MyCart = ({
   products,
   total
 }: MyCartProps) => {
+  const TABLE_HEADER_DATA = [
+    'Image',
+    'Product',
+    'Price',
+    'Quantity',
+    'Subtotal',
+    'Action'
+  ]
   return (
-    <aside className='flex-[2] border p-1 md:p-2'>
+    <aside className='border rounded-md p-1 md:p-2'>
       <h2 className='py-2 text-base font-bold md:text-xl'>My Cart</h2>
       <div className='overflow-x-auto'>
-        <table className='min-w-full table-auto border-collapse'>
-          <thead>
-            <tr className='bg-gray-100'>
-              <th className='hidden px-4 py-2 text-left font-semibold text-primary-main md:inline-block'>
-                Image
-              </th>
-              <th className='px-4 py-2 text-left font-semibold text-gray-700'>
-                Product
-              </th>
-              <th className='px-4 py-2 text-left font-semibold text-gray-700'>
-                Price
-              </th>
-              <th className='px-4 py-2 text-left font-semibold text-gray-700'>
-                Quantity
-              </th>
-              <th className='px-4 py-2 text-left font-semibold text-gray-700'>
-                Subtotal
-              </th>
-              <th className='px-4 py-2 text-left font-semibold text-gray-700'>
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              {TABLE_HEADER_DATA.map(item => (
+                <TableHead
+                  key={item}
+                  className={cn(
+                    'md:text-lg',
+                    item === 'Image' && 'hidden items-center md:inline-flex'
+                  )}
+                >
+                  {item}
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {products.map(product => (
-              <tr key={product.id} className='border-b'>
-                <td className='hidden px-4 py-2 text-sm font-medium md:inline-block md:text-xl'>
+              <TableRow key={product.id}>
+                <TableCell className='hidden md:block'>
                   <Image
                     src={defaultImage}
                     alt='default-image'
                     className={cn('max-w-[75px] object-cover md:max-w-[100px]')}
                   />
-                </td>
-                <td className='px-4 py-2 text-xs font-medium md:text-xl'>
-                  {product.name}
-                </td>
-                <td className='px-4 py-2 text-xs font-medium md:text-xl'>
-                  ${product.price}
-                </td>
-                <td className='px-4 py-2 text-xs font-medium md:text-xl'>
+                </TableCell>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>{product.price}</TableCell>
+                <TableCell>
                   <div className='flex items-center'>
                     <input
                       type='number'
@@ -82,24 +88,23 @@ const MyCart = ({
                       </button>
                     </div>
                   </div>
-                </td>
-                <td className='px-4 py-2 text-xs font-medium md:text-xl'>
-                  ${product.price * product.quantity}
-                </td>
-                <td className='px-4 py-2 text-xs font-medium md:text-xl'>
+                </TableCell>
+                <TableCell>${product.price * product.quantity}</TableCell>
+                <TableCell>
                   <button onClick={() => removeProduct(product.id)}>
                     <ImCross size={16} />
                   </button>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
-        <div className='mt-4 text-right'>
-          <p className='text-lg font-bold'>
-            Total: <span>${total}</span>
-          </p>
-        </div>
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={5}>Total</TableCell>
+              <TableCell>${total}</TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
       </div>
     </aside>
   )
