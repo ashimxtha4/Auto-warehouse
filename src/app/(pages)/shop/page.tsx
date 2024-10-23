@@ -1,10 +1,13 @@
 import VehicleParts from '@/components/home/vehicle/vehicle-parts'
-import React from 'react'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import React, { Suspense } from 'react'
 
 const Page = () => {
   return (
     <div className='container'>
-      <VehicleParts />
+      <Suspense fallback={<LoadingSpinner />}>
+        <VehicleParts />
+      </Suspense>
     </div>
   )
 }
