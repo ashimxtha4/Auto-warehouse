@@ -1,12 +1,8 @@
-import UserProfile from '@/components/profile'
+import DevelopmentPage from '@/components/development'
 import React from 'react'
 
 const Page = () => {
-  return (
-    <>
-      <UserProfile />
-    </>
-  )
+  return <DevelopmentPage />
 }
 
 export default Page

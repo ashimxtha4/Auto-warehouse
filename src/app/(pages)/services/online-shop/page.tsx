@@ -1,7 +1,8 @@
+import DevelopmentPage from '@/components/development'
 import React from 'react'
 
 const Page = () => {
-  return <div>Online shop Page</div>
+  return <DevelopmentPage />
 }
 
 export default Page
