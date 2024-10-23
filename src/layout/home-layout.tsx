@@ -10,6 +10,7 @@ const HomeLayout = () => {
     <section className='relative'>
       <div className='z-0 opacity-85'>
         <Image
+          loading='lazy'
           src={bannerImg}
           alt='auto-glass'
           className='z-0 h-full w-full object-cover'

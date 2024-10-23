@@ -1,43 +1,16 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormField } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
-import { useRouter } from 'next/navigation'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 
-const searchPartsSchema = z.object({
-  make: z.string({ required_error: 'Vehicle Brand is required.' }),
-  model: z.string().optional(),
-  group: z.string().optional(),
-  body: z.string().optional(),
-  year: z.string().optional(),
-  series: z.string().optional()
-})
-
-export type TSearchPartsProps = z.infer<typeof searchPartsSchema>
 const SearchForm = () => {
-  const router = useRouter()
-
-  const form = useForm<Partial<TSearchPartsProps>>({
-    resolver: zodResolver(searchPartsSchema)
-  })
-
-  const onSubmit = (data: Partial<TSearchPartsProps>) => {
-    console.log(data)
-    try {
-      router.push(`${data.make}`)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const { form, onSubmit } = useSearchVehicles()
   return (
     <>
-      {form.formState.isSubmitting ||
-        (form.formState.isLoading && <LoadingSpinner />)}
+      {form.formState.isSubmitting && <LoadingSpinner />}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
           <FormRow>
