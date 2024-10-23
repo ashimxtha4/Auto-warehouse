@@ -5,6 +5,11 @@ import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
+import { VEHICLE_MAKE } from '@/constants/vehicle-make'
+import { VEHICLE_MODELS } from '@/constants/vehicle-model'
+import { VEHICLE_BODY_PARTS } from '@/constants/vehicle-body'
+import { VEHICLE_YEAR } from '@/constants/vehicle-year'
+import { VEHICLE_SERIES } from '@/constants/vehicle-series'
 
 const SearchForm = () => {
   const { form, onSubmit } = useSearchVehicles()
@@ -21,10 +26,10 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={[
-                    { label: 'Test', value: 'test' },
-                    { label: 'Test1', value: 'test1' }
-                  ]}
+                  options={VEHICLE_MAKE.map(item => ({
+                    label: item.label.toUpperCase(),
+                    value: item.value
+                  }))}
                   title='Make'
                   placeholder='Select Make'
                 />
@@ -37,10 +42,12 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={[
-                    { label: 'Test', value: 'test' },
-                    { label: 'Test1', value: 'test1' }
-                  ]}
+                  options={
+                    VEHICLE_MODELS?.map(item => ({
+                      label: item.label,
+                      value: item.value
+                    })) || []
+                  }
                   title='Model'
                   placeholder='Select Model'
                 />
@@ -53,10 +60,7 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={[
-                    { label: 'Test', value: 'test' },
-                    { label: 'Test1', value: 'test1' }
-                  ]}
+                  options={VEHICLE_BODY_PARTS}
                   title='Group'
                   placeholder='Select Group'
                 />
@@ -69,10 +73,7 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={[
-                    { label: 'Test', value: 'test' },
-                    { label: 'Test1', value: 'test1' }
-                  ]}
+                  options={VEHICLE_BODY_PARTS}
                   title='Body'
                   placeholder='Select Body'
                 />
@@ -85,10 +86,7 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={[
-                    { label: 'Test', value: 'test' },
-                    { label: 'Test1', value: 'test1' }
-                  ]}
+                  options={VEHICLE_YEAR}
                   title='Year'
                   placeholder='Select Year'
                 />
@@ -101,10 +99,7 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={[
-                    { label: 'Test', value: 'test' },
-                    { label: 'Test1', value: 'test1' }
-                  ]}
+                  options={VEHICLE_SERIES}
                   title='Series'
                   placeholder='Select Series'
                 />
@@ -128,7 +123,7 @@ const SearchForm = () => {
               {form.formState.isSubmitting ? (
                 <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
               ) : (
-                'Submit'
+                'Search Vehicle'
               )}
             </Button>
           </div>

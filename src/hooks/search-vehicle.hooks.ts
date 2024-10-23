@@ -3,6 +3,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { VEHICLE_MAKE } from '@/constants/vehicle-make'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -13,13 +14,23 @@ const searchPartsSchema = z.object({
   series: z.string().optional()
 })
 
+export enum VehicleMake {
+  SUV = 'suv',
+  SEDAN = 'sedan',
+  UTE = 'ute',
+  UTE_TRUCK = 'ute-truck',
+  VAN = 'van'
+}
+
 export type TSearchPartsProps = z.infer<typeof searchPartsSchema>
 
 export const useSearchVehicles = () => {
   const router = useRouter()
   const params = useParams()
   const searchParams = useSearchParams()
-  const vehicle = params?.vehicle as string | undefined;
+  const vehicle = params?.vehicle as string | undefined
+
+  const vehicleMake = VEHICLE_MAKE.find(item => item.value === vehicle)
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
@@ -63,6 +74,7 @@ export const useSearchVehicles = () => {
   return {
     onSubmit,
     form,
-    router
+    router,
+    vehicleMake
   }
 }
