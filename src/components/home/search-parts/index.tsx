@@ -1,7 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import SearchForm from './search-form'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const SearchParts = () => {
   return (
@@ -15,7 +16,9 @@ const SearchParts = () => {
           parts that fit.
         </span>
       </div>
-      <SearchForm />
+      <Suspense fallback={<LoadingSpinner />}>
+        <SearchForm />
+      </Suspense>
     </div>
   )
 }

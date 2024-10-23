@@ -12,7 +12,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form'
-import { TSearchPartsProps } from '../home/search-parts/search-form'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
 import {
   Command,
@@ -22,6 +21,7 @@ import {
   CommandItem,
   CommandList
 } from '../ui/command'
+import { TSearchPartsProps } from '@/hooks/search-vehicle.hooks'
 
 type OptionsProps = {
   label: string

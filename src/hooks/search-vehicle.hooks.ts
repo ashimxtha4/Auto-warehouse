@@ -19,9 +19,7 @@ export const useSearchVehicles = () => {
   const router = useRouter()
   const params = useParams()
   const searchParams = useSearchParams()
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //   @ts-expect-error
-  const { vehicle } = params
+  const vehicle = params?.vehicle as string | undefined;
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
