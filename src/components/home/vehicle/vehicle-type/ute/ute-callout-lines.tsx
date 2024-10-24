@@ -21,28 +21,6 @@ const UteCalloutLines = () => {
           WindScreen
         </Link>
       </div>
-      {/* right mirror */}
-      <div className='absolute'>
-        <span className='circle-dot left-[72px] top-[133px]' />
-        <span className='vehicle-line left-[74px] top-[136px] w-[90px]' />
-        <Link
-          href={pathname + '?part=right-mirror'}
-          className='callout-line-title left-[144px] top-[122px]'
-        >
-          Right Mirror
-        </Link>
-      </div>
-      {/* left mirror */}
-      <div className='absolute'>
-        <span className='circle-dot -left-[84px] top-[133px]' />
-        <span className='vehicle-line -left-[166px] top-[136px] w-[90px]' />
-        <Link
-          href={pathname + '?part=left-mirror'}
-          className='callout-line-title -left-[230px] top-[122px]'
-        >
-          Left Mirror
-        </Link>
-      </div>
       {/* Front Left door */}
       <div className='absolute'>
         <span className='circle-dot -left-[62px] top-[168px]' />

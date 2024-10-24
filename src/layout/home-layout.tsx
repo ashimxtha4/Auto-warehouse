@@ -18,7 +18,7 @@ const HomeLayout = () => {
       </div>
       <div className='absolute inset-0 z-10 w-full'>
         <Navbar />
-        <div style={{ background: 'white', opacity: '80%' }}>
+        <div style={{ background: '#7eeda1', opacity: '80%' }}>
           <MainNavbar />
         </div>
         <div className='mb-2 flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>

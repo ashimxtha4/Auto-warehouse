@@ -9,28 +9,6 @@ const SuvCalloutLines = () => {
 
   return (
     <>
-      {/* right mirror */}
-      <div className='absolute'>
-        <span className='circle-dot left-[70px] top-[133px]' />
-        <span className='vehicle-line left-[73px] top-[136px] w-[90px]' />
-        <Link
-          href={pathname + '?part=right-mirror'}
-          className='callout-line-title left-[144px] top-[122px]'
-        >
-          Right Mirror
-        </Link>
-      </div>
-      {/* left mirror */}
-      <div className='absolute'>
-        <span className='circle-dot -left-[83px] top-[133px]' />
-        <span className='vehicle-line -left-[170px] top-[136px] w-[90px]' />
-        <Link
-          href={pathname + '?part=left-mirror'}
-          className='callout-line-title -left-[230px] top-[123px]'
-        >
-          Left Mirror
-        </Link>
-      </div>
       {/* WindScreen */}
       <div className='absolute'>
         <span className='circle-dot left-[10px] top-[140px]' />

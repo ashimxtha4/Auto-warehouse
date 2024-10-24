@@ -9,28 +9,6 @@ const SedanCallOutLines = () => {
 
   return (
     <>
-      {/* right mirror */}
-      <div className='absolute'>
-        <span className='circle-dot left-[80px] top-[140px]' />
-        <span className='vehicle-line left-[82px] top-[143px] w-[90px]' />
-        <Link
-          href={pathname + '?part=right-mirror'}
-          className='callout-line-title left-[144px] top-[130px]'
-        >
-          Right Mirror
-        </Link>
-      </div>
-      {/* left mirror */}
-      <div className='absolute'>
-        <span className='circle-dot -left-[90px] top-[140px]' />
-        <span className='vehicle-line -left-[180px] top-[143px] w-[90px]' />
-        <Link
-          href={pathname + '?part=left-mirror'}
-          className='callout-line-title -left-[230px] top-[130px]'
-        >
-          Left Mirror
-        </Link>
-      </div>
       {/* WindScreen */}
       <div className='absolute'>
         <span className='circle-dot left-[10px] top-[140px]' />

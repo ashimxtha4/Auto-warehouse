@@ -23,12 +23,12 @@ const MainNavbar = () => {
   const admin = false
 
   return (
-    <nav className='container flex items-center justify-between py-2 font-medium text-primary-dark'>
+    <nav className='container flex items-center justify-between py-2 font-medium text-gray-900'>
       <div>
         <Image
           src={logo}
           alt='auto-glass-shop'
-          className='h-fit w-10 cursor-pointer md:w-14'
+          className='h-fit w-10 cursor-pointer md:w-16'
           onClick={() => router.push('/')}
         />
       </div>

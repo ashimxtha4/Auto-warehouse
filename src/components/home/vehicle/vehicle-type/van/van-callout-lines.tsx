@@ -23,28 +23,6 @@ const VanCalloutLines = () => {
           WindScreen
         </Link>
       </div>
-      {/* right mirror */}
-      <div className='absolute'>
-        <span className='circle-dot left-[82px] top-[93px]' />
-        <span className='vehicle-line left-[85px] top-[96px] w-[90px]' />
-        <Link
-          href={pathname + '?part=right-mirror'}
-          className='callout-line-title left-[144px] top-[82px]'
-        >
-          Right Mirror
-        </Link>
-      </div>
-      {/* left mirror */}
-      <div className='absolute'>
-        <span className='circle-dot -left-[90px] top-[93px]' />
-        <span className='vehicle-line -left-[176px] top-[96px] w-[90px]' />
-        <Link
-          href={pathname + '?part=left-mirror'}
-          className='callout-line-title -left-[230px] top-[82px]'
-        >
-          Left Mirror
-        </Link>
-      </div>
       {/* Front Left door */}
       <div className='absolute'>
         <span className='circle-dot -left-[76px] top-[120px]' />

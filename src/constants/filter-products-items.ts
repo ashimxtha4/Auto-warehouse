@@ -1,71 +1,42 @@
 export const PRODUCT_FILTER_ITEMS = [
   {
-    title: 'Buying Choices - New or Used',
-    content: [
-      {
-        id: 'new',
-        label: 'New'
-      },
-      {
-        id: 'used',
-        label: 'Used'
-      }
-    ]
-  },
-  {
     title: 'Select Type of Auto Glass',
     content: [
       {
         id: 'windScreen',
-        label: 'Wind Screen'
+        label: 'WindScreen'
       },
       {
-        id: 'leftFrontDoor',
-        label: 'Left Front Door'
+        id: 'frontLeftDoor',
+        label: 'Front Left Door'
       },
       {
-        id: 'rightFrontDoor',
-        label: 'Right Front Door'
+        id: 'frontRightDoor',
+        label: 'Front Right Door'
       },
       {
-        id: 'leftRearDoor',
-        label: 'Left Rear Door'
+        id: 'backLeftDoor',
+        label: 'Back Left Door'
       },
       {
-        id: 'rightRearDoor',
-        label: 'Right Rear Door'
+        id: 'backRightDoor',
+        label: 'Back Right Door'
       },
       {
-        id: 'leftRearQtrVent',
-        label: 'Left Rear Qtr/Vent'
+        id: 'rearLeftDoor',
+        label: 'Rear Left Door'
       },
       {
-        id: 'rightRearQtrVent',
-        label: 'Right Rear Qtr/Vent'
+        id: 'rearRightDoor',
+        label: 'Rear Right Door'
       },
       {
-        id: 'leftRearOpera',
-        label: 'Left Rear Opera'
+        id: 'rearLeftVent',
+        label: 'Rear Left Qtr/Vent'
       },
       {
-        id: 'rightRearOpera',
-        label: 'Right Rear Opera'
-      },
-      {
-        id: 'rearSedan',
-        label: 'Rear Sedan'
-      },
-      {
-        id: 'rearLiftUp',
-        label: 'Rear Lift Up'
-      },
-      {
-        id: 'leftSideMirror',
-        label: 'Left Side Mirror'
-      },
-      {
-        id: 'rightSideMirror',
-        label: 'Right Side Mirror'
+        id: 'rearRightVent',
+        label: 'Rear Right Qtr/Vent'
       }
     ]
   }

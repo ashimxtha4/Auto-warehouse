@@ -26,7 +26,7 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
         <HoverCardTrigger>
           <Link
             href={item.href}
-            className='flex items-center gap-1 text-nowrap hover:text-primary-main'
+            className='flex items-center gap-1 text-nowrap hover:text-gray-950'
           >
             {item.label}
             {item.links.length ? <FaChevronDown /> : ''}

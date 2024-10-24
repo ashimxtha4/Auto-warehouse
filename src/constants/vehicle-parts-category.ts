@@ -1,42 +1,34 @@
 export const CATEGORY_ITEMS = [
   {
-    label: 'Windscreens',
-    href: '/shop?category=wind-screens'
+    label: 'WindScreen',
+    href: '/shop?category=wind-screen'
   },
   {
-    label: 'Body Side Glass',
-    href: '/shop?category=body-side-glass'
+    label: 'Flat Lam',
+    href: '/shop?category=flat-lam'
   },
   {
-    label: 'Rear Windows',
-    href: '/shop?category=rear-windows'
+    label: 'Rear Left Vent',
+    href: '/shop?category=rear'
   },
   {
-    label: 'Mirrors',
-    href: '/shop?category=mirrors'
+    label: 'Rear Right Vent',
+    href: '/shop?category=rear'
   },
   {
-    label: 'Window Regulators',
-    href: '/shop?category=window-regulators'
+    label: 'Front Left Side Door',
+    href: '/shop?category=side'
   },
   {
-    label: 'Wiper Blades',
-    href: '/shop?category=wiper-blades'
+    label: 'Front Right Side Door',
+    href: '/shop?category=side'
   },
   {
-    label: 'Misc Items',
-    href: '/shop?category=misc-items'
+    label: 'Back Left Side Door',
+    href: '/shop?category=side'
   },
   {
-    label: 'Misc Window Accessories',
-    href: '/shop?category=misc-window-accessories'
-  },
-  {
-    label: 'Headlights',
-    href: '/shop?category=headlights'
-  },
-  {
-    label: 'Tail Lights',
-    href: '/shop?category=tail-lights'
+    label: 'Back Right Side Door',
+    href: '/shop?category=side'
   }
 ]
