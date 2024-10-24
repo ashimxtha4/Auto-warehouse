@@ -6,7 +6,11 @@ import VanCalloutLines from './van-callout-lines'
 const Van = () => {
   return (
     <>
-      <Image src={van} alt='Van' className='object-cover' />
+      <Image
+        src={van}
+        alt='Van'
+        className='max-h-[400px] max-w-[190px] object-cover'
+      />
       <VanCalloutLines />
     </>
   )

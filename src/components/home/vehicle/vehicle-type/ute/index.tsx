@@ -6,7 +6,11 @@ import UteCalloutLines from './ute-callout-lines'
 const Ute = () => {
   return (
     <>
-      <Image src={ute} alt='Ute' className='object-cover' />
+      <Image
+        src={ute}
+        alt='Ute'
+        className='max-h-[400px] max-w-[170px] object-cover'
+      />
       <UteCalloutLines />
     </>
   )

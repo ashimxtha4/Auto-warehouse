@@ -31,27 +31,12 @@ export const NAVBAR_ITEMS: NavItemsProps[] = [
   },
   {
     key: '4',
-    label: 'OUR SERVICES',
-    href: '/services',
-    links: [
-      {
-        label: 'Online Shop - Pick up(Same Day)',
-        href: '/services/online-shop'
-      },
-      {
-        label: 'ADAS Calibration',
-        href: '/services/adas-calibration'
-      }
-    ]
-  },
-  {
-    key: '5',
     label: 'REVIEWS',
     href: '/reviews',
     links: []
   },
   {
-    key: '6',
+    key: '5',
     label: 'FAQS',
     href: '/faqs',
     links: []

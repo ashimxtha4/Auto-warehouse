@@ -17,7 +17,7 @@ export const VEHICLE_MAKE = [
   {
     label: 'audi',
     value: 'audi',
-    type: 'suv'
+    type: 'ute'
   },
   {
     label: 'austin',

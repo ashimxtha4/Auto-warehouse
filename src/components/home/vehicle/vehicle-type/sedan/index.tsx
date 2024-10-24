@@ -6,7 +6,11 @@ import SedanCallOutLines from './sedan-callout-lines'
 const Sedan = () => {
   return (
     <>
-      <Image src={sedan} alt='sedan' className='object-cover' />
+      <Image
+        src={sedan}
+        alt='sedan'
+        className='max-h-[400px] max-w-[190px] object-cover'
+      />
       <SedanCallOutLines />
     </>
   )

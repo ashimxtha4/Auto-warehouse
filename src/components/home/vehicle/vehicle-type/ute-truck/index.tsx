@@ -6,7 +6,11 @@ import UteTruckCalloutLines from './ute-truck-callout-lines'
 const UteTruck = () => {
   return (
     <>
-      <Image src={utetruck} alt='Vte and Truck' className='object-cover' />
+      <Image
+        src={utetruck}
+        alt='Vte and Truck'
+        className='max-h-[400px] max-w-[190px] object-cover'
+      />
       <UteTruckCalloutLines />
     </>
   )

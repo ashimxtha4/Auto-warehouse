@@ -6,7 +6,11 @@ import SuvCalloutLines from './suv-callout-lines'
 const Suv = () => {
   return (
     <>
-      <Image src={suv} alt='vehicle' className='object-cover' />
+      <Image
+        src={suv}
+        alt='vehicle'
+        className='max-h-[400px] max-w-[190px] object-cover'
+      />
       <SuvCalloutLines />
     </>
   )

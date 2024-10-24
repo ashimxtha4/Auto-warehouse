@@ -27,7 +27,7 @@
 }
 
 .callout-line-title {
-  @apply absolute flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-main px-2 py-1 text-white hover:bg-primary-dark;
+  @apply absolute flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-main px-[6px] py-[2px] text-white hover:bg-primary-dark;
 }
 
 .footer-heading {
