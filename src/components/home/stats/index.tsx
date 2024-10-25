@@ -1,12 +1,19 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { TRUST_ITEMS } from '@/constants/trust-factor-items'
+import CountUp from 'react-countup'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import SectionHeader from '@/utils/section-header'
 
-const TrustFactors = () => {
+const StatsSection = () => {
+  const stats = [
+    { title: 'Products Sold', number: 20000 },
+    { title: 'Satisfied Customers', number: 10000 },
+    { title: 'Brands Available', number: 50 },
+    { title: 'Years in Business', number: 15 }
+  ]
+
   const controls = useAnimation()
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -20,13 +27,13 @@ const TrustFactors = () => {
   }, [controls, inView])
 
   return (
-    <div ref={ref}>
-      <SectionHeader>Why Choose Us</SectionHeader>
+    <div ref={ref} className='mx-auto'>
+      <SectionHeader>Our Achievements</SectionHeader>
       <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-4'>
-        {TRUST_ITEMS.map((item, index) => (
+        {stats.map((stat, index) => (
           <motion.div
-            key={item.id}
-            className='mb-1 flex items-center gap-2 rounded-md bg-primary-main px-2 py-1 text-white shadow-lg md:mx-2 md:my-2'
+            key={index}
+            className='rounded-lg bg-primary-main px-2 py-1 text-center shadow-lg'
             initial={{ opacity: 0, y: 20 }}
             animate={controls}
             variants={{
@@ -37,14 +44,16 @@ const TrustFactors = () => {
               }
             }}
           >
-            <div className='p-1'>{item.icon}</div>
-            <p className='flex flex-col'>
-              <span className='text-nowrap text-base font-medium md:text-xl'>
-                {item.label}
-              </span>
-              <span className='text-nowrap text-xs font-normal md:text-base'>
-                {item.content}
-              </span>
+            <p className='text-lg font-extrabold text-white md:text-2xl'>
+              {inView ? (
+                <CountUp end={stat.number} duration={2.5} separator=',' />
+              ) : (
+                '0'
+              )}
+              +
+            </p>
+            <p className='mt-1 text-sm font-semibold text-white md:text-lg'>
+              {stat.title}
             </p>
           </motion.div>
         ))}
@@ -53,4 +62,4 @@ const TrustFactors = () => {
   )
 }
 
-export default TrustFactors
+export default StatsSection
