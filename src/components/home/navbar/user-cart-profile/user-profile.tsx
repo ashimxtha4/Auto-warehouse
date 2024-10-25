@@ -16,7 +16,7 @@ const UserProfile = () => {
           <FaUserCircle />
         </button>
       </HoverCardTrigger>
-      <HoverCardContent className='absolute -left-[120px] mt-2 rounded-sm bg-white/90 px-2 py-1 dark:bg-gray-800'>
+      <HoverCardContent className='absolute -left-[120px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800'>
         <div className='flex flex-col'>
           {PROFILE_LINKS.map(item => (
             <Link

@@ -18,7 +18,7 @@ const SectionHeader = ({ children, className }: SectionHeaderProps) => {
     <motion.h3
       ref={ref}
       className={cn(
-        'my-2 bg-gradient-to-r from-primary-dark to-primary-light bg-clip-text text-center text-xl font-bold tracking-wider text-transparent drop-shadow-md md:my-4 md:text-4xl',
+        'my-2 text-center text-xl font-bold tracking-wider text-primary-main drop-shadow-md md:my-4 md:text-4xl',
         className
       )}
       initial={{ opacity: 0, y: -20 }}

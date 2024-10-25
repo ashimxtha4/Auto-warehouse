@@ -34,7 +34,9 @@ const MainNavbar = () => {
       </div>
       <ul className='flex items-center gap-2 md:gap-5'>
         {NAVBAR_ITEMS.map(item => (
-          <DesktopNavbar key={item.key} item={item} />
+          <div key={item.key}>
+            <DesktopNavbar item={item} />
+          </div>
         ))}
         {admin && (
           <Link href='/admin' className='bg-primary-main text-white'>

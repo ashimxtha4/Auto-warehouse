@@ -7,6 +7,6 @@ export const BANNER_ITEMS = [
     {
       id: '2',
       label: 'Get A Quote',
-      href: '/quote'
+      href: '/get-a-quote'
     }
   ]
