@@ -17,7 +17,10 @@ const SearchForm = () => {
     <>
       {form.formState.isSubmitting && <LoadingSpinner />}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='space-y-8 rounded-lg border p-4'
+        >
           <FormRow>
             <FormField
               control={form.control}
@@ -106,11 +109,11 @@ const SearchForm = () => {
               )}
             />
           </FormRow>
-          <div className='!mt-1 flex gap-2'>
+          <div className='!mt-2 flex gap-2 md:!mt-4'>
             <Button
               type='reset'
               variant='outline'
-              className='text-primary-main hover:text-primary-main'
+              className='text-lg font-semibold text-primary-main hover:text-primary-main md:text-xl'
               onClick={() => form.reset()}
             >
               Clear
@@ -118,7 +121,7 @@ const SearchForm = () => {
             <Button
               type='submit'
               variant='default'
-              className='bg-primary-main hover:bg-primary-dark'
+              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
             >
               {form.formState.isSubmitting ? (
                 <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>

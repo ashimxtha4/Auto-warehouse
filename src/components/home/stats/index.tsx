@@ -4,16 +4,10 @@ import React, { useEffect } from 'react'
 import CountUp from 'react-countup'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import SectionHeader from '@/utils/section-header'
+import { SectionHeader } from '@/utils/section-header'
+import { STATS_DATA } from '@/constants/stats-data'
 
 const StatsSection = () => {
-  const stats = [
-    { title: 'Products Sold', number: 20000 },
-    { title: 'Satisfied Customers', number: 10000 },
-    { title: 'Brands Available', number: 50 },
-    { title: 'Years in Business', number: 15 }
-  ]
-
   const controls = useAnimation()
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -30,7 +24,7 @@ const StatsSection = () => {
     <div ref={ref} className='mx-auto'>
       <SectionHeader>Our Achievements</SectionHeader>
       <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-4'>
-        {stats.map((stat, index) => (
+        {STATS_DATA.map((stat, index) => (
           <motion.div
             key={index}
             className='rounded-lg bg-primary-main px-2 py-1 text-center shadow-lg'

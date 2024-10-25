@@ -3,21 +3,31 @@
 import React, { Suspense } from 'react'
 import SearchForm from './search-form'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import { SectionDescription, SectionHeader } from '@/utils/section-header'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 const SearchParts = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
+  })
   return (
-    <div className='relative rounded-lg border p-2'>
-      <div className='mb-2 border-b pb-2'>
-        <h3 className='title-text font-bold text-primary-dark'>
-          Search by vehicle
-        </h3>
-        <span className='text-xs text-primary-dark md:text-lg'>
-          Filter your results by entering your Vehicle to ensure you find the
-          parts that fit.
-        </span>
-      </div>
+    <div className='relative rounded-lg p-2'>
+      <SectionHeader>Search by vehicle</SectionHeader>
+      <SectionDescription>
+        Filter your results by entering your Vehicle to ensure you find the
+        parts that fit.
+      </SectionDescription>
       <Suspense fallback={<LoadingSpinner />}>
-        <SearchForm />
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
+          <SearchForm />
+        </motion.div>
       </Suspense>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 
 const FormRow = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='my-1 flex flex-wrap justify-normal gap-0 sm:justify-between sm:gap-2 md:my-2 md:gap-x-7 lg:justify-start lg:gap-x-14'>
+    <div className='my-1 grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
       {children}
     </div>
   )

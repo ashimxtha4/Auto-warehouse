@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { TRUST_ITEMS } from '@/constants/trust-factor-items'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import SectionHeader from '@/utils/section-header'
+import { SectionHeader } from '@/utils/section-header'
 
 const TrustFactors = () => {
   const controls = useAnimation()

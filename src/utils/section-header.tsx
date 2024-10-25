@@ -1,17 +1,55 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { cn } from '@/lib/utils'
+import { useInView } from 'react-intersection-observer'
 
-const SectionHeader = ({ children }: { children: React.ReactNode }) => {
+type SectionHeaderProps = {
+  children: React.ReactNode
+  className?: string
+}
+
+const SectionHeader = ({ children, className }: SectionHeaderProps) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
+  })
+
   return (
-    <motion.h2
-      className='my-2 bg-gradient-to-r from-primary-dark to-primary-light bg-clip-text text-center text-xl font-extrabold text-transparent drop-shadow-md md:my-4 md:text-4xl'
+    <motion.h3
+      ref={ref}
+      className={cn(
+        'my-2 bg-gradient-to-r from-primary-dark to-primary-light bg-clip-text text-center text-xl font-bold tracking-wider text-transparent drop-shadow-md md:my-4 md:text-4xl',
+        className
+      )}
       initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
     >
       {children}
-    </motion.h2>
+    </motion.h3>
   )
 }
 
-export default SectionHeader
+const SectionDescription = ({ children, className }: SectionHeaderProps) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
+  })
+
+  return (
+    <motion.div
+      ref={ref}
+      className={cn(
+        '-mt-2 mb-2 text-center text-xs font-medium text-primary-main md:-mt-4 md:mb-4 md:text-lg',
+        className
+      )}
+      initial={{ opacity: 0, y: -20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+export { SectionHeader, SectionDescription }
