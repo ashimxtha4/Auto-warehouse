@@ -1,10 +1,7 @@
 'use client'
 
 import React from 'react'
-// import { useRouter } from 'next/navigation'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -17,22 +14,8 @@ import {
 import FormRow from '@/components/form/form-row'
 import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
-import toast from 'react-hot-toast'
-
-const getAQuoteSchema = z.object({
-  name: z.string({ required_error: 'Please enter your name.' }),
-  email: z
-    .string({ required_error: 'Please enter your email.' })
-    .email({ message: 'Invalid email.' }),
-  phone: z.string({ required_error: 'Please enter your phone number.' }),
-  address: z.string({ required_error: 'Please enter your address.' }),
-  make: z.string({ required_error: 'Vehicle Make is required.' }),
-  model: z.string().optional(),
-  year: z.string().optional(),
-  comment: z.string().optional()
-})
-
-export type TGetAQuoteSchemaProps = z.infer<typeof getAQuoteSchema>
+import ReCAPTCHA from 'react-google-recaptcha'
+import { useGetAQuote } from '@/hooks/get-a-quote'
 
 const FormRowHeader = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -43,21 +26,8 @@ const FormRowHeader = ({ children }: { children: React.ReactNode }) => {
 }
 
 const GetAQuoteForm = () => {
-  //   const router = useRouter()
+  const { form, onSubmit } = useGetAQuote()
 
-  const form = useForm<Partial<TGetAQuoteSchemaProps>>({
-    resolver: zodResolver(getAQuoteSchema)
-  })
-
-  const onSubmit = (data: Partial<TGetAQuoteSchemaProps>) => {
-    console.log(data)
-    toast.success('Success!')
-    // try {
-    //   router.push('/')
-    // } catch (error) {
-    //   console.log(error)
-    // }
-  }
   return (
     <>
       <Form {...form}>
@@ -172,6 +142,32 @@ const GetAQuoteForm = () => {
                   <Textarea placeholder='Additional Message' {...field} />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='recaptcha'
+            rules={{ required: 'Please complete the ReCAPTCHA' }}
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <ReCAPTCHA
+                    sitekey={
+                      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                    }
+                    onChange={value => {
+                      field.onChange(value)
+                      form.clearErrors('recaptcha')
+                    }}
+                    onBlur={field.onBlur}
+                  />
+                </FormControl>
+                {form.formState.errors.recaptcha && (
+                  <FormMessage>
+                    {form.formState.errors.recaptcha.message}
+                  </FormMessage>
+                )}
               </FormItem>
             )}
           />
