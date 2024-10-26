@@ -7,14 +7,14 @@ export const PROFILE_LINKS = [
     href: '/orders',
     label: 'My Orders'
   },
-  {
-    href: '/favourites',
-    label: 'Favourites'
-  },
-  {
-    href: '/wishlists',
-    label: 'Wishlists'
-  },
+  // {
+  //   href: '/favourites',
+  //   label: 'Favourites'
+  // },
+  // {
+  //   href: '/wishlists',
+  //   label: 'Wishlists'
+  // },
   {
     href: '/auth/login',
     label: 'Login'

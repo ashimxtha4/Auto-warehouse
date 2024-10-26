@@ -1,5 +1,6 @@
 import Footer from '@/components/footer'
 import MainNavbar from '@/components/home/navbar/main-nav'
+import Vehicle from '@/components/home/vehicle'
 
 const ProfileLayout = ({
   children
@@ -18,6 +19,7 @@ const ProfileLayout = ({
     >
       <MainNavbar />
     </section>
+    <Vehicle />
     {children}
     <Footer />
   </>

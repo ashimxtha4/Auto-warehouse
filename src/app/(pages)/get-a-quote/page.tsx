@@ -1,8 +1,8 @@
-import DevelopmentPage from '@/components/development'
+import GetAQuote from '@/components/get-a-quote'
 import React from 'react'
 
 const Page = () => {
-  return <DevelopmentPage />
+  return <GetAQuote />
 }
 
 export default Page

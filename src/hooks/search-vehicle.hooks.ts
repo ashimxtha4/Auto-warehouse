@@ -49,7 +49,7 @@ export const useSearchVehicles = () => {
     form.setValue('body', body || '')
     form.setValue('year', year || '')
     form.setValue('series', series || '')
-  }, [searchParams, form])
+  }, [searchParams, form, vehicle])
 
   const onSubmit = (data: Partial<TSearchPartsProps>) => {
     console.log(data)
@@ -75,6 +75,7 @@ export const useSearchVehicles = () => {
     onSubmit,
     form,
     router,
-    vehicleMake
+    vehicleMake,
+    vehicle
   }
 }

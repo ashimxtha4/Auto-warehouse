@@ -24,11 +24,11 @@ const SearchBar = () => {
         onChange={e => setSearch(e.target.value)}
         type='text'
         placeholder='Search Store...'
-        className='w-[120px] border-none bg-transparent text-xs outline-none placeholder:pl-1 placeholder:text-xs placeholder:text-primary-dark focus:border-none focus:outline-none active:border-none active:outline-none md:w-auto md:text-base'
+        className='w-[120px] border-none bg-transparent text-xs outline-none placeholder:pl-1 placeholder:text-xs placeholder:text-gray-950 focus:border-none focus:outline-none active:border-none active:outline-none md:w-auto md:text-base'
       />
       <button
         type='submit'
-        className='border-l border-l-primary-dark pl-1 text-base md:text-2xl'
+        className='border-l border-l-gray-950 pl-1 text-base md:text-2xl'
       >
         <FaSearch />
       </button>

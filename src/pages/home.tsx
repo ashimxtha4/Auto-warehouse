@@ -13,9 +13,11 @@ const HomePage = () => {
       <HomePageSection>
         <TrustFactors />
       </HomePageSection>
-      <HomePageSection>
-        <SearchParts />
-      </HomePageSection>
+      <div className='bg-gray-100'>
+        <HomePageSection>
+          <SearchParts />
+        </HomePageSection>
+      </div>
       <HomePageSection>
         <StatsSection />
       </HomePageSection>

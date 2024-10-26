@@ -21,7 +21,12 @@ const AutoGlassShopLayout = ({
     pathname === '/contact' ||
     pathname === '/quote' ||
     pathname === '/cart' ||
-    pathname === '/cart/checkout'
+    pathname === '/cart/checkout' ||
+    pathname === '/about' ||
+    pathname === '/faqs' ||
+    pathname === '/shop' ||
+    pathname === '/get-a-quote' ||
+    pathname === '/product'
   ) {
     return <ProfileLayout>{children}</ProfileLayout>
   }

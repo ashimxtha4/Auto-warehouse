@@ -3,21 +3,21 @@ import Link from 'next/link'
 
 const informationData = [
   {
-    label: 'Terms of Use',
+    label: 'Terms of Use & Return Policy',
     href: '/terms-of-use'
   },
   {
     label: 'Privacy Policy',
     href: '/privacy-policy'
   },
-  {
-    label: 'Return Policy',
-    href: '/return-policy'
-  },
-  {
-    label: 'Security Policy',
-    href: '/security-policy'
-  }
+  // {
+  //   label: 'Return Policy',
+  //   href: '/return-policy'
+  // },
+  // {
+  //   label: 'Security Policy',
+  //   href: '/security-policy'
+  // }
 ]
 
 const FooterInformation = () => {
