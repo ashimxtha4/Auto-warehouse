@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
 import Footer from '@/components/footer'
 import MainNavbar from '@/components/home/navbar/main-nav'
 import Vehicle from '@/components/home/vehicle'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const ProfileLayout = ({
   children
@@ -19,7 +21,9 @@ const ProfileLayout = ({
     >
       <MainNavbar />
     </section>
-    <Vehicle />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Vehicle />
+    </Suspense>
     {children}
     <Footer />
   </>
