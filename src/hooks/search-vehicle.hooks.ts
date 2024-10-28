@@ -4,6 +4,10 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { VEHICLE_MAKE } from '@/constants/vehicle-make'
+import { useGetVehicleMake } from '@/services/api/api-service/vehicle/vehicle-make'
+import { useGetVehicleModel } from '@/services/api/api-service/vehicle/vehicle-model'
+import { useGetVehicleSeries } from '@/services/api/api-service/vehicle/vehicle-series'
+import { useGetVehicleBody } from '@/services/api/api-service/vehicle/vehicle-body'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -31,6 +35,30 @@ export const useSearchVehicles = () => {
   const vehicle = params?.vehicle as string | undefined
 
   const vehicleMake = VEHICLE_MAKE.find(item => item.value === vehicle)
+
+  const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
+    useGetVehicleMake()
+
+  const { data: vehicleModelData, mutateAsync: mutateVehicleModel } =
+    useGetVehicleModel()
+
+  const { data: vehicleSeriesData, mutateAsync: mutateVehicleSeries } =
+    useGetVehicleSeries()
+
+  const { data: vehicleBodyData, mutateAsync: mutateVehicleBody } =
+    useGetVehicleBody()
+
+  useEffect(() => {
+    mutateVehicleMake()
+    mutateVehicleModel()
+    mutateVehicleSeries()
+    mutateVehicleBody()
+  }, [
+    mutateVehicleMake,
+    mutateVehicleModel,
+    mutateVehicleSeries,
+    mutateVehicleBody
+  ])
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
@@ -76,6 +104,10 @@ export const useSearchVehicles = () => {
     form,
     router,
     vehicleMake,
-    vehicle
+    vehicle,
+    vehicleMakeData: vehicleMakeData?.data?.data,
+    vehicleModelData: vehicleModelData?.data?.data,
+    vehicleSeriesData: vehicleSeriesData?.data?.data,
+    vehicleBodyData: vehicleBodyData?.data?.data
   }
 }
