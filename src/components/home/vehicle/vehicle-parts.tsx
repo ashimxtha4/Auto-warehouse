@@ -1,92 +1,16 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { CheckboxGroup } from '@/components/form/checkbox-group'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { PRODUCT_FILTER_ITEMS } from '@/constants/filter-products-items'
-import { CiGrid41, CiCircleList } from 'react-icons/ci'
-import Link from 'next/link'
 import { CATEGORY_ITEMS } from '@/constants/vehicle-parts-category'
-import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
-import SelectForm from '@/components/form/drop-down'
-import ProductItem from './product-item'
-
-const products = [
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  }
-]
+import VehiclePartsList from './vehicle-parts-list'
 
 const VehicleParts = () => {
-  const {
-    handleSearch,
-    setShowFilterProduct,
-    showFilterProduct,
-    viewType
-  } = useVehicleParts()
+  const { setShowFilterProduct, showFilterProduct } = useVehicleParts()
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
@@ -121,42 +45,7 @@ const VehicleParts = () => {
           </CardContent>
         </Card>
       </aside>
-      <aside className='flex-[2]'>
-        <header className='mb-4 flex justify-between md:justify-start gap-2 md:gap-5'>
-          <div className='flex items-center justify-center gap-1 rounded-md border'>
-            <CiGrid41
-              size={28}
-              className={cn(
-                'h-full cursor-pointer',
-                viewType === null && 'bg-primary-main text-white'
-              )}
-              onClick={handleSearch}
-            />
-            <CiCircleList
-              size={24}
-              onClick={handleSearch}
-              className={cn(
-                'h-full cursor-pointer font-bold',
-                viewType !== null && 'bg-primary-main text-white'
-              )}
-            />
-          </div>
-          <div className='flex items-center gap-1 md:gap-3'>
-            <span className='text-sm font-medium md:text-xl'>Sort</span>
-            <SelectForm />
-          </div>
-        </header>
-        <div
-          className={cn(
-            viewType === null &&
-              'flex flex-wrap justify-center gap-2 md:justify-start'
-          )}
-        >
-          {products.map((item, index) => (
-            <ProductItem key={index} item={item} />
-          ))}
-        </div>
-      </aside>
+      <VehiclePartsList />
     </section>
   )
 }

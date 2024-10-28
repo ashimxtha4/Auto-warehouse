@@ -26,6 +26,7 @@ const AutoGlassShopLayout = ({
     pathname === '/faqs' ||
     pathname === '/shop' ||
     pathname === '/get-a-quote' ||
+    pathname === '/orders' ||
     pathname === '/product'
   ) {
     return <ProfileLayout>{children}</ProfileLayout>
