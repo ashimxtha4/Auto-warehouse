@@ -5,6 +5,7 @@ import SearchParts from '../search-parts'
 import VehicleParts from './vehicle-parts'
 import VehicleOverview from './vehicle-overview'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
+import AutoGlassPagination from '@/utils/autoglass-pagination'
 
 const Vehicle = () => {
   const { vehicle } = useSearchVehicles()
@@ -25,6 +26,12 @@ const Vehicle = () => {
               <VehicleOverview />
             </div>
             <VehicleParts />
+            <AutoGlassPagination
+              currentPage={1}
+              itemsPerPage={10}
+              onPageChange={() => {}}
+              totalItems={100}
+            />
           </div>
         </>
       )}
