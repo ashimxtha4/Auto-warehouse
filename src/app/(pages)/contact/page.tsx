@@ -1,8 +1,8 @@
-import DevelopmentPage from '@/components/development'
 import React from 'react'
+import Contact from '@/components/contact'
 
 const Page = () => {
-  return <DevelopmentPage />
+  return <Contact />
 }
 
 export default Page
