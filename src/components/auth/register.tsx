@@ -1,21 +1,68 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '../ui/form'
+import { Input } from '../ui/input'
+import { Button } from '../ui/button'
+import { loginSchema } from './login'
+import { useGetRegisterUser } from '@/services/api/api-service/auth/register'
+import { useRouter } from 'next/navigation'
+import { isAxiosError } from 'axios'
+import toast from 'react-hot-toast'
+
+const registerSchema = loginSchema
+  .extend({
+    first_name: z.string({ required_error: 'First Name is required' }),
+    last_name: z.string({ required_error: 'Last Name is required' }),
+    password_confirmation: z.string({
+      required_error: 'Confirm Password is required'
+    })
+  })
+  .refine(
+    data => {
+      if (data.password === data.password_confirmation) {
+        return true
+      }
+      return false
+    },
+    {
+      message: 'Password and Confirm Password should be same.',
+      path: ['confirmPassword']
+    }
+  )
+
+export type registerSchemaProps = z.infer<typeof registerSchema>
 
 const RegisterPage = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const router = useRouter()
+  const form = useForm<registerSchemaProps>({
+    resolver: zodResolver(registerSchema)
+  })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (password !== confirmPassword) {
-      alert('Passwords do not match')
-      return
+  const { mutateAsync } = useGetRegisterUser()
+
+  const onSubmit = async (data: registerSchemaProps) => {
+    try {
+      await mutateAsync(data)
+      toast.success('User Registered!')
+      router.push('/auth/login', { scroll: true })
+    } catch (error) {
+      if (isAxiosError(error)) {
+        toast.error(error.message)
+      }
+      toast.error('Something went wrong!')
     }
-    console.log('Email:', email)
-    console.log('Password:', password)
   }
 
   return (
@@ -24,84 +71,102 @@ const RegisterPage = () => {
         <h2 className='text-center text-2xl font-semibold text-gray-700'>
           Register
         </h2>
-        <form onSubmit={handleSubmit} className='mt-6'>
-          <div className='mb-4'>
-            <label
-              className='mb-2 block text-sm font-semibold text-gray-700'
-              htmlFor='email'
-            >
-              Email
-            </label>
-            <input
-              type='email'
-              id='email'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className='w-full rounded-md border px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-main'
-              placeholder='Enter your email'
-              required
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='space-y-8 rounded-lg border border-gray-500 p-4'
+          >
+            <FormField
+              control={form.control}
+              name='first_name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder='First Name' type='text' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className='mb-4'>
-            <label
-              className='mb-2 block text-sm font-semibold text-gray-700'
-              htmlFor='password'
-            >
-              Password
-            </label>
-            <input
-              type='password'
-              id='password'
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className='w-full rounded-md border px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-main'
-              placeholder='Enter your password'
-              required
+            <FormField
+              control={form.control}
+              name='last_name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Last Name' type='text' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className='mb-4'>
-            <label
-              className='mb-2 block text-sm font-semibold text-gray-700'
-              htmlFor='confirmPassword'
-            >
-              Confirm Password
-            </label>
-            <input
-              type='password'
-              id='confirmPassword'
-              value={confirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
-              className='w-full rounded-md border px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-main'
-              placeholder='Confirm your password'
-              required
+            <FormField
+              control={form.control}
+              name='email'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Email' type='email' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className='flex items-center justify-between'>
-            <button
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input type='password' placeholder='Password' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='password_confirmation'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      type='password'
+                      placeholder='Confirm Password'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
               type='submit'
-              className='rounded-md bg-primary-main px-4 py-2 font-semibold text-white transition-colors hover:bg-primary-dark'
+              variant='default'
+              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
             >
-              Register
-            </button>
-            <Link
-              href='/auth/login'
-              className='text-sm text-primary-main hover:underline'
-            >
-              Already have an account?
-            </Link>
-          </div>
-        </form>
-        {/* <p className='mt-4 text-center text-sm text-gray-600'>
-          By signing up, you agree to our{' '}
-          <a href='#' className='text-blue-500 hover:underline'>
-            Terms of Service
-          </a>{' '}
-          and{' '}
-          <a href='#' className='text-blue-500 hover:underline'>
-            Privacy Policy
-          </a>
-          .
-        </p> */}
+              {form.formState.isSubmitting ? (
+                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
+              ) : (
+                'Register'
+              )}
+            </Button>
+          </form>
+        </Form>
+        <p className='mt-4 text-center text-sm text-gray-600'>
+          Already have an account?{' '}
+          <Link
+            href='/auth/login'
+            className='text-primary-main hover:underline'
+          >
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   )

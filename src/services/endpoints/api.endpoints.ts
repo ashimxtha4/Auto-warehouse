@@ -8,6 +8,14 @@ export const api = {
       post: '/auth/sign_up'
     }
   },
+  customer: {
+    login: {
+      post: '/customer/login'
+    },
+    register: {
+      post: '/customer/register'
+    }
+  },
   // vehicle
   vehicle: {
     make: {
@@ -35,10 +43,19 @@ export const api = {
   },
   products: {
     list: {
-      get: '/general/product_list'
+      post: '/general/product_list'
     },
     product: {
       get: (id: number) => `/general/product_details/${id}`
+    }
+  },
+  cart: {
+    post: '/general/product/add_to_cart',
+    get: (uid: string, customer_id: number) =>
+      `/general/product/cart_list?uid=${uid}&customer_id=${customer_id}`,
+    delete: '/general/product/removeProduct',
+    checkout: {
+      post: '/general/product/checkout'
     }
   }
 }

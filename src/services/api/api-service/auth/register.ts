@@ -1,20 +1,16 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
-import { loginSchemaProps } from '@/components/auth/login'
+import { registerSchemaProps } from '@/components/auth/register'
 import toast from 'react-hot-toast'
-export interface LoginProps {
+
+export interface RegisterDataProps {
   success: boolean
   message: string
-  data: LoginDataProps
+  data: RegisterResponseProps[]
 }
 
-export interface LoginDataProps {
-  token: string
-  data: LoginResponseProps
-}
-
-export interface LoginResponseProps {
+export interface RegisterResponseProps {
   id: number
   first_name: string
   middle_name: string
@@ -28,20 +24,19 @@ export interface LoginResponseProps {
   updated_at: string
 }
 
-const postLogin = async (
-  data: loginSchemaProps
+const postRegisterUser = async (
+  data: registerSchemaProps
 ): Promise<{
-  data: { data: LoginProps }
+  data: { data: RegisterDataProps }
 }> => {
-  return await httpClient.post(api.customer.login.post, data)
+  return await httpClient.post(api.customer.register.post, data)
 }
 
-export const useGetLogin = () => {
+export const useGetRegisterUser = () => {
   return useMutation({
-    mutationKey: ['post' + api.customer.login.post],
-    mutationFn: postLogin,
+    mutationKey: ['post' + api.customer.register.post],
+    mutationFn: postRegisterUser,
     onSuccess: data => {
-      localStorage.setItem('token', data.data.data.data.token)
       toast.success(data.data.data.message)
     }
   })
