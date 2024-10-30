@@ -43,12 +43,37 @@ export const api = {
   },
   products: {
     list: {
-      post: '/general/product_list'
+      get: (
+        keyword?: string,
+        brand?: number,
+        type?: number,
+        model?: number,
+        position?: number,
+        series?: number
+      ) => {
+        let url = '/general/product_list'
+        const params = new URLSearchParams()
+
+        if (keyword) params.append('keyword', keyword)
+        if (brand) params.append('brand', brand.toString())
+        if (type) params.append('type', type.toString())
+        if (model) params.append('model', model.toString())
+        if (position) params.append('position', position.toString())
+        if (series) params.append('series', series.toString())
+
+        const queryString = params.toString()
+        if (queryString) {
+          url += `?${queryString}`
+        }
+
+        return url
+      }
     },
     product: {
       get: (id: number) => `/general/product_details/${id}`
     }
   },
+  // cart
   cart: {
     post: '/general/product/add_to_cart',
     get: (uid: string, customer_id: number) =>

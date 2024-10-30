@@ -2,78 +2,15 @@ import React from 'react'
 import { CiGrid41, CiCircleList } from 'react-icons/ci'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
-import SelectForm from '@/components/form/drop-down'
+// import SelectForm from '@/components/form/drop-down'
 import ProductItem from './product-item'
+import { productProps } from '@/services/api/api-service/product/product-list'
 
-const products = [
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  },
-  {
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-    sku: '1233',
-    price: '5243'
-  }
-]
-
-const VehiclePartsList = () => {
+const VehiclePartsList = ({
+  productList
+}: {
+  productList: productProps[] | undefined
+}) => {
   const { handleSearch, viewType } = useVehicleParts()
   return (
     <aside className='flex-[2]'>
@@ -96,10 +33,10 @@ const VehiclePartsList = () => {
             )}
           />
         </div>
-        <div className='flex items-center gap-1 md:gap-3'>
+        {/* <div className='flex items-center gap-1 md:gap-3'>
           <span className='text-sm font-medium md:text-xl'>Sort</span>
           <SelectForm />
-        </div>
+        </div> */}
       </header>
       <div
         className={cn(
@@ -107,9 +44,13 @@ const VehiclePartsList = () => {
             'flex flex-wrap justify-center gap-2 md:justify-start'
         )}
       >
-        {products.map((item, index) => (
-          <ProductItem key={index} item={item} />
-        ))}
+        {productList?.length ? (
+          productList.map((item, index) => (
+            <ProductItem key={index} item={item} />
+          ))
+        ) : (
+          <p>No Products available</p>
+        )}
       </div>
     </aside>
   )

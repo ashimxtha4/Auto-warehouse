@@ -9,15 +9,14 @@ export type CartProductsProps = {
   name: string
   price: number
   quantity: number
+  stock: {
+    syd: boolean
+    mel: boolean
+  }
 }
 
 const CartPage = () => {
-  const cartProducts = [
-    { id: 1, name: 'MRR123', price: 1234, quantity: 1 },
-    { id: 2, name: 'MRR124', price: 124, quantity: 1 }
-  ]
-
-  const { total, ...rest } = useMyCart(cartProducts)
+  const { total, ...rest } = useMyCart()
 
   return (
     <section className='container my-2 flex flex-col gap-2 md:gap-5'>

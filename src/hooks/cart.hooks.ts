@@ -1,46 +1,31 @@
-import type { CartProductsProps } from '@/components/cart'
+import {
+  listDataProps,
+  useGetCartList
+} from '@/services/api/api-service/cart/cart-list'
 import { useEffect, useState } from 'react'
 
-export const useMyCart = (cartProducts: CartProductsProps[]) => {
-  const [products, setProducts] = useState<CartProductsProps[]>(cartProducts)
+export const useMyCart = () => {
+  const { data } = useGetCartList()
+
+  const [products, setProducts] = useState<listDataProps[] | undefined>(
+    data?.data
+  )
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
-    const newTotal = products.reduce(
-      (acc, product) => acc + product.price * product.quantity,
+    const newTotal = products?.reduce(
+      (acc, product) => acc + parseInt(product?.product_price) * 1,
       0
     )
-    setTotal(newTotal)
+    setTotal(newTotal as number)
   }, [products])
 
-  const increaseQty = (id: number) => {
-    setProducts(
-      products.map(product =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
-    )
-  }
-
-  const decreaseQty = (id: number) => {
-    setProducts(
-      products.map(product =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    )
-  }
-
   const removeProduct = (id: number) => {
-    setProducts(products.filter(product => product.id !== id))
+    setProducts(products?.filter(product => product.id !== id))
   }
 
   return {
     total,
-    increaseQty,
-    decreaseQty,
     removeProduct,
     products
   }

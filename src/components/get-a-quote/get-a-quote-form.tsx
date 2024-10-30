@@ -153,9 +153,7 @@ const GetAQuoteForm = () => {
               <FormItem>
                 <FormControl>
                   <ReCAPTCHA
-                    sitekey={
-                      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
-                    }
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
                     onChange={value => {
                       field.onChange(value)
                       form.clearErrors('recaptcha')

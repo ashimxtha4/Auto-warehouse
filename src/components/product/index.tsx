@@ -1,54 +1,132 @@
 'use client'
 
-import React from 'react'
-import defaultImage from '@/assets/default.png'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import React, { useState } from 'react'
+import { Card } from '../ui/card'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
+import { Button } from '../ui/button'
+import defaultImage from '@/assets/default.png'
+import defaultImage1 from '@/assets/car.jpg'
+import { useGetSingleProduct } from '@/services/api/api-service/product/single-product'
 
 const ProductPage = () => {
-  const params = useSearchParams()
-  const sku = params?.get('sku')
+  const images = [defaultImage, defaultImage1]
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+
+  const { data } = useGetSingleProduct()
+  const productData = data?.data
+  // const productImages = data?.data.image
+  console.log(productData, 'prodata')
 
   return (
-    <section className='container'>
-      <Card className={cn('mb-2 flex w-full items-center')}>
-        <CardHeader className='justify-center p-1 md:p-0'>
+    <div className='container mx-auto p-6'>
+      {/* Upper Section */}
+      <Card className='mb-6 flex flex-col items-center p-4 shadow-lg md:flex-row'>
+        <div className='flex max-w-[400px] flex-col items-start'>
+          {/* Main Image */}
           <Image
-            src={defaultImage}
-            alt='default-image'
-            className={cn('max-w-[100px] object-cover md:max-w-[350px]')}
+            src={images[selectedImageIndex]}
+            alt='default'
+            className='mb-4 h-auto w-full rounded-md object-cover md:w-[60%]'
           />
-        </CardHeader>
-        <CardContent className={cn('p-4')}>
-          <span className='block py-2 text-sm font-medium md:text-xl'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo quidem,
-            maiores ut porro animi quibusdam distinctio tempore commodi minus
-            assumenda.
-          </span>
-          <span className='block py-1 text-sm font-medium md:text-xl'>
-            <span className='text-primary-dark'>SKU:</span> {sku ?? ''}
-          </span>
-          <span className='block py-1 text-sm font-medium md:text-xl'>
-            <span className='text-primary-dark'>Price:</span> $ 12345
-          </span>
-          <div className={cn('flex justify-start gap-2')}>
-            <Button className='rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'>
+
+          {/* Thumbnail Images with Arrows */}
+          <div className='mt-2 flex items-center justify-center space-x-2 md:w-[60%]'>
+            {images.map((image, index) => (
+              <Image
+                key={index}
+                src={image}
+                alt={`${index}`}
+                onClick={() => setSelectedImageIndex(index)}
+                className={`h-full w-16 cursor-pointer rounded-md object-cover transition-transform ${
+                  selectedImageIndex === index
+                    ? 'scale-105 ring-2 ring-blue-500'
+                    : 'hover:scale-105'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className='mt-4 flex-grow md:ml-8 md:mt-0'>
+          <h1 className='text-2xl font-semibold'>{productData?.name || ''}</h1>
+          <p className='mt-2 text-lg font-bold text-gray-700'>
+            FROM: ${productData?.price || ''}
+          </p>
+          <p className='mt-1 text-lg text-gray-800'>
+            SKU: {productData?.sku || ''}
+          </p>
+
+          <div className='mt-4 flex space-x-4'>
+            <div>
+              <p className='text-gray-500'>SYD In Stock:</p>
+              <p className='text-lg font-medium'>
+                {productData?.syd_stock === 1 ? 'Yes' : 'No'}
+              </p>
+            </div>
+            <div>
+              <p className='text-gray-500'>MEL In Stock:</p>
+              <p className='text-lg font-medium'>
+                {productData?.mel_stock === 1 ? 'Yes' : 'No'}
+              </p>
+            </div>
+          </div>
+
+          <div className='mt-6 flex space-x-4'>
+            {/* <Button className='bg-primary-main hover:bg-primary-dark'>
+              Buy Now
+            </Button> */}
+            <Button className='bg-primary-main hover:bg-primary-dark'>
               Add to Cart
             </Button>
-            <Link
-              href={`/checkout?sku=${sku}`}
-              className='flex items-center justify-center rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'
-            >
-              Buy Now
-            </Link>
           </div>
-        </CardContent>
+        </div>
       </Card>
-    </section>
+
+      {/* Lower Section */}
+      <Card className='p-4 shadow-lg'>
+        <h2 className='mb-4 text-xl font-semibold'>Product Details</h2>
+
+        <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+          <div>
+            <p>
+              <span className='font-medium'>Description:</span>{' '}
+              {productData?.description || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>Position:</span>{' '}
+              {productData?.position || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>Size:</span>{' '}
+              {productData?.size || 'N/A'}
+            </p>
+          </div>
+          <div>
+            <p>
+              <span className='font-medium'>Color:</span>{' '}
+              {productData?.color || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>Vehicle Brand:</span>{' '}
+              {productData?.vehicle_brand || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>Model:</span>{' '}
+              {productData?.vehicle_model || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>Series:</span>{' '}
+              {productData?.vehicle_series || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>Type:</span>{' '}
+              {productData?.vehicle_type || 'N/A'}
+            </p>
+          </div>
+        </div>
+      </Card>
+    </div>
   )
 }
 

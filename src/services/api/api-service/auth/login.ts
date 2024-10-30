@@ -2,7 +2,6 @@ import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
 import { loginSchemaProps } from '@/components/auth/login'
-import toast from 'react-hot-toast'
 export interface LoginProps {
   success: boolean
   message: string
@@ -31,7 +30,7 @@ export interface LoginResponseProps {
 const postLogin = async (
   data: loginSchemaProps
 ): Promise<{
-  data: { data: LoginProps }
+  data: LoginProps
 }> => {
   return await httpClient.post(api.customer.login.post, data)
 }
@@ -41,8 +40,15 @@ export const useGetLogin = () => {
     mutationKey: ['post' + api.customer.login.post],
     mutationFn: postLogin,
     onSuccess: data => {
-      localStorage.setItem('token', data.data.data.data.token)
-      toast.success(data.data.data.message)
+      localStorage.setItem('token', data.data.data.token)
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          id: data.data.data.data.id.toString(),
+          uuid: data.data.data.data.uid
+        })
+      )
+      return data.data.data
     }
   })
 }

@@ -16,8 +16,7 @@ const getVehicleModel = async (): Promise<{
   data: { data: VehicleModelProps[] }
 }> => {
   return await httpClient.post(api.vehicle.model.post, {
-    vehicle_brand_id: 1,
-    vehicle_type_id: 1
+    vehicle_brand_id: 1
   })
 }
 

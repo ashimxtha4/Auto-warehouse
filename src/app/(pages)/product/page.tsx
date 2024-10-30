@@ -5,7 +5,7 @@ import React, { Suspense } from 'react'
 const Page = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <ProductPage />
+      <ProductPage  />
     </Suspense>
   )
 }

@@ -4,11 +4,11 @@ import Link from 'next/link'
 const HoverCartLinks = () => {
   const cartLinks = [
     { href: '/cart', label: 'My Cart' },
-    { href: '/cart/checkout', label: 'Checkout' }
+    { href: '/orders', label: 'My Orders' }
   ]
 
   return (
-    <div className='flex justify-start gap-2 py-2'>
+    <div className='flex flex-col justify-start gap-2 py-2'>
       {cartLinks.map(item => (
         <Link
           key={item.href}
