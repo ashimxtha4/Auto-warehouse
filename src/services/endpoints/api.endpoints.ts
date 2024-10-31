@@ -1,13 +1,5 @@
 export const api = {
   // auth
-  auth: {
-    login: {
-      post: '/auth/login'
-    },
-    register: {
-      post: '/auth/sign_up'
-    }
-  },
   customer: {
     login: {
       post: '/customer/login'
@@ -91,5 +83,97 @@ export const api = {
   // quote
   quote: {
     post: '/general/get_quote'
+  },
+  // #region admin
+  admin: {
+    login: {
+      post: '/login'
+    },
+    customer: {
+      quote: {
+        list: {
+          get: '/admin/customer/quotes'
+        },
+        detail: {
+          get: (id: number) => `/admin/customer/quotes/${id}`
+        },
+        reply: {
+          post: '/admin/customer/quote_reply'
+        }
+      },
+      orders: {
+        product: {
+          get: '/admin/customer/orders'
+        },
+        dispatch: {
+          post: '/admin/customer/orders/dispatch'
+        },
+        status: {
+          post: '/admin/customer/orders/change_status'
+        }
+      }
+    },
+    product: {
+      add: {
+        post: '/product'
+      },
+      list: {
+        get: '/product'
+      },
+      import: {
+        post: '/product/import'
+      }
+    },
+    glassType: {
+      list: {
+        get: '/glasstype'
+      },
+      add: {
+        post: '/glasstype'
+      }
+    },
+    vehicle: {
+      make: {
+        create: {
+          post: '/vehicle_brand'
+        },
+        list: {
+          get: '/vehicle_brand'
+        }
+      },
+      // body
+      type: {
+        create: {
+          post: '/vehicle_type'
+        },
+        list: {
+          get: '/vehicle_type'
+        }
+      },
+      position: {
+        create: {
+          post: '/vehicle_position'
+        },
+        list: {
+          get: '/vehicle_position'
+        }
+      },
+      model: {
+        create: {
+          post: '/vehicle_model'
+        },
+        list: {
+          get: '/vehicle_model'
+        }
+      },
+      series: {
+        create: {
+          post: '/vehicle_series'
+        },
+        list: {
+          get: '/vehicle_series'
+        }
+      }
+    }
   }
 }
