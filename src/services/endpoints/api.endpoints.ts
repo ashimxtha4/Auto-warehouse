@@ -27,7 +27,8 @@ export const api = {
       post: '/general/vehicle_model_list'
     },
     group: {
-      get: '/vehicle_group'
+      get: '/vehicle_group',
+      post: '/general/vehicle_position_list'
     },
     body: {
       get: '/vehicle_body',
@@ -82,5 +83,13 @@ export const api = {
     checkout: {
       post: '/general/product/checkout'
     }
+  },
+  // order
+  order: {
+    post: '/general/product/orders'
+  },
+  // quote
+  quote: {
+    post: '/general/get_quote'
   }
 }

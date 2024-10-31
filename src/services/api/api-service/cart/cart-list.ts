@@ -1,7 +1,8 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useUserStore } from '@/slice/user-slice'
 
 export interface cartListProps {
   data: listDataProps[]
@@ -52,27 +53,16 @@ const getCartList = async (uid: string, customer_id: number) => {
 }
 
 export const useGetCartList = () => {
-  const [user, setUser] = useState({
-    id: -1,
-    uuid: ''
-  })
+  const { id, uuid, loadUserFromLocalStorage } = useUserStore()
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const currentUser = localStorage.getItem('user')
-      if (currentUser) {
-        const currentUserString = JSON.parse(currentUser)
-        const userId = currentUserString.id
-        const userUuid = currentUserString.uuid
-        setUser({ id: userId, uuid: userUuid })
-      }
-    }
-  }, [])
+    loadUserFromLocalStorage()
+  }, [loadUserFromLocalStorage])
 
   return useQuery({
     queryKey: [api.cart.get],
-    queryFn: () => getCartList(user.uuid, user.id),
-    select: data => data.data,
-    enabled: !!user && user.id !== -1
+    queryFn: () => getCartList(uuid, id),
+    select: data => data,
+    enabled: !!uuid && id !== -1
   })
 }

@@ -15,12 +15,12 @@ import { ImCross } from 'react-icons/im'
 import { listDataProps } from '@/services/api/api-service/cart/cart-list'
 
 type MyCartProps = {
-  removeProduct: (id: number) => void
+  // removeProduct: (id: number) => void
   products: listDataProps[] | undefined
   total: number
 }
 
-const MyCart = ({ removeProduct, products, total }: MyCartProps) => {
+const MyCart = ({ products, total }: MyCartProps) => {
   const TABLE_HEADER_DATA = [
     'Image',
     'Product',
@@ -92,7 +92,7 @@ const MyCart = ({ removeProduct, products, total }: MyCartProps) => {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <button onClick={() => removeProduct(product.id)}>
+                    <button>
                       <ImCross size={16} />
                     </button>
                   </TableCell>

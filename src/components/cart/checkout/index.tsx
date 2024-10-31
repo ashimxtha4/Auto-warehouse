@@ -1,9 +1,17 @@
-import { Button } from '@/components/ui/button'
+'use client'
+
 import React from 'react'
+import { Button } from '@/components/ui/button'
+import { useMyCart } from '@/hooks/cart.hooks'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const Checkout = () => {
+  const { total, isLoading } = useMyCart()
+  const shippingCost = 5
+
   return (
     <section className='container my-2 md:my-4'>
+      {isLoading && <LoadingSpinner />}
       <h2 className='mb-4 text-xl font-semibold'>Checkout</h2>
 
       {/* Shipping Information */}
@@ -67,15 +75,15 @@ const Checkout = () => {
         <h3 className='mb-2 text-lg font-medium'>Order Summary</h3>
         <div className='flex justify-between'>
           <p>Items Total:</p>
-          <p>$263</p>
+          <p>${total}</p>
         </div>
         <div className='flex justify-between'>
           <p>Shipping:</p>
-          <p>$5.00</p>
+          <p>${shippingCost}</p>
         </div>
         <div className='flex justify-between font-bold'>
           <p>Total:</p>
-          <p>$268</p>
+          <p>${total + shippingCost}</p>
         </div>
       </div>
 

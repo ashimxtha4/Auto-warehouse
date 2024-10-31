@@ -1,22 +1,23 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Card } from '../ui/card'
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import defaultImage from '@/assets/default.png'
 import defaultImage1 from '@/assets/car.jpg'
-import { useGetSingleProduct } from '@/services/api/api-service/product/single-product'
+import { useGetProductDetails } from '@/hooks/product-details'
 
 const ProductPage = () => {
   const images = [defaultImage, defaultImage1]
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-
-  const { data } = useGetSingleProduct()
-  const productData = data?.data
-  // const productImages = data?.data.image
-  console.log(productData, 'prodata')
+  const {
+    handleAddToCart,
+    isPending,
+    selectedImageIndex,
+    setSelectedImageIndex,
+    productData
+  } = useGetProductDetails()
 
   return (
     <div className='container mx-auto p-6'>
@@ -76,7 +77,14 @@ const ProductPage = () => {
             {/* <Button className='bg-primary-main hover:bg-primary-dark'>
               Buy Now
             </Button> */}
-            <Button className='bg-primary-main hover:bg-primary-dark'>
+            <Button
+              className='bg-primary-main hover:bg-primary-dark'
+              onClick={handleAddToCart}
+              disabled={isPending}
+            >
+              {isPending && (
+                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white' />
+              )}
               Add to Cart
             </Button>
           </div>

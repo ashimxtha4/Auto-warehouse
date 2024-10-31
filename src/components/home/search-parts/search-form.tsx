@@ -7,7 +7,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 // import { VEHICLE_MAKE } from '@/constants/vehicle-make'
 // import { VEHICLE_MODELS } from '@/constants/vehicle-model'
-import { VEHICLE_BODY_PARTS } from '@/constants/vehicle-body'
+// import { VEHICLE_BODY_PARTS } from '@/constants/vehicle-body'
 import { VEHICLE_YEAR } from '@/constants/vehicle-year'
 // import { VEHICLE_SERIES } from '@/constants/vehicle-series'
 
@@ -18,8 +18,10 @@ const SearchForm = () => {
     vehicleMakeData,
     vehicleBodyData,
     vehicleModelData,
-    vehicleSeriesData
+    vehicleSeriesData,
+    vehicleGroupData
   } = useSearchVehicles()
+
   return (
     <>
       {form.formState.isSubmitting && <LoadingSpinner />}
@@ -72,7 +74,12 @@ const SearchForm = () => {
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={VEHICLE_BODY_PARTS}
+                  options={
+                    vehicleGroupData?.map(item => ({
+                      label: item.name,
+                      value: item.id?.toString()
+                    })) || []
+                  }
                   title='Group'
                   placeholder='Select Group'
                 />
@@ -143,7 +150,7 @@ const SearchForm = () => {
               className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
             >
               {form.formState.isSubmitting ? (
-                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
+                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white' />
               ) : (
                 'Search Vehicle'
               )}

@@ -8,6 +8,7 @@ import { useGetVehicleMake } from '@/services/api/api-service/vehicle/vehicle-ma
 import { useGetVehicleModel } from '@/services/api/api-service/vehicle/vehicle-model'
 import { useGetVehicleSeries } from '@/services/api/api-service/vehicle/vehicle-series'
 import { useGetVehicleBody } from '@/services/api/api-service/vehicle/vehicle-body'
+import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-group'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -48,16 +49,21 @@ export const useSearchVehicles = () => {
   const { data: vehicleBodyData, mutateAsync: mutateVehicleBody } =
     useGetVehicleBody()
 
+  const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
+    useGetVehicleGroup()
+
   useEffect(() => {
     mutateVehicleMake()
     mutateVehicleModel()
     mutateVehicleSeries()
     mutateVehicleBody()
+    mutateVehicleGroup()
   }, [
     mutateVehicleMake,
     mutateVehicleModel,
     mutateVehicleSeries,
-    mutateVehicleBody
+    mutateVehicleBody,
+    mutateVehicleGroup
   ])
 
   const form = useForm<Partial<TSearchPartsProps>>({
@@ -108,6 +114,7 @@ export const useSearchVehicles = () => {
     vehicleMakeData: vehicleMakeData?.data?.data,
     vehicleModelData: vehicleModelData?.data?.data,
     vehicleSeriesData: vehicleSeriesData?.data?.data,
-    vehicleBodyData: vehicleBodyData?.data?.data
+    vehicleBodyData: vehicleBodyData?.data?.data,
+    vehicleGroupData: vehicleGroupData?.data?.data
   }
 }

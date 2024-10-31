@@ -2,6 +2,7 @@ import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
 import { loginSchemaProps } from '@/components/auth/login'
+import Cookies from 'js-cookie'
 export interface LoginProps {
   success: boolean
   message: string
@@ -40,12 +41,27 @@ export const useGetLogin = () => {
     mutationKey: ['post' + api.customer.login.post],
     mutationFn: postLogin,
     onSuccess: data => {
-      localStorage.setItem('token', data.data.data.token)
+      const token = data.data.data.token
+      const id = data.data.data.data.id.toString()
+      const uuid = data.data.data.data.uid
+
+      Cookies.set('token', token, {
+        expires: 7,
+        secure: true,
+        sameSite: 'strict'
+      })
+      Cookies.set('user', JSON.stringify({ id, uuid }), {
+        expires: 7,
+        secure: true,
+        sameSite: 'strict'
+      })
+
+      localStorage.setItem('token', token)
       localStorage.setItem(
         'user',
         JSON.stringify({
-          id: data.data.data.data.id.toString(),
-          uuid: data.data.data.data.uid
+          id: id,
+          uuid: uuid
         })
       )
       return data.data.data

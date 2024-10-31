@@ -15,7 +15,14 @@ import FormRow from '@/components/form/form-row'
 import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useGetAQuote } from '@/hooks/get-a-quote'
+import { preferredType, useGetAQuote } from '@/hooks/get-a-quote'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../ui/select'
 
 const FormRowHeader = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -89,6 +96,46 @@ const GetAQuoteForm = () => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name='post_code'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Postal Code</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Postal Code' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='preferred_type'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Preferred Type</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select Prefferred Type' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {preferredType.map(option => (
+                        <SelectItem value={option.value} key={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </FormRow>
           <FormRowHeader>Vehicle Details</FormRowHeader>
           <FormRow className='!mt-0'>
@@ -131,10 +178,36 @@ const GetAQuoteForm = () => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name='body_type'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Body Type</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Body Type' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </FormRow>
           <FormField
             control={form.control}
-            name='comment'
+            name='damage_details'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Damage details</FormLabel>
+                <FormControl>
+                  <Textarea placeholder='Damage details' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='additional_comments'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Additional Message</FormLabel>
