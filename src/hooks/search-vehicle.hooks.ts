@@ -12,7 +12,7 @@ import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-g
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
-  model: z.string().optional(),
+  model: z.string({ required_error: 'Vehicle Model is required.' }),
   group: z.string().optional(),
   body: z.string().optional(),
   year: z.string().optional(),
@@ -20,11 +20,11 @@ const searchPartsSchema = z.object({
 })
 
 export enum VehicleMake {
-  SUV = 'suv',
-  SEDAN = 'sedan',
-  UTE = 'ute',
-  UTE_TRUCK = 'ute-truck',
-  VAN = 'van'
+  SUV = 'SUV',
+  SEDAN = 'SEDAN',
+  UTE = 'UTE',
+  HATCH = 'HATCH',
+  VAN = 'VAN'
 }
 
 export type TSearchPartsProps = z.infer<typeof searchPartsSchema>
@@ -34,8 +34,6 @@ export const useSearchVehicles = () => {
   const params = useParams()
   const searchParams = useSearchParams()
   const vehicle = params?.vehicle as string | undefined
-
-  const vehicleMake = VEHICLE_MAKE.find(item => item.value === vehicle)
 
   const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
     useGetVehicleMake()
@@ -52,23 +50,40 @@ export const useSearchVehicles = () => {
   const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
     useGetVehicleGroup()
 
-  useEffect(() => {
-    mutateVehicleMake()
-    mutateVehicleModel()
-    mutateVehicleSeries()
-    mutateVehicleBody()
-    mutateVehicleGroup()
-  }, [
-    mutateVehicleMake,
-    mutateVehicleModel,
-    mutateVehicleSeries,
-    mutateVehicleBody,
-    mutateVehicleGroup
-  ])
+  // const vehicleMake = vehicleMakeData?.data?.data?.find(item => item.id === vehicle)
+  const vehicleMake = VEHICLE_MAKE.find(item => item.value === vehicle)
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
   })
+
+  const vehicle_brand_id = form.watch('make')
+  const vehicle_model_id = form.watch('model')
+
+  useEffect(() => {
+    mutateVehicleMake()
+    mutateVehicleBody()
+    mutateVehicleGroup()
+  }, [mutateVehicleMake, mutateVehicleBody, mutateVehicleGroup])
+
+  useEffect(() => {
+    if (vehicle_brand_id) {
+      mutateVehicleModel(parseInt(vehicle_brand_id))
+    }
+
+    if (vehicle_model_id) {
+      mutateVehicleSeries(parseInt(vehicle_model_id))
+    }
+  }, [
+    vehicle_brand_id,
+    mutateVehicleModel,
+    vehicle_model_id,
+    mutateVehicleSeries
+  ])
+
+  const selectedVehicleModel = vehicleModelData?.data?.data?.find(
+    model => model.id?.toString() === vehicle_model_id
+  )
 
   useEffect(() => {
     const model = searchParams?.get('model')
@@ -115,6 +130,7 @@ export const useSearchVehicles = () => {
     vehicleModelData: vehicleModelData?.data?.data,
     vehicleSeriesData: vehicleSeriesData?.data?.data,
     vehicleBodyData: vehicleBodyData?.data?.data,
-    vehicleGroupData: vehicleGroupData?.data?.data
+    vehicleGroupData: vehicleGroupData?.data?.data,
+    selectedVehicleModel
   }
 }

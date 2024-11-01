@@ -9,13 +9,21 @@ import Suv from './vehicle-type/suv'
 import { useSearchVehicles, VehicleMake } from '@/hooks/search-vehicle.hooks'
 
 const VehicleOverview = () => {
-  const { vehicleMake } = useSearchVehicles()
+  const { selectedVehicleModel } = useSearchVehicles()
+  const vehicleType = selectedVehicleModel?.vehicle_type?.toUpperCase()
 
-  if (vehicleMake?.type === VehicleMake.SUV) return <Suv />
-  if (vehicleMake?.type === VehicleMake.SEDAN) return <Sedan />
-  if (vehicleMake?.type === VehicleMake.UTE) return <Ute />
-  if (vehicleMake?.type === VehicleMake.UTE_TRUCK) return <UteTruck />
-  return <Van />
+  switch (vehicleType) {
+    case VehicleMake.VAN:
+      return <Van />
+    case VehicleMake.SEDAN:
+      return <Sedan />
+    case VehicleMake.UTE:
+      return <Ute />
+    case VehicleMake.HATCH:
+      return <UteTruck />
+    default:
+      return <Suv />
+  }
 }
 
 export default VehicleOverview

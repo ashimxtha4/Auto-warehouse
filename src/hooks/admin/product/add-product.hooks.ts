@@ -3,8 +3,14 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import toast from 'react-hot-toast'
-// import { usePostAddProduct } from '@/services/api/api-service/product/add-product'
 import { isAxiosError } from 'axios'
+import { usePostAddProduct } from '@/services/api/api-service/admin/product/add-product'
+import { useGetVehicleMake } from '@/services/api/api-service/vehicle/vehicle-make'
+import { useEffect } from 'react'
+import { useGetVehicleModel } from '@/services/api/api-service/vehicle/vehicle-model'
+import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-group'
+import { useGetVehicleSeries } from '@/services/api/api-service/vehicle/vehicle-series'
+import { useGetVehicleBody } from '@/services/api/api-service/vehicle/vehicle-body'
 
 const addProductSchema = z.object({
   name: z.string({ required_error: 'Please enter the product name.' }),
@@ -15,9 +21,7 @@ const addProductSchema = z.object({
     required_error: 'Please enter the invoice description.'
   }),
   sku: z.string({ required_error: 'Please enter the SKU.' }),
-  price: z
-    .number({ required_error: 'Please enter the price.' })
-    .positive({ message: 'Price must be positive.' }),
+  price: z.string({ required_error: 'Please enter the price.' }),
   status: z.enum(['enabled', 'disabled'], {
     required_error: 'Please select the status.'
   }),
@@ -53,19 +57,56 @@ export const productStock = [
 
 export const useAddProduct = () => {
   const router = useRouter()
-  //   const { mutateAsync } = usePostAddProduct()
+  const { mutateAsync, isPending } = usePostAddProduct()
 
   const form = useForm<Partial<TAddProductSchemaProps>>({
     resolver: zodResolver(addProductSchema)
   })
 
+  const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
+    useGetVehicleMake()
+
+  const { data: vehicleModelData, mutateAsync: mutateVehicleModel } =
+    useGetVehicleModel()
+
+  const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
+    useGetVehicleGroup()
+
+  const { data: vehicleSeriesData, mutateAsync: mutateVehicleSeries } =
+    useGetVehicleSeries()
+
+  const { data: vehicleBodyData, mutateAsync: mutateVehicleBody } =
+    useGetVehicleBody()
+
+  useEffect(() => {
+    mutateVehicleMake()
+    mutateVehicleGroup()
+    mutateVehicleBody()
+  }, [mutateVehicleMake, mutateVehicleGroup, mutateVehicleBody])
+
+  const vehicle_brand_id = form.watch('vehicle_brand_id')
+  const vehicle_model_id = form.watch('vehicle_model_id')
+
+  useEffect(() => {
+    if (vehicle_brand_id) {
+      mutateVehicleModel(parseInt(vehicle_brand_id))
+    }
+
+    if (vehicle_model_id) {
+      mutateVehicleSeries(parseInt(vehicle_model_id))
+    }
+  }, [
+    vehicle_brand_id,
+    mutateVehicleModel,
+    vehicle_model_id,
+    mutateVehicleSeries
+  ])
+
   const onSubmit = async (data: Partial<TAddProductSchemaProps>) => {
     try {
-      //   await mutateAsync(data)
-      console.log(data)
-
-      router.push('/products')
+      await mutateAsync(data)
       toast.success('Product added successfully!')
+      form.reset()
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)
@@ -78,6 +119,12 @@ export const useAddProduct = () => {
   return {
     onSubmit,
     form,
-    router
+    router,
+    isPending,
+    vehicleMakeData: vehicleMakeData?.data?.data,
+    vehicleModelData: vehicleModelData?.data?.data,
+    vehicleGroupData: vehicleGroupData?.data?.data,
+    vehicleBodyData: vehicleBodyData?.data?.data,
+    vehicleSeriesData: vehicleSeriesData?.data?.data
   }
 }

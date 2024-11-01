@@ -25,9 +25,19 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import ButtonLoader from '@/utils/button-loader'
+import { cn } from '@/lib/utils'
 
 const AddProduct = () => {
-  const { form, onSubmit } = useAddProduct()
+  const {
+    form,
+    onSubmit,
+    isPending,
+    vehicleMakeData,
+    vehicleModelData,
+    vehicleGroupData,
+    vehicleSeriesData,
+    vehicleBodyData
+  } = useAddProduct()
   return (
     <>
       <Form {...form}>
@@ -226,9 +236,9 @@ const AddProduct = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {productStock.map(option => (
-                      <SelectItem value={option.value} key={option.value}>
-                        {option.label}
+                    {vehicleMakeData?.map(option => (
+                      <SelectItem value={option.id.toString()} key={option.id}>
+                        {option.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -253,9 +263,9 @@ const AddProduct = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {productStock.map(option => (
-                      <SelectItem value={option.value} key={option.value}>
-                        {option.label}
+                    {vehicleModelData?.map(option => (
+                      <SelectItem value={option.id.toString()} key={option.id}>
+                        {option.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -280,9 +290,9 @@ const AddProduct = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {productStock.map(option => (
-                      <SelectItem value={option.value} key={option.value}>
-                        {option.label}
+                    {vehicleGroupData?.map(option => (
+                      <SelectItem value={option.id.toString()} key={option.id}>
+                        {option.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -307,9 +317,9 @@ const AddProduct = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {productStock.map(option => (
-                      <SelectItem value={option.value} key={option.value}>
-                        {option.label}
+                    {vehicleSeriesData?.map(option => (
+                      <SelectItem value={option.id.toString()} key={option.id}>
+                        {option.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -334,9 +344,9 @@ const AddProduct = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {productStock.map(option => (
-                      <SelectItem value={option.value} key={option.value}>
-                        {option.label}
+                    {vehicleBodyData?.map(option => (
+                      <SelectItem value={option.id.toString()} key={option.id}>
+                        {option.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -349,7 +359,11 @@ const AddProduct = () => {
             <Button
               type='submit'
               variant='default'
-              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
+              className={cn(
+                'bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl',
+                isPending && 'cursor-not-allowed'
+              )}
+              disabled={isPending}
             >
               {form.formState.isSubmitting ? <ButtonLoader /> : 'Add Product'}
             </Button>

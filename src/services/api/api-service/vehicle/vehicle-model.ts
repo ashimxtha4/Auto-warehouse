@@ -12,11 +12,13 @@ export interface VehicleModelProps {
   status: string
 }
 
-const getVehicleModel = async (): Promise<{
+const getVehicleModel = async (
+  vehicle_brand_id: number
+): Promise<{
   data: { data: VehicleModelProps[] }
 }> => {
   return await httpClient.post(api.vehicle.model.post, {
-    vehicle_brand_id: 1
+    vehicle_brand_id
   })
 }
 

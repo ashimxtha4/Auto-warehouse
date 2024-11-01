@@ -138,7 +138,7 @@ export const api = {
           post: '/vehicle_brand'
         },
         list: {
-          get: '/vehicle_brand'
+          get: (page: number) => `/vehicle_brand?page=${page}`
         }
       },
       // body

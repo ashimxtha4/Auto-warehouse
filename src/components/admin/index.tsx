@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaBars, FaChevronDown, FaTimes } from 'react-icons/fa'
 import { Button } from '../ui/button'
 import Link from 'next/link'
@@ -22,17 +22,20 @@ const AdminSidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null)
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
-  const toggleMenu = (index: number) => {
+  const handleToggleMenu = (index: number) => {
     setOpenMenuIndex(openMenuIndex === index ? null : index)
   }
+
+  useEffect(() => {
+    setIsSidebarOpen(prev => !prev)
+  }, [search])
 
   return (
     <div className='container flex'>
       {/* Toggle Button for Mobile */}
       <Button
         variant='secondary'
-        onClick={toggleSidebar}
+        onClick={() => setIsSidebarOpen(prev => !prev)}
         className='mt-2 p-2 text-xl md:hidden'
       >
         <FaBars />
@@ -44,11 +47,12 @@ const AdminSidebar: React.FC = () => {
       >
         <div className='mt-2 flex items-center justify-between p-2'>
           <span className='text-2xl font-bold'>Admin Panel</span>
+          <Link href='/'>Home</Link>
 
           {/* Close Button for Mobile */}
           <Button
             variant='secondary'
-            onClick={toggleSidebar}
+            onClick={() => setIsSidebarOpen(prev => !prev)}
             className='mt-2 p-2 text-xl md:hidden'
           >
             <FaTimes />
@@ -58,7 +62,7 @@ const AdminSidebar: React.FC = () => {
           {SIDEBAR_MENU_ITEMS.map((menu, index) => (
             <div key={index}>
               <Button
-                onClick={() => toggleMenu(index)}
+                onClick={() => handleToggleMenu(index)}
                 className='flex w-full items-center rounded-md px-4 py-2 hover:bg-gray-700'
               >
                 {menu.title}
