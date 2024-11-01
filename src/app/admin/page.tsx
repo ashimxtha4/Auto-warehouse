@@ -1,6 +1,7 @@
 import AdminSidebar from '@/components/admin'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import type { Metadata } from 'next'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Admin Panel | Auto Glass Shop',
@@ -8,7 +9,11 @@ export const metadata: Metadata = {
 }
 
 const Page = () => {
-  return <AdminSidebar />
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <AdminSidebar />
+    </Suspense>
+  )
 }
 
 export default Page
