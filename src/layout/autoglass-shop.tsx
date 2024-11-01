@@ -12,7 +12,11 @@ const AutoGlassShopLayout = ({
 }>) => {
   const pathname = usePathname()
 
-  if (pathname === '/auth/login' || pathname === '/auth/register') {
+  if (
+    pathname === '/auth/login' ||
+    pathname === '/auth/register' ||
+    pathname === '/admin'
+  ) {
     return <AuthLayout>{children}</AuthLayout>
   }
 

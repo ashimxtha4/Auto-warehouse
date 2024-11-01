@@ -1,3 +1,4 @@
+import AdminSidebar from '@/components/admin'
 import type { Metadata } from 'next'
 import React from 'react'
 
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 const Page = () => {
-  return <div>Admin Page</div>
+  return <AdminSidebar />
 }
 
 export default Page
