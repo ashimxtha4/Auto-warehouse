@@ -30,6 +30,6 @@ const getQuoteList = async () => {
 export const useGetQuoteList = () => {
   return useQuery({
     queryKey: [api.admin.customer.quote.list.get],
-    queryFn: () => getQuoteList
+    queryFn: getQuoteList
   })
 }

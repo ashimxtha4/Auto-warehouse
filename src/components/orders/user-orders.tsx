@@ -58,7 +58,8 @@ const UserOrders = () => {
                     className={cn(
                       'rounded-md px-2 py-1 text-white',
                       order.status.includes('Cancelled') && 'bg-red-500',
-                      order.status.includes('Ordered') && 'bg-primary-main'
+                      order.status.includes('Ordered') && 'bg-primary-main',
+                      order.status.includes('Dispatched') && 'bg-blue-700'
                     )}
                   >
                     {order.status}

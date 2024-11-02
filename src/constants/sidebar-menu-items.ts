@@ -1,11 +1,7 @@
 export const SIDEBAR_MENU_ITEMS = [
   {
     title: 'Orders',
-    subMenu: [
-      { href: '?ref=order-status', label: 'Order Status' },
-      { href: '?ref=product-orders', label: 'Product Orders' },
-      { href: '?ref=dispatch-products', label: 'Dispatch Products' }
-    ]
+    subMenu: [{ href: '?ref=product-orders', label: 'Product Orders' }]
   },
   {
     title: 'Quote',

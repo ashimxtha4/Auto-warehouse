@@ -8,6 +8,8 @@ import VehicleModel from './vehicle/vehicle-model'
 import VehicleSeries from './vehicle/vehicle-series'
 import VehicleType from './vehicle/vehicle-type'
 import VehicleGroup from './vehicle/vehicle-group'
+import ProductOrders from './customer/orders/product-orders'
+import QuoteList from './customer/quote/quote-list'
 
 const SideBarContent = () => {
   const searchParams = useSearchParams()
@@ -32,18 +34,14 @@ const SideBarContent = () => {
       return <VehicleType />
     case 'vehicle-group':
       return <VehicleGroup />
-    case 'order-status':
-      return <>order-status</>
     case 'product-orders':
-      return <>product-orders</>
-    case 'dispatch-products':
-      return <>dispatch-products</>
+      return <ProductOrders />
     case 'quote-details':
       return <>quote-details</>
     case 'quote-reply':
       return <>quote-reply</>
     case 'quote-list':
-      return <>quote-list</>
+      return <QuoteList />
     case 'add-glass-type':
       return <>add-glass-type</>
     case 'glass-type-list':

@@ -23,6 +23,6 @@ const getCustomerOrders = async () => {
 export const useGetCustomerOrders = () => {
   return useQuery({
     queryKey: [api.admin.customer.orders.product.get],
-    queryFn: () => getCustomerOrders
+    queryFn: getCustomerOrders
   })
 }

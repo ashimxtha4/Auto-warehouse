@@ -1,34 +1,34 @@
 export const CATEGORY_ITEMS = [
   {
     label: 'WindScreen',
-    href: '/shop?category=wind-screen'
+    href: '/shop?keyword=wind screen'
   },
   {
     label: 'Flat Lam',
-    href: '/shop?category=flat-lam'
+    href: '/shop?keyword=flat lam'
   },
   {
     label: 'Rear Left Vent',
-    href: '/shop?category=rear'
+    href: '/shop?keyword=rear'
   },
   {
     label: 'Rear Right Vent',
-    href: '/shop?category=rear'
+    href: '/shop?keyword=rear'
   },
   {
     label: 'Front Left Side Door',
-    href: '/shop?category=side'
+    href: '/shop?keyword=side'
   },
   {
     label: 'Front Right Side Door',
-    href: '/shop?category=side'
+    href: '/shop?keyword=side'
   },
   {
     label: 'Back Left Side Door',
-    href: '/shop?category=side'
+    href: '/shop?keyword=side'
   },
   {
     label: 'Back Right Side Door',
-    href: '/shop?category=side'
+    href: '/shop?keyword=side'
   }
 ]
