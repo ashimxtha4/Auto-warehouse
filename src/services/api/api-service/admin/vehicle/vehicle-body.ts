@@ -3,7 +3,7 @@ import { api } from '@/services/endpoints/api.endpoints'
 import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-const postVehicleBody = async (data: { name: string; imgae: File }) => {
+const postVehicleBody = async (data: FormData) => {
   return await httpClient.post(api.admin.vehicle.type.create.post, data)
 }
 

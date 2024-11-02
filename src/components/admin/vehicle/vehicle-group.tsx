@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
-import { usePostVehicleMake } from '@/services/api/api-service/admin/vehicle/vehicle-make'
+import { usePostVehiclePosition } from '@/services/api/api-service/admin/vehicle/vehicle-position'
 import ButtonLoader from '@/utils/button-loader'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { isAxiosError } from 'axios'
@@ -21,22 +21,22 @@ import toast from 'react-hot-toast'
 import { z } from 'zod'
 
 const vehicleMakeSchema = z.object({
-  name: z.string({ required_error: 'Vehicle Make is required.' })
+  name: z.string({ required_error: 'Vehicle Group is required.' })
 })
 
-export type TVehicleMakeSchemaProps = z.infer<typeof vehicleMakeSchema>
+export type TVehicleGroupSchemaProps = z.infer<typeof vehicleMakeSchema>
 
-const VehicleMake = () => {
-  const { mutateAsync, isPending } = usePostVehicleMake()
+const VehicleGroup = () => {
+  const { mutateAsync, isPending } = usePostVehiclePosition()
 
-  const form = useForm<TVehicleMakeSchemaProps>({
+  const form = useForm<TVehicleGroupSchemaProps>({
     resolver: zodResolver(vehicleMakeSchema)
   })
 
-  const onSubmit = async (data: TVehicleMakeSchemaProps) => {
+  const onSubmit = async (data: TVehicleGroupSchemaProps) => {
     try {
       await mutateAsync(data)
-      toast.success('Vehicle Make added successfully!')
+      toast.success('Vehicle Group added successfully!')
       form.reset()
     } catch (error) {
       if (isAxiosError(error)) {
@@ -58,9 +58,9 @@ const VehicleMake = () => {
             name='name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Vehicle Make</FormLabel>
+                <FormLabel>Vehicle Group</FormLabel>
                 <FormControl>
-                  <Input placeholder='Vehicle make' {...field} />
+                  <Input placeholder='Vehicle Group' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -76,7 +76,11 @@ const VehicleMake = () => {
               )}
               disabled={isPending}
             >
-              {form.formState.isSubmitting ? <ButtonLoader /> : 'Add Vehicle Make'}
+              {form.formState.isSubmitting ? (
+                <ButtonLoader />
+              ) : (
+                'Add Vehicle Group'
+              )}
             </Button>
           </div>
         </form>
@@ -85,4 +89,4 @@ const VehicleMake = () => {
   )
 }
 
-export default VehicleMake
+export default VehicleGroup

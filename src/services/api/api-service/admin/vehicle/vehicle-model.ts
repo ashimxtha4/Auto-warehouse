@@ -1,13 +1,10 @@
+import { TvehicleModelSchemaProps } from '@/components/admin/vehicle/vehicle-model'
 import httpClient from '@/services/api/axios-service'
 import { api } from '@/services/endpoints/api.endpoints'
 import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-const postVehicleModel = async (data: {
-  name: string
-  vehicle_brand_id: number
-  vehicle_type_id: number
-}) => {
+const postVehicleModel = async (data: TvehicleModelSchemaProps) => {
   return await httpClient.post(api.admin.vehicle.model.create.post, data)
 }
 

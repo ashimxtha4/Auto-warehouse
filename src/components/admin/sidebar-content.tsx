@@ -6,6 +6,8 @@ import ProductList from './product/product-list'
 import VehicleMake from './vehicle/vehicle-make'
 import VehicleModel from './vehicle/vehicle-model'
 import VehicleSeries from './vehicle/vehicle-series'
+import VehicleType from './vehicle/vehicle-type'
+import VehicleGroup from './vehicle/vehicle-group'
 
 const SideBarContent = () => {
   const searchParams = useSearchParams()
@@ -27,9 +29,9 @@ const SideBarContent = () => {
     case 'vehicle-year':
       return <>vehicle-year</>
     case 'vehicle-body':
-      return <>vehicle-body</>
+      return <VehicleType />
     case 'vehicle-group':
-      return <>vehicle-group</>
+      return <VehicleGroup />
     case 'order-status':
       return <>order-status</>
     case 'product-orders':

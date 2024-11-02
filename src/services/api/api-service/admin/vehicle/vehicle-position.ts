@@ -1,10 +1,11 @@
+import { TVehicleGroupSchemaProps } from '@/components/admin/vehicle/vehicle-group'
 import httpClient from '@/services/api/axios-service'
 import { api } from '@/services/endpoints/api.endpoints'
 import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-const postVehiclePosition = async (name: string) => {
-  return await httpClient.post(api.admin.vehicle.position.create.post, name)
+const postVehiclePosition = async (data: TVehicleGroupSchemaProps) => {
+  return await httpClient.post(api.admin.vehicle.position.create.post, data)
 }
 
 export const usePostVehiclePosition = () => {
