@@ -2,12 +2,7 @@ import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
-
-export interface productListProps {
-  data: productProps[]
-  links: Links
-  meta: Meta
-}
+import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 
 export interface productProps {
   id: number
@@ -15,30 +10,6 @@ export interface productProps {
   sku: string
   price: string
   image: string
-}
-
-export interface Links {
-  first: string
-  last: string
-  prev: string
-  next: string
-}
-
-export interface Meta {
-  current_page: number
-  from: number
-  last_page: number
-  links: Link[]
-  path: string
-  per_page: number
-  to: number
-  total: number
-}
-
-export interface Link {
-  url?: string
-  label: string
-  active: boolean
 }
 
 const getProductList = async (
@@ -49,7 +20,7 @@ const getProductList = async (
   position?: number,
   series?: number
 ) => {
-  return await httpClient.get<productListProps>(
+  return await httpClient.get<IGenericResponse<productProps[]>>(
     api.products.list.get(keyword, brand, type, model, position, series)
   )
 }

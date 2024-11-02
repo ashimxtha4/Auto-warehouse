@@ -118,7 +118,7 @@ export const api = {
         post: '/product'
       },
       list: {
-        get: '/product'
+        get: (page: number) => `/product?page=${page}`
       },
       import: {
         post: '/product/import'

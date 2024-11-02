@@ -15,12 +15,12 @@ export const usePostVehicleMake = () => {
   })
 }
 
-// get vehicle make
+// get vehicle make list
 const getVehicleMake = async (page: number) => {
   return await httpClient.get(api.admin.vehicle.make.list.get(page))
 }
 
-export const useGetCartList = () => {
+export const useGetVehicleMakeList = () => {
   const searchParams = useSearchParams()
   const page = parseInt(searchParams?.get('page') || '1')
   return useQuery({
