@@ -38,17 +38,16 @@ export interface Image {
 }
 
 const getSingleProduct = async (id: number) => {
-  return await httpClient.get<singleProductProps>(
-    api.products.product.get(id)
-  )
+  return await httpClient.get<singleProductProps>(api.products.product.get(id))
 }
 
 export const useGetSingleProduct = () => {
   const params = useSearchParams()
-  const id = params?.get('id') ? parseInt(params.get('id') as string) : -1
+  const id = parseInt(params?.get('id') as string)
   return useQuery({
     queryKey: [api.products.product.get],
     queryFn: () => getSingleProduct(id),
-    select: data => data.data
+    select: data => data.data,
+    enabled: !!id
   })
 }

@@ -42,7 +42,8 @@ export const api = {
         type?: number,
         model?: number,
         position?: number,
-        series?: number
+        series?: number,
+        page?: number
       ) => {
         let url = '/general/product_list'
         const params = new URLSearchParams()
@@ -53,6 +54,7 @@ export const api = {
         if (model) params.append('model', model.toString())
         if (position) params.append('position', position.toString())
         if (series) params.append('series', series.toString())
+        if (page) params.append('page', page.toString())
 
         const queryString = params.toString()
         if (queryString) {

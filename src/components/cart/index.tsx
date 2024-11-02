@@ -17,11 +17,11 @@ export type CartProductsProps = {
 }
 
 const CartPage = () => {
-  const { total, isLoading, ...rest } = useMyCart()
+  const { total, isPending, isLoading, ...rest } = useMyCart()
 
   return (
     <section className='container my-2 flex flex-col gap-2 md:gap-5'>
-      {isLoading && <LoadingSpinner />}
+      {(isLoading || isPending) && <LoadingSpinner />}
       <MyCart {...rest} total={total} />
       <OrderSummary total={total} />
     </section>

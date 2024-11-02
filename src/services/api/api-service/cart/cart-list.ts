@@ -1,8 +1,6 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
-import { useUserStore } from '@/slice/user-slice'
 
 export interface cartListProps {
   data: listDataProps[]
@@ -52,17 +50,11 @@ const getCartList = async (uid: string, customer_id: number) => {
   return await httpClient.get<cartListProps>(api.cart.get(uid, customer_id))
 }
 
-export const useGetCartList = () => {
-  const { id, uuid, loadUserFromLocalStorage } = useUserStore()
-
-  useEffect(() => {
-    loadUserFromLocalStorage()
-  }, [loadUserFromLocalStorage])
-
+export const useGetCartList = (uid: string, customer_id: number) => {
   return useQuery({
     queryKey: [api.cart.get],
-    queryFn: () => getCartList(uuid, id),
+    queryFn: () => getCartList(uid, customer_id),
     select: data => data,
-    enabled: !!uuid && id !== -1
+    enabled: !!uid && customer_id !== -1
   })
 }

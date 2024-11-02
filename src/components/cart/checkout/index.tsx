@@ -4,9 +4,11 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { useMyCart } from '@/hooks/cart.hooks'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import ButtonLoader from '@/utils/button-loader'
 
 const Checkout = () => {
-  const { total, isLoading } = useMyCart()
+  const { total, isLoading, products, handleCartCheckout, checkoutPending } =
+    useMyCart()
   const shippingCost = 5
 
   return (
@@ -74,6 +76,10 @@ const Checkout = () => {
       <div className='mb-6 max-w-[500px]'>
         <h3 className='mb-2 text-lg font-medium'>Order Summary</h3>
         <div className='flex justify-between'>
+          <p>Total no. of Items:</p>
+          <p>{products?.length ?? '0'}</p>
+        </div>
+        <div className='flex justify-between'>
           <p>Items Total:</p>
           <p>${total}</p>
         </div>
@@ -88,8 +94,12 @@ const Checkout = () => {
       </div>
 
       {/* Place Order Button */}
-      <Button className='bg-primary-main text-white hover:bg-primary-dark'>
-        Place Order
+      <Button
+        onClick={handleCartCheckout}
+        disabled={checkoutPending}
+        className='bg-primary-main text-white hover:bg-primary-dark'
+      >
+        {checkoutPending ? <ButtonLoader /> : 'Place Order'}
       </Button>
     </section>
   )

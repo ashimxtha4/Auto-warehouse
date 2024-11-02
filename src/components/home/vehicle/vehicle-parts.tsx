@@ -10,12 +10,24 @@ import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import VehiclePartsList from './vehicle-parts-list'
 import { useGetProductList } from '@/services/api/api-service/product/product-list'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import AutoGlassPagination from '@/utils/autoglass-pagination'
 
 const VehicleParts = () => {
   const { setShowFilterProduct, showFilterProduct } = useVehicleParts()
   const { data, isLoading } = useGetProductList()
 
   const productList = data?.data
+
+  const updateQueryParams = (key: string, value: string) => {
+    const params = new URLSearchParams(window.location.search)
+    params.set(key, value)
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.pushState({}, '', newUrl)
+  }
+
+  const handlePageChange = (page: number) => {
+    updateQueryParams('page', page.toString())
+  }
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
@@ -51,7 +63,19 @@ const VehicleParts = () => {
           </CardContent>
         </Card>
       </aside>
-      <VehiclePartsList productList={productList} />
+      <div>
+        <VehiclePartsList productList={productList} />
+        {productList?.length ? (
+          <AutoGlassPagination
+            currentPage={data?.meta?.current_page || 1}
+            itemsPerPage={data?.meta.per_page as number}
+            totalItems={data?.meta.total as number}
+            onPageChange={handlePageChange}
+          />
+        ) : (
+          ''
+        )}
+      </div>
     </section>
   )
 }

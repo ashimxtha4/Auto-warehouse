@@ -6,9 +6,10 @@ import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { productProps } from '@/services/api/api-service/product/product-list'
+import ButtonLoader from '@/utils/button-loader'
 
 const ProductItem = ({ item }: { item: productProps }) => {
-  const { viewType } = useVehicleParts()
+  const { viewType, isPending, handleAddToCart } = useVehicleParts()
   return (
     <Card
       className={cn(
@@ -46,7 +47,12 @@ const ProductItem = ({ item }: { item: productProps }) => {
               : 'flex justify-start gap-5'
           )}
         >
-          <Button className='rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'>
+          <Button
+            className='bg-primary-main hover:bg-primary-dark'
+            onClick={() => handleAddToCart(item.id)}
+            disabled={isPending}
+          >
+            {isPending && <ButtonLoader />}
             Add to Cart
           </Button>
           <Link

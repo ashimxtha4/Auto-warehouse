@@ -7,6 +7,7 @@ import { Button } from '../ui/button'
 import defaultImage from '@/assets/default.png'
 import defaultImage1 from '@/assets/car.jpg'
 import { useGetProductDetails } from '@/hooks/product-details'
+import ButtonLoader from '@/utils/button-loader'
 
 const ProductPage = () => {
   const images = [defaultImage, defaultImage1]
@@ -82,9 +83,7 @@ const ProductPage = () => {
               onClick={handleAddToCart}
               disabled={isPending}
             >
-              {isPending && (
-                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white' />
-              )}
+              {isPending && <ButtonLoader />}
               Add to Cart
             </Button>
           </div>

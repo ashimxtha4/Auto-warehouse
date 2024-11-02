@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { Button } from '../ui/button'
 
 const OrderSummary = ({ total }: { total: number }) => {
   return (
@@ -21,15 +22,23 @@ const OrderSummary = ({ total }: { total: number }) => {
         </div>
       </div>
 
-      <Link
-        href={!total ? '/' : '/cart/checkout'}
-        className={cn(
-          'rounded-lg border border-primary-main bg-primary-main px-2 py-2 text-white hover:bg-primary-dark',
-          !total && 'cursor-not-allowed'
-        )}
-      >
-        Checkout
-      </Link>
+      {total ? (
+        <Link
+          href='/cart/checkout'
+          className={cn(
+            'rounded-lg border border-primary-main bg-primary-main px-2 py-2 text-white hover:bg-primary-dark'
+          )}
+        >
+          Checkout
+        </Link>
+      ) : (
+        <Button
+          disabled
+          className='rounded-lg border border-primary-main bg-primary-main px-2 py-2 text-white hover:bg-primary-dark'
+        >
+          Checkout
+        </Button>
+      )}
     </aside>
   )
 }

@@ -8,6 +8,7 @@ import { useUserStore } from '@/slice/user-slice'
 import Link from 'next/link'
 import defaultImage from '@/assets/default.png'
 import { SectionHeader } from '@/utils/section-header'
+import { cn } from '@/lib/utils'
 
 const UserOrders = () => {
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
@@ -23,8 +24,6 @@ const UserOrders = () => {
   }, [mutateAsync, id, uuid])
 
   const orders = data?.data.data
-
-  console.log(orders, 'orders')
 
   return (
     <div className='mx-auto max-w-4xl p-6'>
@@ -54,7 +53,16 @@ const UserOrders = () => {
 
                 {/* Order Status */}
                 <p className='mt-4'>
-                  <span className='font-semibold'>Status:</span> {order.status}
+                  <span className='font-semibold'>Status:</span>{' '}
+                  <span
+                    className={cn(
+                      'rounded-md px-2 py-1 text-white',
+                      order.status.includes('Cancelled') && 'bg-red-500',
+                      order.status.includes('Ordered') && 'bg-primary-main'
+                    )}
+                  >
+                    {order.status}
+                  </span>
                 </p>
               </div>
             </Card>

@@ -18,10 +18,11 @@ const getProductList = async (
   type?: number,
   model?: number,
   position?: number,
-  series?: number
+  series?: number,
+  page?: number
 ) => {
   return await httpClient.get<IGenericResponse<productProps[]>>(
-    api.products.list.get(keyword, brand, type, model, position, series)
+    api.products.list.get(keyword, brand, type, model, position, series, page)
   )
 }
 export const useGetProductList = () => {
@@ -43,6 +44,8 @@ export const useGetProductList = () => {
     ? parseInt(params.get('series') as string)
     : undefined
 
+  const page = parseInt(params?.get('page') || '1')
+
   return useQuery({
     queryKey: [
       api.products.list.get,
@@ -51,10 +54,11 @@ export const useGetProductList = () => {
       type,
       model,
       position,
-      series
+      series,
+      page
     ],
     queryFn: () =>
-      getProductList(keyword, brand, type, model, position, series),
+      getProductList(keyword, brand, type, model, position, series, page),
     select: data => data.data
   })
 }
