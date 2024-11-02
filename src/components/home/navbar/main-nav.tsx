@@ -28,7 +28,7 @@ const MainNavbar = () => {
         <Image
           src={logo}
           alt='auto-glass-shop'
-          className='h-fit w-10 cursor-pointer md:w-16'
+          className='h-11 w-max cursor-pointer md:w-16'
           onClick={() => router.push('/')}
         />
       </div>

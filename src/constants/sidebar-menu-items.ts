@@ -5,11 +5,7 @@ export const SIDEBAR_MENU_ITEMS = [
   },
   {
     title: 'Quote',
-    subMenu: [
-      { href: '?ref=quote-details', label: 'Quote Details' },
-      { href: '?ref=quote-reply', label: 'Quote Reply' },
-      { href: '?ref=quote-list', label: 'Quote List' }
-    ]
+    subMenu: [{ href: '?ref=quote-list', label: 'Quote List' }]
   },
   {
     title: 'Glass Type',

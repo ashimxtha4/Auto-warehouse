@@ -36,10 +36,6 @@ const SideBarContent = () => {
       return <VehicleGroup />
     case 'product-orders':
       return <ProductOrders />
-    case 'quote-details':
-      return <>quote-details</>
-    case 'quote-reply':
-      return <>quote-reply</>
     case 'quote-list':
       return <QuoteList />
     case 'add-glass-type':
@@ -47,7 +43,7 @@ const SideBarContent = () => {
     case 'glass-type-list':
       return <>glass-type-list</>
     default:
-      return <h2>Content</h2>
+      return
   }
 }
 

@@ -19,10 +19,7 @@ export const usePostQuoteReply = () => {
     mutationFn: postQuoteReply,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [
-          api.admin.customer.quote.detail,
-          api.admin.customer.quote.list
-        ]
+        queryKey: [api.admin.customer.quote.list.get]
       })
     }
   })

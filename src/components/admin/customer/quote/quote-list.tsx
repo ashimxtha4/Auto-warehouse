@@ -6,7 +6,7 @@ import QuoteCard from './quote-card'
 const QuoteList = () => {
   const { isLoading, quoteList } = useQuoteInquiry()
   return (
-    <main className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    <main className='grid grid-cols-1 gap-4 justify-between lg:grid-cols-2 min-w-fit'>
       {isLoading && <LoadingSpinner />}
       {quoteList?.map(quote => <QuoteCard inquiry={quote} key={quote.id} />)}
     </main>

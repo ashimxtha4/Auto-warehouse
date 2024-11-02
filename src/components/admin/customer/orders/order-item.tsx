@@ -24,7 +24,7 @@ const OrderItem = ({
       <Image
         src={defaultImage || order.product_image}
         alt={order.product_name}
-        className='mb-4 h-40 w-full rounded-md object-cover'
+        className='mb-4 h-fit w-full rounded-md object-cover'
       />
       <h3 className='mb-2 text-lg font-semibold'>{order.product_name}</h3>
       <p className='mb-1 text-gray-600'>SKU: {order.product_sku}</p>
