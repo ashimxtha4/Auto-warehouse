@@ -4,7 +4,7 @@ import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
-interface ProductListProps {
+export interface IProductListProps {
   id: number
   name: string
   sku: string
@@ -17,16 +17,17 @@ interface ProductListProps {
 
 // get vehicle make list
 const getProductList = async (page: number) => {
-  return await httpClient.get<IGenericResponse<ProductListProps[]>>(
+  return await httpClient.get<IGenericResponse<IProductListProps[]>>(
     api.admin.product.list.get(page)
   )
 }
 
-export const useGetProductList = () => {
+export const useGetAdminProductList = () => {
   const searchParams = useSearchParams()
   const page = parseInt(searchParams?.get('page') || '1')
   return useQuery({
     queryKey: [api.admin.product.list.get, page],
-    queryFn: () => getProductList(page)
+    queryFn: () => getProductList(page),
+    select: data => data.data
   })
 }

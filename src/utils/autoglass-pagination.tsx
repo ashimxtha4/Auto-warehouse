@@ -1,4 +1,5 @@
 import React from 'react'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import {
   Pagination,
   PaginationContent,
@@ -23,11 +24,20 @@ const AutoGlassPagination = ({
   onPageChange,
   className
 }: AutoGlassPaginationProps) => {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePageChange = (page: number) => {
     if (page > 0 && page <= totalPages) {
       onPageChange(page)
+      // Create new URLSearchParams object
+      const params = new URLSearchParams(searchParams?.toString())
+      params.set('page', page.toString())
+
+      // Update the URL with the new search params
+      router.push(`${pathname}?${params.toString()}`)
     }
   }
 
