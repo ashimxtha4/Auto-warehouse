@@ -23,8 +23,13 @@ import { z } from 'zod'
 const vehicleTypeSchema = z.object({
   name: z.string({ required_error: 'Vehicle Make is required.' }),
   image: z
-    .instanceof(File)
-    .refine(file => file.size > 0, { message: 'Please upload a file.' })
+    .any()
+    .refine(
+      file =>
+        (typeof File !== 'undefined' && file instanceof File) ||
+        file === undefined,
+      { message: 'Please upload a file.' }
+    )
 })
 
 export type TVehicleTypeSchemaProps = z.infer<typeof vehicleTypeSchema>
@@ -73,7 +78,7 @@ const VehicleType = () => {
               <FormItem>
                 <FormLabel>Vehicle Type/Body</FormLabel>
                 <FormControl>
-                  <Input placeholder='Vehicle Type' {...field} />
+                  <Input placeholder='Vehicle Type' type='text' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
