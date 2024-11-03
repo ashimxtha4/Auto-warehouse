@@ -24,7 +24,7 @@ const QuickLinks = () => {
   return (
     <section>
       <h6 className='footer-heading'>QUICK LINKS</h6>
-      <div className='flex flex-col'>
+      <div className='flex flex-col gap-y-1 md:gap-y-2'>
         {quickLinks.map(item => (
           <Link
             key={item.label}

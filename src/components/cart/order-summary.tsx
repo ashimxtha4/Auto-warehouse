@@ -25,16 +25,14 @@ const OrderSummary = ({ total }: { total: number }) => {
       {total ? (
         <Link
           href='/cart/checkout'
-          className={cn(
-            'rounded-lg border border-primary-main bg-primary-main px-2 py-2 text-white hover:bg-primary-dark'
-          )}
+          className={cn('gradient-bg rounded-lg px-2 py-2 text-white')}
         >
           Checkout
         </Link>
       ) : (
         <Button
           disabled
-          className='rounded-lg border border-primary-main bg-primary-main px-2 py-2 text-white hover:bg-primary-dark'
+          className='gradient-bg rounded-lg border px-2 py-2 text-white'
         >
           Checkout
         </Button>

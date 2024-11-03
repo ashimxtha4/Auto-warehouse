@@ -9,9 +9,13 @@ import {
 } from '../../ui/hover-card'
 import Link from 'next/link'
 import { FaChevronDown } from 'react-icons/fa'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
   const [isMounted, setIsMounted] = useState(false)
+  const pathname = usePathname()
+  const isActive = pathname === item.href
 
   useEffect(() => {
     setIsMounted(true)
@@ -21,12 +25,17 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
     return null
   }
   return (
-    <li className='hidden lg:block'>
+    <li className='hidden text-gray-700 lg:block'>
       <HoverCard openDelay={100} closeDelay={100}>
         <HoverCardTrigger>
           <Link
             href={item.href}
-            className='flex items-center gap-1 text-nowrap hover:text-gray-950'
+            className={cn(
+              'flex items-center gap-1 text-nowrap transition-all hover:scale-x-100 hover:border-b-2 hover:border-blue-600 hover:text-gray-950',
+              isActive
+                ? 'border-b-2 border-blue-600 transition-all duration-300'
+                : ''
+            )}
           >
             {item.label}
             {item.links.length ? <FaChevronDown /> : ''}

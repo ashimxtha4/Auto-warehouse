@@ -9,6 +9,7 @@ import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 // import { VEHICLE_MODELS } from '@/constants/vehicle-model'
 // import { VEHICLE_BODY_PARTS } from '@/constants/vehicle-body'
 import { VEHICLE_YEAR } from '@/constants/vehicle-year'
+import { SectionDescription } from '@/utils/section-header'
 // import { VEHICLE_SERIES } from '@/constants/vehicle-series'
 
 const SearchForm = () => {
@@ -29,8 +30,12 @@ const SearchForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 rounded-lg border border-gray-500 p-4'
+          className='space-y-8 rounded-lg bg-white p-4 shadow-lg'
         >
+          <SectionDescription>
+            Filter your results by entering your Vehicle to ensure you find the
+            parts that fit.
+          </SectionDescription>
           <FormRow>
             <FormField
               control={form.control}
@@ -136,11 +141,11 @@ const SearchForm = () => {
               )}
             />
           </FormRow>
-          <div className='!mt-2 flex gap-2 md:!mt-4'>
+          <div className='!mt-2 flex justify-end gap-2 md:!mt-4'>
             <Button
               type='reset'
               variant='outline'
-              className='text-lg font-semibold text-primary-main hover:text-primary-main md:text-xl'
+              className='text-lg font-semibold text-blue-600 hover:text-blue-700 md:text-xl'
               onClick={() => {
                 form.reset()
                 router.push('/')
@@ -151,7 +156,7 @@ const SearchForm = () => {
             <Button
               type='submit'
               variant='default'
-              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
+              className='gradient-bg text-lg font-semibold text-white hover:from-green-600 hover:to-blue-600 md:text-xl'
             >
               {form.formState.isSubmitting ? (
                 <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white' />

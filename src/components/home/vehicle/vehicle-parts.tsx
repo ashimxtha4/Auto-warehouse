@@ -50,18 +50,18 @@ const VehicleParts = () => {
       <aside className='hidden max-w-[250px] flex-1 md:block'>
         <Card>
           <CardHeader
-            className='cursor-pointer border-b bg-primary-dark py-1 font-medium text-white text-nowrap'
+            className='gradient-bg cursor-pointer text-nowrap border-b py-1 font-medium text-white'
             onClick={() => setShowFilterProduct(prev => !prev)}
           >
             Filter Products
           </CardHeader>
           {showFilterProduct && (
-            <CardContent className='flex flex-col gap-1 bg-primary-desaturate'>
+            <CardContent className='flex flex-col gap-1 bg-blue-600'>
               {vehicleGroupData?.map(item => (
                 <button
                   onClick={() => handleSearchFilter(item.id)}
                   key={item.id}
-                  className='bg-none text-black hover:bg-primary-main hover:text-white'
+                  className='bg-none text-white hover:bg-green-600'
                 >
                   {item.name}
                 </button>
@@ -70,15 +70,15 @@ const VehicleParts = () => {
           )}
         </Card>
         <Card className='mt-4'>
-          <CardHeader className='cursor-pointer border-b bg-primary-dark py-1 font-medium text-white'>
+          <CardHeader className='gradient-bg cursor-pointer border-b py-1 font-medium text-white'>
             Categories
           </CardHeader>
-          <CardContent className='flex flex-col bg-primary-desaturate'>
+          <CardContent className='flex flex-col bg-blue-600'>
             {filteredVehicleBodyData?.map(item => (
               <Link
                 key={item.id}
                 href={`/shop?type=${item.id}`}
-                className='p-1 text-center hover:bg-primary-saturate hover:text-white'
+                className='p-1 text-center text-white hover:bg-green-600'
               >
                 {item.name}
               </Link>

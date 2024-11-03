@@ -26,7 +26,7 @@ const TrustFactors = () => {
         {TRUST_ITEMS.map((item, index) => (
           <motion.div
             key={item.id}
-            className='mb-1 flex items-center gap-2 rounded-md bg-primary-main px-2 py-1 text-white shadow-lg md:mx-2 md:my-2'
+            className='mb-1 flex flex-col items-center gap-1 rounded-lg bg-white p-2 shadow-lg md:mx-2 md:my-2 md:p-4'
             initial={{ opacity: 0, y: 20 }}
             animate={controls}
             variants={{
@@ -37,14 +37,14 @@ const TrustFactors = () => {
               }
             }}
           >
-            <div className='p-1'>{item.icon}</div>
-            <p className='flex flex-col'>
-              <span className='text-nowrap text-base font-medium md:text-xl'>
-                {item.label}
-              </span>
-              <span className='text-nowrap text-xs font-normal md:text-base'>
-                {item.content}
-              </span>
+            <div className='rounded-lg bg-gradient-to-br from-blue-600 to-primary-main p-2 text-white md:p-4'>
+              {item.icon}
+            </div>
+            <p className='text-nowrap text-base font-medium text-gray-800 md:text-lg'>
+              {item.label}
+            </p>
+            <p className='text-nowrap text-sm font-normal text-gray-600'>
+              {item.content}
             </p>
           </motion.div>
         ))}

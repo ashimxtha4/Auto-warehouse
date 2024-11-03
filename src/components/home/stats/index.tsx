@@ -27,7 +27,7 @@ const StatsSection = () => {
         {STATS_DATA.map((stat, index) => (
           <motion.div
             key={index}
-            className='rounded-lg bg-primary-main px-2 py-1 text-center shadow-lg'
+            className='rounded-lg bg-white p-2 text-center shadow-lg md:p-4'
             initial={{ opacity: 0, y: 20 }}
             animate={controls}
             variants={{
@@ -38,7 +38,7 @@ const StatsSection = () => {
               }
             }}
           >
-            <p className='text-lg font-extrabold text-white md:text-2xl'>
+            <p className='gradient-text text-lg font-bold md:text-xl'>
               {inView ? (
                 <CountUp end={stat.number} duration={2.5} separator=',' />
               ) : (
@@ -46,7 +46,7 @@ const StatsSection = () => {
               )}
               +
             </p>
-            <p className='mt-1 text-sm font-semibold text-white md:text-lg'>
+            <p className='mt-1 text-xs text-gray-500 md:text-base'>
               {stat.title}
             </p>
           </motion.div>

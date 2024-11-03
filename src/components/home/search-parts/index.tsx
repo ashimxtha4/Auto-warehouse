@@ -3,7 +3,7 @@
 import React, { Suspense } from 'react'
 import SearchForm from './search-form'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { SectionDescription, SectionHeader } from '@/utils/section-header'
+import {  SectionHeader } from '@/utils/section-header'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -15,10 +15,6 @@ const SearchParts = () => {
   return (
     <div className='relative rounded-lg p-2'>
       <SectionHeader>Search by vehicle</SectionHeader>
-      <SectionDescription>
-        Filter your results by entering your Vehicle to ensure you find the
-        parts that fit.
-      </SectionDescription>
       <Suspense fallback={<LoadingSpinner />}>
         <motion.div
           ref={ref}

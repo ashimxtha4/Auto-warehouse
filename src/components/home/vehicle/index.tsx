@@ -10,15 +10,13 @@ const Vehicle = () => {
   const { vehicle } = useSearchVehicles()
   return (
     <>
-      <section className='bg-gray-100'>
-        <div className='container my-2 md:my-4'>
-          <SearchParts />
-        </div>
-      </section>
+      <div className='container my-2 md:my-4'>
+        <SearchParts />
+      </div>
       {vehicle && (
         <>
           <div className='container'>
-            <span className='my-2 hidden w-full justify-center rounded-md bg-primary-desaturate px-2 text-center text-2xl font-medium text-white md:flex'>
+            <span className='gradient-bg my-2 hidden w-full justify-center rounded-md px-2 text-center text-2xl font-medium text-white md:flex'>
               Select Your Preferred Glass Type
             </span>
             <div className='relative my-4 mb-12 flex w-full justify-center'>

@@ -8,7 +8,7 @@ type SocialLinkProps = { href: string; icon: IconType; label: string }
 const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
   <Link
     href={href}
-    className='flex items-center gap-1 text-gray-200 hover:text-white'
+    className='flex items-center pb-1 md:pb-2 gap-1 text-gray-200 hover:text-white'
     aria-label={label}
   >
     <Icon />

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='bg-[#F8F8FF]'>
+      <body className='bg-[#d3f2d0]'>
         <ReactQueryProvider>
           <AutoGlassShopLayout>{children}</AutoGlassShopLayout>
         </ReactQueryProvider>

@@ -24,7 +24,7 @@ const FooterContact = () => {
   return (
     <section>
       <h6 className='footer-heading'>CONTACT</h6>
-      <div className='flex flex-col'>
+      <div className='flex flex-col gap-y-1 md:gap-y-2'>
         <ContactLink href='tel:02 9756 6887' icon={FaPhoneSquareAlt}>
           SYD: 02 9756 6887
         </ContactLink>

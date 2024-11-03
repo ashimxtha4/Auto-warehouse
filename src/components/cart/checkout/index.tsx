@@ -97,7 +97,7 @@ const Checkout = () => {
       <Button
         onClick={handleCartCheckout}
         disabled={checkoutPending}
-        className='bg-primary-main text-white hover:bg-primary-dark'
+        className='gradient-bg text-white hover:from-green-600 hover:to-blue-600'
       >
         {checkoutPending ? <ButtonLoader /> : 'Place Order'}
       </Button>

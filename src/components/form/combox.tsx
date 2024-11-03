@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { ControllerRenderProps, UseFormReturn } from 'react-hook-form'
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
+import { CheckIcon } from '@radix-ui/react-icons'
 import {
   Command,
   CommandEmpty,
@@ -22,6 +22,7 @@ import {
   CommandList
 } from '../ui/command'
 import { TSearchPartsProps } from '@/hooks/search-vehicle.hooks'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 
 type OptionsProps = {
   label: string
@@ -69,7 +70,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
               {field.value
                 ? options.find(option => option.value === field.value)?.label
                 : placeholder || 'Select...'}
-              <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+              <MdKeyboardArrowDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
           </FormControl>
         </PopoverTrigger>

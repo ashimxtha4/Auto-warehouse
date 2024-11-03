@@ -52,8 +52,8 @@ const ProductPage = () => {
 
         <div className='mt-4 flex-grow md:ml-8 md:mt-0'>
           <h1 className='text-2xl font-semibold'>{productData?.name || ''}</h1>
-          <p className='mt-2 text-lg font-bold text-gray-700'>
-            FROM: ${productData?.price || ''}
+          <p className='mt-2 text-lg font-medium text-gray-600'>
+            FROM: <span className='text-base text-gray-700'>${productData?.price || '0.00'}</span>
           </p>
           <p className='mt-1 text-lg text-gray-800'>
             SKU: {productData?.sku || ''}
@@ -79,7 +79,7 @@ const ProductPage = () => {
               Buy Now
             </Button> */}
             <Button
-              className='bg-primary-main hover:bg-primary-dark'
+              className='gradient-bg'
               onClick={handleAddToCart}
               disabled={isPending}
             >

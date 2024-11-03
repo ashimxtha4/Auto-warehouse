@@ -13,7 +13,7 @@ const HoverCartLinks = () => {
         <Link
           key={item.href}
           href={item.href}
-          className='rounded-md bg-primary-main px-2 py-1 text-white hover:bg-primary-dark'
+          className='gradient-bg rounded-md px-2 py-1 text-white hover:from-green-600 hover:to-blue-600'
         >
           {item.label}
         </Link>

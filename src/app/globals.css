@@ -27,11 +27,19 @@
 }
 
 .callout-line-title {
-  @apply absolute flex items-center text-nowrap rounded-md border-primary-desaturate bg-primary-main px-[6px] py-[2px] text-white hover:bg-primary-dark;
+  @apply gradient-bg absolute flex items-center text-nowrap rounded-md px-[6px] py-[2px] text-white hover:from-green-600 hover:to-blue-600;
 }
 
 .footer-heading {
   @apply pb-1 text-base font-medium md:pb-2 md:text-2xl;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-r from-blue-600 to-primary-main;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-blue-600 to-primary-main bg-clip-text;
 }
 
 @layer base {
