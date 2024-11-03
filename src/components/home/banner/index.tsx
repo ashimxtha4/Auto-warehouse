@@ -5,8 +5,8 @@ import { BANNER_ITEMS } from '@/constants/banner-items'
 
 const BannerContent = () => {
   return (
-    <div className='sm:mt-12'>
-      <h2 className='text-base font-normal tracking-wide sm:text-xl md:text-6xl'>
+    <div className=' text-primary-main'>
+      <h2 className='text-base font-normal tracking-wide sm:text-xl md:text-5xl'>
         Honest, Quality Service{' '}
         <span className='block font-bold'>At Affordable Prices</span>
       </h2>
@@ -15,7 +15,7 @@ const BannerContent = () => {
           <div key={item.id}>
             <Link
               href={item.href}
-              className='mx-1 flex w-max items-center gap-2 rounded-full border-primary-main bg-primary-main px-2 py-1 text-xs font-medium text-white transition-all hover:bg-white hover:text-primary-main sm:mx-2 sm:px-4 sm:py-2 md:text-2xl'
+              className='mx-1 flex w-max items-center gap-2 rounded-full border-primary-main bg-primary-main px-2 py-1 text-xs font-medium text-white transition-all hover:bg-primary-dark sm:mx-2 sm:px-4 sm:py-2 md:text-2xl'
             >
               {item.label}
               <AiOutlineArrowRight />

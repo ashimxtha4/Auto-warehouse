@@ -2,21 +2,36 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { CheckboxGroup } from '@/components/form/checkbox-group'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { PRODUCT_FILTER_ITEMS } from '@/constants/filter-products-items'
-import { CATEGORY_ITEMS } from '@/constants/vehicle-parts-category'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import VehiclePartsList from './vehicle-parts-list'
 import { useGetProductList } from '@/services/api/api-service/product/product-list'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import AutoGlassPagination from '@/utils/autoglass-pagination'
 
 const VehicleParts = () => {
   const { setShowFilterProduct, showFilterProduct } = useVehicleParts()
   const { data, isLoading } = useGetProductList()
-
   const productList = data?.data
+
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  const { vehicleBodyData, vehicleGroupData } = useSearchVehicles()
+  const filteredVehicleBodyData = vehicleBodyData?.filter(
+    item => item.name !== '#N/A'
+  )
+
+  const handleSearchFilter = (id: number) => {
+    const params = new URLSearchParams(searchParams?.toString())
+    params.set('position', id.toString())
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+  }
 
   const updateQueryParams = (key: string, value: string) => {
     const params = new URLSearchParams(window.location.search)
@@ -35,14 +50,22 @@ const VehicleParts = () => {
       <aside className='hidden max-w-[250px] flex-1 md:block'>
         <Card>
           <CardHeader
-            className='cursor-pointer border-b bg-primary-dark py-1 font-medium text-white'
+            className='cursor-pointer border-b bg-primary-dark py-1 font-medium text-white text-nowrap'
             onClick={() => setShowFilterProduct(prev => !prev)}
           >
             Filter Products
           </CardHeader>
           {showFilterProduct && (
-            <CardContent className='bg-primary-desaturate'>
-              <CheckboxGroup items={PRODUCT_FILTER_ITEMS} />
+            <CardContent className='flex flex-col gap-1 bg-primary-desaturate'>
+              {vehicleGroupData?.map(item => (
+                <button
+                  onClick={() => handleSearchFilter(item.id)}
+                  key={item.id}
+                  className='bg-none text-black hover:bg-primary-main hover:text-white'
+                >
+                  {item.name}
+                </button>
+              ))}
             </CardContent>
           )}
         </Card>
@@ -51,13 +74,13 @@ const VehicleParts = () => {
             Categories
           </CardHeader>
           <CardContent className='flex flex-col bg-primary-desaturate'>
-            {CATEGORY_ITEMS.map(item => (
+            {filteredVehicleBodyData?.map(item => (
               <Link
-                key={item.label}
-                href={item.href}
-                className='p-1 hover:bg-primary-saturate hover:text-white'
+                key={item.id}
+                href={`/shop?type=${item.id}`}
+                className='p-1 text-center hover:bg-primary-saturate hover:text-white'
               >
-                {item.label}
+                {item.name}
               </Link>
             ))}
           </CardContent>
@@ -65,16 +88,18 @@ const VehicleParts = () => {
       </aside>
       <div>
         <VehiclePartsList productList={productList} />
-        {productList?.length ? (
-          <AutoGlassPagination
-            currentPage={data?.meta?.current_page || 1}
-            itemsPerPage={data?.meta.per_page as number}
-            totalItems={data?.meta.total as number}
-            onPageChange={handlePageChange}
-          />
-        ) : (
-          ''
-        )}
+        <div className='my-4'>
+          {data?.data.length ? (
+            <AutoGlassPagination
+              currentPage={data?.meta?.current_page || 1}
+              itemsPerPage={data?.meta.per_page as number}
+              totalItems={data?.meta.total as number}
+              onPageChange={handlePageChange}
+            />
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </section>
   )

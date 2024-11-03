@@ -11,12 +11,12 @@ export type NavItemsProps = {
 }
 
 export const NAVBAR_ITEMS: NavItemsProps[] = [
-  {
-    key: '1',
-    label: 'HOME',
-    href: '/',
-    links: []
-  },
+  // {
+  //   key: '1',
+  //   label: 'HOME',
+  //   href: '/',
+  //   links: []
+  // },
   {
     key: '2',
     label: 'OUR SHOP',

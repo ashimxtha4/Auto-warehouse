@@ -11,27 +11,25 @@ import {
   DropdownMenuTrigger
 } from '../../ui/dropdown-menu'
 import MobileMenuItem from './mobile-menu-item'
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-import logo from '@/assets/logo.png'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import {
+  // AiOutlineArrowRight,
+  AiOutlineClose,
+  AiOutlineMenu
+} from 'react-icons/ai'
 import Link from 'next/link'
 
 const MainNavbar = () => {
   const [openMenu, setOpenMenu] = useState(false)
-  const router = useRouter()
   const admin = false
 
   return (
-    <nav className='container flex items-center justify-between py-2 font-medium text-gray-900'>
-      <div>
-        <Image
-          src={logo}
-          alt='auto-glass-shop'
-          className='h-11 w-max cursor-pointer md:w-16'
-          onClick={() => router.push('/')}
-        />
-      </div>
+    <nav className='container flex items-center justify-between py-2 font-medium text-primary-main'>
+      <Link
+        href='/'
+        className='flex w-max items-center gap-2 rounded-full px-2 py-1 text-xs font-medium text-primary-main transition-all hover:bg-primary-dark hover:text-white md:text-xl'
+      >
+        Home
+      </Link>
       <ul className='flex items-center gap-2 md:gap-5'>
         {NAVBAR_ITEMS.map(item => (
           <div key={item.key}>

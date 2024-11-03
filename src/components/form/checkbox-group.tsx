@@ -39,13 +39,13 @@ export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data)
-  }
+  const checkedFilter = form.watch('items')
+
+  console.log(checkedFilter, "----checked-----")
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form className='space-y-8'>
         {items.map(item => (
           <FormField
             key={item.title}

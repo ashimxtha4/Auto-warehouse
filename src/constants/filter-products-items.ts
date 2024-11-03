@@ -3,39 +3,39 @@ export const PRODUCT_FILTER_ITEMS = [
     title: 'Select Type of Auto Glass',
     content: [
       {
-        id: 'windScreen',
+        id: 'WindScreen',
         label: 'WindScreen'
       },
       {
-        id: 'frontLeftDoor',
+        id: 'Front Left Door',
         label: 'Front Left Door'
       },
       {
-        id: 'frontRightDoor',
+        id: 'Front Right Door',
         label: 'Front Right Door'
       },
       {
-        id: 'backLeftDoor',
+        id: 'Back Left Door',
         label: 'Back Left Door'
       },
       {
-        id: 'backRightDoor',
+        id: 'Back Right Door',
         label: 'Back Right Door'
       },
       {
-        id: 'rearLeftDoor',
+        id: 'Rear Left Door',
         label: 'Rear Left Door'
       },
       {
-        id: 'rearRightDoor',
+        id: 'Rear Right Door',
         label: 'Rear Right Door'
       },
       {
-        id: 'rearLeftVent',
+        id: 'Rear Left Vent',
         label: 'Rear Left Qtr/Vent'
       },
       {
-        id: 'rearRightVent',
+        id: 'Rear Right Vent',
         label: 'Rear Right Qtr/Vent'
       }
     ]

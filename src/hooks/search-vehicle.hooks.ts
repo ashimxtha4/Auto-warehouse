@@ -13,8 +13,8 @@ import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-g
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
   model: z.string({ required_error: 'Vehicle Model is required.' }),
-  group: z.string().optional(),
-  body: z.string().optional(),
+  position: z.string().optional(),
+  type: z.string().optional(),
   year: z.string().optional(),
   series: z.string().optional()
 })
@@ -87,27 +87,27 @@ export const useSearchVehicles = () => {
 
   useEffect(() => {
     const model = searchParams?.get('model')
-    const group = searchParams?.get('group')
-    const body = searchParams?.get('body')
+    const group = searchParams?.get('position')
+    const body = searchParams?.get('type')
     const year = searchParams?.get('year')
     const series = searchParams?.get('series')
 
     form.setValue('make', vehicle)
     form.setValue('model', model || '')
-    form.setValue('group', group || '')
-    form.setValue('body', body || '')
+    form.setValue('position', group || '')
+    form.setValue('type', body || '')
     form.setValue('year', year || '')
     form.setValue('series', series || '')
   }, [searchParams, form, vehicle])
 
   const onSubmit = (data: Partial<TSearchPartsProps>) => {
-    console.log(data)
     try {
       const queryParams = new URLSearchParams()
 
+      if (data.make) queryParams.append('brand', data.make)
       if (data.model) queryParams.append('model', data.model)
-      if (data.group) queryParams.append('group', data.group)
-      if (data.body) queryParams.append('body', data.body)
+      if (data.position) queryParams.append('position', data.position)
+      if (data.type) queryParams.append('type', data.type)
       if (data.year) queryParams.append('year', data.year)
       if (data.series) queryParams.append('series', data.series)
 

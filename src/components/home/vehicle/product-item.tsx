@@ -13,7 +13,8 @@ const ProductItem = ({ item }: { item: productProps }) => {
   return (
     <Card
       className={cn(
-        viewType === null ? 'max-w-[250px]' : 'mb-2 flex w-full items-center'
+        viewType === null ? 'max-w-[250px]' : 'mb-2 flex w-full items-center',
+        'relative min-h-max'
       )}
     >
       <CardHeader className='justify-center p-1 md:p-0'>
@@ -31,24 +32,25 @@ const ProductItem = ({ item }: { item: productProps }) => {
         />
       </CardHeader>
       <CardContent className={cn('p-1 md:p-2', viewType === null && 'p-4')}>
-        <span className='block py-2 text-sm font-medium md:text-xl'>
+        <span className='block py-2 text-sm font-medium md:text-lg'>
           {item?.name ?? '-'}
         </span>
-        <span className='block py-1 text-sm font-medium md:text-xl'>
+        <span className='block py-1 text-sm font-medium md:text-lg'>
           <span className='text-primary-dark'>SKU:</span> {item?.sku ?? '-'}
         </span>
-        <span className='block py-1 text-sm font-medium md:text-xl'>
+        <span className='block py-1 text-sm font-medium md:text-lg'>
           <span className='text-primary-dark'>FROM:</span> ${item?.price ?? '-'}
         </span>
         <div
           className={cn(
             viewType === null
               ? 'flex justify-between gap-2'
-              : 'flex justify-start gap-5'
+              : 'flex justify-start gap-5',
+            // 'absolute'
           )}
         >
           <Button
-            className='bg-primary-main hover:bg-primary-dark'
+            className='text-nowrap bg-primary-main hover:bg-primary-dark'
             onClick={() => handleAddToCart(item.id)}
             disabled={isPending}
           >
@@ -57,7 +59,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
           </Button>
           <Link
             href={`/product?id=${item.id}`}
-            className='flex items-center justify-center rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'
+            className='flex items-center justify-center text-nowrap rounded-md border border-primary-dark bg-primary-main px-2 py-1 text-xs font-medium text-white hover:bg-primary-dark md:text-sm'
           >
             View Details
           </Link>

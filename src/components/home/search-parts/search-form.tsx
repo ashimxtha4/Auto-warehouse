@@ -19,7 +19,8 @@ const SearchForm = () => {
     vehicleBodyData,
     vehicleModelData,
     vehicleSeriesData,
-    vehicleGroupData
+    vehicleGroupData,
+    router
   } = useSearchVehicles()
 
   return (
@@ -69,7 +70,7 @@ const SearchForm = () => {
             />
             <FormField
               control={form.control}
-              name='group'
+              name='position'
               render={({ field }) => (
                 <ComboboxDropdown
                   field={field}
@@ -87,7 +88,7 @@ const SearchForm = () => {
             />
             <FormField
               control={form.control}
-              name='body'
+              name='type'
               render={({ field }) => (
                 <ComboboxDropdown
                   field={field}
@@ -140,7 +141,10 @@ const SearchForm = () => {
               type='reset'
               variant='outline'
               className='text-lg font-semibold text-primary-main hover:text-primary-main md:text-xl'
-              onClick={() => form.reset()}
+              onClick={() => {
+                form.reset()
+                router.push('/')
+              }}
             >
               Clear
             </Button>

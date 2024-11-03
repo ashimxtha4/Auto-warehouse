@@ -11,13 +11,11 @@ const HomePage = () => {
   return (
     <main>
       <HomePageSection>
+        <SearchParts />
+      </HomePageSection>
+      <HomePageSection>
         <TrustFactors />
       </HomePageSection>
-      <div className='bg-gray-100'>
-        <HomePageSection>
-          <SearchParts />
-        </HomePageSection>
-      </div>
       <HomePageSection>
         <StatsSection />
       </HomePageSection>
