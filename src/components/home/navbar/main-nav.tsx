@@ -16,11 +16,9 @@ import {
   AiOutlineClose,
   AiOutlineMenu
 } from 'react-icons/ai'
-import Link from 'next/link'
 
 const MainNavbar = () => {
   const [openMenu, setOpenMenu] = useState(false)
-  const admin = false
 
   return (
     <nav className='!bg-white'>
@@ -54,11 +52,6 @@ const MainNavbar = () => {
           ))}
         </ul>
         <ul className='flex items-center gap-2 md:gap-5'>
-          {admin && (
-            <Link href='/admin' className='bg-primary-main text-white'>
-              ADMIN
-            </Link>
-          )}
           <SearchBar />
           <UserCartProfile />
         </ul>

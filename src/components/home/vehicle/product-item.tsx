@@ -51,7 +51,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
           )}
         >
           <Button
-            className='gradient-bg text-nowrap hover:from-green-600 hover:to-blue-600'
+            className='bg-blue-600 text-nowrap hover:from-green-600 hover:to-blue-600'
             onClick={() => handleAddToCart(item.id)}
             disabled={isPending}
           >
@@ -60,7 +60,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
           </Button>
           <Link
             href={`/product?id=${item.id}`}
-            className='gradient-bg flex items-center justify-center text-nowrap rounded-md px-2 py-1 text-xs font-medium text-white hover:from-green-600 hover:to-blue-600 md:text-sm'
+            className='bg-primary-main flex items-center justify-center text-nowrap rounded-md px-2 py-1 text-xs font-medium text-white hover:from-green-600 hover:to-blue-600 md:text-sm'
           >
             View Details
           </Link>

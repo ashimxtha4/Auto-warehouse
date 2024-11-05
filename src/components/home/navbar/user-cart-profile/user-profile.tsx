@@ -22,7 +22,7 @@ const UserProfile = () => {
             <Link
               key={item.href}
               href={item.href}
-              className='mb-1 border-b border-b-gray-600 pb-2 text-primary-main hover:bg-gray-700 hover:bg-opacity-20 hover:text-primary-dark'
+              className='mb-1 border-b border-b-gray-600 pb-2 text-blue-600 hover:text-blue-800'
             >
               {item.label}
             </Link>
