@@ -81,9 +81,6 @@ const ProductPage = () => {
           </div>
 
           <div className='mt-6 flex space-x-4'>
-            {/* <Button className='bg-primary-main hover:bg-primary-dark'>
-              Buy Now
-            </Button> */}
             <Button
               className='gradient-bg'
               onClick={handleAddToCart}

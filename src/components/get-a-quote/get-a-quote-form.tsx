@@ -40,7 +40,7 @@ const GetAQuoteForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 rounded-lg border border-gray-500 p-4'
+          className='space-y-8 rounded-lg bg-white p-4 shadow-lg'
         >
           <FormRowHeader>Personal Details</FormRowHeader>
           <FormRow className='!my-0'>

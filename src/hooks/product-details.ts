@@ -14,7 +14,7 @@ export const useGetProductDetails = () => {
     loadUserFromLocalStorage()
   }, [loadUserFromLocalStorage])
 
-  const { mutateAsync, isPending } = usePostAddToCart()
+  const { mutateAsync, isPending, status } = usePostAddToCart()
 
   const { data, isLoading } = useGetSingleProduct()
   const productData = data?.data
@@ -22,16 +22,14 @@ export const useGetProductDetails = () => {
 
   const handleAddToCart = async () => {
     try {
-      if (productData?.id) {
-        await mutateAsync({
-          customer_id: id,
-          uid: uuid,
-          product_id: productData.id,
-          quantity: 1
-        })
+      await mutateAsync({
+        customer_id: id,
+        uid: uuid,
+        product_id: productData?.id as number,
+        quantity: 1
+      })
+      if (status === 'success') {
         toast.success('Product Added to cart successfully!')
-      } else {
-        toast.error('Something went wrong! Try again later!')
       }
     } catch (error) {
       if (!id || !uuid) {
