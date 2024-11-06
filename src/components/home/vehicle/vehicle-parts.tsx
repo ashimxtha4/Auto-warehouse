@@ -21,7 +21,7 @@ const VehicleParts = () => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const { vehicleBodyData, vehicleGroupData } = useSearchVehicles()
+  const { vehicleBodyData, vehicleGroupData, vehicle } = useSearchVehicles()
   const filteredVehicleBodyData = vehicleBodyData?.filter(
     item => item.name !== '#N/A'
   )
@@ -47,45 +47,47 @@ const VehicleParts = () => {
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
       {isLoading && <LoadingSpinner />}
-      <aside className='hidden max-w-[250px] flex-1 md:block'>
-        <Card>
-          <CardHeader
-            className='gradient-bg cursor-pointer text-nowrap border-b py-1 font-medium text-white'
-            onClick={() => setShowFilterProduct(prev => !prev)}
-          >
-            Filter Products
-          </CardHeader>
-          {showFilterProduct && (
-            <CardContent className='flex flex-col gap-1 bg-blue-600'>
-              {vehicleGroupData?.map(item => (
-                <button
-                  onClick={() => handleSearchFilter(item.id)}
+      {vehicle && (
+        <aside className='hidden max-w-[250px] flex-1 md:block'>
+          <Card>
+            <CardHeader
+              className='gradient-bg cursor-pointer text-nowrap border-b py-1 font-medium text-white'
+              onClick={() => setShowFilterProduct(prev => !prev)}
+            >
+              Filter Products
+            </CardHeader>
+            {showFilterProduct && (
+              <CardContent className='flex flex-col gap-1 bg-blue-600'>
+                {vehicleGroupData?.map(item => (
+                  <button
+                    onClick={() => handleSearchFilter(item.id)}
+                    key={item.id}
+                    className='bg-none text-white hover:bg-green-600'
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </CardContent>
+            )}
+          </Card>
+          <Card className='mt-4'>
+            <CardHeader className='gradient-bg cursor-pointer border-b py-1 font-medium text-white'>
+              Categories
+            </CardHeader>
+            <CardContent className='flex flex-col bg-blue-600'>
+              {filteredVehicleBodyData?.map(item => (
+                <Link
                   key={item.id}
-                  className='bg-none text-white hover:bg-green-600'
+                  href={`/shop?type=${item.id}`}
+                  className='p-1 text-center text-white hover:bg-green-600'
                 >
                   {item.name}
-                </button>
+                </Link>
               ))}
             </CardContent>
-          )}
-        </Card>
-        <Card className='mt-4'>
-          <CardHeader className='gradient-bg cursor-pointer border-b py-1 font-medium text-white'>
-            Categories
-          </CardHeader>
-          <CardContent className='flex flex-col bg-blue-600'>
-            {filteredVehicleBodyData?.map(item => (
-              <Link
-                key={item.id}
-                href={`/shop?type=${item.id}`}
-                className='p-1 text-center text-white hover:bg-green-600'
-              >
-                {item.name}
-              </Link>
-            ))}
-          </CardContent>
-        </Card>
-      </aside>
+          </Card>
+        </aside>
+      )}
       <div>
         <VehiclePartsList productList={productList} />
         <div className='my-4'>

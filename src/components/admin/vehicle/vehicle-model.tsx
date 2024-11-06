@@ -42,13 +42,11 @@ const VehicleModel = () => {
   const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
     useGetVehicleMake()
 
-  const { data: vehicleBodyData, mutateAsync: mutateVehicleBody } =
-    useGetVehicleBody()
+  const { data: vehicleBodyData } = useGetVehicleBody()
 
   useEffect(() => {
     mutateVehicleMake()
-    mutateVehicleBody()
-  }, [mutateVehicleMake, mutateVehicleBody])
+  }, [mutateVehicleMake])
 
   const form = useForm<TvehicleModelSchemaProps>({
     resolver: zodResolver(vehicleModelSchema)

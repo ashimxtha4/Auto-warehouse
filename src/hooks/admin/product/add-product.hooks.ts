@@ -81,8 +81,7 @@ export const useAddProduct = () => {
   useEffect(() => {
     mutateVehicleMake()
     mutateVehicleGroup()
-    mutateVehicleBody()
-  }, [mutateVehicleMake, mutateVehicleGroup, mutateVehicleBody])
+  }, [mutateVehicleMake, mutateVehicleGroup])
 
   const vehicle_brand_id = form.watch('vehicle_brand_id')
   const vehicle_model_id = form.watch('vehicle_model_id')
@@ -101,6 +100,15 @@ export const useAddProduct = () => {
     vehicle_model_id,
     mutateVehicleSeries
   ])
+
+  useEffect(() => {
+    if (vehicle_brand_id || vehicle_model_id) {
+      mutateVehicleBody({
+        vehicle_brand_id: parseInt(vehicle_brand_id as string),
+        vehicle_model_id: parseInt(vehicle_model_id as string)
+      })
+    }
+  }, [vehicle_brand_id, vehicle_model_id, mutateVehicleBody])
 
   const onSubmit = async (data: Partial<TAddProductSchemaProps>) => {
     try {

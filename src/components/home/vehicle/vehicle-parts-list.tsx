@@ -2,7 +2,6 @@ import React from 'react'
 import { CiGrid41, CiCircleList } from 'react-icons/ci'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
-// import SelectForm from '@/components/form/drop-down'
 import ProductItem from './product-item'
 import { productProps } from '@/services/api/api-service/product/product-list'
 
@@ -40,8 +39,7 @@ const VehiclePartsList = ({
       </header>
       <div
         className={cn(
-          viewType === null &&
-            'flex flex-wrap justify-center gap-2 md:justify-start'
+          viewType === null && 'flex flex-wrap justify-center gap-2'
         )}
       >
         {productList?.length ? (

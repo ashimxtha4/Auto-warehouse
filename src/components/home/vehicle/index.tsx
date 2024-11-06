@@ -5,7 +5,6 @@ import SearchParts from '../search-parts'
 import VehicleParts from './vehicle-parts'
 import VehicleOverview from './vehicle-overview'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
-// import { GetStaticPaths, GetStaticProps } from 'next'
 
 const Vehicle = () => {
   const { vehicle } = useSearchVehicles()

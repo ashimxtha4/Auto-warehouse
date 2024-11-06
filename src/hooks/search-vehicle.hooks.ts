@@ -62,9 +62,8 @@ export const useSearchVehicles = () => {
 
   useEffect(() => {
     mutateVehicleMake()
-    mutateVehicleBody()
     mutateVehicleGroup()
-  }, [mutateVehicleMake, mutateVehicleBody, mutateVehicleGroup])
+  }, [mutateVehicleMake, mutateVehicleGroup])
 
   useEffect(() => {
     if (vehicle_brand_id) {
@@ -78,8 +77,18 @@ export const useSearchVehicles = () => {
     vehicle_brand_id,
     mutateVehicleModel,
     vehicle_model_id,
-    mutateVehicleSeries
+    mutateVehicleSeries,
+    mutateVehicleBody
   ])
+
+  useEffect(() => {
+    if (vehicle_brand_id || vehicle_model_id) {
+      mutateVehicleBody({
+        vehicle_brand_id: parseInt(vehicle_brand_id as string),
+        vehicle_model_id: parseInt(vehicle_model_id as string)
+      })
+    }
+  }, [vehicle_brand_id, vehicle_model_id, mutateVehicleBody])
 
   const selectedVehicleModel = vehicleModelData?.data?.data?.find(
     model => model.id?.toString() === vehicle_model_id
