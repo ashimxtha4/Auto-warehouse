@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { NAVBAR_ITEMS } from '@/constants/navbar-items'
 import DesktopNavbar from './desktop-nav'
 import SearchBar from './search-bar'
@@ -16,6 +16,7 @@ import {
   AiOutlineClose,
   AiOutlineMenu
 } from 'react-icons/ai'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const MainNavbar = () => {
   const [openMenu, setOpenMenu] = useState(false)
@@ -52,7 +53,9 @@ const MainNavbar = () => {
           ))}
         </ul>
         <ul className='flex items-center gap-2 md:gap-5'>
-          <SearchBar />
+          <Suspense fallback={<LoadingSpinner />}>
+            <SearchBar />
+          </Suspense>
           <UserCartProfile />
         </ul>
       </header>
