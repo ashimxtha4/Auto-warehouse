@@ -8,6 +8,7 @@ import defaultImage from '@/assets/default.png'
 import defaultImage1 from '@/assets/car.jpg'
 import { useGetProductDetails } from '@/hooks/product-details'
 import ButtonLoader from '@/utils/button-loader'
+import { LoadingSpinner } from '../ui/loading-spinner'
 
 const ProductPage = () => {
   const images = [defaultImage, defaultImage1]
@@ -17,11 +18,13 @@ const ProductPage = () => {
     isPending,
     selectedImageIndex,
     setSelectedImageIndex,
-    productData
+    productData,
+    productLoading
   } = useGetProductDetails()
 
   return (
     <div className='container mx-auto p-6'>
+      {productLoading && <LoadingSpinner />}
       {/* Upper Section */}
       <Card className='mb-6 flex flex-col items-center p-4 shadow-lg md:flex-row'>
         <div className='flex max-w-[400px] flex-col items-start'>
@@ -53,7 +56,10 @@ const ProductPage = () => {
         <div className='mt-4 flex-grow md:ml-8 md:mt-0'>
           <h1 className='text-2xl font-semibold'>{productData?.name || ''}</h1>
           <p className='mt-2 text-lg font-medium text-gray-600'>
-            FROM: <span className='text-base text-gray-700'>${productData?.price || '0.00'}</span>
+            FROM:{' '}
+            <span className='text-base text-gray-700'>
+              ${productData?.price || '0.00'}
+            </span>
           </p>
           <p className='mt-1 text-lg text-gray-800'>
             SKU: {productData?.sku || ''}

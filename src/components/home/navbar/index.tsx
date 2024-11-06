@@ -11,7 +11,7 @@ const Navbar = () => {
   const router = useRouter()
 
   return (
-    <nav className='sticky top-0 z-[999] bg-[#F5FEFD] py-1 text-white'>
+    <nav className='sticky top-0 z-[9999] bg-[#F5FEFD] py-1 text-white'>
       <div className='container flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           <div>

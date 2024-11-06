@@ -5,12 +5,7 @@ import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
-// import { VEHICLE_MAKE } from '@/constants/vehicle-make'
-// import { VEHICLE_MODELS } from '@/constants/vehicle-model'
-// import { VEHICLE_BODY_PARTS } from '@/constants/vehicle-body'
-// import { VEHICLE_YEAR } from '@/constants/vehicle-year'
 import { SectionDescription } from '@/utils/section-header'
-// import { VEHICLE_SERIES } from '@/constants/vehicle-series'
 
 const SearchForm = () => {
   const {
@@ -23,6 +18,11 @@ const SearchForm = () => {
     vehicleGroupData,
     router
   } = useSearchVehicles()
+
+  const formValues = form.watch()
+
+  // Check if all form values are empty
+  const isFormEmpty = Object.values(formValues).every(value => !value)
 
   return (
     <>
@@ -145,11 +145,14 @@ const SearchForm = () => {
             <Button
               type='reset'
               variant='outline'
-              className='text-lg font-semibold text-blue-600 hover:text-blue-700 md:text-xl'
+              className='text-lg font-semibold text-blue-600 hover:text-blue-700 disabled:text-blue-500 disabled:cursor-not-allowed md:text-xl'
               onClick={() => {
                 form.reset()
-                router.push('/')
+                if (Object.values(formValues).some(value => value)) {
+                  router.push('/')
+                }
               }}
+              disabled={isFormEmpty}
             >
               Clear
             </Button>

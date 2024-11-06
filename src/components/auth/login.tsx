@@ -18,7 +18,6 @@ import { Button } from '../ui/button'
 import { useGetLogin } from '@/services/api/api-service/auth/login'
 import toast from 'react-hot-toast'
 import { isAxiosError } from 'axios'
-import { useRouter } from 'next/navigation'
 
 export const loginSchema = z.object({
   email: z
@@ -32,7 +31,6 @@ export const loginSchema = z.object({
 export type loginSchemaProps = z.infer<typeof loginSchema>
 
 const LoginPage = () => {
-  const router = useRouter()
   const form = useForm<loginSchemaProps>({
     resolver: zodResolver(loginSchema)
   })
@@ -43,7 +41,6 @@ const LoginPage = () => {
     try {
       await mutateAsync(data)
       toast.success('Login success!')
-      router.push('/', { scroll: true })
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)
@@ -53,8 +50,8 @@ const LoginPage = () => {
   }
 
   return (
-    <div className='flex min-h-screen items-center justify-center bg-gray-100'>
-      <div className='w-full max-w-md rounded-lg bg-white p-8 shadow-md'>
+    <div className='flex items-center justify-center bg-gray-100'>
+      <div className='w-full max-w-md rounded-lg bg-white'>
         <h2 className='text-center text-2xl font-semibold text-gray-700'>
           Login
         </h2>
@@ -70,7 +67,12 @@ const LoginPage = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder='Email' {...field} />
+                    <Input
+                      placeholder='Email'
+                      type='email'
+                      autoComplete='off'
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

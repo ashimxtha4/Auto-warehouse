@@ -15,12 +15,12 @@ export const PROFILE_LINKS = [
   //   href: '/wishlists',
   //   label: 'Wishlists'
   // },
-  {
-    href: '/auth/login',
-    label: 'Login'
-  },
-  {
-    href: '/auth/register',
-    label: 'Register'
-  }
+  // {
+  //   href: '/auth/login',
+  //   label: 'Login'
+  // },
+  // {
+  //   href: '/auth/register',
+  //   label: 'Register'
+  // }
 ]

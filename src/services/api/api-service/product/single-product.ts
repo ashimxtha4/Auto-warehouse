@@ -45,7 +45,7 @@ export const useGetSingleProduct = () => {
   const params = useSearchParams()
   const id = parseInt(params?.get('id') as string)
   return useQuery({
-    queryKey: [api.products.product.get],
+    queryKey: [api.products.product.get, id],
     queryFn: () => getSingleProduct(id),
     select: data => data.data,
     enabled: !!id

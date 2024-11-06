@@ -16,7 +16,7 @@ export const useGetProductDetails = () => {
 
   const { mutateAsync, isPending } = usePostAddToCart()
 
-  const { data } = useGetSingleProduct()
+  const { data, isLoading } = useGetSingleProduct()
   const productData = data?.data
   // const productImages = data?.data.image
 
@@ -49,6 +49,7 @@ export const useGetProductDetails = () => {
     setSelectedImageIndex,
     isPending,
     productData,
-    handleAddToCart
+    handleAddToCart,
+    productLoading: isLoading
   }
 }
