@@ -43,6 +43,13 @@ const RegisterPage = () => {
   const { mutateAsync } = useGetRegisterUser()
 
   const onSubmit = async (data: registerSchemaProps) => {
+    if (data.password !== data.password_confirmation) {
+      form.setError('password_confirmation', {
+        type: 'manual',
+        message: 'password and confirm password should be same'
+      })
+      return
+    }
     try {
       await mutateAsync(data)
       toast.success('User Registered!')

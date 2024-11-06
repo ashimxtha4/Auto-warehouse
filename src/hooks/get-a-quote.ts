@@ -60,7 +60,6 @@ export const useGetAQuote = () => {
     try {
       await mutateAsync(data)
       router.push('/')
-      toast.success('Success!')
       toast.success('Thankyou for reaching out!! We will get to you soon.')
     } catch (error) {
       if (isAxiosError(error)) {
