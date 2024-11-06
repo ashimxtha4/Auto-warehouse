@@ -9,8 +9,8 @@ const ReactQueryProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
       {children}
+      <ReactQueryDevtools />
     </QueryClientProvider>
   )
 }

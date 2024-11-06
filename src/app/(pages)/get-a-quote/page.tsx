@@ -1,8 +1,13 @@
 import GetAQuote from '@/components/get-a-quote'
-import React from 'react'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import React, { Suspense } from 'react'
 
 const Page = () => {
-  return <GetAQuote />
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <GetAQuote />
+    </Suspense>
+  )
 }
 
 export default Page

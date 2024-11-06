@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import DevelopmentPage from '@/components/development'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const Page = () => {
-  return <DevelopmentPage />
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <DevelopmentPage />
+    </Suspense>
+  )
 }
 
 export default Page
