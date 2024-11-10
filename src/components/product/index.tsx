@@ -66,7 +66,7 @@ const ProductPage = () => {
                 onClick={() => setSelectedImageIndex(index)}
                 className={`h-16 w-16 cursor-pointer rounded-lg object-cover transition-transform duration-200 ease-in-out ${
                   selectedImageIndex === index
-                    ? 'scale-105 ring-2 ring-[#005069]'
+                    ? 'scale-105 ring-2 ring-blue-950'
                     : 'hover:scale-105'
                 }`}
               />
@@ -185,7 +185,7 @@ const ProductPage = () => {
             >
               <Image
                 src={images[selectedImageIndex]}
-                alt='Zoomed Product Image'
+                alt='Product Image'
                 style={zoomStyle}
                 className='h-auto w-full object-cover transition-transform duration-300 ease-in-out'
               />
