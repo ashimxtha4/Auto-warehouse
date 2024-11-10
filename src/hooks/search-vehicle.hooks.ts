@@ -3,12 +3,14 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { VEHICLE_MAKE } from '@/constants/vehicle-make'
 import { useGetVehicleMake } from '@/services/api/api-service/vehicle/vehicle-make'
 import { useGetVehicleModel } from '@/services/api/api-service/vehicle/vehicle-model'
 import { useGetVehicleSeries } from '@/services/api/api-service/vehicle/vehicle-series'
 import { useGetVehicleBody } from '@/services/api/api-service/vehicle/vehicle-body'
 import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-group'
+import { isAxiosError } from 'axios'
+import toast from 'react-hot-toast'
+import { useGetVehicleYear } from '@/services/api/api-service/vehicle/vehicle-year'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -47,11 +49,13 @@ export const useSearchVehicles = () => {
   const { data: vehicleBodyData, mutateAsync: mutateVehicleBody } =
     useGetVehicleBody()
 
+  const { data: vehicleYearData, mutateAsync: mutateVehicleYear } =
+    useGetVehicleYear()
+
   const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
     useGetVehicleGroup()
 
   // const vehicleMake = vehicleMakeData?.data?.data?.find(item => item.id === vehicle)
-  const vehicleMake = VEHICLE_MAKE.find(item => item.value === vehicle)
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
@@ -59,6 +63,7 @@ export const useSearchVehicles = () => {
 
   const vehicle_brand_id = form.watch('make')
   const vehicle_model_id = form.watch('model')
+  const vehicle_series_id = form.watch('series')
 
   useEffect(() => {
     mutateVehicleMake()
@@ -89,6 +94,15 @@ export const useSearchVehicles = () => {
       })
     }
   }, [vehicle_brand_id, vehicle_model_id, mutateVehicleBody])
+
+  useEffect(() => {
+    if (vehicle_brand_id || vehicle_series_id) {
+      mutateVehicleYear({
+        vehicle_brand_id: parseInt(vehicle_brand_id as string),
+        vehicle_series_id: parseInt(vehicle_series_id as string)
+      })
+    }
+  }, [vehicle_brand_id, vehicle_series_id, mutateVehicleYear])
 
   const selectedVehicleModel = vehicleModelData?.data?.data?.find(
     model => model.id?.toString() === vehicle_model_id
@@ -125,7 +139,11 @@ export const useSearchVehicles = () => {
 
       router.push(url)
     } catch (error) {
-      console.log(error)
+      if (isAxiosError(error)) {
+        toast.error(error.message)
+      } else {
+        toast.error('Something went wrong!')
+      }
     }
   }
 
@@ -133,13 +151,13 @@ export const useSearchVehicles = () => {
     onSubmit,
     form,
     router,
-    vehicleMake,
     vehicle,
     vehicleMakeData: vehicleMakeData?.data?.data,
     vehicleModelData: vehicleModelData?.data?.data,
     vehicleSeriesData: vehicleSeriesData?.data?.data,
     vehicleBodyData: vehicleBodyData?.data?.data,
     vehicleGroupData: vehicleGroupData?.data?.data,
+    vehicleYearData: vehicleYearData?.data?.data,
     selectedVehicleModel
   }
 }

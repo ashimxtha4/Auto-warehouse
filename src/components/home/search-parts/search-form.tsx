@@ -16,6 +16,7 @@ const SearchForm = () => {
     vehicleModelData,
     vehicleSeriesData,
     vehicleGroupData,
+    vehicleYearData,
     router
   } = useSearchVehicles()
 
@@ -109,19 +110,24 @@ const SearchForm = () => {
                 />
               )}
             />
-            {/* <FormField
+            <FormField
               control={form.control}
               name='year'
               render={({ field }) => (
                 <ComboboxDropdown
                   field={field}
                   form={form}
-                  options={VEHICLE_YEAR}
+                  options={
+                    vehicleYearData?.map(item => ({
+                      label: item.date,
+                      value: item.date
+                    })) || []
+                  }
                   title='Year'
                   placeholder='Select Year'
                 />
               )}
-            /> */}
+            />
             <FormField
               control={form.control}
               name='series'
@@ -145,7 +151,7 @@ const SearchForm = () => {
             <Button
               type='reset'
               variant='outline'
-              className='text-lg font-semibold text-blue-600 hover:text-blue-700 disabled:text-blue-500 disabled:cursor-not-allowed md:text-xl'
+              className='text-lg font-semibold text-blue-600 hover:text-blue-700 disabled:cursor-not-allowed disabled:text-blue-500 md:text-xl'
               onClick={() => {
                 form.reset()
                 if (Object.values(formValues).some(value => value)) {

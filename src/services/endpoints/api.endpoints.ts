@@ -27,7 +27,8 @@ export const api = {
       post: '/general/vehicle_type_list'
     },
     year: {
-      get: '/vehicle_year'
+      get: '/vehicle_year',
+      post: '/general/vehicle_year_list'
     },
     series: {
       get: '/vehicle_series',

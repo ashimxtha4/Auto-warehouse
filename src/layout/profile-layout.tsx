@@ -3,6 +3,7 @@ import Footer from '@/components/footer'
 import MainNavbar from '@/components/home/navbar/main-nav'
 import Vehicle from '@/components/home/vehicle'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import Navbar from '@/components/home/navbar'
 
 const ProfileLayout = ({
   children
@@ -19,6 +20,7 @@ const ProfileLayout = ({
         zIndex: '999'
       }}
     >
+      <Navbar />
       <MainNavbar />
     </section>
     <Suspense fallback={<LoadingSpinner />}>

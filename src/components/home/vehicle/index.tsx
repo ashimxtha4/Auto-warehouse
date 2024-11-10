@@ -30,26 +30,4 @@ const Vehicle = () => {
   )
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   // Fetch or define the list of vehicles
-//   const { vehicleMakeData } = useSearchVehicles()
-//   const vehicles = vehicleMakeData?.map(item => item.name) || []
-
-//   const paths = vehicles?.map(vehicle => ({
-//     params: { vehicle }
-//   }))
-
-//   return { paths, fallback: false }
-// }
-
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   const vehicle = params?.vehicle as string
-
-//   return {
-//     props: {
-//       vehicle
-//     }
-//   }
-// }
-
 export default Vehicle

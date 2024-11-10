@@ -11,11 +11,7 @@ import {
   DropdownMenuTrigger
 } from '../../ui/dropdown-menu'
 import MobileMenuItem from './mobile-menu-item'
-import {
-  // AiOutlineArrowRight,
-  AiOutlineClose,
-  AiOutlineMenu
-} from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const MainNavbar = () => {
