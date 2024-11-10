@@ -8,6 +8,25 @@ import toast from 'react-hot-toast'
 export const useGetProductDetails = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
+  const [zoomStyle, setZoomStyle] = useState({})
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY, currentTarget } = event
+    const { left, top, width, height } = currentTarget.getBoundingClientRect()
+    const x = ((clientX - left) / width) * 100
+    const y = ((clientY - top) / height) * 100
+
+    setZoomStyle({
+      transformOrigin: `${x}% ${y}%`,
+      transform: 'scale(3)'
+    })
+  }
+
+  const handleMouseLeave = () => {
+    setZoomStyle({})
+  }
+
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
 
   useEffect(() => {
@@ -48,6 +67,11 @@ export const useGetProductDetails = () => {
     isPending,
     productData,
     handleAddToCart,
-    productLoading: isLoading
+    productLoading: isLoading,
+    zoomStyle,
+    setIsModalOpen,
+    isModalOpen,
+    handleMouseLeave,
+    handleMouseMove
   }
 }

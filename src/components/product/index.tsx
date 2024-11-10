@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Card } from '../ui/card'
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import defaultImage from '@/assets/default.png'
 import defaultImage1 from '@/assets/car.jpg'
-import { useGetProductDetails } from '@/hooks/product-details'
+import { useGetProductDetails } from '@/hooks/product-details.hook'
 import ButtonLoader from '@/utils/button-loader'
 import { LoadingSpinner } from '../ui/loading-spinner'
 import { Car, Plus } from 'lucide-react'
@@ -14,28 +14,20 @@ import { Car, Plus } from 'lucide-react'
 // product details
 const ProductPage = () => {
   const images = [defaultImage, defaultImage1]
-  const [zoomStyle, setZoomStyle] = useState({})
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const { handleAddToCart, isPending, productData, productLoading } =
-    useGetProductDetails()
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY, currentTarget } = event
-    const { left, top, width, height } = currentTarget.getBoundingClientRect()
-    const x = ((clientX - left) / width) * 100
-    const y = ((clientY - top) / height) * 100
-
-    setZoomStyle({
-      transformOrigin: `${x}% ${y}%`,
-      transform: 'scale(3)'
-    })
-  }
-
-  const handleMouseLeave = () => {
-    setZoomStyle({})
-  }
+  const {
+    handleAddToCart,
+    isPending,
+    productData,
+    productLoading,
+    handleMouseLeave,
+    handleMouseMove,
+    isModalOpen,
+    selectedImageIndex,
+    setIsModalOpen,
+    setSelectedImageIndex,
+    zoomStyle
+  } = useGetProductDetails()
 
   return (
     <div className='container mx-auto p-6'>
