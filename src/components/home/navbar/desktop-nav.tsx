@@ -31,9 +31,9 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           <Link
             href={item.href}
             className={cn(
-              'flex items-center gap-1 text-nowrap transition-all hover:scale-x-100 hover:border-b-2 hover:border-blue-600 hover:text-gray-950',
+              'flex items-center gap-1 text-nowrap transition-all hover:scale-x-100 hover:border-b-2 hover:border-green-900 hover:text-gray-950',
               isActive
-                ? 'border-b-2 border-blue-600 transition-all duration-300'
+                ? 'border-b-2 border-green-900 transition-all duration-300'
                 : ''
             )}
           >
@@ -42,13 +42,13 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           </Link>
         </HoverCardTrigger>
         {item?.links?.length ? (
-          <HoverCardContent className='absolute -left-[100px] mt-2 max-h-60 overflow-auto rounded-sm bg-white px-2 py-1 dark:bg-gray-800'>
+          <HoverCardContent className='absolute -left-[100px] mt-2 max-h-80 overflow-auto rounded-sm bg-white px-2 py-1 dark:bg-gray-800'>
             <div className='flex flex-col'>
               {item?.links?.map(({ href, label }) => (
                 <Link
                   href={href}
                   key={label}
-                  className='mb-1 border-b border-b-gray-600 pb-2 text-blue-600 hover:text-blue-800'
+                  className='mb-1 border-b border-b-gray-600 pb-2 text-gray-900 hover:text-green-900'
                 >
                   {label}
                 </Link>

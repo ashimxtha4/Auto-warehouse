@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { BANNER_ITEMS } from '@/constants/banner-items'
 import { cn } from '@/lib/utils'
+import { FaArrowRight } from 'react-icons/fa'
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 
 const BannerContent = () => {
   return (
@@ -16,13 +18,18 @@ const BannerContent = () => {
             <Link
               href={item.href}
               className={cn(
-                'mx-1 flex w-max items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all sm:mx-2 sm:px-4 sm:py-2 md:text-2xl',
+                'mx-1 flex w-max items-center gap-2 rounded-full px-2 py-1 text-xs font-medium transition-all hover:scale-105 sm:mx-2 sm:px-4 sm:py-2 md:text-2xl',
                 item.id === '1'
-                  ? 'bg-white text-blue-600 hover:bg-blue-600 hover:text-white'
-                  : 'bg-primary-main text-white hover:bg-white hover:text-primary-main'
+                  ? 'bg-primary-main hover:text-white'
+                  : 'bg-gray-700 text-white'
               )}
             >
               {item.label}
+              {item.id === '1' ? (
+                <FaArrowRight size={18} />
+              ) : (
+                <IoMdCheckmarkCircleOutline size={20} />
+              )}
             </Link>
           </div>
         ))}

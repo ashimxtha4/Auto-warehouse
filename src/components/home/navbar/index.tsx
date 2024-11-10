@@ -7,11 +7,26 @@ import Image from 'next/image'
 import logo from '@/assets/logo.png'
 import { useRouter } from 'next/navigation'
 
+const CallLink = ({
+  href,
+  children
+}: {
+  href: string
+  children: React.ReactNode
+}) => {
+  return (
+    <Link href={href} className='flex items-center gap-1'>
+      <FaPhone className='inline-flex text-sm' />
+      <span>{children}</span>
+    </Link>
+  )
+}
+
 const Navbar = () => {
   const router = useRouter()
 
   return (
-    <nav className='sticky top-0 z-[9999] bg-[#F5FEFD] py-1 text-white'>
+    <nav className='sticky top-0 z-[9999] bg-gray-200 py-1 text-white'>
       <div className='container flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           <div>
@@ -23,21 +38,20 @@ const Navbar = () => {
             />
           </div>
           <h1 className='flex flex-col text-nowrap text-xs text-transparent sm:block md:text-lg lg:text-2xl'>
-            <span className='gradient-text font-medium'>Autoglass Shop</span>
+            <span className='font-medium text-gray-900'>Autoglass Shop</span>
             <Link
               href='tel:1300-002-345'
-              className='flex items-center gap-1 text-purple-600 md:gap-2'
+              className='flex items-center gap-1 font-medium text-green-900 md:gap-2'
             >
               1300-002-345
             </Link>
           </h1>
         </div>
         <aside className='flex items-center gap-2 text-xs md:gap-5 md:text-xl'>
-          <FaPhone className='inline-flex text-xs sm:text-2xl md:text-3xl lg:text-4xl' />
           <div className='flex items-center gap-1'>
             <div className='flex flex-col text-primary-main'>
-              <Link href='tel:03 9357 5904'>SYD: 02 9756 6887</Link>
-              <Link href='tel:03 9357 5904'>MEL: 03 9357 5904</Link>
+              <CallLink href='tel:03 9357 5904'>SYD: 02 9756 6887</CallLink>
+              <CallLink href='tel:03 9357 5904'>MEL: 03 9357 5904</CallLink>
             </div>
           </div>
         </aside>
