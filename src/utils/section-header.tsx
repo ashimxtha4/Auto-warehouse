@@ -18,7 +18,7 @@ const SectionHeader = ({ children, className }: SectionHeaderProps) => {
     <motion.h3
       ref={ref}
       className={cn(
-        'my-2 text-center text-xl font-bold tracking-wider text-blue-600 drop-shadow-md md:my-4 md:text-4xl',
+        'my-2 text-center text-xl font-bold tracking-wider text-green-900 drop-shadow-md md:my-4 md:text-4xl',
         className
       )}
       initial={{ opacity: 0, y: -20 }}

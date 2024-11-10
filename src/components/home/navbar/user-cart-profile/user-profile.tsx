@@ -24,7 +24,7 @@ const UserProfile = () => {
             <Link
               key={item.href}
               href={item.href}
-              className='mb-1 border-b border-b-gray-600 pb-2 text-blue-600 hover:text-blue-800'
+              className='mb-1 border-b border-b-gray-600 pb-2 text-gray-900 hover:text-green-900'
             >
               {item.label}
             </Link>

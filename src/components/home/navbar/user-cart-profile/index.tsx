@@ -4,7 +4,7 @@ import UserProfile from './user-profile'
 
 const UserCartProfile = () => {
   return (
-    <div className='flex gap-3 text-blue-600 md:gap-5'>
+    <div className='flex gap-3 text-gray-900 md:gap-5'>
       <UserCart />
       <UserProfile />
     </div>

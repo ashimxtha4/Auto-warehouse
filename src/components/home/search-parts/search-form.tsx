@@ -5,7 +5,8 @@ import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
-import { SectionDescription } from '@/utils/section-header'
+import ButtonLoader from '@/utils/button-loader'
+// import { SectionDescription } from '@/utils/section-header'
 
 const SearchForm = () => {
   const {
@@ -33,10 +34,10 @@ const SearchForm = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-8 rounded-lg bg-white p-4 shadow-lg'
         >
-          <SectionDescription>
+          {/* <SectionDescription>
             Filter your results by entering your Vehicle to ensure you find the
             parts that fit.
-          </SectionDescription>
+          </SectionDescription> */}
           <FormRow>
             <FormField
               control={form.control}
@@ -151,7 +152,7 @@ const SearchForm = () => {
             <Button
               type='reset'
               variant='outline'
-              className='text-lg font-semibold text-blue-600 hover:text-blue-700 disabled:cursor-not-allowed disabled:text-blue-500 md:text-xl'
+              className='text-lg font-semibold text-red-400 hover:scale-105 hover:text-red-500 disabled:cursor-not-allowed disabled:text-gray-600 md:text-xl'
               onClick={() => {
                 form.reset()
                 if (Object.values(formValues).some(value => value)) {
@@ -165,13 +166,9 @@ const SearchForm = () => {
             <Button
               type='submit'
               variant='default'
-              className='gradient-bg text-lg font-semibold text-white hover:from-green-600 hover:to-blue-600 md:text-xl'
+              className='gradient-bg text-lg font-semibold text-white hover:scale-105 md:text-xl'
             >
-              {form.formState.isSubmitting ? (
-                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white' />
-              ) : (
-                'Search Vehicle'
-              )}
+              {form.formState.isSubmitting ? <ButtonLoader /> : 'Search Parts'}
             </Button>
           </div>
         </form>

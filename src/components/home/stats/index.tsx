@@ -38,7 +38,7 @@ const StatsSection = () => {
               }
             }}
           >
-            <p className='gradient-text text-lg font-bold md:text-xl'>
+            <p className='text-lg font-bold text-green-600 md:text-xl'>
               {inView ? (
                 <CountUp end={stat.number} duration={2.5} separator=',' />
               ) : (

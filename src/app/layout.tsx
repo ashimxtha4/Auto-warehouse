@@ -5,7 +5,7 @@ import AutoGlassShopLayout from '@/layout/autoglass-shop'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Auto Glass Shop',
+  title: 'Auto Glass Shop | Online Ordering Platform',
   description: 'An online store for selling different parts of cars.'
 }
 

@@ -9,7 +9,7 @@ const BannerContent = () => {
   return (
     <div className='py-4 md:py-16'>
       <h2 className='text-base font-bold tracking-wide sm:text-xl md:text-4xl'>
-        Honest, Quality Service{' '}
+        Premium Auto Glass Solutions{' '}
         <span className='block font-normal'>At Affordable Prices</span>
       </h2>
       <div className='flex justify-center md:my-4'>
