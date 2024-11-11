@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import httpClient from '../../axios-service'
 import { api } from '@/services/endpoints/api.endpoints'
+import { isAxiosError } from 'axios'
+import toast from 'react-hot-toast'
 
 export interface userOrderProps {
   data: orderDataProps[]
@@ -55,7 +57,14 @@ const postOrders = async (data: {
 }): Promise<{
   data: userOrderProps
 }> => {
-  return await httpClient.post(api.order.post, data)
+  try {
+    return await httpClient.post(api.order.post, data)
+  } catch (error) {
+    if (isAxiosError(error) && error.status === 401) {
+      toast.error('Please login to view your orders.')
+    }
+    throw error
+  }
 }
 
 export const usePostOrders = () => {

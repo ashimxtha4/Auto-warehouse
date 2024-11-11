@@ -15,7 +15,7 @@ export interface productProps {
 const getProductList = async (
   keyword?: string,
   brand?: number,
-  type?: number,
+  type?: string,
   model?: number,
   position?: number,
   series?: number,
@@ -31,9 +31,7 @@ export const useGetProductList = () => {
   const brand = params?.get('brand')
     ? parseInt(params.get('brand') as string)
     : undefined
-  const type = params?.get('type')
-    ? parseInt(params.get('type') as string)
-    : undefined
+  const type = params?.get('type') || ''
   const model = params?.get('model')
     ? parseInt(params.get('model') as string)
     : undefined

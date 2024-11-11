@@ -18,6 +18,7 @@ const postAddToCart = async (data: postAddToCartProps) => {
     if (isAxiosError(error) && error.status === 401) {
       toast.error('Please login to add product to cart.')
     }
+    throw error
   }
 }
 

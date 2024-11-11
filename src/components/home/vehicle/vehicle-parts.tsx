@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import VehiclePartsList from './vehicle-parts-list'
@@ -15,13 +14,8 @@ const VehicleParts = () => {
   const { data, isLoading } = useGetProductList()
   const productList = data?.data
 
-  const {
-    vehicleGroupData,
-    vehicle,
-    handlePageChange,
-    handleSearchFilter,
-    filteredVehicleBodyData
-  } = useSearchVehicles()
+  const { vehicle, handlePageChange, handleSearchFilter, sidebarData } =
+    useSearchVehicles()
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
@@ -37,27 +31,31 @@ const VehicleParts = () => {
             </CardHeader>
             {showFilterProduct && (
               <CardContent className='flex flex-col gap-1 p-3'>
-                {vehicleGroupData?.map(item => (
-                  <button
-                    onClick={() => handleSearchFilter(item.id)}
-                    key={item.id}
-                    className='rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
-                  >
-                    {item.name}
-                  </button>
-                ))}
+                {sidebarData ? (
+                  Object.entries(sidebarData)?.map(([item]) => (
+                    <button
+                      onClick={() => handleSearchFilter(item)}
+                      key={item}
+                      className='rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
+                    >
+                      {item}
+                    </button>
+                  ))
+                ) : (
+                  <>No filters</>
+                )}
               </CardContent>
             )}
           </Card>
 
-          <Card className='mt-4 rounded-lg bg-white shadow-lg'>
+          {/* <Card className='mt-4 rounded-lg bg-white shadow-lg'>
             <CardHeader className='border-b bg-gray-100 py-2 font-medium text-green-700'>
               Categories
             </CardHeader>
             <CardContent className='flex flex-col gap-2 p-3'>
-              {filteredVehicleBodyData?.map(item => (
+              {vehicleBodyData?.map(item => (
                 <Link
-                  key={item.id}
+                  key={item.}
                   href={`/shop?type=${item.id}`}
                   className='block rounded-md p-2 text-center text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
                 >
@@ -65,14 +63,14 @@ const VehicleParts = () => {
                 </Link>
               ))}
             </CardContent>
-          </Card>
+          </Card> */}
         </aside>
       )}
 
       <div className='flex-[3]'>
         <VehiclePartsList productList={productList} />
         <div className='my-4'>
-          {data?.data.length ? (
+          {data?.data?.length ? (
             <AutoGlassPagination
               currentPage={data?.meta?.current_page || 1}
               itemsPerPage={data?.meta.per_page as number}

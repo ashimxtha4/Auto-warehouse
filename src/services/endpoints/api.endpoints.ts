@@ -40,7 +40,7 @@ export const api = {
       get: (
         keyword?: string,
         brand?: number,
-        type?: number,
+        type?: string,
         model?: number,
         position?: number,
         series?: number,
@@ -51,7 +51,7 @@ export const api = {
 
         if (keyword) params.append('keyword', keyword)
         if (brand) params.append('brand', brand.toString())
-        if (type) params.append('type', type.toString())
+        if (type) params.append('type', type)
         if (model) params.append('model', model.toString())
         if (position) params.append('position', position.toString())
         if (series) params.append('series', series.toString())
@@ -86,6 +86,10 @@ export const api = {
   // quote
   quote: {
     post: '/general/get_quote'
+  },
+  // sidebar
+  sidebar: {
+    post: '/general/product/sidebar'
   },
   // #region admin
   admin: {

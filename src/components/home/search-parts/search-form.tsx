@@ -95,10 +95,12 @@ const SearchForm = () => {
                   field={field}
                   form={form}
                   options={
-                    vehicleBodyData?.map(item => ({
-                      label: item.name,
-                      value: item.id?.toString()
-                    })) || []
+                    vehicleBodyData
+                      ? Object.entries(vehicleBodyData).map(([key]) => ({
+                          label: key,
+                          value: key
+                        }))
+                      : []
                   }
                   title='Body'
                   placeholder='Select Body'

@@ -12,6 +12,7 @@ import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 
 // product card
 const ProductItem = ({ item }: { item: productProps }) => {
+  const IMAGE_BASE_URL = 'https://backend.autoglassshop.com.au/'
   const { viewType, isPending, handleAddToCart } = useVehicleParts()
 
   return (
@@ -30,7 +31,11 @@ const ProductItem = ({ item }: { item: productProps }) => {
         )}
       >
         <Image
-          src={DEFAULT_IMAGE || item.image}
+          src={
+            item.image !== '' || item.image !== null
+              ? `${IMAGE_BASE_URL}${item.image}`
+              : DEFAULT_IMAGE
+          }
           alt={item.name || 'default-image'}
           width={300}
           height={150}
