@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
-import defaultImage from '@/assets/default.png'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import Link from 'next/link'
@@ -9,6 +8,7 @@ import { productProps } from '@/services/api/api-service/product/product-list'
 import ButtonLoader from '@/utils/button-loader'
 import { FaPlus } from 'react-icons/fa'
 import { IoArrowForward } from 'react-icons/io5'
+import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 
 // product card
 const ProductItem = ({ item }: { item: productProps }) => {
@@ -30,10 +30,11 @@ const ProductItem = ({ item }: { item: productProps }) => {
         )}
       >
         <Image
-          src={defaultImage || item.image}
+          src={DEFAULT_IMAGE || item.image}
           alt={item.name || 'default-image'}
           width={300}
           height={150}
+          loading='lazy'
           className={cn(
             'rounded-md object-cover',
             viewType !== null ? 'h-auto w-full' : 'max-h-[150px] w-full'

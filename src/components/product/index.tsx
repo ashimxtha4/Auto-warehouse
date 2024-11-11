@@ -41,7 +41,7 @@ const ProductPage = () => {
           >
             <Image
               src={
-                productImages
+                productImages?.length
                   ? productImages[selectedImageIndex].image
                   : DEFAULT_IMAGE
               }
@@ -185,7 +185,7 @@ const ProductPage = () => {
             >
               <Image
                 src={
-                  productImages
+                  productImages?.length
                     ? productImages[selectedImageIndex].image
                     : DEFAULT_IMAGE
                 }
