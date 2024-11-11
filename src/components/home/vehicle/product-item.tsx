@@ -7,10 +7,10 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { productProps } from '@/services/api/api-service/product/product-list'
 import ButtonLoader from '@/utils/button-loader'
-import { ArrowRight, Plus } from 'lucide-react'
+import { FaPlus } from 'react-icons/fa'
+import { IoArrowForward } from 'react-icons/io5'
 
 // product card
-
 const ProductItem = ({ item }: { item: productProps }) => {
   const { viewType, isPending, handleAddToCart } = useVehicleParts()
 
@@ -18,7 +18,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
     <Card
       className={cn(
         viewType === null
-          ? 'flex max-w-[250px] flex-col justify-between'
+          ? 'flex max-w-[290px] flex-col justify-between'
           : 'mb-4 flex w-full items-start gap-4',
         'relative rounded-lg bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
       )}
@@ -68,34 +68,30 @@ const ProductItem = ({ item }: { item: productProps }) => {
             className={
               viewType !== null
                 ? 'flex items-center gap-4'
-                : 'flex justify-between'
+                : 'flex justify-between gap-1'
             }
           >
             <Button
-              className='flex items-center justify-center bg-green-600 px-4 py-2 text-xs font-semibold text-white transition-transform hover:scale-105 hover:bg-green-700'
+              className='flex items-center justify-center gap-1 bg-green-600 px-4 py-2 text-xs font-semibold text-white transition-transform hover:scale-105 hover:bg-green-700'
               onClick={() => handleAddToCart(item.id)}
               disabled={isPending}
-              style={{ minWidth: '130px' }}
             >
               {isPending ? (
-                <>
-                  <ButtonLoader />
-                  <span className='ml-2'>Adding...</span>
-                </>
+                <ButtonLoader />
               ) : (
                 <>
-                  Add to Cart
-                  <Plus className='ml-2 h-4 w-4' />
+                  <span className='text-sm font-semibold'>Add to Cart</span>
+                  <FaPlus size={18} />
                 </>
               )}
             </Button>
 
             <Link
               href={`/product?id=${item.id}`}
-              className='flex items-center justify-center rounded-md px-4 py-2 text-xs font-medium text-gray-400 hover:text-gray-700'
+              className='flex items-center justify-center gap-1 text-nowrap rounded-md bg-gray-100 px-4 py-2 text-xs font-medium text-gray-600 hover:scale-105 hover:text-gray-700'
             >
-              View Details
-              <ArrowRight className='ml-1 h-4 w-4' />
+              <span className='text-sm font-semibold'>View Details</span>
+              <IoArrowForward size={18} />
             </Link>
           </div>
         </div>

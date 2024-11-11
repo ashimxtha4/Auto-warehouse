@@ -19,7 +19,8 @@ const SearchComponent = () => {
     search,
     setOpen,
     open,
-    router
+    router,
+    handleKeyDown
   } = useSearchInput()
 
   return (
@@ -34,6 +35,7 @@ const SearchComponent = () => {
               if (!open) setOpen(true)
             }}
             onClick={handleInputClick}
+            onKeyDown={handleKeyDown}
             onFocus={() => !open && setOpen(true)}
             type='text'
             placeholder='Search Store...'

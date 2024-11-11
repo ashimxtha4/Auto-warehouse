@@ -26,6 +26,12 @@ export const useSearchInput = () => {
     }
   }, [debounceValue, pathname, router])
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'enter') {
+      e.preventDefault()
+    }
+  }
+
   const handleInputClick = (e: React.FormEvent<HTMLInputElement>) => {
     e.stopPropagation()
     if (!open) {
@@ -42,6 +48,7 @@ export const useSearchInput = () => {
     search,
     setOpen,
     open,
-    router
+    router,
+    handleKeyDown
   }
 }

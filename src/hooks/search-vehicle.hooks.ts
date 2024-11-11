@@ -11,6 +11,7 @@ import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-g
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useGetVehicleYear } from '@/services/api/api-service/vehicle/vehicle-year'
+import { usePathname } from 'next/navigation'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -35,6 +36,7 @@ export const useSearchVehicles = () => {
   const router = useRouter()
   const params = useParams()
   const searchParams = useSearchParams()
+  const pathname = usePathname()
   const vehicle = params?.vehicle as string | undefined
 
   const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
@@ -147,6 +149,28 @@ export const useSearchVehicles = () => {
     }
   }
 
+  const filteredVehicleBodyData = vehicleBodyData?.data?.data.filter(
+    item => item.name !== '#N/A'
+  )
+
+  const handleSearchFilter = (id: number) => {
+    const params = new URLSearchParams(searchParams?.toString())
+    params.set('position', id.toString())
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+  }
+
+  const updateQueryParams = (key: string, value: string) => {
+    const params = new URLSearchParams(window.location.search)
+    params.set(key, value)
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.pushState({}, '', newUrl)
+  }
+
+  const handlePageChange = (page: number) => {
+    updateQueryParams('page', page.toString())
+  }
+
   return {
     onSubmit,
     form,
@@ -158,6 +182,9 @@ export const useSearchVehicles = () => {
     vehicleBodyData: vehicleBodyData?.data?.data,
     vehicleGroupData: vehicleGroupData?.data?.data,
     vehicleYearData: vehicleYearData?.data?.data,
-    selectedVehicleModel
+    selectedVehicleModel,
+    filteredVehicleBodyData,
+    handlePageChange,
+    handleSearchFilter
   }
 }

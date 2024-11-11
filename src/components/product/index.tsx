@@ -4,17 +4,14 @@ import React from 'react'
 import { Card } from '../ui/card'
 import Image from 'next/image'
 import { Button } from '../ui/button'
-import defaultImage from '@/assets/default.png'
-import defaultImage1 from '@/assets/car.jpg'
 import { useGetProductDetails } from '@/hooks/product-details.hook'
 import ButtonLoader from '@/utils/button-loader'
 import { LoadingSpinner } from '../ui/loading-spinner'
 import { Car, Plus } from 'lucide-react'
+import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 
 // product details
 const ProductPage = () => {
-  const images = [defaultImage, defaultImage1]
-
   const {
     handleAddToCart,
     isPending,
@@ -26,7 +23,8 @@ const ProductPage = () => {
     selectedImageIndex,
     setIsModalOpen,
     setSelectedImageIndex,
-    zoomStyle
+    zoomStyle,
+    productImages
   } = useGetProductDetails()
 
   return (
@@ -42,7 +40,14 @@ const ProductPage = () => {
             onClick={() => setIsModalOpen(true)}
           >
             <Image
-              src={images[selectedImageIndex]}
+              src={
+                productImages
+                  ? productImages[selectedImageIndex].image
+                  : DEFAULT_IMAGE
+              }
+              loading='lazy'
+              width={400}
+              height={150}
               alt='Product Image'
               style={zoomStyle}
               className='h-auto w-full object-cover transition-transform duration-300 ease-in-out'
@@ -50,11 +55,14 @@ const ProductPage = () => {
           </div>
 
           <div className='mt-4 flex items-center justify-center space-x-3 md:w-[80%]'>
-            {images.map((image, index) => (
+            {productImages?.map((image, index) => (
               <Image
                 key={index}
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
+                loading='lazy'
+                src={image.image || DEFAULT_IMAGE}
+                alt={`Product ${image.id}`}
+                width={64}
+                height={64}
                 onClick={() => setSelectedImageIndex(index)}
                 className={`h-16 w-16 cursor-pointer rounded-lg object-cover transition-transform duration-200 ease-in-out ${
                   selectedImageIndex === index
@@ -176,7 +184,13 @@ const ProductPage = () => {
               onMouseLeave={handleMouseLeave}
             >
               <Image
-                src={images[selectedImageIndex]}
+                src={
+                  productImages
+                    ? productImages[selectedImageIndex].image
+                    : DEFAULT_IMAGE
+                }
+                width={500}
+                height={200}
                 alt='Product Image'
                 style={zoomStyle}
                 className='h-auto w-full object-cover transition-transform duration-300 ease-in-out'

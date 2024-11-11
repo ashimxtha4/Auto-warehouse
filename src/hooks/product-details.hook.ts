@@ -37,7 +37,7 @@ export const useGetProductDetails = () => {
 
   const { data, isLoading } = useGetSingleProduct()
   const productData = data?.data
-  // const productImages = data?.data.image
+  const productImages = data?.image
 
   const handleAddToCart = async () => {
     try {
@@ -72,6 +72,7 @@ export const useGetProductDetails = () => {
     setIsModalOpen,
     isModalOpen,
     handleMouseLeave,
-    handleMouseMove
+    handleMouseMove,
+    productImages
   }
 }

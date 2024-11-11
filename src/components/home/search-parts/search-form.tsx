@@ -6,7 +6,6 @@ import ComboboxDropdown from '@/components/form/combox'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import ButtonLoader from '@/utils/button-loader'
-// import { SectionDescription } from '@/utils/section-header'
 
 const SearchForm = () => {
   const {
@@ -23,7 +22,6 @@ const SearchForm = () => {
 
   const formValues = form.watch()
 
-  // Check if all form values are empty
   const isFormEmpty = Object.values(formValues).every(value => !value)
 
   return (
@@ -34,10 +32,6 @@ const SearchForm = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-8 rounded-lg bg-white p-4 shadow-lg'
         >
-          {/* <SectionDescription>
-            Filter your results by entering your Vehicle to ensure you find the
-            parts that fit.
-          </SectionDescription> */}
           <FormRow>
             <FormField
               control={form.control}

@@ -54,7 +54,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
   return (
-    <FormItem {...props} className='mb-4 md:mb-0'>
+    <FormItem {...props} className='mb-4 mx-auto md:mb-0'>
       <FormLabel className='block'>{title}</FormLabel>
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger asChild>
