@@ -36,7 +36,7 @@ const VehicleParts = () => {
                     <button
                       onClick={() => handleSearchFilter(item)}
                       key={item}
-                      className='rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
+                      className='border-b border-b-gray-300 p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
                     >
                       {item}
                     </button>

@@ -115,10 +115,12 @@ const SearchForm = () => {
                   field={field}
                   form={form}
                   options={
-                    vehicleYearData?.map(item => ({
-                      label: item.date,
-                      value: item.date
-                    })) || []
+                    vehicleYearData
+                      ? Object.entries(vehicleYearData).map(([key]) => ({
+                          label: key,
+                          value: key
+                        }))
+                      : []
                   }
                   title='Year'
                   placeholder='Select Year'

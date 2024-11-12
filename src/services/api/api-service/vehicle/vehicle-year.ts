@@ -1,10 +1,7 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
-
-export interface VehicleYearProps {
-  date: string
-}
+import type { VehicleBodyProps } from './vehicle-body'
 
 const getVehicleYear = async ({
   vehicle_brand_id,
@@ -13,7 +10,7 @@ const getVehicleYear = async ({
   vehicle_brand_id: number
   vehicle_model_id?: number
 }): Promise<{
-  data: { data: VehicleYearProps[] }
+  data: VehicleBodyProps
 }> => {
   return await httpClient.post(api.vehicle.year.post, {
     vehicle_brand_id,
