@@ -4,10 +4,28 @@ import { BANNER_ITEMS } from '@/constants/banner-items'
 import { cn } from '@/lib/utils'
 import { FaArrowRight } from 'react-icons/fa'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.5 } }
+}
 
 const BannerContent = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
+  })
+
   return (
-    <div className='py-4 md:py-16'>
+    <motion.div
+      className='py-4 md:py-16'
+      ref={ref}
+      initial='hidden'
+      animate={inView ? 'visible' : 'hidden'}
+      variants={sectionVariants}
+    >
       <h2 className='text-base font-bold tracking-wide sm:text-xl md:text-4xl'>
         Premium Auto Glass Solutions{' '}
         <span className='block font-normal'>At Affordable Prices</span>
@@ -34,7 +52,7 @@ const BannerContent = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 export default BannerContent

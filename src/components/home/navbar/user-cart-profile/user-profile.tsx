@@ -7,10 +7,10 @@ import {
 } from '@/components/ui/hover-card'
 import { FaUserCircle } from 'react-icons/fa'
 import { PROFILE_LINKS } from '@/constants/profile-links'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import RegisterPage from '@/components/auth/register'
 import LoginPage from '@/components/auth/login'
 import { useAuthStore } from '@/slice/auth-state-slice'
+import AuthDialog from './user-cart/auth-dialog'
 
 const UserProfile = () => {
   const {
@@ -50,46 +50,22 @@ const UserProfile = () => {
               {item.label}
             </Link>
           ))}
-          <Dialog
-            open={isLoginDialogOpen}
-            onOpenChange={open =>
+          <AuthDialog
+            dialogOpen={isLoginDialogOpen}
+            dialogOpenChange={open =>
               open ? openLoginDialog() : closeLoginDialog()
             }
-          >
-            <DialogTrigger asChild>
-              <button className='mb-1 border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900'>
-                Login
-              </button>
-            </DialogTrigger>
-            <DialogContent
-              id='login-modal'
-              style={{ zIndex: '9999' }}
-              className='max-w-[290px] sm:max-w-[425px]'
-              onInteractOutside={e => e.preventDefault()}
-            >
-              <LoginPage />
-            </DialogContent>
-          </Dialog>
-          <Dialog
-            open={isRegisterDialogOpen}
-            onOpenChange={open =>
+            triggerButton='Login'
+            dialogContent={<LoginPage />}
+          />
+          <AuthDialog
+            dialogOpen={isRegisterDialogOpen}
+            dialogOpenChange={open =>
               open ? openRegisterDialog() : closeRegisterDialog()
             }
-          >
-            <DialogTrigger asChild>
-              <button className='mb-1 border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900'>
-                Register
-              </button>
-            </DialogTrigger>
-            <DialogContent
-              id='register-modal'
-              style={{ zIndex: '9999' }}
-              className='max-w-[290px] sm:max-w-[425px]'
-              onInteractOutside={e => e.preventDefault()}
-            >
-              <RegisterPage />
-            </DialogContent>
-          </Dialog>
+            triggerButton='Register'
+            dialogContent={<RegisterPage />}
+          />
         </div>
       </HoverCardContent>
     </HoverCard>

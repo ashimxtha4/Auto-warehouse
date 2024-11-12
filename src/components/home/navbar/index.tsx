@@ -6,6 +6,8 @@ import { FaPhone } from 'react-icons/fa6'
 import Image from 'next/image'
 import logo from '@/assets/logo.png'
 import { useRouter } from 'next/navigation'
+import { useInView } from 'react-intersection-observer'
+import { motion } from 'framer-motion'
 
 const CallLink = ({
   href,
@@ -22,11 +24,27 @@ const CallLink = ({
   )
 }
 
+const navbarVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.5 } }
+}
+
 const Navbar = () => {
   const router = useRouter()
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
+  })
+
   return (
-    <nav className='sticky top-0 z-[9999] bg-gray-200 py-1 text-white'>
+    <motion.nav
+      className='sticky top-0 z-[9999] bg-gray-200 py-1 text-white'
+      ref={ref}
+      initial='hidden'
+      animate={inView ? 'visible' : 'hidden'}
+      variants={navbarVariants}
+    >
       <div className='container flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           <div>
@@ -38,7 +56,8 @@ const Navbar = () => {
             />
           </div>
           <h1 className='flex flex-col text-nowrap text-xs text-transparent sm:block md:text-lg lg:text-2xl'>
-            <span className='font-medium text-gray-900'>Autoglass Shop</span>
+            {/* <span className='font-medium text-gray-900'>Autoglass Shop</span> */}
+            <span className='font-medium text-gray-900'>Hotline:</span>
             <Link
               href='tel:1300-002-345'
               className='flex items-center gap-1 font-medium text-green-900 md:gap-2'
@@ -56,7 +75,7 @@ const Navbar = () => {
           </div>
         </aside>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 
