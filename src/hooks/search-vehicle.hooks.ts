@@ -93,7 +93,6 @@ export const useSearchVehicles = () => {
     const fetchData = async () => {
       if (vehicle_brand_id) {
         await mutateVehicleModel(parseInt(vehicle_brand_id))
-        await mutateVehicleBody(parseInt(vehicle_brand_id))
         await mutateSidebar(parseInt(vehicle_brand_id))
       }
 
@@ -111,6 +110,10 @@ export const useSearchVehicles = () => {
 
       if (vehicle_brand_id || vehicle_model_id) {
         await mutateVehicleYear({
+          vehicle_brand_id: parseInt(vehicle_brand_id as string),
+          vehicle_model_id: parseId(vehicle_model_id)
+        })
+        await mutateVehicleBody({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
           vehicle_model_id: parseId(vehicle_model_id)
         })

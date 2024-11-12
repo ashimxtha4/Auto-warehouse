@@ -111,8 +111,7 @@ const ProductPage = () => {
               onClick={handleAddToCart}
               disabled={
                 isPending ||
-                productData?.syd_stock === 0 ||
-                productData?.mel_stock === 0
+                (productData?.syd_stock === 0 && productData?.mel_stock === 0)
               }
             >
               {isPending ? (

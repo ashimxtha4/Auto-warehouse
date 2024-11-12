@@ -1,7 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -18,6 +17,8 @@ import { Button } from '../ui/button'
 import { useGetLogin } from '@/services/api/api-service/auth/login'
 import toast from 'react-hot-toast'
 import { isAxiosError } from 'axios'
+import ButtonLoader from '@/utils/button-loader'
+import { useAuthStore } from '@/slice/auth-state-slice'
 
 export const loginSchema = z.object({
   email: z
@@ -31,6 +32,13 @@ export const loginSchema = z.object({
 export type loginSchemaProps = z.infer<typeof loginSchema>
 
 const LoginPage = () => {
+  const { closeLoginDialog, openRegisterDialog } = useAuthStore()
+
+  const handleSwitch = () => {
+    closeLoginDialog()
+    openRegisterDialog()
+  }
+
   const form = useForm<loginSchemaProps>({
     resolver: zodResolver(loginSchema)
   })
@@ -96,22 +104,18 @@ const LoginPage = () => {
               variant='default'
               className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
             >
-              {form.formState.isSubmitting ? (
-                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
-              ) : (
-                'Login'
-              )}
+              {form.formState.isSubmitting ? <ButtonLoader /> : 'Login'}
             </Button>
           </form>
         </Form>
-        <p className='mt-4 text-center text-sm text-gray-600'>
+        <p
+          className='mt-4 text-center text-sm text-gray-600'
+          onClick={handleSwitch}
+        >
           Do not have an account?{' '}
-          <Link
-            href='/auth/register'
-            className='text-primary-main hover:underline'
-          >
+          <button type='button' className='text-primary-main hover:underline'>
             Register
-          </Link>
+          </button>
         </p>
       </div>
     </div>

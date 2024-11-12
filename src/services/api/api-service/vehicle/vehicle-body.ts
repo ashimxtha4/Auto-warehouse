@@ -10,13 +10,18 @@ export interface VehicleBodyProps {
   }
 }
 
-const getVehicleBody = async (
+const getVehicleBody = async ({
+  vehicle_brand_id,
+  vehicle_model_id
+}: {
   vehicle_brand_id: number
-): Promise<{
+  vehicle_model_id?: number
+}): Promise<{
   data: VehicleBodyProps
 }> => {
   return await httpClient.post(api.vehicle.body.post, {
-    vehicle_brand_id
+    vehicle_brand_id,
+    vehicle_model_id
   })
 }
 
