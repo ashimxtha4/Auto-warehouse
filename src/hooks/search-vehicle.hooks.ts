@@ -78,7 +78,7 @@ export const useSearchVehicles = () => {
   const handleSearchFilter = useCallback(
     (id: string) => {
       const params = new URLSearchParams(searchParams?.toString())
-      params.set('position', id)
+      params.set('specific', id)
 
       router.push(`${pathname}?${params.toString()}`, { scroll: false })
     },

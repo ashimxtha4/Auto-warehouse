@@ -13,6 +13,7 @@ const LoginModal = () => {
       <DialogContent
         className='max-w-[390px] sm:max-w-[425px]'
         onInteractOutside={e => e.preventDefault()}
+        onOpenAutoFocus={e => e.preventDefault()}
       >
         <LoginPage />
       </DialogContent>

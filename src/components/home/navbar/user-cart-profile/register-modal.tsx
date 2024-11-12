@@ -14,6 +14,7 @@ const RegisterModal = () => {
         style={{ zIndex: '9999' }}
         className='max-w-[390px] sm:max-w-[425px]'
         onInteractOutside={e => e.preventDefault()}
+        onOpenAutoFocus={e => e.preventDefault()}
       >
         <RegisterPage />
       </DialogContent>
