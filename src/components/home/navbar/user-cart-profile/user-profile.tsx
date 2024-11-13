@@ -24,11 +24,6 @@ const UserProfile = () => {
     setHoverCardOpen
   } = useAuthStore()
 
-  const handleLogout = () => {
-    localStorage.clear()
-    openLoginDialog()
-  }
-
   return (
     <HoverCard
       openDelay={100}
@@ -74,9 +69,11 @@ const UserProfile = () => {
         </div>
         <button
           type='button'
-          onClick={handleLogout}
+          onClick={() => {
+            openLoginDialog()
+            window.localStorage.clear()
+          }}
           className='mb-1 w-full border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900 disabled:cursor-not-allowed disabled:text-gray-500'
-          disabled={!localStorage.getItem('token')}
         >
           Logout
         </button>
