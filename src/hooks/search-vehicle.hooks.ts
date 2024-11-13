@@ -58,7 +58,11 @@ export const useSearchVehicles = () => {
   const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
     useGetVehicleGroup()
 
-  const { data: sidebarData, mutateAsync: mutateSidebar } = useGetSidebar()
+  const {
+    data: sidebarData,
+    mutateAsync: mutateSidebar,
+    isPending: sidebarDataPending
+  } = useGetSidebar()
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
@@ -203,6 +207,7 @@ export const useSearchVehicles = () => {
     selectedVehicleModel,
     handlePageChange,
     handleSearchFilter,
-    sidebarData: sidebarData?.data.data
+    sidebarData: sidebarData?.data.data,
+    sidebarDataPending
   }
 }

@@ -14,8 +14,15 @@ const VehicleParts = () => {
   const { data, isLoading } = useGetProductList()
   const productList = data?.data
 
-  const { vehicle, handlePageChange, handleSearchFilter, sidebarData } =
-    useSearchVehicles()
+  const totalNumberOfProducts = data?.meta.total
+
+  const {
+    vehicle,
+    handlePageChange,
+    handleSearchFilter,
+    sidebarData,
+    sidebarDataPending
+  } = useSearchVehicles()
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
@@ -41,6 +48,10 @@ const VehicleParts = () => {
                       {item}
                     </button>
                   ))
+                ) : sidebarDataPending ? (
+                  <div className='relative'>
+                    <LoadingSpinner />
+                  </div>
                 ) : (
                   <>No filters</>
                 )}
@@ -68,7 +79,10 @@ const VehicleParts = () => {
       )}
 
       <div className='flex-[3]'>
-        <VehiclePartsList productList={productList} />
+        <VehiclePartsList
+          productList={productList}
+          totalNumberOfProducts={totalNumberOfProducts}
+        />
         <div className='my-4'>
           {data?.data?.length ? (
             <AutoGlassPagination

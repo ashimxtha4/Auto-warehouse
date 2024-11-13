@@ -26,8 +26,8 @@ const ProductItem = ({ item }: { item: productProps }) => {
     >
       <CardHeader
         className={cn(
-          'flex-shrink-0 p-2 md:p-4',
-          viewType !== null ? 'w-[150px]' : 'order-none'
+          'p-2 md:p-4',
+          viewType !== null ? 'max-w-[300px]' : 'order-none'
         )}
       >
         <Image

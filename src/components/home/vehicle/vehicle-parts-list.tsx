@@ -6,36 +6,42 @@ import ProductItem from './product-item'
 import { productProps } from '@/services/api/api-service/product/product-list'
 
 const VehiclePartsList = ({
-  productList
+  productList,
+  totalNumberOfProducts
 }: {
   productList: productProps[] | undefined
+  totalNumberOfProducts: number | undefined
 }) => {
-  const { handleSearch, viewType } = useVehicleParts()
+  const { handleSearch, viewType, handleSearchListView } = useVehicleParts()
   return (
     <aside className='flex-[2]'>
-      <header className='mb-4 flex justify-between gap-2 md:justify-start md:gap-5'>
+      <header className='mb-4 flex justify-between gap-2 bg-gray-100 px-2 py-1 md:gap-5'>
+        <div className='flex items-center gap-1 md:gap-3'>
+          <span className='text-sm font-medium text-gray-800 md:text-xl'>
+            {totalNumberOfProducts ?? 0}
+          </span>
+          <span className='text-gray-700'>Products Found</span>
+          {/* <SelectForm /> */}
+        </div>
         <div className='flex items-center justify-center gap-1 rounded-md border'>
           <CiGrid41
-            size={28}
+            size={24}
             className={cn(
               'h-full cursor-pointer',
-              viewType === null && 'bg-primary-main text-white'
+              viewType === null && 'bg-green-900 text-white'
             )}
             onClick={handleSearch}
           />
+          <span className='h-full w-[2px] bg-gray-400' />
           <CiCircleList
             size={24}
-            onClick={handleSearch}
+            onClick={handleSearchListView}
             className={cn(
               'h-full cursor-pointer font-bold',
-              viewType !== null && 'bg-primary-main text-white'
+              viewType !== null && 'bg-green-900 text-white'
             )}
           />
         </div>
-        {/* <div className='flex items-center gap-1 md:gap-3'>
-          <span className='text-sm font-medium md:text-xl'>Sort</span>
-          <SelectForm />
-        </div> */}
       </header>
       <div
         className={cn(
