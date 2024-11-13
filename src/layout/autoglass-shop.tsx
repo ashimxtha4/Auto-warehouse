@@ -3,7 +3,6 @@ import React from 'react'
 import { usePathname } from 'next/navigation'
 import ProfileLayout from './profile-layout'
 import DefaultLayout from './default-layout'
-import AuthLayout from './auth-layout'
 
 const AutoGlassShopLayout = ({
   children
@@ -11,14 +10,6 @@ const AutoGlassShopLayout = ({
   children: React.ReactNode
 }>) => {
   const pathname = usePathname()
-
-  if (
-    pathname === '/auth/login' ||
-    pathname === '/auth/register' ||
-    pathname === '/admin'
-  ) {
-    return <AuthLayout>{children}</AuthLayout>
-  }
 
   if (
     pathname === '/profile' ||

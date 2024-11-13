@@ -13,7 +13,6 @@ const ProfileLayout = ({
   <>
     <section
       style={{
-        background: '#f2e9e9',
         position: 'sticky',
         top: '0',
         width: '100%',
