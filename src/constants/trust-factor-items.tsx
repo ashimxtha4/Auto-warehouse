@@ -1,6 +1,6 @@
 import { BsBoxFill } from 'react-icons/bs'
-import { FaBoxOpen, FaPhoneVolume } from 'react-icons/fa6'
-import { MdLocalShipping } from 'react-icons/md'
+import { FaBoxOpen } from 'react-icons/fa6'
+import { MdLocalShipping, MdHeadsetMic } from 'react-icons/md'
 
 export const TRUST_ITEMS = [
   {
@@ -25,6 +25,6 @@ export const TRUST_ITEMS = [
     id: '4',
     label: 'Dedicated Support',
     content: 'We’re open 5 days a week',
-    icon: <FaPhoneVolume size={24} />
+    icon: <MdHeadsetMic size={24} />
   }
 ]

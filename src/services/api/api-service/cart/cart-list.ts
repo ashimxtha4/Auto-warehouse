@@ -1,13 +1,9 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useQuery } from '@tanstack/react-query'
-
-export interface cartListProps {
-  data: listDataProps[]
-  links: Links
-  meta: Meta
-}
-
+import { isAxiosError } from 'axios'
+import toast from 'react-hot-toast'
+import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 export interface listDataProps {
   id: number
   customer_id: number
@@ -22,32 +18,16 @@ export interface listDataProps {
   }
 }
 
-export interface Links {
-  first: string
-  last: string
-  prev: string | number
-  next: string | number
-}
-
-export interface Meta {
-  current_page: number
-  from: number
-  last_page: number
-  links: Link[]
-  path: string
-  per_page: number
-  to: number
-  total: number
-}
-
-export interface Link {
-  url?: string
-  label: string
-  active: boolean
-}
-
 const getCartList = async (uid: string, customer_id: number) => {
-  return await httpClient.get<cartListProps>(api.cart.get(uid, customer_id))
+  try {
+    return await httpClient.get<IGenericResponse<listDataProps[]>>(
+      api.cart.get(uid, customer_id)
+    )
+  } catch (error) {
+    if (isAxiosError(error) && error.status === 401) {
+      toast.error('Please login to view cart list.')
+    }
+  }
 }
 
 export const useGetCartList = (uid: string, customer_id: number) => {

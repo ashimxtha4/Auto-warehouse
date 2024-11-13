@@ -2,12 +2,32 @@ import React from 'react'
 import Link from 'next/link'
 import { BANNER_ITEMS } from '@/constants/banner-items'
 import { cn } from '@/lib/utils'
+import { FaArrowRight } from 'react-icons/fa'
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.5 } }
+}
 
 const BannerContent = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3
+  })
+
   return (
-    <div className='py-4 md:py-16'>
+    <motion.div
+      className='py-4 md:py-16'
+      ref={ref}
+      initial='hidden'
+      animate={inView ? 'visible' : 'hidden'}
+      variants={sectionVariants}
+    >
       <h2 className='text-base font-bold tracking-wide sm:text-xl md:text-4xl'>
-        Honest, Quality Service{' '}
+        Premium Auto Glass Solutions{' '}
         <span className='block font-normal'>At Affordable Prices</span>
       </h2>
       <div className='flex justify-center md:my-4'>
@@ -16,18 +36,23 @@ const BannerContent = () => {
             <Link
               href={item.href}
               className={cn(
-                'mx-1 flex w-max items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all sm:mx-2 sm:px-4 sm:py-2 md:text-2xl',
+                'mx-1 flex w-max items-center gap-2 rounded-full px-2 py-1 text-xs font-medium transition-all hover:scale-105 sm:mx-2 sm:px-4 sm:py-2 md:text-2xl',
                 item.id === '1'
-                  ? 'bg-white text-blue-600 hover:bg-blue-600 hover:text-white'
-                  : 'bg-primary-main text-white hover:bg-white hover:text-primary-main'
+                  ? 'bg-primary-main hover:text-white'
+                  : 'bg-gray-700 text-white'
               )}
             >
               {item.label}
+              {item.id === '1' ? (
+                <FaArrowRight size={18} />
+              ) : (
+                <IoMdCheckmarkCircleOutline size={20} />
+              )}
             </Link>
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 export default BannerContent

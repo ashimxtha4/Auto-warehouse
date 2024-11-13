@@ -19,13 +19,20 @@ const SearchComponent = () => {
     search,
     setOpen,
     open,
-    router
+    router,
+    debounceValue
   } = useSearchInput()
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <form className='flex w-[150px] gap-0 rounded-full border border-gray-500 p-1 md:w-auto md:p-2'>
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            router.push(`/shop?keyword=${debounceValue}`)
+          }}
+          className='flex w-[150px] gap-0 rounded-full border border-gray-500 p-1 md:w-auto md:p-2'
+        >
           <input
             ref={inputRef}
             value={search}

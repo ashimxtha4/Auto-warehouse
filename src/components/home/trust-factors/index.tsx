@@ -37,7 +37,7 @@ const TrustFactors = () => {
               }
             }}
           >
-            <div className='rounded-lg bg-gradient-to-br from-blue-600 to-primary-main p-2 text-white md:p-4'>
+            <div className='rounded-full bg-green-100 p-2 text-green-600 md:p-4'>
               {item.icon}
             </div>
             <p className='text-nowrap text-base font-medium text-gray-800 md:text-lg'>

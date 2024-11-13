@@ -19,15 +19,15 @@
 }
 
 .circle-dot {
-  @apply absolute h-2 w-2 rounded-full bg-primary-main;
+  @apply absolute h-2 w-2 rounded-full bg-green-900;
 }
 
 .vehicle-line {
-  @apply absolute h-[2px] bg-primary-main;
+  @apply absolute h-[2px] bg-green-900;
 }
 
 .callout-line-title {
-  @apply gradient-bg absolute flex items-center text-nowrap rounded-md px-[6px] py-[2px] text-white hover:from-green-600 hover:to-blue-600;
+  @apply gradient-bg absolute flex items-center text-nowrap rounded-md px-[6px] py-[2px] text-white hover:scale-105;
 }
 
 .footer-heading {
@@ -35,7 +35,7 @@
 }
 
 .gradient-bg {
-  @apply bg-gradient-to-br from-gray-900 via-gray-800 to-green-900
+  @apply bg-gradient-to-br from-gray-900 via-gray-800 to-green-900;
 }
 
 .gradient-text {

@@ -1,6 +1,8 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { isAxiosError } from 'axios'
+import toast from 'react-hot-toast'
 
 interface postAddToCartProps {
   uid: string
@@ -12,7 +14,13 @@ interface postAddToCartProps {
 }
 
 const postRemoveFromCart = async (data: postAddToCartProps) => {
-  return await httpClient.post(api.cart.delete, data)
+  try {
+    return await httpClient.post(api.cart.delete, data)
+  } catch (error) {
+    if (isAxiosError(error) && error.status === 401) {
+      toast.error('Please login to remove product from cart.')
+    }
+  }
 }
 
 export const usePostRemoveFromCart = () => {

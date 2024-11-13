@@ -1,7 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -19,6 +18,7 @@ import { loginSchema } from './login'
 import { useGetRegisterUser } from '@/services/api/api-service/auth/register'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
+import { useAuthStore } from '@/slice/auth-state-slice'
 
 const registerSchema = loginSchema
   .extend({
@@ -36,6 +36,13 @@ const registerSchema = loginSchema
 export type registerSchemaProps = z.infer<typeof registerSchema>
 
 const RegisterPage = () => {
+  const { closeRegisterDialog, openLoginDialog } = useAuthStore()
+
+  const handleSwitch = () => {
+    closeRegisterDialog()
+    openLoginDialog()
+  }
+
   const form = useForm<registerSchemaProps>({
     resolver: zodResolver(registerSchema)
   })
@@ -174,12 +181,13 @@ const RegisterPage = () => {
         </Form>
         <p className='mt-4 text-center text-sm text-gray-600'>
           Already have an account?{' '}
-          <Link
-            href='/auth/login'
+          <button
+            onClick={handleSwitch}
+            type='button'
             className='text-primary-main hover:underline'
           >
             Login
-          </Link>
+          </button>
         </p>
       </div>
     </div>

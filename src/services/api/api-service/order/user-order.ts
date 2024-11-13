@@ -1,12 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
 import httpClient from '../../axios-service'
 import { api } from '@/services/endpoints/api.endpoints'
-
-export interface userOrderProps {
-  data: orderDataProps[]
-  links: Links
-  meta: Meta
-}
+import { isAxiosError } from 'axios'
+import toast from 'react-hot-toast'
+import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 
 export interface orderDataProps {
   id: number
@@ -25,37 +22,20 @@ export interface Stock {
   mel: number
 }
 
-export interface Links {
-  first: string
-  last: string
-  prev: number | string
-  next: number | string
-}
-
-export interface Meta {
-  current_page: number
-  from: number
-  last_page: number
-  links: Link[]
-  path: string
-  per_page: number
-  to: number
-  total: number
-}
-
-export interface Link {
-  url?: string
-  label: string
-  active: boolean
-}
-
 const postOrders = async (data: {
   uid: string
   customer_id: number
 }): Promise<{
-  data: userOrderProps
+  data: IGenericResponse<orderDataProps[]>
 }> => {
-  return await httpClient.post(api.order.post, data)
+  try {
+    return await httpClient.post(api.order.post, data)
+  } catch (error) {
+    if (isAxiosError(error) && error.status === 401) {
+      toast.error('Please login to view your orders.')
+    }
+    throw error
+  }
 }
 
 export const usePostOrders = () => {

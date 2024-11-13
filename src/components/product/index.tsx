@@ -1,41 +1,32 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Card } from '../ui/card'
 import Image from 'next/image'
 import { Button } from '../ui/button'
-import defaultImage from '@/assets/default.png'
-import defaultImage1 from '@/assets/car.jpg'
-import { useGetProductDetails } from '@/hooks/product-details'
+import { useGetProductDetails } from '@/hooks/product-details.hook'
 import ButtonLoader from '@/utils/button-loader'
 import { LoadingSpinner } from '../ui/loading-spinner'
-import { Car, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
+import { DEFAULT_IMAGE } from '@/utils/default-image-url'
+import ProductDescription from './product-description'
 
 // product details
 const ProductPage = () => {
-  const images = [defaultImage, defaultImage1]
-  const [zoomStyle, setZoomStyle] = useState({})
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const { handleAddToCart, isPending, productData, productLoading } =
-    useGetProductDetails()
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY, currentTarget } = event
-    const { left, top, width, height } = currentTarget.getBoundingClientRect()
-    const x = ((clientX - left) / width) * 100
-    const y = ((clientY - top) / height) * 100
-
-    setZoomStyle({
-      transformOrigin: `${x}% ${y}%`,
-      transform: 'scale(3)'
-    })
-  }
-
-  const handleMouseLeave = () => {
-    setZoomStyle({})
-  }
+  const {
+    handleAddToCart,
+    isPending,
+    productData,
+    productLoading,
+    handleMouseLeave,
+    handleMouseMove,
+    isModalOpen,
+    selectedImageIndex,
+    setIsModalOpen,
+    setSelectedImageIndex,
+    zoomStyle,
+    productImages
+  } = useGetProductDetails()
 
   return (
     <div className='container mx-auto p-6'>
@@ -50,7 +41,14 @@ const ProductPage = () => {
             onClick={() => setIsModalOpen(true)}
           >
             <Image
-              src={images[selectedImageIndex]}
+              src={
+                productImages?.length
+                  ? productImages[selectedImageIndex].image
+                  : DEFAULT_IMAGE
+              }
+              loading='lazy'
+              width={400}
+              height={150}
               alt='Product Image'
               style={zoomStyle}
               className='h-auto w-full object-cover transition-transform duration-300 ease-in-out'
@@ -58,11 +56,14 @@ const ProductPage = () => {
           </div>
 
           <div className='mt-4 flex items-center justify-center space-x-3 md:w-[80%]'>
-            {images.map((image, index) => (
+            {productImages?.map((image, index) => (
               <Image
                 key={index}
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
+                loading='lazy'
+                src={image.image || DEFAULT_IMAGE}
+                alt={`Product ${image.id}`}
+                width={64}
+                height={64}
                 onClick={() => setSelectedImageIndex(index)}
                 className={`h-16 w-16 cursor-pointer rounded-lg object-cover transition-transform duration-200 ease-in-out ${
                   selectedImageIndex === index
@@ -73,20 +74,19 @@ const ProductPage = () => {
             ))}
           </div>
         </div>
-
         <div className='mt-8 flex-grow text-center md:mt-0 md:text-left'>
           <h1 className='text-3xl font-bold text-green-700'>
             {productData?.name || ''}
           </h1>
+          <p className='my-2'>
+            <span className='w-fit rounded-full bg-green-100 px-2 py-1 font-semibold text-green-700'>
+              SKU: {productData?.sku || ''}
+            </span>
+          </p>
           <p className='mt-2 text-lg font-medium text-gray-600'>
             FROM:{' '}
             <span className='font-bold text-green-700'>
               ${productData?.price || '0.00'}
-            </span>
-          </p>
-          <p>
-            <span className='text-m mt-2 w-fit rounded-full bg-green-200 px-2 font-semibold text-green-700'>
-              SKU: {productData?.sku || ''}
             </span>
           </p>
 
@@ -109,7 +109,10 @@ const ProductPage = () => {
             <Button
               className='flex items-center justify-center rounded-full bg-green-600 px-6 py-3 font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-green-700'
               onClick={handleAddToCart}
-              disabled={isPending}
+              disabled={
+                isPending ||
+                (productData?.syd_stock === 0 && productData?.mel_stock === 0)
+              }
             >
               {isPending ? (
                 <ButtonLoader />
@@ -123,51 +126,7 @@ const ProductPage = () => {
           </div>
         </div>
       </Card>
-
-      <Card className='rounded-lg bg-white p-6 shadow-lg'>
-        <h2 className='mb-4 flex items-center text-2xl font-bold text-green-700'>
-          <Car className='mr-3 h-6 w-6 text-green-700' />
-          Product Details
-        </h2>
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-          <div>
-            <p>
-              <span className='font-medium'>Description:</span>{' '}
-              {productData?.description || 'N/A'}
-            </p>
-            <p>
-              <span className='font-medium'>Position:</span>{' '}
-              {productData?.position || 'N/A'}
-            </p>
-            <p>
-              <span className='font-medium'>Size:</span>{' '}
-              {productData?.size || 'N/A'}
-            </p>
-            <p>
-              <span className='font-medium'>Type:</span>{' '}
-              {productData?.vehicle_type || 'N/A'}
-            </p>
-          </div>
-          <div>
-            <p>
-              <span className='font-medium'>Color:</span>{' '}
-              {productData?.color || 'N/A'}
-            </p>
-            <p>
-              <span className='font-medium'>Vehicle Brand:</span>{' '}
-              {productData?.vehicle_brand || 'N/A'}
-            </p>
-            <p>
-              <span className='font-medium'>Model:</span>{' '}
-              {productData?.vehicle_model || 'N/A'}
-            </p>
-            <p>
-              <span className='font-medium'>Series:</span>{' '}
-              {productData?.vehicle_series || 'N/A'}
-            </p>
-          </div>
-        </div>
-      </Card>
+      <ProductDescription productData={productData} />
 
       {isModalOpen && (
         <div className='fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-75'>
@@ -184,7 +143,13 @@ const ProductPage = () => {
               onMouseLeave={handleMouseLeave}
             >
               <Image
-                src={images[selectedImageIndex]}
+                src={
+                  productImages?.length
+                    ? productImages[selectedImageIndex].image
+                    : DEFAULT_IMAGE
+                }
+                width={500}
+                height={200}
                 alt='Product Image'
                 style={zoomStyle}
                 className='h-auto w-full object-cover transition-transform duration-300 ease-in-out'

@@ -42,6 +42,7 @@ export const useSearchInput = () => {
     search,
     setOpen,
     open,
-    router
+    router,
+    debounceValue
   }
 }

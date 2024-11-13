@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -11,6 +11,8 @@ import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-g
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useGetVehicleYear } from '@/services/api/api-service/vehicle/vehicle-year'
+import { usePathname } from 'next/navigation'
+import { useGetSidebar } from '@/services/api/api-service/sidebar/get-sidebar'
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
@@ -35,6 +37,7 @@ export const useSearchVehicles = () => {
   const router = useRouter()
   const params = useParams()
   const searchParams = useSearchParams()
+  const pathname = usePathname()
   const vehicle = params?.vehicle as string | undefined
 
   const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
@@ -55,7 +58,7 @@ export const useSearchVehicles = () => {
   const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
     useGetVehicleGroup()
 
-  // const vehicleMake = vehicleMakeData?.data?.data?.find(item => item.id === vehicle)
+  const { data: sidebarData, mutateAsync: mutateSidebar } = useGetSidebar()
 
   const form = useForm<Partial<TSearchPartsProps>>({
     resolver: zodResolver(searchPartsSchema)
@@ -64,45 +67,73 @@ export const useSearchVehicles = () => {
   const vehicle_brand_id = form.watch('make')
   const vehicle_model_id = form.watch('model')
   const vehicle_series_id = form.watch('series')
+  const vehicle_type_id = form.watch('type')
+
+  const parseId = (id: string | undefined) => (id ? parseInt(id) : undefined)
+
+  // const vehicleBrand = vehicleMakeData?.data?.data?.find(
+  //   item => item.id === parseId(vehicle_brand_id)
+  // )
+
+  const handleSearchFilter = useCallback(
+    (id: string) => {
+      const params = new URLSearchParams(searchParams?.toString())
+      params.set('specific', id)
+
+      router.push(`${pathname}?${params.toString()}`, { scroll: false })
+    },
+    [searchParams, router, pathname]
+  )
 
   useEffect(() => {
     mutateVehicleMake()
-    mutateVehicleGroup()
-  }, [mutateVehicleMake, mutateVehicleGroup])
+  }, [mutateVehicleMake])
 
   useEffect(() => {
-    if (vehicle_brand_id) {
-      mutateVehicleModel(parseInt(vehicle_brand_id))
+    const fetchData = async () => {
+      if (vehicle_brand_id) {
+        await mutateVehicleModel(parseInt(vehicle_brand_id))
+        await mutateSidebar(parseInt(vehicle_brand_id))
+      }
+
+      if (vehicle_model_id) {
+        await mutateVehicleSeries(parseInt(vehicle_model_id))
+      }
+
+      if (vehicle_brand_id || vehicle_model_id || vehicle_type_id) {
+        await mutateVehicleGroup({
+          vehicle_brand_id: parseId(vehicle_brand_id),
+          vehicle_model_id: parseId(vehicle_model_id),
+          vehicle_type_id: parseId(vehicle_type_id)
+        })
+      }
+
+      if (vehicle_brand_id || vehicle_model_id) {
+        await mutateVehicleYear({
+          vehicle_brand_id: parseInt(vehicle_brand_id as string),
+          vehicle_model_id: parseId(vehicle_model_id)
+        })
+        await mutateVehicleBody({
+          vehicle_brand_id: parseInt(vehicle_brand_id as string),
+          vehicle_model_id: parseId(vehicle_model_id)
+        })
+      }
     }
 
-    if (vehicle_model_id) {
-      mutateVehicleSeries(parseInt(vehicle_model_id))
-    }
+    fetchData()
   }, [
+    mutateSidebar,
     vehicle_brand_id,
-    mutateVehicleModel,
     vehicle_model_id,
+    vehicle_series_id,
+    vehicle_type_id,
+    mutateVehicleModel,
     mutateVehicleSeries,
-    mutateVehicleBody
+    mutateVehicleBody,
+    mutateVehicleGroup,
+    mutateVehicleYear,
+    handleSearchFilter
   ])
-
-  useEffect(() => {
-    if (vehicle_brand_id || vehicle_model_id) {
-      mutateVehicleBody({
-        vehicle_brand_id: parseInt(vehicle_brand_id as string),
-        vehicle_model_id: parseInt(vehicle_model_id as string)
-      })
-    }
-  }, [vehicle_brand_id, vehicle_model_id, mutateVehicleBody])
-
-  useEffect(() => {
-    if (vehicle_brand_id || vehicle_series_id) {
-      mutateVehicleYear({
-        vehicle_brand_id: parseInt(vehicle_brand_id as string),
-        vehicle_series_id: parseInt(vehicle_series_id as string)
-      })
-    }
-  }, [vehicle_brand_id, vehicle_series_id, mutateVehicleYear])
 
   const selectedVehicleModel = vehicleModelData?.data?.data?.find(
     model => model.id?.toString() === vehicle_model_id
@@ -147,6 +178,17 @@ export const useSearchVehicles = () => {
     }
   }
 
+  const updateQueryParams = (key: string, value: string) => {
+    const params = new URLSearchParams(window.location.search)
+    params.set(key, value)
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.pushState({}, '', newUrl)
+  }
+
+  const handlePageChange = (page: number) => {
+    updateQueryParams('page', page.toString())
+  }
+
   return {
     onSubmit,
     form,
@@ -158,6 +200,9 @@ export const useSearchVehicles = () => {
     vehicleBodyData: vehicleBodyData?.data?.data,
     vehicleGroupData: vehicleGroupData?.data?.data,
     vehicleYearData: vehicleYearData?.data?.data,
-    selectedVehicleModel
+    selectedVehicleModel,
+    handlePageChange,
+    handleSearchFilter,
+    sidebarData: sidebarData?.data.data
   }
 }

@@ -36,7 +36,7 @@ const AutoGlassPagination = ({
       const params = new URLSearchParams(searchParams?.toString())
       params.set('page', page.toString())
 
-      router.push(`${pathname}?${params.toString()}`)
+      router.push(`${pathname}?${params.toString()}`, { scroll: true })
     }
   }
 

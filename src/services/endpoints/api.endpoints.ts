@@ -40,18 +40,20 @@ export const api = {
       get: (
         keyword?: string,
         brand?: number,
-        type?: number,
+        type?: string,
         model?: number,
         position?: number,
         series?: number,
-        page?: number
+        page?: number,
+        specific?: string
       ) => {
         let url = '/general/product_list'
         const params = new URLSearchParams()
 
         if (keyword) params.append('keyword', keyword)
+        if (specific) params.append('specific', specific)
         if (brand) params.append('brand', brand.toString())
-        if (type) params.append('type', type.toString())
+        if (type) params.append('type', type)
         if (model) params.append('model', model.toString())
         if (position) params.append('position', position.toString())
         if (series) params.append('series', series.toString())
@@ -87,96 +89,8 @@ export const api = {
   quote: {
     post: '/general/get_quote'
   },
-  // #region admin
-  admin: {
-    login: {
-      post: '/login'
-    },
-    customer: {
-      quote: {
-        list: {
-          get: '/admin/customer/quotes'
-        },
-        detail: {
-          get: (id: number) => `/admin/customer/quotes/${id}`
-        },
-        reply: {
-          post: '/admin/customer/quote_reply'
-        }
-      },
-      orders: {
-        product: {
-          get: '/admin/customer/orders'
-        },
-        dispatch: {
-          post: '/admin/customer/orders/dispatch'
-        },
-        status: {
-          post: '/admin/customer/orders/change_status'
-        }
-      }
-    },
-    product: {
-      add: {
-        post: '/product'
-      },
-      list: {
-        get: (page: number) => `/product?page=${page}`
-      },
-      import: {
-        post: '/product/import'
-      }
-    },
-    glassType: {
-      list: {
-        get: '/glasstype'
-      },
-      add: {
-        post: '/glasstype'
-      }
-    },
-    vehicle: {
-      make: {
-        create: {
-          post: '/vehicle_brand'
-        },
-        list: {
-          get: (page: number) => `/vehicle_brand?page=${page}`
-        }
-      },
-      // body
-      type: {
-        create: {
-          post: '/vehicle_type'
-        },
-        list: {
-          get: '/vehicle_type'
-        }
-      },
-      position: {
-        create: {
-          post: '/vehicle_position'
-        },
-        list: {
-          get: '/vehicle_position'
-        }
-      },
-      model: {
-        create: {
-          post: '/vehicle_model'
-        },
-        list: {
-          get: '/vehicle_model'
-        }
-      },
-      series: {
-        create: {
-          post: '/vehicle_series'
-        },
-        list: {
-          get: '/vehicle_series'
-        }
-      }
-    }
+  // sidebar
+  sidebar: {
+    post: '/general/product/sidebar'
   }
 }

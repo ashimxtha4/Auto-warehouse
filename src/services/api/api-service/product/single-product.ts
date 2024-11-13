@@ -47,7 +47,13 @@ export const useGetSingleProduct = () => {
   return useQuery({
     queryKey: [api.products.product.get, id],
     queryFn: () => getSingleProduct(id),
-    select: data => data.data,
+    select: data => ({
+      data: data.data.data,
+      image: data.data.data.image.map(img => ({
+        ...img,
+        image: `https://backend.autoglassshop.com.au/${img.image}`
+      }))
+    }),
     enabled: !!id
   })
 }
