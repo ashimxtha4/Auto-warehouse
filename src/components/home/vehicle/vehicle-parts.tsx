@@ -8,6 +8,7 @@ import { useGetProductList } from '@/services/api/api-service/product/product-li
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import AutoGlassPagination from '@/utils/autoglass-pagination'
+import { cn } from '@/lib/utils'
 
 const VehicleParts = () => {
   const { setShowFilterProduct, showFilterProduct } = useVehicleParts()
@@ -21,8 +22,11 @@ const VehicleParts = () => {
     handlePageChange,
     handleSearchFilter,
     sidebarData,
-    sidebarDataPending
+    sidebarDataPending,
+    searchParams
   } = useSearchVehicles()
+
+  const specificPart = searchParams?.get('specific')
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
@@ -43,7 +47,12 @@ const VehicleParts = () => {
                     <button
                       onClick={() => handleSearchFilter(item)}
                       key={item}
-                      className='border-b border-b-gray-300 p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
+                      className={cn(
+                        'border-b border-b-gray-300 p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700',
+                        item === specificPart
+                          ? 'bg-gray-100 font-medium text-green-700'
+                          : ''
+                      )}
                     >
                       {item}
                     </button>

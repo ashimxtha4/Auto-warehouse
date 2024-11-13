@@ -208,6 +208,7 @@ export const useSearchVehicles = () => {
     handlePageChange,
     handleSearchFilter,
     sidebarData: sidebarData?.data.data,
-    sidebarDataPending
+    sidebarDataPending,
+    searchParams
   }
 }
