@@ -16,13 +16,12 @@ const SearchForm = () => {
     vehicleModelData,
     vehicleSeriesData,
     vehicleGroupData,
-    vehicleYearData,
-    router
+    vehicleYearData
   } = useSearchVehicles()
 
-  const formValues = form.watch()
+  // const formValues = form.watch()
 
-  const isFormEmpty = Object.values(formValues).every(value => !value)
+  // const isFormEmpty = Object.values(formValues).every(value => !value)
 
   return (
     <>
