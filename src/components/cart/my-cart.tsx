@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import defaultImage from '@/assets/default.png'
 import { ImCross } from 'react-icons/im'
+import { ShoppingCart } from 'lucide-react'
 import { listDataProps } from '@/services/api/api-service/cart/cart-list'
 
 type MyCartProps = {
@@ -35,8 +36,12 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
     'Action'
   ]
   return (
-    <aside className='rounded-md border p-1 md:p-2'>
-      <h2 className='py-2 text-base font-bold md:text-xl'>My Cart</h2>
+    <aside className='rounded-lg bg-white p-6 shadow-lg'>
+      <h2 className='flex items-center py-2 text-left text-base font-bold text-green-700 md:text-xl'>
+        <ShoppingCart className='mr-2 h-6 w-6' />
+        My Cart
+      </h2>
+
       <div className='overflow-x-auto'>
         {products?.length ? (
           <Table>
@@ -46,7 +51,7 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                   <TableHead
                     key={item}
                     className={cn(
-                      'md:text-lg',
+                      'bg-green-50 py-2 text-lg text-gray-700',
                       item === 'Image' && 'hidden items-center md:inline-flex'
                     )}
                   >
@@ -55,20 +60,23 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                 ))}
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {products.map(product => (
-                <TableRow key={product.id}>
+                <TableRow key={product.id} className='hover:bg-gray-50'>
                   <TableCell className='hidden md:block'>
                     <Image
                       src={defaultImage}
                       alt='default-image'
-                      className={cn(
-                        'max-w-[75px] object-cover md:max-w-[100px]'
-                      )}
+                      className='max-w-[75px] rounded-lg object-cover md:max-w-[100px]'
                     />
                   </TableCell>
-                  <TableCell>{product.product_name}</TableCell>
-                  <TableCell>{product.product_price}</TableCell>
+                  <TableCell className='font-medium text-gray-800'>
+                    {product.product_name}
+                  </TableCell>
+                  <TableCell className='text-gray-600'>
+                    ${product.product_price}
+                  </TableCell>
                   <TableCell>
                     <div className='flex items-center'>
                       <input
@@ -76,23 +84,27 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                         min='1'
                         value={1}
                         readOnly
-                        className='mr-2 w-12 border-b border-t border-gray-300 text-center text-xs font-medium md:text-xl'
+                        className='mr-2 w-12 border-b border-t border-gray-300 text-center text-lg font-medium'
                       />
-                      {/* <div className='flex flex-col'>
-                        <button onClick={() => increaseQty(product.id)}>
-                          <IoMdArrowDropupCircle size={14} />
+                      {/* 
+                      <div className='flex flex-col items-center'>
+                        <button className='text-green-700 hover:text-green-900'>
+                          <IoMdArrowDropupCircle size={20} />
                         </button>
-                        <button onClick={() => decreaseQty(product.id)}>
-                          <IoMdArrowDropdownCircle size={14} />
+                        <button className='text-red-500 hover:text-red-700'>
+                          <IoMdArrowDropdownCircle size={20} />
                         </button>
-                      </div> */}
+                      </div> 
+                      */}
                     </div>
                   </TableCell>
-                  <TableCell>${product.product_price}</TableCell>
+                  <TableCell className='text-gray-600'>
+                    ${product.product_price}
+                  </TableCell>
                   <TableCell>
-                    <div className='flex flex-col items-center justify-center'>
-                      <span>SYD:{product.stock.syd ? 'Yes' : 'No'}</span>
-                      <span>MEL:{product.stock.mel ? 'Yes' : 'No'}</span>
+                    <div className='flex flex-col items-center text-green-700'>
+                      <span>SYD: {product.stock.syd ? 'Yes' : 'No'}</span>
+                      <span>MEL: {product.stock.mel ? 'Yes' : 'No'}</span>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -105,6 +117,7 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                           product.product_id
                         )
                       }
+                      className='text-red-500 hover:text-red-700'
                     >
                       <ImCross size={16} />
                     </button>
@@ -112,15 +125,25 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                 </TableRow>
               ))}
             </TableBody>
+
             <TableFooter>
               <TableRow>
-                <TableCell colSpan={6}>Total</TableCell>
-                <TableCell>${total}</TableCell>
+                <TableCell
+                  colSpan={6}
+                  className='border-t text-right font-bold text-gray-700'
+                >
+                  Total
+                </TableCell>
+                <TableCell className='border-t font-bold text-green-700'>
+                  ${total}
+                </TableCell>
               </TableRow>
             </TableFooter>
           </Table>
         ) : (
-          <div>No products in cart</div>
+          <div className='py-8 text-center text-gray-500'>
+            No products in cart
+          </div>
         )}
       </div>
     </aside>
