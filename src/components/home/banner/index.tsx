@@ -20,7 +20,7 @@ const BannerContent = () => {
 
   return (
     <motion.div
-      className='py-4 md:py-16'
+      className='py-4'
       ref={ref}
       initial='hidden'
       animate={inView ? 'visible' : 'hidden'}

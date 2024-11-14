@@ -32,7 +32,7 @@ export const loginSchema = z.object({
 export type loginSchemaProps = z.infer<typeof loginSchema>
 
 const LoginPage = () => {
-  const { closeLoginDialog, openRegisterDialog } = useAuthStore()
+  const { closeLoginDialog, openRegisterDialog, closeAll } = useAuthStore()
 
   const handleSwitch = () => {
     closeLoginDialog()
@@ -49,6 +49,7 @@ const LoginPage = () => {
     try {
       await mutateAsync(data)
       toast.success('Login success!')
+      closeAll()
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)

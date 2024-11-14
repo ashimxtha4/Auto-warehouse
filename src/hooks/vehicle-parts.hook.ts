@@ -7,12 +7,9 @@ import { useUserStore } from '@/slice/user-slice'
 
 export const useVehicleParts = () => {
   const [showFilterProduct, setShowFilterProduct] = useState(true)
-  const pathname = usePathname()
-  const vehicleName = pathname?.replaceAll(/[-/]/g, ' ').toUpperCase()
   const searchParams = useSearchParams()
-  const { replace } = useRouter()
-  const [listView, setListView] = useState(false)
-
+  const router = useRouter()
+  const pathname = usePathname()
   const viewType = searchParams?.get('view')
 
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
@@ -22,14 +19,17 @@ export const useVehicleParts = () => {
   }, [loadUserFromLocalStorage])
 
   const handleSearch = () => {
-    setListView(prev => !prev)
-    const params = new URLSearchParams()
-    if (listView) {
-      params.set('view', 'list')
-    } else {
-      params.delete('view')
-    }
-    replace(`${pathname}?${params.toString()}`, { scroll: false })
+    const params = new URLSearchParams(searchParams?.toString())
+    params.delete('view')
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+  }
+
+  const handleSearchListView = () => {
+    const params = new URLSearchParams(searchParams?.toString())
+    params.set('view', 'list')
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
   const { mutateAsync, isPending } = usePostAddToCart()
@@ -59,10 +59,10 @@ export const useVehicleParts = () => {
   return {
     showFilterProduct,
     setShowFilterProduct,
-    vehicleName,
     viewType,
     handleSearch,
     isPending,
-    handleAddToCart
+    handleAddToCart,
+    handleSearchListView
   }
 }

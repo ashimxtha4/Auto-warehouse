@@ -3,7 +3,7 @@
 import React, { Suspense } from 'react'
 import SearchForm from './search-form'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import {  SectionHeader } from '@/utils/section-header'
+// import {  SectionHeader } from '@/utils/section-header'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -13,8 +13,8 @@ const SearchParts = () => {
     threshold: 0.3
   })
   return (
-    <div className='relative rounded-lg p-2'>
-      <SectionHeader>Search by vehicle</SectionHeader>
+    <div className='rounded-lg p-2'>
+      {/* <SectionHeader>Search by vehicle</SectionHeader> */}
       <Suspense fallback={<LoadingSpinner />}>
         <motion.div
           ref={ref}

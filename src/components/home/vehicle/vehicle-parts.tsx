@@ -8,14 +8,25 @@ import { useGetProductList } from '@/services/api/api-service/product/product-li
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import AutoGlassPagination from '@/utils/autoglass-pagination'
+import { cn } from '@/lib/utils'
 
 const VehicleParts = () => {
   const { setShowFilterProduct, showFilterProduct } = useVehicleParts()
   const { data, isLoading } = useGetProductList()
   const productList = data?.data
 
-  const { vehicle, handlePageChange, handleSearchFilter, sidebarData } =
-    useSearchVehicles()
+  const totalNumberOfProducts = data?.meta.total
+
+  const {
+    vehicle,
+    handlePageChange,
+    handleSearchFilter,
+    sidebarData,
+    sidebarDataPending,
+    searchParams
+  } = useSearchVehicles()
+
+  const specificPart = searchParams?.get('specific')
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>
@@ -36,11 +47,20 @@ const VehicleParts = () => {
                     <button
                       onClick={() => handleSearchFilter(item)}
                       key={item}
-                      className='border-b border-b-gray-300 p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
+                      className={cn(
+                        'border-b border-b-gray-300 p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700',
+                        item === specificPart
+                          ? 'bg-gray-100 font-medium text-green-700'
+                          : ''
+                      )}
                     >
                       {item}
                     </button>
                   ))
+                ) : sidebarDataPending ? (
+                  <div className='relative'>
+                    <LoadingSpinner />
+                  </div>
                 ) : (
                   <>No filters</>
                 )}
@@ -68,7 +88,10 @@ const VehicleParts = () => {
       )}
 
       <div className='flex-[3]'>
-        <VehiclePartsList productList={productList} />
+        <VehiclePartsList
+          productList={productList}
+          totalNumberOfProducts={totalNumberOfProducts}
+        />
         <div className='my-4'>
           {data?.data?.length ? (
             <AutoGlassPagination

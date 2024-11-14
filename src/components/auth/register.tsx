@@ -47,7 +47,7 @@ const RegisterPage = () => {
     resolver: zodResolver(registerSchema)
   })
 
-  const { mutateAsync, isSuccess } = useGetRegisterUser()
+  const { mutateAsync } = useGetRegisterUser()
 
   const onSubmit = async (data: registerSchemaProps) => {
     if (data.password !== data.password_confirmation) {
@@ -59,10 +59,9 @@ const RegisterPage = () => {
     }
     try {
       await mutateAsync(data)
-      if (isSuccess) {
-        toast.success('Please login to continue.')
-        toast.success('User Registered!')
-      }
+      toast.success('User Registered Successfully!')
+      closeRegisterDialog()
+      openLoginDialog()
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)

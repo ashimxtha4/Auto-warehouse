@@ -38,7 +38,7 @@ const UserProfile = () => {
       </HoverCardTrigger>
       <HoverCardContent
         id='hover-profile-card'
-        className='absolute -left-[120px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800'
+        className='absolute -left-[130px] mt-2 max-w-[150px] rounded-sm bg-white px-2 py-1 dark:bg-gray-800 md:-left-[100px]'
       >
         <div className='flex flex-col'>
           {PROFILE_LINKS.map(item => (
@@ -67,6 +67,16 @@ const UserProfile = () => {
             dialogContent={<RegisterPage />}
           />
         </div>
+        <button
+          type='button'
+          onClick={() => {
+            openLoginDialog()
+            window.localStorage.clear()
+          }}
+          className='mb-1 w-full border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900 disabled:cursor-not-allowed disabled:text-gray-500'
+        >
+          Logout
+        </button>
       </HoverCardContent>
     </HoverCard>
   )
