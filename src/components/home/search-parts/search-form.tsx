@@ -146,8 +146,8 @@ const SearchForm = () => {
               )}
             />
           </FormRow>
-          <div className='!mt-2 flex justify-end gap-2 md:!mt-4'>
-            <Button
+          <div className='!mt-2 flex justify-center gap-2 md:!mt-4'>
+            {/* <Button
               type='reset'
               variant='outline'
               className='text-lg font-semibold text-red-400 hover:scale-105 hover:text-red-500 disabled:cursor-not-allowed disabled:text-gray-600 md:text-xl'
@@ -160,11 +160,11 @@ const SearchForm = () => {
               disabled={isFormEmpty}
             >
               Clear
-            </Button>
+            </Button> */}
             <Button
               type='submit'
               variant='default'
-              className='gradient-bg text-lg font-semibold text-white hover:scale-105 md:text-xl'
+              className='gradient-bg text-lg font-semibold text-white hover:scale-105 md:text-2xl'
             >
               {form.formState.isSubmitting ? <ButtonLoader /> : 'Search Parts'}
             </Button>
