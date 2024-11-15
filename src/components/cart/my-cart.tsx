@@ -14,6 +14,7 @@ import defaultImage from '@/assets/default.png'
 import { ImCross } from 'react-icons/im'
 import { ShoppingCart } from 'lucide-react'
 import { listDataProps } from '@/services/api/api-service/cart/cart-list'
+import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 
 type MyCartProps = {
   products: listDataProps[] | undefined
@@ -24,6 +25,8 @@ type MyCartProps = {
     product_id: number
   ) => Promise<void>
 }
+
+const IMAGE_BASE_URL = 'https://backend.autoglassshop.com.au/'
 
 const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
   const TABLE_HEADER_DATA = [
@@ -66,8 +69,16 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                 <TableRow key={product.id} className='hover:bg-gray-50'>
                   <TableCell className='hidden md:block'>
                     <Image
-                      src={defaultImage}
+                      src={
+                        product.product_image !== '' ||
+                        product.product_image !== null
+                          ? `${IMAGE_BASE_URL}${product.product_image}`
+                          : DEFAULT_IMAGE
+                      }
+                      loading='lazy'
                       alt='default-image'
+                      width={100}
+                      height={100}
                       className='max-w-[75px] rounded-lg object-cover md:max-w-[100px]'
                     />
                   </TableCell>
@@ -102,7 +113,7 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                     ${product.product_price}
                   </TableCell>
                   <TableCell>
-                    <div className='flex flex-col items-center text-green-700'>
+                    <div className='flex flex-col items-center justify-start text-green-700'>
                       <span>SYD: {product.stock.syd ? 'Yes' : 'No'}</span>
                       <span>MEL: {product.stock.mel ? 'Yes' : 'No'}</span>
                     </div>
