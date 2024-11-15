@@ -31,7 +31,11 @@ export const loginSchema = z.object({
 
 export type loginSchemaProps = z.infer<typeof loginSchema>
 
-const LoginPage = () => {
+const LoginPage = ({
+  setIsLoggedIn
+}: {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
   const { closeLoginDialog, openRegisterDialog, closeAll } = useAuthStore()
 
   const handleSwitch = () => {
@@ -50,6 +54,7 @@ const LoginPage = () => {
       await mutateAsync(data)
       toast.success('Login success!')
       closeAll()
+      setIsLoggedIn(true)
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)

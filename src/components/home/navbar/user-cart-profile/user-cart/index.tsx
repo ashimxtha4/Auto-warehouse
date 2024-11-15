@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/hover-card'
 import { FaShoppingCart } from 'react-icons/fa'
 import HoverCartLinks from './hover-cart-links'
+import { useMyCart } from '@/hooks/cart.hooks'
 
 export type CartDataProps = {
   id: string
@@ -16,13 +17,14 @@ export type CartDataProps = {
 }
 
 const UserCart = () => {
+  const { products: cartProducts } = useMyCart()
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <button type='button' className='relative text-base md:text-2xl'>
           <FaShoppingCart />
           <span className='absolute -right-[10px] -top-[8px] rounded-full bg-primary-main px-1 text-xs text-white md:-right-4 md:-top-[14px] md:px-2 md:text-base'>
-            0
+            {cartProducts?.length ?? 0}
           </span>
         </button>
       </HoverCardTrigger>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {
   HoverCard,
@@ -21,8 +21,18 @@ const UserProfile = () => {
     closeRegisterDialog,
     openLoginDialog,
     closeLoginDialog,
-    setHoverCardOpen
+    setHoverCardOpen,
+    closeAll
   } = useAuthStore()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem('token') !== null
+  )
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token')
+    setIsLoggedIn(!!token)
+  }, [])
 
   return (
     <HoverCard
@@ -50,33 +60,40 @@ const UserProfile = () => {
               {item.label}
             </Link>
           ))}
-          <AuthDialog
-            dialogOpen={isLoginDialogOpen}
-            dialogOpenChange={open =>
-              open ? openLoginDialog() : closeLoginDialog()
-            }
-            triggerButton='Login'
-            dialogContent={<LoginPage />}
-          />
-          <AuthDialog
-            dialogOpen={isRegisterDialogOpen}
-            dialogOpenChange={open =>
-              open ? openRegisterDialog() : closeRegisterDialog()
-            }
-            triggerButton='Register'
-            dialogContent={<RegisterPage />}
-          />
+          {!isLoggedIn ? (
+            <>
+              {' '}
+              <AuthDialog
+                dialogOpen={isLoginDialogOpen}
+                dialogOpenChange={open =>
+                  open ? openLoginDialog() : closeLoginDialog()
+                }
+                triggerButton='Login'
+                dialogContent={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+              />
+              <AuthDialog
+                dialogOpen={isRegisterDialogOpen}
+                dialogOpenChange={open =>
+                  open ? openRegisterDialog() : closeRegisterDialog()
+                }
+                triggerButton='Register'
+                dialogContent={<RegisterPage />}
+              />
+            </>
+          ) : (
+            <button
+              type='button'
+              onClick={() => {
+                closeAll()
+                window.localStorage.clear()
+                setIsLoggedIn(false)
+              }}
+              className='mb-1 w-full border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900 disabled:cursor-not-allowed disabled:text-gray-500'
+            >
+              Logout
+            </button>
+          )}
         </div>
-        <button
-          type='button'
-          onClick={() => {
-            openLoginDialog()
-            window.localStorage.clear()
-          }}
-          className='mb-1 w-full border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900 disabled:cursor-not-allowed disabled:text-gray-500'
-        >
-          Logout
-        </button>
       </HoverCardContent>
     </HoverCard>
   )
