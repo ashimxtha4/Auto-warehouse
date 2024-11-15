@@ -1,13 +1,17 @@
-import React, { Suspense } from 'react'
-import DevelopmentPage from '@/components/development'
-import { LoadingSpinner } from '@/components/ui/loading-spinner'
+"use client";
 
-const Page = () => {
-  return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <DevelopmentPage />
-    </Suspense>
-  )
-}
+import React, { Suspense } from 'react';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import TermsOfUse from '@/components/terms-and-return/terms-of-use';
+import ReturnPolicy from '@/components/terms-and-return/return-policy';
 
-export default Page
+const Page = () => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <div className="container mx-auto p-4">
+      <TermsOfUse />
+      <ReturnPolicy />
+    </div>
+  </Suspense>
+);
+
+export default Page;

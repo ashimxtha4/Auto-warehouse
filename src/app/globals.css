@@ -106,3 +106,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.clip-path-right-diagonal {
+  clip-path: polygon(70% 0, 100% 0, 100% 100%, 10% 100%);
+}
