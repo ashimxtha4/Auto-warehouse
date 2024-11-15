@@ -25,9 +25,7 @@ const UserProfile = () => {
     closeAll
   } = useAuthStore()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem('token') !== null
-  )
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     const token = window.localStorage.getItem('token')
