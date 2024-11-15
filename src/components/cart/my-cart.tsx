@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/table'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-import defaultImage from '@/assets/default.png'
 import { ImCross } from 'react-icons/im'
 import { ShoppingCart } from 'lucide-react'
 import { listDataProps } from '@/services/api/api-service/cart/cart-list'
