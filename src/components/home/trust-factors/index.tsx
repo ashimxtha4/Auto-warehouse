@@ -10,7 +10,7 @@ const TrustFactors = () => {
   const controls = useAnimation()
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.3
+    threshold: 0.3,
   })
 
   useEffect(() => {
@@ -33,13 +33,17 @@ const TrustFactors = () => {
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.5, delay: index * 0.2 }
-              }
+                transition: { duration: 0.5, delay: index * 0.2 },
+              },
             }}
           >
-            <div className='rounded-full bg-green-100 p-2 text-green-600 md:p-4'>
+            <motion.div
+              className='rounded-full bg-green-100 p-2 text-green-600 md:p-4'
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
               {item.icon}
-            </div>
+            </motion.div>
             <p className='text-nowrap text-base font-medium text-gray-800 md:text-lg'>
               {item.label}
             </p>

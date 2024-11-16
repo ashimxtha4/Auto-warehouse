@@ -72,7 +72,7 @@ const LoginPage = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-8 rounded-lg border border-gray-500 p-4'
+            className='space-y-8 rounded-lg p-4'
           >
             <FormField
               control={form.control}
