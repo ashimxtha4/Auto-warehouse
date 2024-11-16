@@ -105,13 +105,21 @@ const LoginPage = ({
                 </FormItem>
               )}
             />
-            <Button
-              type='submit'
-              variant='default'
-              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
-            >
-              {form.formState.isSubmitting ? <ButtonLoader /> : 'Login'}
-            </Button>
+            <div className='flex flex-row-reverse justify-between'>
+              <button
+                onClick={e => e.preventDefault()}
+                className='text-sm text-gray-600 hover:underline'
+              >
+                Forgot password?
+              </button>
+              <Button
+                type='submit'
+                variant='default'
+                className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
+              >
+                {form.formState.isSubmitting ? <ButtonLoader /> : 'Login'}
+              </Button>
+            </div>
           </form>
         </Form>
         <p

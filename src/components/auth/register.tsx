@@ -24,6 +24,7 @@ const registerSchema = loginSchema
   .extend({
     first_name: z.string({ required_error: 'First Name is required' }),
     last_name: z.string({ required_error: 'Last Name is required' }),
+    phone: z.string({ required_error: 'Phone is required' }),
     password_confirmation: z.string({
       required_error: 'Confirm Password is required'
     })
@@ -127,6 +128,24 @@ const RegisterPage = () => {
                     <Input
                       placeholder='Email'
                       type='email'
+                      autoComplete='off'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='phone'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder='Phone'
+                      type='number'
                       autoComplete='off'
                       {...field}
                     />
