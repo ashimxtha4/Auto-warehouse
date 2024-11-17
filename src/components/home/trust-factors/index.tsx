@@ -8,46 +8,66 @@ import { SectionHeader } from '@/utils/section-header'
 
 const TrustFactors = () => {
   const controls = useAnimation()
+  const headerControls = useAnimation()
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.3,
+    threshold: 0.9
   })
 
   useEffect(() => {
     if (inView) {
+      headerControls.start('visible')
       controls.start('visible')
     }
-  }, [controls, inView])
+  }, [inView, headerControls, controls])
 
   return (
-    <div ref={ref}>
-      <SectionHeader>Why Choose Us</SectionHeader>
-      <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 lg:grid-cols-4'>
+    <div ref={ref} className='my-10'>
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={headerControls}
+        variants={{
+          visible: {
+            x: 0,
+            opacity: 1,
+            transition: { duration: 0.9, ease: 'easeOut' }
+          }
+        }}
+      >
+        <SectionHeader>Why Choose Us</SectionHeader>
+      </motion.div>
+
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
         {TRUST_ITEMS.map((item, index) => (
           <motion.div
             key={item.id}
-            className='mb-1 flex flex-col items-center gap-1 rounded-lg bg-white p-2 shadow-lg md:mx-2 md:my-2 md:p-4'
-            initial={{ opacity: 0, y: 20 }}
+            className='mb-4 flex flex-col items-center gap-2 rounded-lg bg-white p-4 shadow-lg'
+            initial={{ opacity: 0, x: 100 }}
             animate={controls}
             variants={{
               visible: {
                 opacity: 1,
-                y: 0,
-                transition: { duration: 0.5, delay: index * 0.2 },
-              },
+                x: 0,
+                transition: {
+                  duration: 0.8,
+                  delay: index * 0.2,
+                  ease: 'easeOut'
+                }
+              }
             }}
           >
             <motion.div
-              className='rounded-full bg-green-100 p-2 text-green-600 md:p-4'
+              className='rounded-full bg-green-100 p-3 text-green-600'
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
               {item.icon}
             </motion.div>
-            <p className='text-nowrap text-base font-medium text-gray-800 md:text-lg'>
+
+            <p className='text-center text-base font-medium text-gray-800 md:text-lg'>
               {item.label}
             </p>
-            <p className='text-nowrap text-sm font-normal text-gray-600'>
+            <p className='text-center text-sm font-normal text-gray-600'>
               {item.content}
             </p>
           </motion.div>
