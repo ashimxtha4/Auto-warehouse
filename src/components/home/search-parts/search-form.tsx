@@ -16,12 +16,13 @@ const SearchForm = () => {
     vehicleModelData,
     vehicleSeriesData,
     vehicleGroupData,
-    vehicleYearData
+    vehicleYearData,
+    router
   } = useSearchVehicles()
 
-  // const formValues = form.watch()
+  const formValues = form.watch()
 
-  // const isFormEmpty = Object.values(formValues).every(value => !value)
+  const isFormEmpty = Object.values(formValues).every(value => !value)
 
   return (
     <>
@@ -146,7 +147,7 @@ const SearchForm = () => {
             />
           </FormRow>
           <div className='!mt-2 flex justify-center gap-2 md:!mt-4'>
-            {/* <Button
+            <Button
               type='reset'
               variant='outline'
               className='text-lg font-semibold text-red-400 hover:scale-105 hover:text-red-500 disabled:cursor-not-allowed disabled:text-gray-600 md:text-xl'
@@ -159,7 +160,7 @@ const SearchForm = () => {
               disabled={isFormEmpty}
             >
               Clear
-            </Button> */}
+            </Button>
             <Button
               type='submit'
               variant='default'
