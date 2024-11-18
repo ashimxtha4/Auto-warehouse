@@ -19,6 +19,8 @@ import { useGetRegisterUser } from '@/services/api/api-service/auth/register'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useAuthStore } from '@/slice/auth-state-slice'
+import { Mail, Lock, Phone, User, ArrowRight, XCircle } from 'lucide-react'
+import ButtonLoader from '@/utils/button-loader'
 
 const registerSchema = loginSchema
   .extend({
@@ -54,7 +56,7 @@ const RegisterPage = () => {
     if (data.password !== data.password_confirmation) {
       form.setError('password_confirmation', {
         type: 'manual',
-        message: 'password and confirm password should be same'
+        message: 'Password and Confirm Password should be the same'
       })
       return
     }
@@ -72,29 +74,34 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className='flex items-center justify-center bg-gray-100'>
-      <div className='w-full max-w-md rounded-lg bg-white'>
-        <h2 className='text-center text-2xl font-semibold text-gray-700'>
+    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
+      <div className='relative w-full max-w-md transform rounded-lg bg-white p-8 shadow-lg transition-transform hover:scale-105'>
+        <button
+          onClick={closeRegisterDialog}
+          className='absolute right-3 top-3 text-gray-600 transition hover:text-red-900'
+        >
+          <XCircle className='h-6 w-6' />
+        </button>
+
+        <h2 className='mb-6 text-center text-3xl font-bold text-green-700'>
           Register
         </h2>
+
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-8 rounded-lg p-4'
+            className='space-y-6 rounded-lg'
           >
             <FormField
               control={form.control}
               name='first_name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>First Name</FormLabel>
+                  <FormLabel className='flex items-center gap-2'>
+                    <User className='h-5 w-5 text-gray-500' /> First Name
+                  </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='First Name'
-                      type='text'
-                      autoComplete='off'
-                      {...field}
-                    />
+                    <Input placeholder='First Name' type='text' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -105,14 +112,11 @@ const RegisterPage = () => {
               name='last_name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Last Name</FormLabel>
+                  <FormLabel className='flex items-center gap-2'>
+                    <User className='h-5 w-5 text-gray-500' /> Last Name
+                  </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='Last Name'
-                      type='text'
-                      autoComplete='off'
-                      {...field}
-                    />
+                    <Input placeholder='Last Name' type='text' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -123,14 +127,11 @@ const RegisterPage = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className='flex items-center gap-2'>
+                    <Mail className='h-5 w-5 text-gray-500' /> Email
+                  </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='Email'
-                      type='email'
-                      autoComplete='off'
-                      {...field}
-                    />
+                    <Input placeholder='Email' type='email' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,14 +142,11 @@ const RegisterPage = () => {
               name='phone'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel className='flex items-center gap-2'>
+                    <Phone className='h-5 w-5 text-gray-500' /> Phone
+                  </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='Phone'
-                      type='number'
-                      autoComplete='off'
-                      {...field}
-                    />
+                    <Input placeholder='Phone' type='text' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -159,7 +157,9 @@ const RegisterPage = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className='flex items-center gap-2'>
+                    <Lock className='h-5 w-5 text-gray-500' /> Password
+                  </FormLabel>
                   <FormControl>
                     <Input type='password' placeholder='Password' {...field} />
                   </FormControl>
@@ -172,7 +172,9 @@ const RegisterPage = () => {
               name='password_confirmation'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel className='flex items-center gap-2'>
+                    <Lock className='h-5 w-5 text-gray-500' /> Confirm Password
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type='password'
@@ -184,29 +186,33 @@ const RegisterPage = () => {
                 </FormItem>
               )}
             />
+
             <Button
               type='submit'
               variant='default'
-              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
+              className='flex w-full transform items-center justify-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
             >
               {form.formState.isSubmitting ? (
-                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
+                <ButtonLoader />
               ) : (
-                'Register'
+                <>
+                  Register <ArrowRight className='h-5 w-5' />
+                </>
               )}
             </Button>
           </form>
         </Form>
-        <p className='mt-4 text-center text-sm text-gray-600'>
-          Already have an account?{' '}
+
+        <div className='mt-6 flex items-center justify-center'>
+          <p className='text-sm text-gray-600'>Already have an account?</p>
           <button
-            onClick={handleSwitch}
             type='button'
-            className='text-primary-main hover:underline'
+            onClick={handleSwitch}
+            className='ml-2 flex items-center gap-1 text-sm font-semibold text-green-700 hover:underline'
           >
-            Login
+            Login <ArrowRight className='h-4 w-4' />
           </button>
-        </p>
+        </div>
       </div>
     </div>
   )
