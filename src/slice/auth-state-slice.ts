@@ -4,10 +4,13 @@ interface UIState {
   isRegisterDialogOpen: boolean
   isLoginDialogOpen: boolean
   isHoverCardOpen: boolean
+  isOTPDialogOpen: boolean
   openRegisterDialog: () => void
   closeRegisterDialog: () => void
   openLoginDialog: () => void
   closeLoginDialog: () => void
+  openOTPDialog: () => void
+  closeOTPDialog: () => void
   setHoverCardOpen: (open: boolean) => void
   closeAll: () => void
 }
@@ -16,6 +19,7 @@ export const useAuthStore = create<UIState>(set => ({
   isRegisterDialogOpen: false,
   isLoginDialogOpen: false,
   isHoverCardOpen: false,
+  isOTPDialogOpen: false,
 
   openRegisterDialog: () =>
     set({
@@ -32,6 +36,14 @@ export const useAuthStore = create<UIState>(set => ({
     }),
 
   closeLoginDialog: () => set({ isLoginDialogOpen: false }),
+
+  openOTPDialog: () =>
+    set({
+      isOTPDialogOpen: true,
+      isHoverCardOpen: true
+    }),
+
+  closeOTPDialog: () => set({ isOTPDialogOpen: false }),
 
   setHoverCardOpen: (open: boolean) =>
     set(state => ({

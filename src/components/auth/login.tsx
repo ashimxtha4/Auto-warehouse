@@ -37,7 +37,7 @@ const LoginPage = ({
 }: {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
-  const { openRegisterDialog, closeAll } = useAuthStore()
+  const { openRegisterDialog, closeLoginDialog, closeAll } = useAuthStore()
 
   const form = useForm<loginSchemaProps>({
     resolver: zodResolver(loginSchema)
@@ -57,6 +57,11 @@ const LoginPage = ({
       }
       toast.error('Something went wrong!')
     }
+  }
+
+  const handleOpenRegister = () => {
+    openRegisterDialog()
+    closeLoginDialog()
   }
 
   return (
@@ -142,7 +147,7 @@ const LoginPage = ({
           <p className='text-sm text-gray-600'>Don&apos;t have an account?</p>
           <button
             type='button'
-            onClick={openRegisterDialog}
+            onClick={handleOpenRegister}
             className='ml-2 flex items-center gap-1 text-sm font-semibold text-green-700 hover:underline'
           >
             Register <UserPlus className='h-4 w-4' />

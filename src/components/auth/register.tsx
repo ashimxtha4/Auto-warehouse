@@ -26,7 +26,8 @@ const registerSchema = loginSchema
   .extend({
     first_name: z.string({ required_error: 'First Name is required' }),
     last_name: z.string({ required_error: 'Last Name is required' }),
-    phone: z.string({ required_error: 'Phone is required' }),
+    phone: z.string().optional(),
+    address: z.string().optional(),
     password_confirmation: z.string({
       required_error: 'Confirm Password is required'
     })
@@ -39,7 +40,7 @@ const registerSchema = loginSchema
 export type registerSchemaProps = z.infer<typeof registerSchema>
 
 const RegisterPage = () => {
-  const { closeRegisterDialog, openLoginDialog } = useAuthStore()
+  const { closeRegisterDialog, openLoginDialog, openOTPDialog } = useAuthStore()
 
   const handleSwitch = () => {
     closeRegisterDialog()
@@ -64,7 +65,7 @@ const RegisterPage = () => {
       await mutateAsync(data)
       toast.success('User Registered Successfully!')
       closeRegisterDialog()
-      openLoginDialog()
+      openOTPDialog()
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)
@@ -144,6 +145,21 @@ const RegisterPage = () => {
                 <FormItem>
                   <FormLabel className='flex items-center gap-2'>
                     <Phone className='h-5 w-5 text-gray-500' /> Phone
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder='Phone' type='text' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='address'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='flex items-center gap-2'>
+                    <Phone className='h-5 w-5 text-gray-500' /> Address
                   </FormLabel>
                   <FormControl>
                     <Input placeholder='Phone' type='text' {...field} />

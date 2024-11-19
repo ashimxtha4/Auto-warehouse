@@ -5,7 +5,10 @@ export const api = {
       post: '/customer/login'
     },
     register: {
-      post: '/customer/register'
+      post: '/customer/register',
+      verify: {
+        post: '/customer/register/verify'
+      }
     }
   },
   // vehicle

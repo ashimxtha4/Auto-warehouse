@@ -10,7 +10,7 @@ import { PROFILE_LINKS } from '@/constants/profile-links'
 import RegisterPage from '@/components/auth/register'
 import LoginPage from '@/components/auth/login'
 import { useAuthStore } from '@/slice/auth-state-slice'
-import AuthDialog from './user-cart/auth-dialog'
+import AuthDialog from './auth-dialog'
 
 const UserProfile = () => {
   const {

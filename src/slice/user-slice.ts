@@ -1,3 +1,4 @@
+import { RegisterResponseData } from '@/services/api/api-service/auth/register'
 import { create } from 'zustand'
 
 interface UserState {
@@ -5,11 +6,14 @@ interface UserState {
   uuid: string
   setUser: (id: number, uuid: string) => void
   loadUserFromLocalStorage: () => void
+  newUserData: RegisterResponseData
+  setNewUserData: (data: RegisterResponseData) => void
 }
 
 export const useUserStore = create<UserState>(set => ({
   id: -1,
   uuid: '',
+  newUserData: {} as RegisterResponseData,
   setUser: (id, uuid) => set({ id, uuid }),
   loadUserFromLocalStorage: () => {
     if (typeof window !== 'undefined') {
@@ -21,5 +25,6 @@ export const useUserStore = create<UserState>(set => ({
         set({ id: userId, uuid: userUuid })
       }
     }
-  }
+  },
+  setNewUserData: data => set({ newUserData: data })
 }))
