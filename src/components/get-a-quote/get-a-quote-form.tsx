@@ -23,10 +23,18 @@ import {
   SelectTrigger,
   SelectValue
 } from '../ui/select'
+import { User, Car, Wrench } from 'lucide-react'
 
-const FormRowHeader = ({ children }: { children: React.ReactNode }) => {
+const FormRowHeader = ({
+  children,
+  Icon
+}: {
+  children: React.ReactNode
+  Icon: React.ElementType
+}) => {
   return (
-    <h4 className='text-lg font-semibold tracking-wide text-gray-800 md:text-2xl'>
+    <h4 className='flex items-center gap-3 text-xl font-semibold tracking-wide text-green-700 md:text-2xl'>
+      <Icon className='h-7 w-7 rounded-full bg-green-100 p-1.5 text-green-700' />
       {children}
     </h4>
   )
@@ -40,9 +48,9 @@ const GetAQuoteForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 rounded-lg bg-white p-4 shadow-lg'
+          className='space-y-8 rounded-lg bg-white p-8 shadow-lg'
         >
-          <FormRowHeader>Personal Details</FormRowHeader>
+          <FormRowHeader Icon={User}>Personal Details</FormRowHeader>
           <FormRow className='!my-0'>
             <FormField
               control={form.control}
@@ -121,7 +129,7 @@ const GetAQuoteForm = () => {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder='Select Prefferred Type' />
+                        <SelectValue placeholder='Select Preferred Type' />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -137,7 +145,8 @@ const GetAQuoteForm = () => {
               )}
             />
           </FormRow>
-          <FormRowHeader>Vehicle Details</FormRowHeader>
+
+          <FormRowHeader Icon={Car}>Vehicle Details</FormRowHeader>
           <FormRow className='!mt-0'>
             <FormField
               control={form.control}
@@ -197,9 +206,11 @@ const GetAQuoteForm = () => {
             name='damage_details'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Damage details</FormLabel>
+                <FormRowHeader Icon={Wrench}>Damage Details</FormRowHeader>
+
+                {/* <FormLabel>Damage Details</FormLabel> */}
                 <FormControl>
-                  <Textarea placeholder='Damage details' {...field} />
+                  <Textarea placeholder='Damage Details' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -210,9 +221,9 @@ const GetAQuoteForm = () => {
             name='additional_comments'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Additional Message</FormLabel>
+                <FormLabel>Additional Comments</FormLabel>
                 <FormControl>
-                  <Textarea placeholder='Additional Message' {...field} />
+                  <Textarea placeholder='Additional Comments' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

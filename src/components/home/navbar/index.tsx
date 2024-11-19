@@ -17,8 +17,13 @@ const CallLink = ({
   children: React.ReactNode
 }) => {
   return (
-    <Link href={href} className='flex items-center gap-1'>
-      <FaPhone className='inline-flex text-sm' />
+    <Link
+      href={href}
+      className='flex items-center gap-1 text-green-700 transition-colors hover:text-green-600'
+    >
+      <div className='flex h-5 w-5 items-center justify-center rounded-full bg-green-800 bg-opacity-25 text-sm sm:h-6 sm:w-6'>
+        <FaPhone className='text-green-700' />
+      </div>
       <span>{children}</span>
     </Link>
   )
@@ -39,7 +44,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className='sticky top-0 z-[9999] bg-gray-200 py-1 text-white'
+      className='sticky top-0 z-[9999] bg-[#D3F2D0] py-1 text-white'
       ref={ref}
       initial='hidden'
       animate={inView ? 'visible' : 'hidden'}
@@ -57,10 +62,19 @@ const Navbar = () => {
           </div>
           <h1 className='flex flex-col text-nowrap text-xs text-transparent sm:block md:text-lg lg:text-2xl'>
             {/* <span className='font-medium text-gray-900'>Autoglass Shop</span> */}
-            <span className='font-medium text-gray-900'>Hotline:</span>
+            <span className='text-[16px] font-medium text-green-700 hover:text-green-600'>
+              Hotline:
+            </span>
+            <br />
             <Link
               href='tel:1300-002-345'
-              className='flex items-center gap-1 font-medium text-green-900 md:gap-2'
+              className='flex items-center gap-1 text-[24px] font-bold text-green-700 transition-colors hover:text-green-600 md:gap-2'
+              style={{
+                textShadow:
+                  '0 0 5px #a8f29b, 0 0 10px #a8f29b, 0 0 20px #a8f29b, 0 0 40px #a8f29b, 0 0 80px #a8f29b',
+                animation: 'bounce-soft 1s infinite',
+                display: 'inline-block'
+              }}
             >
               1300-002-345
             </Link>
@@ -68,9 +82,13 @@ const Navbar = () => {
         </div>
         <aside className='flex items-center gap-2 text-xs md:gap-5 md:text-xl'>
           <div className='flex items-center gap-1'>
-            <div className='flex flex-col text-primary-main'>
-              <CallLink href='tel:03 9357 5904'>SYD: 02 9756 6887</CallLink>
-              <CallLink href='tel:03 9357 5904'>MEL: 03 9357 5904</CallLink>
+            <div className='flex flex-col gap-1 text-green-700 transition-colors hover:text-green-600'>
+              <CallLink href='tel:02 9756 6887'>
+                <span className='font-bold'>SYD :</span> 02 9756 6887
+              </CallLink>
+              <CallLink href='tel:03 9357 5904'>
+                <span className='font-bold'>MEL :</span> 03 9357 5904
+              </CallLink>
             </div>
           </div>
         </aside>
