@@ -1,7 +1,6 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
-import { loginSchemaProps } from '@/components/auth/login'
 export interface LoginProps {
   success: boolean
   message: string

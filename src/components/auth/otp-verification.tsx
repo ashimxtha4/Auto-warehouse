@@ -41,7 +41,7 @@ const OtpVerification = () => {
   return (
     <>
       <div>Please enter the OTP received in your email.</div>
-      <InputOTP maxLength={5} value={otp}>
+      <InputOTP maxLength={5} value={otp} onChange={value => setOtp(value)}>
         <InputOTPGroup>
           <InputOTPSlot index={0} />
           <InputOTPSlot index={1} />
