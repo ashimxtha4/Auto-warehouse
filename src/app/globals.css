@@ -110,3 +110,12 @@
 .clip-path-right-diagonal {
   clip-path: polygon(70% 0, 100% 0, 100% 100%, 10% 100%);
 }
+
+@keyframes bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
