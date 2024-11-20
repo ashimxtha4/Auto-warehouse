@@ -76,7 +76,8 @@ const RegisterPage = () => {
 
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative w-full max-w-md transform rounded-lg bg-white p-8 shadow-lg transition-transform hover:scale-105'>
+      <div className='relative w-full h-3/4 max-w-md transform rounded-lg bg-white p-8 shadow-lg max-h-full overflow-y-auto m-2'>
+
         <button
           onClick={closeRegisterDialog}
           className='absolute right-3 top-3 text-gray-600 transition hover:text-red-900'
