@@ -11,6 +11,7 @@ import RegisterPage from '@/components/auth/register'
 import LoginPage from '@/components/auth/login'
 import { useAuthStore } from '@/slice/auth-state-slice'
 import AuthDialog from './auth-dialog'
+import OTPDialog from './otp-dialog'
 
 const UserProfile = () => {
   const {
@@ -77,6 +78,7 @@ const UserProfile = () => {
                 triggerButton='Register'
                 dialogContent={<RegisterPage />}
               />
+              <OTPDialog />
             </>
           ) : (
             <button

@@ -2,7 +2,6 @@ import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
 import { registerSchemaProps } from '@/components/auth/register'
-import toast from 'react-hot-toast'
 import { useUserStore } from '@/slice/user-slice'
 
 export interface RegisterResponseProps {
@@ -43,9 +42,8 @@ export const useGetRegisterUser = () => {
   return useMutation({
     mutationKey: ['post' + api.customer.register.post],
     mutationFn: postRegisterUser,
-    onSuccess: data => {
-      setNewUserData(data.data.data.data[0])
-      toast.success(data.data.data.message)
+    onSuccess: async data => {
+      await setNewUserData(data?.data?.data?.data[0])
     }
   })
 }

@@ -17,25 +17,28 @@ const OtpVerification = () => {
 
   const { closeOTPDialog, openLoginDialog } = useAuthStore()
   const { newUserData } = useUserStore()
+  console.log(newUserData, 'newUserData-----')
 
   const { mutateAsync } = useGetOTPVerify()
 
   const handleSubmitOTP = async () => {
     try {
-      mutateAsync({
+      await mutateAsync({
         customer_id: newUserData.id,
         otp: parseInt(otp),
         email: newUserData.email
       })
-      toast.success('OTP Verified Successfully!')
       closeOTPDialog()
       openLoginDialog()
+      return toast.success('OTP Verified Successfully!')
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.message)
-      } else {
-        toast.error('Something went wrong!')
+        if (error?.message === 'Request failed with status code 400') {
+          return toast.error('Invalid OTP!')
+        }
+        return toast.error(error.message)
       }
+      return toast.error('Something went wrong!')
     }
   }
 
