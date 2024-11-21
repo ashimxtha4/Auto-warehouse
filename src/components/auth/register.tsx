@@ -63,20 +63,23 @@ const RegisterPage = () => {
     }
     try {
       await mutateAsync(data)
-      toast.success('User Registered Successfully!')
       closeRegisterDialog()
       openOTPDialog()
+      return toast.success('Registration successful! Please verify your email.')
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.message)
+        if (error.response?.data?.message) {
+          return toast.error(error.response.data.message)
+        }
+        return toast.error(error.message)
       }
-      toast.error('Something went wrong!')
+      return toast.error('Something went wrong!')
     }
   }
 
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative w-full max-w-md transform rounded-lg bg-white p-8 shadow-lg transition-transform hover:scale-105'>
+      <div className='relative m-2 h-3/4 max-h-full w-full max-w-md transform overflow-y-auto rounded-lg bg-white p-8 shadow-lg'>
         <button
           onClick={closeRegisterDialog}
           className='absolute right-3 top-3 text-gray-600 transition hover:text-red-900'

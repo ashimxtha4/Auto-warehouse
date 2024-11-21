@@ -61,22 +61,23 @@ const Navbar = () => {
             />
           </div>
           <h1 className='flex flex-col text-nowrap text-transparent sm:block md:text-lg lg:text-2xl'>
-            <span className='text-[16px] font-medium text-green-700 hover:text-green-600'>
-              Hotline:
-            </span>
-            <br />
-            <Link
-              href='tel:1300-002-345'
-              className='flex items-center gap-1 text-base font-bold text-green-700 transition-colors hover:text-green-600 md:gap-2 md:text-[24px]'
-              style={{
-                textShadow:
-                  '0 0 5px #a8f29b, 0 0 10px #a8f29b, 0 0 20px #a8f29b, 0 0 40px #a8f29b, 0 0 80px #a8f29b',
-                animation: 'bounce-soft 1s infinite',
-                display: 'inline-block'
-              }}
-            >
-              1300-002-345
-            </Link>
+            <div className='flex flex-col'>
+              <span className='text-[16px] font-medium text-green-700 hover:text-green-600'>
+                Hotline:
+              </span>
+              <Link
+                href='tel:1300-002-345'
+                className='flex items-center gap-1 text-base font-bold text-green-700 transition-colors hover:text-green-600 md:gap-2 md:text-[24px]'
+                style={{
+                  textShadow:
+                    '0 0 5px #a8f29b, 0 0 10px #a8f29b, 0 0 20px #a8f29b, 0 0 40px #a8f29b, 0 0 80px #a8f29b',
+                  animation: 'bounce-soft 1s infinite',
+                  display: 'inline-block'
+                }}
+              >
+                1300-002-345
+              </Link>
+            </div>
           </h1>
         </div>
         <aside className='flex items-center gap-2 text-xs md:gap-5 md:text-xl'>
