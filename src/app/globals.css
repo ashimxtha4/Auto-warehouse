@@ -27,7 +27,7 @@
 }
 
 .callout-line-title {
-  @apply gradient-bg absolute flex items-center text-nowrap rounded-md px-[6px] py-[2px] text-white hover:scale-105;
+  @apply gradient-bg absolute flex items-center text-nowrap rounded-md px-1 py-[2px] text-xs text-white hover:scale-105 md:px-[6px] md:text-base;
 }
 
 .footer-heading {
@@ -112,7 +112,8 @@
 }
 
 @keyframes bounce-soft {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
