@@ -25,11 +25,11 @@ const StatsSection = () => {
   return (
     <div ref={ref} className='my-10'>
       <motion.div
-        initial={{ x: -100, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={headerControls}
         variants={{
           visible: {
-            x: 0,
+            y: 0,
             opacity: 1,
             transition: { duration: 0.9, ease: 'easeOut' }
           }
@@ -55,12 +55,12 @@ const StatsSection = () => {
             <motion.div
               key={index}
               className='text-center'
-              initial={{ opacity: 0, x: 100 }}
+              initial={{ opacity: 0, y: 100 }}
               animate={controls}
               variants={{
                 visible: {
                   opacity: 1,
-                  x: 0,
+                  y: 0,
                   transition: {
                     duration: 0.7,
                     delay: index * 0.2,

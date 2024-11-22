@@ -15,7 +15,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line left-[13px] top-[55px] !h-[45px] w-[2px]' />
         <span className='vehicle-line left-[13px] top-[56px] w-[160px]' />
         <Button
-          onClick={() => handleCallOutLines('wind screen')}
+          onClick={() => handleCallOutLines('FRONT WINDSCREEN')}
           className='callout-line-title left-[144px] top-[42px]'
         >
           WindScreen
@@ -26,7 +26,7 @@ const VanCalloutLines = () => {
         <span className='circle-dot -left-[76px] top-[120px]' />
         <span className='vehicle-line -left-[195px] top-[123px] w-[120px]' />
         <Button
-          onClick={() => handleCallOutLines('left front door')}
+          onClick={() => handleCallOutLines('FRONT DOOR LH')}
           className='callout-line-title -left-[260px] top-[115px]'
         >
           Left Front Door
@@ -37,7 +37,7 @@ const VanCalloutLines = () => {
         <span className='circle-dot left-[66px] top-[120px]' />
         <span className='vehicle-line left-[68px] top-[123px] w-[120px]' />
         <Button
-          onClick={() => handleCallOutLines('right front door')}
+          onClick={() => handleCallOutLines('FRONT DOOR RH')}
           className='callout-line-title left-[144px] top-[115px]'
         >
           Right Front Door
@@ -48,7 +48,7 @@ const VanCalloutLines = () => {
         <span className='circle-dot -left-[74px] top-[158px]' />
         <span className='vehicle-line -left-[192px] top-[161px] w-[120px]' />
         <Button
-          onClick={() => handleCallOutLines('left back door')}
+          onClick={() => handleCallOutLines('REAR DOOR LH')}
           className='callout-line-title -left-[257px] top-[148px]'
         >
           Left Back Door
@@ -59,7 +59,7 @@ const VanCalloutLines = () => {
         <span className='circle-dot left-[66px] top-[158px]' />
         <span className='vehicle-line left-[68px] top-[161px] w-[120px]' />
         <Button
-          onClick={() => handleCallOutLines('right back door')}
+          onClick={() => handleCallOutLines('REAR DOOR RH')}
           className='callout-line-title left-[144px] top-[148px]'
         >
           Right Back Door

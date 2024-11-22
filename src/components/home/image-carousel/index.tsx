@@ -44,7 +44,7 @@ const ImageCarousel = () => {
       ]}
       className='relative mx-auto'
     >
-      <CarouselContent>
+      <CarouselContent className='mt-5'>
         {images.map((image, index) => (
           <CarouselItem key={index} className='basis-full lg:basis-2/3'>
             <div className='relative aspect-[16/9] w-full overflow-hidden rounded-lg'>

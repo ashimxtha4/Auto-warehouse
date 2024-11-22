@@ -11,7 +11,7 @@ const TrustFactors = () => {
   const headerControls = useAnimation()
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.9
+    threshold: 0.6
   })
 
   useEffect(() => {
@@ -24,11 +24,11 @@ const TrustFactors = () => {
   return (
     <div ref={ref} className='my-10'>
       <motion.div
-        initial={{ x: -100, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={headerControls}
         variants={{
           visible: {
-            x: 0,
+            y: 0,
             opacity: 1,
             transition: { duration: 0.9, ease: 'easeOut' }
           }
@@ -42,12 +42,12 @@ const TrustFactors = () => {
           <motion.div
             key={item.id}
             className='mb-4 flex flex-col items-center gap-2 rounded-lg bg-white p-4 shadow-lg'
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={controls}
             variants={{
               visible: {
                 opacity: 1,
-                x: 0,
+                y: 0,
                 transition: {
                   duration: 0.8,
                   delay: index * 0.2,

@@ -72,6 +72,7 @@ export const useSearchVehicles = () => {
   const vehicle_model_id = form.watch('model')
   const vehicle_series_id = form.watch('series')
   const vehicle_type_id = form.watch('type')
+  const vehicle_year_id = form.watch('year')
 
   const parseId = (id: string | undefined) => (id ? parseInt(id) : undefined)
 
@@ -100,13 +101,17 @@ export const useSearchVehicles = () => {
         await mutateSidebar(parseInt(vehicle_brand_id))
       }
 
-      if (vehicle_model_id) {
-        await mutateVehicleSeries(parseInt(vehicle_model_id))
+      if (vehicle_brand_id || vehicle_model_id || vehicle_year_id) {
+        await mutateVehicleSeries({
+          vehicle_brand_id: parseInt(vehicle_brand_id as string),
+          vehicle_model_id: parseId(vehicle_model_id),
+          vehicle_year_id: vehicle_year_id
+        })
       }
 
       if (vehicle_brand_id || vehicle_model_id || vehicle_type_id) {
         await mutateVehicleGroup({
-          vehicle_brand_id: parseId(vehicle_brand_id),
+          vehicle_brand_id: parseInt(vehicle_brand_id as string),
           vehicle_model_id: parseId(vehicle_model_id),
           vehicle_type_id: parseId(vehicle_type_id)
         })
@@ -131,6 +136,7 @@ export const useSearchVehicles = () => {
     vehicle_model_id,
     vehicle_series_id,
     vehicle_type_id,
+    vehicle_year_id,
     mutateVehicleModel,
     mutateVehicleSeries,
     mutateVehicleBody,

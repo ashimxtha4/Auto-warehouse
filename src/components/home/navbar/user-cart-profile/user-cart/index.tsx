@@ -28,7 +28,7 @@ const UserCart = () => {
           </span>
         </button>
       </HoverCardTrigger>
-      <HoverCardContent className='absolute -left-[100px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800'>
+      <HoverCardContent className='absolute -left-[210px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 md:-left-[100px]'>
         <HoverCartLinks />
       </HoverCardContent>
     </HoverCard>

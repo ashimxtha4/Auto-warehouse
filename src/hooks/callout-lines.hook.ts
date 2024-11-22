@@ -8,9 +8,8 @@ export const useCallOutLines = () => {
 
   const handleCallOutLines = (line: string) => {
     const params = new URLSearchParams(searchParams?.toString())
-    params.set('keyword', line)
+    params.set('specific', line)
 
-    // Update the URL with the new search params
     router.push(`${pathname}?${params.toString()}`, { scroll: false })
   }
 

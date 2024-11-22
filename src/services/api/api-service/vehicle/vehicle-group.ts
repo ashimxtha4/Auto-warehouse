@@ -13,7 +13,7 @@ const getVehicleGroup = async ({
   vehicle_model_id,
   vehicle_type_id
 }: {
-  vehicle_brand_id?: number
+  vehicle_brand_id: number
   vehicle_model_id?: number
   vehicle_type_id?: number
 }): Promise<{

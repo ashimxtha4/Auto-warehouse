@@ -28,7 +28,7 @@ const Footer = () => {
       variants={footerVariants}
     >
       <motion.div
-        className='container grid grid-cols-1 items-start justify-between gap-2 py-2 text-white md:grid-cols-2 md:gap-4 md:py-5 lg:grid-cols-4'
+        className='container grid grid-cols-1 items-start justify-between gap-y-5 py-2 text-white md:grid-cols-2 md:gap-4 md:py-5 lg:grid-cols-4'
         variants={footerVariants}
       >
         <FooterContact />
@@ -37,11 +37,11 @@ const Footer = () => {
         <FollowUs />
       </motion.div>
       <motion.p
-        className='my-4 h-[1px] w-full bg-gray-600'
+        className='h-[1px] w-full bg-gray-600'
         variants={footerVariants}
       />
       <motion.p
-        className='pb-1 text-center text-base font-medium text-white md:pb-2'
+        className='py-4 text-center text-base font-medium text-white'
         variants={footerVariants}
       >
         Copyright © {new Date().getFullYear()} All rights reserved | Auto Glass
