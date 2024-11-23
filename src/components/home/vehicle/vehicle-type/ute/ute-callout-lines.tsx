@@ -13,54 +13,54 @@ const UteCalloutLines = () => {
       <div className='absolute'>
         <span className='circle-dot left-[10px] top-[97px]' />
         <span className='vehicle-line left-[13px] top-[55px] !h-[45px] w-[2px]' />
-        <span className='vehicle-line left-[13px] top-[56px] w-[160px]' />
+        <span className='vehicle-line left-[13px] top-[56px] w-[80px] md:w-[160px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT WINDSCREEN')}
-          className='callout-line-title left-[144px] top-[42px]'
+          className='callout-line-title left-[86px] top-[38px] md:left-[144px] md:top-[42px]'
         >
           WindScreen
         </Button>
       </div>
       {/* Front Left door */}
       <div className='absolute'>
-        <span className='circle-dot -left-[62px] top-[168px]' />
-        <span className='vehicle-line -left-[174px] top-[171px] w-[120px]' />
+        <span className='circle-dot -left-[52px] top-[134px] md:-left-[62px] md:top-[168px]' />
+        <span className='vehicle-line -left-[98px] top-[137px] w-[50px] md:-left-[174px] md:top-[171px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT DOOR LH')}
-          className='callout-line-title -left-[260px] top-[158px]'
+          className='callout-line-title -left-[185px] top-[120px] md:-left-[260px] md:top-[158px]'
         >
           Left Front Door
         </Button>
       </div>
       {/* Right Front door */}
       <div className='absolute'>
-        <span className='circle-dot left-[54px] top-[168px]' />
-        <span className='vehicle-line left-[56px] top-[171px] w-[120px]' />
+        <span className='circle-dot left-[45px] top-[134px] md:left-[54px] md:top-[168px]' />
+        <span className='vehicle-line left-[48px] top-[137px] w-[50px] md:left-[56px] md:top-[171px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT DOOR RH')}
-          className='callout-line-title left-[144px] top-[156px]'
+          className='callout-line-title left-[86px] top-[120px] md:left-[144px] md:top-[156px]'
         >
           Right Front Door
         </Button>
       </div>
       {/* Left Back door */}
       <div className='absolute'>
-        <span className='circle-dot -left-[62px] top-[220px]' />
-        <span className='vehicle-line -left-[174px] top-[223px] w-[120px]' />
+        <span className='circle-dot -left-[50px] top-[185px] md:-left-[62px] md:top-[220px]' />
+        <span className='vehicle-line -left-[98px] top-[188px] w-[50px] md:-left-[174px] md:top-[223px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('REAR DOOR LH')}
-          className='callout-line-title -left-[257px] top-[210px]'
+          className='callout-line-title -left-[185px] top-[170px] md:-left-[257px] md:top-[210px]'
         >
           Left Back Door
         </Button>
       </div>
       {/* Right Back door */}
       <div className='absolute'>
-        <span className='circle-dot left-[54px] top-[220px]' />
-        <span className='vehicle-line left-[56px] top-[223px] w-[120px]' />
+        <span className='circle-dot left-[42px] top-[185px] md:left-[54px] md:top-[220px]' />
+        <span className='vehicle-line left-[42px] top-[188px] w-[50px] md:left-[56px] md:top-[223px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('REAR DOOR RH')}
-          className='callout-line-title left-[144px] top-[210px]'
+          className='callout-line-title left-[86px] top-[170px] md:left-[144px] md:top-[210px]'
         >
           Right Back Door
         </Button>
