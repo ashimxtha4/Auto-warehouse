@@ -55,8 +55,8 @@ const VehiclePartsList = ({
           ))
         ) : (
           <p>
-            We couldn't find any products matching your search. <br /> Please
-            feel free to contact us for a{' '}
+            We couldn&apos;t find any products matching your search. <br />{' '}
+            Please feel free to contact us for a{' '}
             <Link
               href='/get-a-quote'
               className='font-bold text-green-950 underline'
