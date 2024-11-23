@@ -3,19 +3,13 @@ import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
 import type { VehicleBodyProps } from './vehicle-body'
 
-const getVehicleYear = async ({
-  vehicle_brand_id,
-  vehicle_model_id
-}: {
+const getVehicleYear = async (data: {
   vehicle_brand_id: number
   vehicle_model_id?: number
 }): Promise<{
   data: VehicleBodyProps
 }> => {
-  return await httpClient.post(api.vehicle.year.post, {
-    vehicle_brand_id,
-    vehicle_model_id
-  })
+  return await httpClient.post(api.vehicle.year.post, data)
 }
 
 export const useGetVehicleYear = () => {

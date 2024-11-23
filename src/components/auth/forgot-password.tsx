@@ -19,20 +19,13 @@ import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
 import { isAxiosError } from 'axios'
 import { useAuthStore } from '@/slice/auth-state-slice'
+import { usePostForgotPassword } from '@/services/api/api-service/auth/forgot-password'
 
-const forgotPasswordSchema = z
-  .object({
-    new_password: z
-      .string({ required_error: 'New Password is required' })
-      .min(6, 'Password should be of minimum 6 characters'),
-    confirm_new_password: z.string({
-      required_error: 'Confirm New Password is required'
-    })
-  })
-  .refine(data => data.new_password === data.confirm_new_password, {
-    message: 'New Password and Confirm Password should match.',
-    path: ['confirm_new_password']
-  })
+const forgotPasswordSchema = z.object({
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Invalid email address')
+})
 
 export type ForgotPasswordSchemaProps = z.infer<typeof forgotPasswordSchema>
 
@@ -43,21 +36,18 @@ const ForgotPasswordPage = () => {
     resolver: zodResolver(forgotPasswordSchema)
   })
 
+  const { mutateAsync } = usePostForgotPassword()
+
   const onSubmit = async (data: ForgotPasswordSchemaProps) => {
-    if (data.new_password !== data.confirm_new_password) {
-      form.setError('confirm_new_password', {
-        type: 'manual',
-        message: 'Passwords do not match'
-      })
-      return
-    }
     try {
-      await new Promise(res => setTimeout(res, 1000))
-      toast.success('Password reset successfully!')
-      closeAll()
+      const response = await mutateAsync(data)
+      toast.success(response.data.message)
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.message)
+        if (error.response?.data?.message) {
+          return toast.error(error.response?.data.message)
+        }
+        return toast.error(error.message)
       }
       toast.error('Something went wrong!')
     }
@@ -84,16 +74,16 @@ const ForgotPasswordPage = () => {
           >
             <FormField
               control={form.control}
-              name='new_password'
+              name='email'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> New Password
+                    <Lock className='h-5 w-5 text-gray-500' /> Email
                   </FormLabel>
                   <FormControl>
                     <Input
-                      type='password'
-                      placeholder='Enter new password'
+                      type='email'
+                      placeholder='Enter your email'
                       {...field}
                     />
                   </FormControl>
@@ -101,27 +91,6 @@ const ForgotPasswordPage = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name='confirm_new_password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> Confirm New
-                    Password
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type='password'
-                      placeholder='Confirm new password'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <Button
               type='submit'
               variant='default'

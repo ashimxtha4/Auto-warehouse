@@ -21,6 +21,7 @@ import toast from 'react-hot-toast'
 import { useAuthStore } from '@/slice/auth-state-slice'
 import { Mail, Lock, Phone, User, ArrowRight, XCircle } from 'lucide-react'
 import ButtonLoader from '@/utils/button-loader'
+import { useUserStore } from '@/slice/user-slice'
 
 const registerSchema = loginSchema
   .extend({
@@ -41,6 +42,7 @@ export type registerSchemaProps = z.infer<typeof registerSchema>
 
 const RegisterPage = () => {
   const { closeRegisterDialog, openLoginDialog, openOTPDialog } = useAuthStore()
+  const { setNewUserData } = useUserStore()
 
   const handleSwitch = () => {
     closeRegisterDialog()
@@ -62,7 +64,8 @@ const RegisterPage = () => {
       return
     }
     try {
-      await mutateAsync(data)
+      const response = await mutateAsync(data)
+      setNewUserData(response.data.data[0])
       closeRegisterDialog()
       openOTPDialog()
       return toast.success('Registration successful! Please verify your email.')
@@ -73,7 +76,7 @@ const RegisterPage = () => {
         }
         return toast.error(error.message)
       }
-      return toast.error('Something went wrong!')
+      toast.error('Something went wrong!')
     }
   }
 

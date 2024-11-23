@@ -12,6 +12,7 @@ import LoginPage from '@/components/auth/login'
 import { useAuthStore } from '@/slice/auth-state-slice'
 import AuthDialog from './auth-dialog'
 import OTPDialog from './otp-dialog'
+import ForgotPasswordDialog from './forgot-password-dialog'
 
 const UserProfile = () => {
   const {
@@ -79,6 +80,7 @@ const UserProfile = () => {
                 dialogContent={<RegisterPage />}
               />
               <OTPDialog />
+              <ForgotPasswordDialog />
             </>
           ) : (
             <button

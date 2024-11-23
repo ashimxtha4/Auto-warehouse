@@ -37,7 +37,12 @@ const LoginPage = ({
 }: {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
-  const { openRegisterDialog, closeLoginDialog, closeAll } = useAuthStore()
+  const {
+    openRegisterDialog,
+    closeLoginDialog,
+    closeAll,
+    openForgotPasswordDialog
+  } = useAuthStore()
 
   const form = useForm<loginSchemaProps>({
     resolver: zodResolver(loginSchema)
@@ -53,7 +58,10 @@ const LoginPage = ({
       setIsLoggedIn(true)
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.message)
+        if (error.response?.data.message) {
+          return toast.error(error.response.data.message)
+        }
+        return toast.error(error.message)
       }
       toast.error('Something went wrong!')
     }
@@ -126,7 +134,11 @@ const LoginPage = ({
 
             <div className='mt-4 flex items-center justify-between'>
               <button
-                onClick={e => e.preventDefault()}
+                onClick={() => {
+                  closeLoginDialog()
+                  openForgotPasswordDialog()
+                }}
+                type='button'
                 className='text-sm text-gray-600 transition duration-300 hover:underline'
               >
                 Forgot password?

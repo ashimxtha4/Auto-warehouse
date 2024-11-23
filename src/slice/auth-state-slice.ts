@@ -5,12 +5,15 @@ interface UIState {
   isLoginDialogOpen: boolean
   isHoverCardOpen: boolean
   isOTPDialogOpen: boolean
+  isForgotPasswordDialogOpen: boolean
   openRegisterDialog: () => void
   closeRegisterDialog: () => void
   openLoginDialog: () => void
   closeLoginDialog: () => void
   openOTPDialog: () => void
   closeOTPDialog: () => void
+  openForgotPasswordDialog: () => void
+  closeForgotPasswordDialog: () => void
   setHoverCardOpen: (open: boolean) => void
   closeAll: () => void
 }
@@ -20,6 +23,7 @@ export const useAuthStore = create<UIState>(set => ({
   isLoginDialogOpen: false,
   isHoverCardOpen: false,
   isOTPDialogOpen: false,
+  isForgotPasswordDialogOpen: false,
 
   openRegisterDialog: () =>
     set({
@@ -45,17 +49,31 @@ export const useAuthStore = create<UIState>(set => ({
 
   closeOTPDialog: () => set({ isOTPDialogOpen: false }),
 
+  openForgotPasswordDialog: () =>
+    set({
+      isForgotPasswordDialogOpen: true,
+      isHoverCardOpen: true
+    }),
+
+  closeForgotPasswordDialog: () => set({ isForgotPasswordDialogOpen: false }),
+
   setHoverCardOpen: (open: boolean) =>
     set(state => ({
       // Only allow hover card to close if no dialogs are open
       isHoverCardOpen:
-        open || state.isLoginDialogOpen || state.isRegisterDialogOpen
+        open ||
+        state.isLoginDialogOpen ||
+        state.isRegisterDialogOpen ||
+        state.isOTPDialogOpen ||
+        state.isForgotPasswordDialogOpen
     })),
 
   closeAll: () =>
     set({
       isRegisterDialogOpen: false,
       isLoginDialogOpen: false,
-      isHoverCardOpen: false
+      isHoverCardOpen: false,
+      isOTPDialogOpen: false,
+      isForgotPasswordDialogOpen: false
     })
 }))

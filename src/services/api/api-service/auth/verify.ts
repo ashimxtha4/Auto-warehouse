@@ -1,7 +1,8 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
-export interface LoginProps {
+
+export interface UserVerifyProps {
   success: boolean
   message: string
 }
@@ -11,7 +12,7 @@ const postOTPVerify = async (data: {
   otp: number
   email: string
 }): Promise<{
-  data: LoginProps
+  data: UserVerifyProps
 }> => {
   return await httpClient.post(api.customer.register.verify.post, data)
 }

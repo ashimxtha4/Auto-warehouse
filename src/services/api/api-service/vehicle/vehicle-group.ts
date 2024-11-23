@@ -8,22 +8,14 @@ export interface VehicleGroupProps {
   status: string
 }
 
-const getVehicleGroup = async ({
-  vehicle_brand_id,
-  vehicle_model_id,
-  vehicle_type_id
-}: {
+const getVehicleGroup = async (data: {
   vehicle_brand_id: number
   vehicle_model_id?: number
   vehicle_type_id?: number
 }): Promise<{
   data: { data: VehicleGroupProps[] }
 }> => {
-  return await httpClient.post(api.vehicle.group.post, {
-    vehicle_brand_id,
-    vehicle_model_id,
-    vehicle_type_id
-  })
+  return await httpClient.post(api.vehicle.group.post, data)
 }
 
 export const useGetVehicleGroup = () => {

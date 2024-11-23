@@ -9,6 +9,12 @@ export const api = {
       verify: {
         post: '/customer/register/verify'
       }
+    },
+    forgotPassword: {
+      post: '/customer/forgot_password'
+    },
+    resetPassword: {
+      get: '/customer/reset_password'
     }
   },
   // vehicle
