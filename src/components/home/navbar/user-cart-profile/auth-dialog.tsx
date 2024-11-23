@@ -17,7 +17,7 @@ const AuthDialog: React.FC<AuthDialogProps> = ({
   return (
     <Dialog open={dialogOpen} onOpenChange={dialogOpenChange}>
       <DialogTrigger asChild>
-        <button className='mb-1 border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900'>
+        <button className='rounded-md bg-gray-800 px-2 py-1 text-start text-white transition-all hover:bg-gray-900'>
           {triggerButton}
         </button>
       </DialogTrigger>

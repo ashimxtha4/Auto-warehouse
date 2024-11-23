@@ -50,12 +50,12 @@ const UserProfile = () => {
         id='hover-profile-card'
         className='absolute -left-[238px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 lg:-left-[130px]'
       >
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-y-1'>
           {PROFILE_LINKS.map(item => (
             <Link
               key={item.href}
               href={item.href}
-              className='mb-1 border-b border-b-gray-600 pb-2 text-gray-900 hover:text-green-900'
+              className='rounded-md bg-gray-800 px-2 py-1 text-white transition-all hover:bg-gray-900'
             >
               {item.label}
             </Link>
@@ -90,7 +90,7 @@ const UserProfile = () => {
                 window.localStorage.clear()
                 setIsLoggedIn(false)
               }}
-              className='mb-1 w-full border-b border-b-gray-600 pb-2 text-start text-gray-900 hover:text-green-900 disabled:cursor-not-allowed disabled:text-gray-500'
+              className='w-full rounded-md bg-gray-800 px-2 py-1 text-start text-white transition-all hover:bg-gray-900 disabled:cursor-not-allowed disabled:text-gray-500'
             >
               Logout
             </button>
