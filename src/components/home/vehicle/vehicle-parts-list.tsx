@@ -24,7 +24,7 @@ const VehiclePartsList = ({
           <span className='text-gray-700'>Products Found</span>
           {/* <SelectForm /> */}
         </div>
-        <div className='flex items-center justify-center gap-1 rounded-md border'>
+        <div className='hidden gap-1 rounded-md border sm:flex sm:items-center sm:justify-center'>
           <CiGrid41
             size={24}
             className={cn(
