@@ -17,9 +17,9 @@ import { Button } from '../ui/button'
 import { Lock, ArrowRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
-import { isAxiosError } from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import { useGetResetPassword } from '@/services/api/api-service/auth/reset-password'
+import { GenericError } from '@/utils/generic-error'
 
 const resetPasswordSchema = z
   .object({
@@ -71,13 +71,7 @@ const ResetPasswordForm = () => {
       toast.success('Password reset successfully!')
       router.push('/')
     } catch (error) {
-      if (isAxiosError(error)) {
-        if (error.response?.data?.message) {
-          return toast.error(error.response?.data.message)
-        }
-        toast.error(error.message)
-      }
-      toast.error('Something went wrong!')
+      GenericError(error)
     }
   }
 

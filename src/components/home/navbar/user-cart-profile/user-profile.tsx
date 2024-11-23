@@ -48,7 +48,7 @@ const UserProfile = () => {
       </HoverCardTrigger>
       <HoverCardContent
         id='hover-profile-card'
-        className='absolute -left-[238px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 md:-left-[130px]'
+        className='absolute -left-[238px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 lg:-left-[130px]'
       >
         <div className='flex flex-col'>
           {PROFILE_LINKS.map(item => (

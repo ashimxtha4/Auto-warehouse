@@ -16,10 +16,10 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { useGetLogin } from '@/services/api/api-service/auth/login'
 import toast from 'react-hot-toast'
-import { isAxiosError } from 'axios'
 import ButtonLoader from '@/utils/button-loader'
 import { useAuthStore } from '@/slice/auth-state-slice'
 import { Mail, Lock, UserPlus, ArrowRight, XCircle } from 'lucide-react'
+import { GenericError } from '@/utils/generic-error'
 
 export const loginSchema = z.object({
   email: z
@@ -57,13 +57,7 @@ const LoginPage = ({
       closeAll()
       setIsLoggedIn(true)
     } catch (error) {
-      if (isAxiosError(error)) {
-        if (error.response?.data.message) {
-          return toast.error(error.response.data.message)
-        }
-        return toast.error(error.message)
-      }
-      toast.error('Something went wrong!')
+      GenericError(error)
     }
   }
 

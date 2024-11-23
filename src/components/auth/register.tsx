@@ -16,12 +16,12 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { loginSchema } from './login'
 import { useGetRegisterUser } from '@/services/api/api-service/auth/register'
-import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useAuthStore } from '@/slice/auth-state-slice'
 import { Mail, Lock, Phone, User, ArrowRight, XCircle } from 'lucide-react'
 import ButtonLoader from '@/utils/button-loader'
 import { useUserStore } from '@/slice/user-slice'
+import { GenericError } from '@/utils/generic-error'
 
 const registerSchema = loginSchema
   .extend({
@@ -70,13 +70,7 @@ const RegisterPage = () => {
       openOTPDialog()
       return toast.success('Registration successful! Please verify your email.')
     } catch (error) {
-      if (isAxiosError(error)) {
-        if (error.response?.data?.message) {
-          return toast.error(error.response.data.message)
-        }
-        return toast.error(error.message)
-      }
-      toast.error('Something went wrong!')
+      GenericError(error)
     }
   }
 

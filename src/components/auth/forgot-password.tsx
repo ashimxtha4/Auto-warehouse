@@ -17,9 +17,9 @@ import { Button } from '../ui/button'
 import { Lock, ArrowRight, XCircle } from 'lucide-react'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
-import { isAxiosError } from 'axios'
 import { useAuthStore } from '@/slice/auth-state-slice'
 import { usePostForgotPassword } from '@/services/api/api-service/auth/forgot-password'
+import { GenericError } from '@/utils/generic-error'
 
 const forgotPasswordSchema = z.object({
   email: z
@@ -36,20 +36,14 @@ const ForgotPasswordPage = () => {
     resolver: zodResolver(forgotPasswordSchema)
   })
 
-  const { mutateAsync } = usePostForgotPassword()
+  const { mutateAsync, isSuccess } = usePostForgotPassword()
 
   const onSubmit = async (data: ForgotPasswordSchemaProps) => {
     try {
       const response = await mutateAsync(data)
       toast.success(response.data.message)
     } catch (error) {
-      if (isAxiosError(error)) {
-        if (error.response?.data?.message) {
-          return toast.error(error.response?.data.message)
-        }
-        return toast.error(error.message)
-      }
-      toast.error('Something went wrong!')
+      GenericError(error)
     }
   }
 
@@ -67,45 +61,52 @@ const ForgotPasswordPage = () => {
           Reset Password
         </h2>
 
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-6 rounded-lg'
-          >
-            <FormField
-              control={form.control}
-              name='email'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> Email
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type='email'
-                      placeholder='Enter your email'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              type='submit'
-              variant='default'
-              className='flex w-full transform items-center justify-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
+        {isSuccess ? (
+          <p>
+            Please check your email. <br /> We have sent a link to reset your
+            password.
+          </p>
+        ) : (
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className='space-y-6 rounded-lg'
             >
-              {form.formState.isSubmitting ? (
-                <ButtonLoader />
-              ) : (
-                <>
-                  Reset Password <ArrowRight className='h-5 w-5' />
-                </>
-              )}
-            </Button>
-          </form>
-        </Form>
+              <FormField
+                control={form.control}
+                name='email'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='flex items-center gap-2'>
+                      <Lock className='h-5 w-5 text-gray-500' /> Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type='email'
+                        placeholder='Enter your email'
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                type='submit'
+                variant='default'
+                className='flex w-full transform items-center justify-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
+              >
+                {form.formState.isSubmitting ? (
+                  <ButtonLoader />
+                ) : (
+                  <>
+                    Reset Password <ArrowRight className='h-5 w-5' />
+                  </>
+                )}
+              </Button>
+            </form>
+          </Form>
+        )}
       </div>
     </div>
   )
