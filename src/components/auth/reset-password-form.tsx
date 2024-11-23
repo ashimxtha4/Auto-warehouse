@@ -14,7 +14,7 @@ import {
 } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { Lock, ArrowRight, XCircle } from 'lucide-react'
+import { Lock, ArrowRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
 import { isAxiosError } from 'axios'
@@ -156,6 +156,7 @@ const ResetPasswordForm = () => {
               type='submit'
               variant='default'
               className='flex w-full transform items-center justify-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
+              disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? (
                 <ButtonLoader />
