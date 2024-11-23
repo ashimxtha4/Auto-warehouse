@@ -9,7 +9,7 @@ const UteTruck = () => {
       <Image
         src={utetruck}
         alt='Vte and Truck'
-        className='max-h-[400px] max-w-[190px] object-cover'
+        className='max-h-[300px] max-w-[140px] object-cover md:max-h-[400px] md:max-w-[190px]'
       />
       <UteTruckCalloutLines />
     </>

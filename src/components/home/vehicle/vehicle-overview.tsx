@@ -22,7 +22,7 @@ const VehicleOverview = () => {
     case VehicleMake.HATCH:
       return <UteTruck />
     default:
-      return <Van />
+      return <Suv />
   }
 }
 
