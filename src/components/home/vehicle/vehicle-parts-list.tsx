@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import ProductItem from './product-item'
 import { productProps } from '@/services/api/api-service/product/product-list'
+import Link from 'next/link'
 
 const VehiclePartsList = ({
   productList,
@@ -53,7 +54,16 @@ const VehiclePartsList = ({
             <ProductItem key={index} item={item} />
           ))
         ) : (
-          <p>No Products available</p>
+          <p>
+            We couldn't find any products matching your search. <br /> Please
+            feel free to contact us for a{' '}
+            <Link
+              href='/get-a-quote'
+              className='font-bold text-green-950 underline'
+            >
+              personalized quote.
+            </Link>
+          </p>
         )}
       </div>
     </aside>

@@ -67,23 +67,6 @@ const VehicleParts = () => {
               </CardContent>
             )}
           </Card>
-
-          {/* <Card className='mt-4 rounded-lg bg-white shadow-lg'>
-            <CardHeader className='border-b bg-gray-100 py-2 font-medium text-green-700'>
-              Categories
-            </CardHeader>
-            <CardContent className='flex flex-col gap-2 p-3'>
-              {vehicleBodyData?.map(item => (
-                <Link
-                  key={item.}
-                  href={`/shop?type=${item.id}`}
-                  className='block rounded-md p-2 text-center text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700'
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </CardContent>
-          </Card> */}
         </aside>
       )}
 
