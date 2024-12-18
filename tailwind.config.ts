@@ -33,7 +33,8 @@ const config: Config = {
           tint: '#80ccb1',
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          text: '#1C2126'
+          text: '#1C2126',
+          danger: '#FF647C'
         },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

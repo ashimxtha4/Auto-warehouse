@@ -6,6 +6,8 @@ import ComboboxDropdown from '@/components/form/combox'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import ButtonLoader from '@/utils/button-loader'
+import { FaArrowRight } from 'react-icons/fa6'
+import { RxCrossCircled } from 'react-icons/rx'
 
 const SearchForm = () => {
   const {
@@ -30,9 +32,9 @@ const SearchForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 rounded-lg bg-white p-4 shadow-lg'
+          className='space-y-8 rounded-xl xl:rounded-full bg-white p-4 shadow-lg'
         >
-          <FormRow>
+          <FormRow isFormEmpty={isFormEmpty}>
             <FormField
               control={form.control}
               name='make'
@@ -145,30 +147,45 @@ const SearchForm = () => {
                 />
               )}
             />
+            <div className='flex justify-center gap-2'>
+              {!isFormEmpty && (
+                <Button
+                  type='reset'
+                  variant='outline'
+                  className='text-primary-danger hover:text-primary-danger h-[60px] rounded-full text-base font-semibold'
+                  onClick={() => {
+                    form.reset()
+                    if (Object.values(formValues).some(value => value)) {
+                      router.push('/')
+                    }
+                  }}
+                >
+                  <div className='flex items-center gap-1'>
+                    <span>Clear</span>
+                    <span className='flex h-10 w-10 items-center justify-center rounded-full'>
+                      <RxCrossCircled className='text-primary-danger' />
+                    </span>
+                  </div>
+                </Button>
+              )}
+              <Button
+                type='submit'
+                variant='default'
+                className='h-[60px] rounded-full bg-primary-main text-base font-semibold text-primary-text hover:bg-primary-main'
+              >
+                {form.formState.isSubmitting ? (
+                  <ButtonLoader />
+                ) : (
+                  <div className='flex items-center gap-4'>
+                    <span>Find Parts</span>
+                    <span className='flex h-10 w-10 items-center justify-center rounded-full bg-primary-text'>
+                      <FaArrowRight className='text-primary-main' />
+                    </span>
+                  </div>
+                )}
+              </Button>
+            </div>
           </FormRow>
-          <div className='!mt-2 flex justify-center gap-2 md:!mt-4'>
-            <Button
-              type='reset'
-              variant='outline'
-              className='text-lg font-semibold text-red-400 hover:scale-105 hover:text-red-500 disabled:cursor-not-allowed disabled:text-gray-600 md:text-xl'
-              onClick={() => {
-                form.reset()
-                if (Object.values(formValues).some(value => value)) {
-                  router.push('/')
-                }
-              }}
-              disabled={isFormEmpty}
-            >
-              Clear
-            </Button>
-            <Button
-              type='submit'
-              variant='default'
-              className='gradient-bg text-lg font-semibold text-white hover:scale-105 md:text-2xl'
-            >
-              {form.formState.isSubmitting ? <ButtonLoader /> : 'Search Parts'}
-            </Button>
-          </div>
         </form>
       </Form>
     </>
