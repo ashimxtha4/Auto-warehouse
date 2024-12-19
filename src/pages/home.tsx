@@ -14,12 +14,12 @@ const HomePageSection = ({ children }: { children: React.ReactNode }) => {
 const HomePage = () => {
   return (
     <main>
-      <div className='gradient-bg py-4'>
+      <div className='bg-car-ui h-screen w-full bg-cover bg-bottom bg-no-repeat py-4'>
+        <div className='flex container items-end justify-start text-center text-white sm:mb-0 sm:items-center'>
+          <BannerContent />
+        </div>
         <div className='container'>
           <SearchParts />
-        </div>
-        <div className='flex items-end justify-center text-center text-white sm:mb-0 sm:items-center'>
-          <BannerContent />
         </div>
       </div>
       <HomePageSection>

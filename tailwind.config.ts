@@ -79,7 +79,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)'
       },
       backgroundImage: {
-        'right-front-door': "url('/assets/skeleton/right-b.png')"
+        'car-ui': "url('/carUI.png')"
       },
       keyframes: {
         'caret-blink': {

@@ -1,12 +1,12 @@
 export const BANNER_ITEMS = [
-    {
-      id: '1',
-      label: 'Contact Us',
-      href: '/contact'
-    },
-    {
-      id: '2',
-      label: 'Get A Quote',
-      href: '/get-a-quote'
-    }
-  ]
+  {
+    id: '1',
+    label: 'GET A QUOTE',
+    href: '/get-a-quote'
+  },
+  {
+    id: '2',
+    label: 'CALL US',
+    href: '/contact'
+  }
+]
