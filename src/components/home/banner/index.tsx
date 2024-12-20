@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { BANNER_ITEMS } from '@/constants/banner-items'
 import { cn } from '@/lib/utils'
 import { FaArrowRight } from 'react-icons/fa'
-import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { FaPhoneVolume } from 'react-icons/fa6'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -46,9 +46,13 @@ const BannerContent = () => {
             >
               {item.label}
               {item.id === '1' ? (
-                <FaArrowRight size={18} />
+                <span className='rounded-full bg-white p-2 text-primary-text'>
+                  <FaArrowRight size={18} />
+                </span>
               ) : (
-                <IoMdCheckmarkCircleOutline size={20} />
+                <span className='rounded-full bg-primary-text p-2'>
+                  <FaPhoneVolume size={20} className='text-white' />
+                </span>
               )}
             </Link>
           </div>
