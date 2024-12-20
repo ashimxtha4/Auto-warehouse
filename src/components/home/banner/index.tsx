@@ -40,8 +40,8 @@ const BannerContent = () => {
               className={cn(
                 'mx-1 flex w-max items-center gap-2 rounded-full px-2 py-1 text-xs font-medium transition-all hover:scale-105 sm:mx-2 sm:px-4 sm:py-2 md:text-2xl',
                 item.id === '1'
-                  ? 'bg-primary-main hover:text-white'
-                  : 'bg-gray-700 text-white'
+                  ? 'bg-primary-text text-white hover:text-white'
+                  : 'bg-white text-primary-text'
               )}
             >
               {item.label}

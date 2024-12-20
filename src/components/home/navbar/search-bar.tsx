@@ -1,30 +1,38 @@
 import React from 'react'
-import { FaSearch } from 'react-icons/fa'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import { Separator } from '@/components/ui/separator'
-import { Loader2 } from 'lucide-react'
+import { CiSearch } from 'react-icons/ci'
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger
+// } from '@/components/ui/popover'
+// import { Separator } from '@/components/ui/separator'
+// import { Loader2 } from 'lucide-react'
 import { useSearchInput } from '@/hooks/search-input.hook'
 
 const SearchComponent = () => {
   const {
-    handleInputClick,
-    inputRef,
-    isLoading,
-    productList,
-    setSearch,
-    search,
-    setOpen,
-    open,
-    router,
-    debounceValue
+    // handleInputClick,
+    // inputRef,
+    // isLoading,
+    // productList,
+    // setSearch,
+    // search,
+    // setOpen,
+    // open,
+    // debounceValue
+    router
   } = useSearchInput()
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <>
+      <button
+        type='submit'
+        className='pl-1 text-base text-primary-text md:text-2xl'
+        onClick={() => router.push(`/shop`)}
+      >
+        <CiSearch size={18} />
+      </button>
+      {/* <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <form
           onSubmit={e => {
@@ -93,7 +101,8 @@ const SearchComponent = () => {
           </div>
         )}
       </PopoverContent>
-    </Popover>
+    </Popover> */}
+    </>
   )
 }
 

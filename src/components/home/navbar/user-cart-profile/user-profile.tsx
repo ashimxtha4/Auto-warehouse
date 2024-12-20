@@ -42,8 +42,11 @@ const UserProfile = () => {
       onOpenChange={setHoverCardOpen}
     >
       <HoverCardTrigger>
-        <button type='button' className='text-base md:text-2xl'>
-          <FaUserCircle />
+        <button
+          type='button'
+          className='rounded-full bg-primary-text p-1 text-base md:text-2xl'
+        >
+          <FaUserCircle size={18} className='rounded-full border border-white bg-white' />
         </button>
       </HoverCardTrigger>
       <HoverCardContent

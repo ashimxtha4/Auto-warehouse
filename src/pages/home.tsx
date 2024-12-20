@@ -6,6 +6,7 @@ import SearchParts from '@/components/home/search-parts'
 import StatsSection from '@/components/home/stats'
 import ImageCarousel from '@/components/home/image-carousel'
 import BannerContent from '@/components/home/banner'
+import MainNavbar from '@/components/home/navbar/main-nav'
 
 const HomePageSection = ({ children }: { children: React.ReactNode }) => {
   return <section className='container my-2 md:my-4'>{children}</section>
@@ -14,14 +15,6 @@ const HomePageSection = ({ children }: { children: React.ReactNode }) => {
 const HomePage = () => {
   return (
     <main>
-      <div className='bg-car-ui h-screen w-full bg-cover bg-bottom bg-no-repeat py-4'>
-        <div className='flex container items-end justify-start text-center text-white sm:mb-0 sm:items-center'>
-          <BannerContent />
-        </div>
-        <div className='container'>
-          <SearchParts />
-        </div>
-      </div>
       <HomePageSection>
         <ImageCarousel />
       </HomePageSection>
