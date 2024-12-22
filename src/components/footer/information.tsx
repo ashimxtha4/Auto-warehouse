@@ -29,7 +29,7 @@ const FooterInformation = () => {
           <Link
             key={item.label}
             href={item.href}
-            className='text-gray-200 hover:text-white'
+            className='text-primary-text/60 hover:text-primary-text/70'
           >
             {item.label}
           </Link>

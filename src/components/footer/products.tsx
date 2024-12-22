@@ -1,31 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
+import { CATEGORY_ITEMS } from '@/constants/vehicle-parts-category'
 
-const quickLinks = [
-  {
-    label: 'About Us',
-    href: '/about'
-  },
-  // {
-  //   label: 'Services',
-  //   href: '/services'
-  // },
-  {
-    label: 'FAQs',
-    href: '/faqs'
-  },
-  {
-    label: 'Contact Us',
-    href: '/contact'
-  }
-]
-
-const QuickLinks = () => {
+const Products = () => {
   return (
     <section>
-      <h6 className='footer-heading'>QUICK LINKS</h6>
+      <h6 className='footer-heading'>PRODUCTS</h6>
       <div className='flex flex-col gap-y-1 md:gap-y-2'>
-        {quickLinks.map(item => (
+        {CATEGORY_ITEMS.map(item => (
           <Link
             key={item.label}
             href={item.href}
@@ -39,4 +21,4 @@ const QuickLinks = () => {
   )
 }
 
-export default QuickLinks
+export default Products
