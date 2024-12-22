@@ -16,10 +16,10 @@ const HomePage = () => {
   return (
     <main>
       <HomePageSection>
-        <ImageCarousel />
+        <TrustFactors />
       </HomePageSection>
       <HomePageSection>
-        <TrustFactors />
+        <ImageCarousel />
       </HomePageSection>
       <HomePageSection>
         <StatsSection />
