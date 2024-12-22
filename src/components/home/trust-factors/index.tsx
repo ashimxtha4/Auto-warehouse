@@ -31,7 +31,7 @@ const trustItems = [
 
 const TrustFactors = () => {
   return (
-    <section className='flex items-start justify-between gap-5 rounded-2xl bg-white p-5 shadow-md'>
+    <section className='grid grid-cols-1 items-start justify-between gap-5 rounded-2xl bg-white p-5 shadow-md lg:grid-cols-2'>
       <aside>
         <p className='text-3xl font-normal text-primary-text'>
           Comprehensive solutions for all your vehicle glass replacement needs.
@@ -41,17 +41,25 @@ const TrustFactors = () => {
           repairs, ensuring your vehicle glass is restored to perfection.
         </p>
         <div className='flex items-center gap-2'>
-          <Image src={ratingLogo} alt='rating' />
+          <Image
+            src={ratingLogo}
+            alt='rating'
+            className='h-10 w-10 md:h-auto md:w-auto'
+          />
           <div className='text-base text-primary-text'>
             Rated <span className='font-medium'>4.9/5</span> from over{' '}
             <span className='font-medium'>3,000,000 users.</span>
           </div>
         </div>
       </aside>
-      <aside className='grid grid-cols-2 gap-10'>
+      <aside className='grid grid-cols-1 gap-5 md:grid-cols-2'>
         {trustItems.map((item, index) => (
-          <div key={index} className='flex items-center gap-3'>
-            <Image src={item.image} alt={item.title} />
+          <div key={index} className='flex items-start gap-3'>
+            <Image
+              src={item.image}
+              className='h-10 w-10 md:h-auto md:w-auto'
+              alt={item.title}
+            />
             <div>
               <h4 className='text-lg font-semibold text-primary-text'>
                 {item.title}

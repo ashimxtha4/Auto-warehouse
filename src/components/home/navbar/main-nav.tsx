@@ -39,7 +39,17 @@ const MainNavbar = () => {
     }
   }
 
-  window.addEventListener('scroll', handleScroll)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll)
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
 
   const controls = useAnimation()
   const { ref, inView } = useInView({
@@ -62,7 +72,7 @@ const MainNavbar = () => {
     <motion.nav
       ref={ref}
       className={cn(
-        'container flex items-center justify-between py-2 font-medium',
+        'flex items-center justify-between px-[1rem] py-2 font-medium lg:px-[2rem] xl:px-[2.5rem]',
         navBG ? 'bg-white' : 'bg-transparent'
       )}
     >
@@ -99,6 +109,7 @@ const MainNavbar = () => {
                 transition: { duration: 0.5, delay: index * 0.2 }
               }
             }}
+            className='hidden lg:block'
           >
             <DesktopNavbar item={item} />
           </motion.div>
