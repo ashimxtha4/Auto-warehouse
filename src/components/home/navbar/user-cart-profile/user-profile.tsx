@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import {
   HoverCard,
@@ -23,16 +23,9 @@ const UserProfile = () => {
     // closeRegisterDialog,
     // openLoginDialog,
     // closeLoginDialog,
-    setHoverCardOpen,
+    setHoverCardOpen
     // closeAll
   } = useAuthStore()
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  useEffect(() => {
-    const token = window.localStorage.getItem('token')
-    setIsLoggedIn(!!token)
-  }, [])
 
   return (
     <HoverCard

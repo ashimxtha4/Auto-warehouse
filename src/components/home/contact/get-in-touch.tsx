@@ -4,7 +4,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage
 } from '@/components/ui/form'
 import { z } from 'zod'
@@ -53,7 +52,7 @@ const GetInTouch = () => {
     <aside className='col-span-2 h-full rounded-3xl bg-gradient-to-r from-[#35404C] from-[100%] to-[#1C2126] to-[100%] p-5 text-center shadow-md'>
       <p className='text-3xl font-normal text-white'>Get in Touch</p>
       <p className='text-base font-normal text-[#DFDFEC]'>
-        We're happy to assist with any questions or service requests. Reach out
+        We&apos;re happy to assist with any questions or service requests. Reach out
         today!
       </p>
       <Form {...form}>

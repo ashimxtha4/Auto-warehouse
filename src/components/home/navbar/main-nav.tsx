@@ -68,6 +68,13 @@ const MainNavbar = () => {
     }
   }, [controls, inView])
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token')
+    setIsLoggedIn(!!token)
+  }, [])
+
   return (
     <motion.nav
       ref={ref}
@@ -121,9 +128,13 @@ const MainNavbar = () => {
             <SearchBar />
           </motion.div>
         </Suspense>
-        <motion.div variants={searchUserCartVariants}>
-          <UserCartProfile />
-        </motion.div>
+        {isLoggedIn ? (
+          <motion.div variants={searchUserCartVariants}>
+            <UserCartProfile />
+          </motion.div>
+        ) : (
+          <p className='text-base text-primary-text'>LOGIN/REGISTER</p>
+        )}
         {/* mobile menu */}
         <div className='relative flex lg:hidden'>
           <DropdownMenu

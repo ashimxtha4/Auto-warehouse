@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import coverage from '@/assets/coverage-area.png'
 import { FaArrowRightLong } from 'react-icons/fa6'

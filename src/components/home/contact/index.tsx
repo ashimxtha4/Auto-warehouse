@@ -14,6 +14,7 @@ const Contact = () => {
         </p>
         {CONTACT_CALL_DATA.map((call, index) => (
           <Link
+            key={index}
             href={`tel:${call.number}`}
             className='flex w-[250px] justify-between gap-2 py-1 text-base font-normal text-primary-text'
           >
