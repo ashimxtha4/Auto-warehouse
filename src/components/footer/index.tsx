@@ -36,8 +36,8 @@ const Footer = () => {
         {/* <FooterContact /> */}
         <CompanyDetails />
         <Products />
-        <QuickLinks />
         <FooterInformation />
+        <QuickLinks />
         {/* <FollowUs /> */}
       </motion.div>
       {/* <motion.p

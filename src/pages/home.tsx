@@ -2,8 +2,8 @@
 
 import React from 'react'
 import TrustFactors from '@/components/home/trust-factors'
-import StatsSection from '@/components/home/stats'
-import ImageCarousel from '@/components/home/image-carousel'
+// import StatsSection from '@/components/home/stats'
+// import ImageCarousel from '@/components/home/image-carousel'
 import MobileService from '@/components/home/mobile-service'
 import CoverageArea from '@/components/home/coverage-area'
 import UserReview from '@/components/home/review'
@@ -31,12 +31,12 @@ const HomePage = () => {
       <HomePageSection>
         <Contact />
       </HomePageSection>
-      <HomePageSection>
+      {/* <HomePageSection>
         <ImageCarousel />
       </HomePageSection>
       <HomePageSection>
         <StatsSection />
-      </HomePageSection>
+      </HomePageSection> */}
     </main>
   )
 }
