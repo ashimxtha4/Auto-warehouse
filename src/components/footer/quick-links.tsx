@@ -3,8 +3,20 @@ import Link from 'next/link'
 
 const quickLinks = [
   {
+    label: 'Home',
+    href: '/'
+  },
+  {
     label: 'About Us',
     href: '/about'
+  },
+  {
+    label: 'Our Shop',
+    href: '/shop'
+  },
+  {
+    label: 'Reviews',
+    href: '/review'
   },
   // {
   //   label: 'Services',
@@ -23,13 +35,13 @@ const quickLinks = [
 const QuickLinks = () => {
   return (
     <section>
-      <h6 className='footer-heading'>QUICK LINKS</h6>
+      <h6 className='footer-heading'>Quick Links</h6>
       <div className='flex flex-col gap-y-1 md:gap-y-2'>
         {quickLinks.map(item => (
           <Link
             key={item.label}
             href={item.href}
-            className='text-gray-200 hover:text-white'
+            className='text-primary-text/60 hover:text-primary-text/70'
           >
             {item.label}
           </Link>

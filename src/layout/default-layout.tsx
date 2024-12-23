@@ -1,5 +1,5 @@
 import Footer from '@/components/footer'
-import HomeLayout from './home-layout'
+import LandingPage from '@/pages/landing-page'
 
 const DefaultLayout = ({
   children
@@ -7,7 +7,7 @@ const DefaultLayout = ({
   children: React.ReactNode
 }>) => (
   <>
-    <HomeLayout />
+    <LandingPage />
     {children}
     <Footer />
   </>

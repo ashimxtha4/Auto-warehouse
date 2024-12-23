@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import {
   HoverCard,
@@ -7,32 +7,25 @@ import {
 } from '@/components/ui/hover-card'
 import { FaUserCircle } from 'react-icons/fa'
 import { PROFILE_LINKS } from '@/constants/profile-links'
-import RegisterPage from '@/components/auth/register'
-import LoginPage from '@/components/auth/login'
+// import RegisterPage from '@/components/auth/register'
+// import LoginPage from '@/components/auth/login'
 import { useAuthStore } from '@/slice/auth-state-slice'
-import AuthDialog from './auth-dialog'
-import OTPDialog from './otp-dialog'
-import ForgotPasswordDialog from './forgot-password-dialog'
+// import AuthDialog from './auth-dialog'
+// import OTPDialog from './otp-dialog'
+// import ForgotPasswordDialog from './forgot-password-dialog'
 
 const UserProfile = () => {
   const {
     isRegisterDialogOpen,
     isLoginDialogOpen,
     isHoverCardOpen,
-    openRegisterDialog,
-    closeRegisterDialog,
-    openLoginDialog,
-    closeLoginDialog,
-    setHoverCardOpen,
-    closeAll
+    // openRegisterDialog,
+    // closeRegisterDialog,
+    // openLoginDialog,
+    // closeLoginDialog,
+    setHoverCardOpen
+    // closeAll
   } = useAuthStore()
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  useEffect(() => {
-    const token = window.localStorage.getItem('token')
-    setIsLoggedIn(!!token)
-  }, [])
 
   return (
     <HoverCard
@@ -42,8 +35,14 @@ const UserProfile = () => {
       onOpenChange={setHoverCardOpen}
     >
       <HoverCardTrigger>
-        <button type='button' className='text-base md:text-2xl'>
-          <FaUserCircle />
+        <button
+          type='button'
+          className='rounded-full bg-primary-text p-1 text-base md:text-2xl'
+        >
+          <FaUserCircle
+            size={18}
+            className='rounded-full border border-white bg-white'
+          />
         </button>
       </HoverCardTrigger>
       <HoverCardContent
@@ -55,12 +54,12 @@ const UserProfile = () => {
             <Link
               key={item.href}
               href={item.href}
-              className='rounded-md bg-gray-800 px-2 py-1 text-white transition-all hover:bg-gray-900'
+              className='rounded-lg border bg-white px-2 py-1 text-primary-text/60 transition-all hover:border-[#6EB031] hover:bg-[#D3F2D0] hover:text-primary-text/80'
             >
               {item.label}
             </Link>
           ))}
-          {!isLoggedIn ? (
+          {/* {!isLoggedIn ? (
             <>
               {' '}
               <AuthDialog
@@ -90,11 +89,11 @@ const UserProfile = () => {
                 window.localStorage.clear()
                 setIsLoggedIn(false)
               }}
-              className='w-full rounded-md bg-gray-800 px-2 py-1 text-start text-white transition-all hover:bg-gray-900 disabled:cursor-not-allowed disabled:text-gray-500'
+              className='w-full rounded-lg border bg-white px-2 py-1 text-primary-text/60 transition-all hover:border-[#6EB031] hover:bg-[#D3F2D0] hover:text-primary-text/80 disabled:cursor-not-allowed disabled:text-gray-500'
             >
               Logout
             </button>
-          )}
+          )} */}
         </div>
       </HoverCardContent>
     </HoverCard>

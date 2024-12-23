@@ -5,7 +5,6 @@ import {
   FormControl,
   FormDescription,
   FormItem,
-  FormLabel,
   FormMessage
 } from '../ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
@@ -54,8 +53,8 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
   return (
-    <FormItem {...props} className='mb-4 mx-auto md:mb-0'>
-      <FormLabel className='block'>{title}</FormLabel>
+    <FormItem {...props} className='mx-auto mb-4 md:mb-0'>
+      {/* <FormLabel className='block'>{title}</FormLabel> */}
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger asChild>
           <FormControl>
@@ -63,14 +62,21 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
               variant='outline'
               role='combobox'
               className={cn(
-                'w-72 justify-between',
+                'h-[60px] w-[160px] justify-between rounded-2xl',
                 !field.value && 'text-muted-foreground'
               )}
             >
-              {field.value
-                ? options.find(option => option.value === field.value)?.label
-                : placeholder || 'Select...'}
-              <MdKeyboardArrowDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+              <div className='flex flex-col items-start justify-between'>
+                <p className='text-sm text-primary-text/80'>{title}</p>
+                {field.value ? (
+                  options.find(option => option.value === field.value)?.label
+                ) : (
+                  <p className='text-base text-primary-text/60'>
+                    {placeholder}
+                  </p>
+                )}
+              </div>
+              <MdKeyboardArrowDown className='ml-2 h-6 w-6 shrink-0 text-primary-text/50' />
             </Button>
           </FormControl>
         </PopoverTrigger>

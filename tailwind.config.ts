@@ -25,14 +25,16 @@ const config: Config = {
       },
       colors: {
         primary: {
-          main: '#029b63',
+          main: '#6EB031',
           light: '#37b784',
           dark: '#017a50',
           desaturate: '#4d9b83',
           saturate: '#008f5c',
           tint: '#80ccb1',
           DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          foreground: 'hsl(var(--primary-foreground))',
+          text: '#1C2126',
+          danger: '#FF647C'
         },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -77,7 +79,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)'
       },
       backgroundImage: {
-        'right-front-door': "url('/assets/skeleton/right-b.png')"
+        'car-ui': "url('/carUI.png')"
       },
       keyframes: {
         'caret-blink': {

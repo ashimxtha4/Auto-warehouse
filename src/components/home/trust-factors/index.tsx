@@ -1,79 +1,77 @@
-'use client'
+import React from 'react'
+import Image from 'next/image'
+import ratingLogo from '@/assets/icon/rating.png'
+import fast from '@/assets/icon/fast.png'
+import certified from '@/assets/icon/certified.png'
+import easyReturn from '@/assets/icon/easy return.png'
+import support from '@/assets/icon/support.png'
 
-import React, { useEffect } from 'react'
-import { TRUST_ITEMS } from '@/constants/trust-factor-items'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { SectionHeader } from '@/utils/section-header'
+const trustItems = [
+  {
+    image: fast,
+    title: 'Fast',
+    desc: 'Quick, hassle-free glass replacement done on your schedule.'
+  },
+  {
+    image: certified,
+    title: 'Certified',
+    desc: 'Certified technicians ensuring quality vehicle glass replacements.'
+  },
+  {
+    image: easyReturn,
+    title: 'Easy Return',
+    desc: '30-day hassle-free return guarantee on all services.'
+  },
+  {
+    image: support,
+    title: 'Support',
+    desc: 'Dedicated support for seamless glass replacement assistance.'
+  }
+]
 
 const TrustFactors = () => {
-  const controls = useAnimation()
-  const headerControls = useAnimation()
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.6
-  })
-
-  useEffect(() => {
-    if (inView) {
-      headerControls.start('visible')
-      controls.start('visible')
-    }
-  }, [inView, headerControls, controls])
-
   return (
-    <div ref={ref} className='my-10'>
-      <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={headerControls}
-        variants={{
-          visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.9, ease: 'easeOut' }
-          }
-        }}
-      >
-        <SectionHeader>Why Choose Us</SectionHeader>
-      </motion.div>
-
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
-        {TRUST_ITEMS.map((item, index) => (
-          <motion.div
-            key={item.id}
-            className='mb-4 flex flex-col items-center gap-2 rounded-lg bg-white p-4 shadow-lg'
-            initial={{ opacity: 0, y: 100 }}
-            animate={controls}
-            variants={{
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.8,
-                  delay: index * 0.2,
-                  ease: 'easeOut'
-                }
-              }
-            }}
-          >
-            <motion.div
-              className='rounded-full bg-green-100 p-3 text-green-600'
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-            >
-              {item.icon}
-            </motion.div>
-
-            <p className='text-center text-base font-medium text-gray-800 md:text-lg'>
-              {item.label}
-            </p>
-            <p className='text-center text-sm font-normal text-gray-600'>
-              {item.content}
-            </p>
-          </motion.div>
+    <section className='grid grid-cols-1 items-start justify-between gap-5 rounded-2xl bg-white p-5 shadow-md lg:grid-cols-2'>
+      <aside>
+        <p className='text-3xl font-normal text-primary-text'>
+          Comprehensive solutions for all your vehicle glass replacement needs.
+        </p>
+        <p className='py-5 text-base font-normal text-primary-text/60'>
+          Discover our expert services, from windshield replacements to chip
+          repairs, ensuring your vehicle glass is restored to perfection.
+        </p>
+        <div className='flex items-center gap-2'>
+          <Image
+            src={ratingLogo}
+            alt='rating'
+            className='h-10 w-10 md:h-auto md:w-auto'
+          />
+          <div className='text-base text-primary-text'>
+            Rated <span className='font-medium'>4.9/5</span> from over{' '}
+            <span className='font-medium'>3,000,000 users.</span>
+          </div>
+        </div>
+      </aside>
+      <aside className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+        {trustItems.map((item, index) => (
+          <div key={index} className='flex items-start gap-3'>
+            <Image
+              src={item.image}
+              className='h-10 w-10 md:h-auto md:w-auto'
+              alt={item.title}
+            />
+            <div>
+              <h4 className='text-lg font-semibold text-primary-text'>
+                {item.title}
+              </h4>
+              <p className='text-base font-normal text-primary-text/60'>
+                {item.desc}
+              </p>
+            </div>
+          </div>
         ))}
-      </div>
-    </div>
+      </aside>
+    </section>
   )
 }
 

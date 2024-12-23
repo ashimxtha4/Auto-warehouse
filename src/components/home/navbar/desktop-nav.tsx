@@ -31,9 +31,9 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           <Link
             href={item.href}
             className={cn(
-              'flex items-center gap-1 text-nowrap transition-all hover:scale-x-100 hover:border-b-2 hover:border-green-900 hover:text-gray-950',
+              'flex items-center gap-1 text-nowrap text-sm font-medium transition-all hover:scale-x-100 hover:border-b-2 hover:border-green-900 hover:text-gray-950',
               isActive
-                ? 'border-b-2 border-green-900 transition-all duration-300'
+                ? 'border-b-2 border-primary-main transition-all duration-300'
                 : ''
             )}
           >
@@ -48,7 +48,7 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
                 <Link
                   href={href}
                   key={label}
-                  className='rounded-md bg-gray-800 px-2 py-1 text-white transition-all hover:bg-gray-900'
+                  className='rounded-lg border bg-white px-2 py-1 text-primary-text/60 transition-all hover:border-[#6EB031] hover:bg-[#D3F2D0] hover:text-primary-text/80'
                 >
                   {label}
                 </Link>
