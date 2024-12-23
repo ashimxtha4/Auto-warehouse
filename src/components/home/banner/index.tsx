@@ -20,7 +20,7 @@ const BannerContent = () => {
 
   return (
     <motion.div
-      className='max-w-[574px] rounded-3xl border border-white/50 bg-gradient-to-r from-[#ffffff] to-[#6EB03166] p-8 backdrop-blur-md'
+      className='max-w-[574px] h-fit rounded-3xl border border-white/50 bg-gradient-to-r from-[#ffffff] to-[#6EB03166] p-8 backdrop-blur-md'
       ref={ref}
       initial='hidden'
       animate={inView ? 'visible' : 'hidden'}

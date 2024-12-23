@@ -13,13 +13,13 @@ import {
   FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Button } from '../ui/button'
 import { useGetLogin } from '@/services/api/api-service/auth/login'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
 import { useAuthStore } from '@/slice/auth-state-slice'
-import { Mail, Lock, UserPlus, ArrowRight, XCircle } from 'lucide-react'
+import { Mail, Lock } from 'lucide-react'
 import { GenericError } from '@/utils/generic-error'
+import Link from 'next/link'
 
 export const loginSchema = z.object({
   email: z
@@ -32,11 +32,7 @@ export const loginSchema = z.object({
 
 export type loginSchemaProps = z.infer<typeof loginSchema>
 
-const LoginPage = ({
-  setIsLoggedIn
-}: {
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const LoginPage = () => {
   const {
     openRegisterDialog,
     closeLoginDialog,
@@ -55,7 +51,6 @@ const LoginPage = ({
       await mutateAsync(data)
       toast.success('Login success!')
       closeAll()
-      setIsLoggedIn(true)
     } catch (error) {
       GenericError(error)
     }
@@ -67,18 +62,14 @@ const LoginPage = ({
   }
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative m-2 w-full max-w-md transform rounded-lg bg-white p-8 shadow-lg'>
-        <button
-          onClick={closeAll}
-          className='absolute right-3 top-3 text-gray-600 transition hover:text-red-900'
-        >
-          <XCircle className='h-6 w-6' />
-        </button>
-
-        <h2 className='mb-6 text-center text-3xl font-bold text-green-700'>
-          Login !
+    <div className='flex items-center justify-center'>
+      <div className='relative w-full max-w-md transform rounded-3xl bg-white p-8 shadow-lg'>
+        <h2 className='my-1 text-start text-3xl font-normal text-primary-text'>
+          Login
         </h2>
+        <p className='mb-4 text-base font-normal text-primary-text/80'>
+          Enter your email and password to get started. Thanks.
+        </p>
 
         <Form {...form}>
           <form
@@ -90,16 +81,15 @@ const LoginPage = ({
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Mail className='h-5 w-5 text-gray-500' /> Email
+                  <FormLabel className='flex items-center gap-2 text-primary-text'>
+                    <Mail className='h-5 w-5' /> Email
                   </FormLabel>
                   <FormControl>
                     <Input
                       placeholder='Enter your email'
                       type='email'
-                      autoComplete='off'
                       {...field}
-                      className='border-gray-300 focus:border-green-700 focus:ring-green-700'
+                      className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main'
                     />
                   </FormControl>
                   <FormMessage />
@@ -111,13 +101,14 @@ const LoginPage = ({
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> Password
+                  <FormLabel className='flex items-center gap-2 text-primary-text'>
+                    <Lock className='h-5 w-5' /> Password
                   </FormLabel>
                   <FormControl>
                     <Input
                       type='password'
                       placeholder='Enter your password'
+                      className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main'
                       {...field}
                     />
                   </FormControl>
@@ -126,38 +117,30 @@ const LoginPage = ({
               )}
             />
 
-            <div className='mt-4 flex items-center justify-between'>
-              <button
-                onClick={() => {
-                  closeLoginDialog()
-                  openForgotPasswordDialog()
-                }}
-                type='button'
-                className='text-sm text-gray-600 transition duration-300 hover:underline'
-              >
-                Forgot password?
-              </button>
-              <Button
-                type='submit'
-                variant='default'
-                className='flex transform items-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
-              >
-                {form.formState.isSubmitting ? <ButtonLoader /> : 'Login'}
-                <ArrowRight className='h-5 w-5' />
-              </Button>
-            </div>
+            <button
+              type='button'
+              className='!mt-1 w-full text-end text-base text-gray-600 transition duration-300 hover:underline'
+            >
+              Forgot password?{' '}
+              <span className='text-primary-main'>Reset here.</span>
+            </button>
+            <button
+              type='submit'
+              className='w-full transform rounded-full bg-primary-main py-2 text-white transition-transform hover:scale-105'
+            >
+              {form.formState.isSubmitting ? <ButtonLoader /> : 'LOGIN'}
+            </button>
           </form>
         </Form>
 
         <div className='mt-6 flex items-center justify-center'>
           <p className='text-sm text-gray-600'>Don&apos;t have an account?</p>
-          <button
-            type='button'
-            onClick={handleOpenRegister}
-            className='ml-2 flex items-center gap-1 text-sm font-semibold text-green-700 hover:underline'
+          <Link
+            href='/register'
+            className='ml-1 text-base font-normal text-primary-main hover:underline'
           >
-            Register <UserPlus className='h-4 w-4' />
-          </button>
+            Register
+          </Link>
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ import logo from '@/assets/logo.png'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 const searchUserCartVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -133,7 +134,9 @@ const MainNavbar = () => {
             <UserCartProfile />
           </motion.div>
         ) : (
-          <p className='text-base text-primary-text'>LOGIN/REGISTER</p>
+          <Link href='/login' className='text-base text-primary-text'>
+            LOGIN/REGISTER
+          </Link>
         )}
         {/* mobile menu */}
         <div className='relative flex lg:hidden'>
