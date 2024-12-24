@@ -33,9 +33,9 @@ const VehicleParts = () => {
       {isLoading && <LoadingSpinner />}
       {vehicle && (
         <aside className='hidden flex-1 md:block'>
-          <Card className='rounded-lg bg-white shadow-lg'>
+          <Card className='rounded-3xl bg-white shadow-lg'>
             <CardHeader
-              className='cursor-pointer text-nowrap border-b bg-gray-100 py-2 font-medium text-green-700 transition-colors hover:bg-gray-200'
+              className='text-nowrap border-b py-2 font-medium text-primary-text transition-colors'
               onClick={() => setShowFilterProduct(prev => !prev)}
             >
               Filter Products
@@ -48,9 +48,9 @@ const VehicleParts = () => {
                       onClick={() => handleSearchFilter(item)}
                       key={item}
                       className={cn(
-                        'border-b border-b-gray-300 p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-700',
+                        'rounded-full border bg-[#3232470F] bg-opacity-[6%] p-2 text-primary-text/80 transition-colors hover:border-primary-main',
                         item === specificPart
-                          ? 'bg-gray-100 font-medium text-green-700'
+                          ? 'border-primary-main font-semibold text-primary-text'
                           : ''
                       )}
                     >

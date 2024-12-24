@@ -19,15 +19,15 @@
 }
 
 .circle-dot {
-  @apply absolute h-2 w-2 rounded-full bg-green-900;
+  @apply absolute h-2 w-2 rounded-full bg-primary-text;
 }
 
 .vehicle-line {
-  @apply absolute h-[2px] bg-green-900;
+  @apply absolute h-[1px] bg-primary-text;
 }
 
 .callout-line-title {
-  @apply gradient-bg absolute flex items-center text-nowrap rounded-md px-1 py-[2px] text-xs text-white hover:scale-105 md:px-[6px] md:text-base;
+  @apply absolute flex items-center text-nowrap rounded-3xl border border-[#1C2126] bg-[#D3F2D0] px-[12px] py-1 text-xs text-black hover:scale-105 hover:!bg-[#D3F2D0] md:text-base;
 }
 
 .footer-heading {

@@ -1,10 +1,11 @@
 import React from 'react'
-import { CiGrid41, CiCircleList } from 'react-icons/ci'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { CiGrid41, CiCircleList } from 'react-icons/ci'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import ProductItem from './product-item'
 import { productProps } from '@/services/api/api-service/product/product-list'
-import Link from 'next/link'
+import { TbLayoutList } from 'react-icons/tb'
 
 const VehiclePartsList = ({
   productList,
@@ -16,30 +17,28 @@ const VehiclePartsList = ({
   const { handleSearch, viewType, handleSearchListView } = useVehicleParts()
   return (
     <aside className='flex-[2]'>
-      <header className='mb-4 flex justify-between gap-2 bg-gray-100 px-2 py-1 md:gap-5'>
-        <div className='flex items-center gap-1 md:gap-3'>
-          <span className='text-sm font-medium text-gray-800 md:text-xl'>
-            {totalNumberOfProducts ?? 0}
-          </span>
-          <span className='text-gray-700'>Products Found</span>
+      <header className='mb-4 flex justify-between gap-2 px-2 py-1 md:gap-5'>
+        <div className='flex items-center gap-1 text-sm font-medium text-primary-text md:gap-3 md:text-2xl'>
+          <span>{totalNumberOfProducts ?? 0}</span>
+          <span>Products Found</span>
           {/* <SelectForm /> */}
         </div>
-        <div className='hidden gap-1 rounded-md border sm:flex sm:items-center sm:justify-center'>
+        <div className='hidden gap-1 rounded-md border text-primary-text/80 sm:flex sm:items-center sm:justify-center'>
           <CiGrid41
             size={24}
             className={cn(
               'h-full cursor-pointer',
-              viewType === null && 'bg-green-900 text-white'
+              viewType === null && 'text-primary-main'
             )}
             onClick={handleSearch}
           />
-          <span className='h-full w-[2px] bg-gray-400' />
-          <CiCircleList
+          {/* <span className='h-full w-[2px] bg-gray-400' /> */}
+          <TbLayoutList
             size={24}
             onClick={handleSearchListView}
             className={cn(
               'h-full cursor-pointer font-bold',
-              viewType !== null && 'bg-green-900 text-white'
+              viewType !== null && 'text-primary-main'
             )}
           />
         </div>
