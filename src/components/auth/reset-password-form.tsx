@@ -13,8 +13,7 @@ import {
   FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { Lock, ArrowRight } from 'lucide-react'
+import { Lock } from 'lucide-react'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
 import { useParams, useRouter } from 'next/navigation'

@@ -56,6 +56,7 @@ const OtpVerification = () => {
             <InputOTPGroup>
               {[0, 1, 2, 3, 4].map((_, index) => (
                 <InputOTPSlot
+                  key={index}
                   index={index}
                   className='ml-1 h-12 w-12 rounded-md border text-center focus:outline-none focus:ring-2 focus:ring-primary-main'
                 />

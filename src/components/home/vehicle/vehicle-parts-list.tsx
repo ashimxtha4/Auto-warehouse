@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { CiGrid41, CiCircleList } from 'react-icons/ci'
+import { CiGrid41 } from 'react-icons/ci'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import ProductItem from './product-item'
 import { productProps } from '@/services/api/api-service/product/product-list'
@@ -46,7 +46,7 @@ const VehiclePartsList = ({
       <div
         className={cn(
           viewType === null &&
-            'grid grid-cols-1 justify-center justify-items-center md:justify-items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5'
+            'grid grid-cols-1 justify-center justify-items-center gap-2 sm:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 xl:grid-cols-5'
         )}
       >
         {productList?.length ? (

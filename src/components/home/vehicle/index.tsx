@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import SearchParts from '../search-parts'
 import VehicleParts from './vehicle-parts'
 import VehicleOverview from './vehicle-overview'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'

@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import RegisterPage from '@/components/auth/register'
 import ForgotPasswordPage from '@/components/auth/forgot-password'
 import ResetPasswordForm from '@/components/auth/reset-password-form'
-import path from 'path'
 import OtpVerification from '@/components/auth/otp-verification'
 
 const AuthLandingPage = () => {
