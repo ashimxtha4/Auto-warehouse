@@ -40,7 +40,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
           height={150}
           loading='lazy'
           className={cn(
-            'rounded-2xl object-cover',
+            'rounded-3xl border sobject-cover',
             viewType !== null ? 'h-auto w-full' : 'max-h-[150px] w-full'
           )}
         />

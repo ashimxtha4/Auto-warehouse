@@ -23,7 +23,7 @@ const VehiclePartsList = ({
           <span>Products Found</span>
           {/* <SelectForm /> */}
         </div>
-        <div className='hidden gap-1 rounded-md border text-primary-text/80 sm:flex sm:items-center sm:justify-center'>
+        <div className='flex items-center justify-center gap-1 rounded-md border text-primary-text/80'>
           <CiGrid41
             size={24}
             className={cn(
@@ -45,7 +45,8 @@ const VehiclePartsList = ({
       </header>
       <div
         className={cn(
-          viewType === null && 'flex flex-wrap justify-center gap-2'
+          viewType === null &&
+            'grid grid-cols-1 justify-center justify-items-center md:justify-items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5'
         )}
       >
         {productList?.length ? (
