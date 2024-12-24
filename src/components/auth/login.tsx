@@ -16,10 +16,10 @@ import { Input } from '../ui/input'
 import { useGetLogin } from '@/services/api/api-service/auth/login'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
-import { useAuthStore } from '@/slice/auth-state-slice'
 import { Mail, Lock } from 'lucide-react'
 import { GenericError } from '@/utils/generic-error'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export const loginSchema = z.object({
   email: z
@@ -33,12 +33,7 @@ export const loginSchema = z.object({
 export type loginSchemaProps = z.infer<typeof loginSchema>
 
 const LoginPage = () => {
-  const {
-    openRegisterDialog,
-    closeLoginDialog,
-    closeAll,
-    openForgotPasswordDialog
-  } = useAuthStore()
+  const router = useRouter()
 
   const form = useForm<loginSchemaProps>({
     resolver: zodResolver(loginSchema)
@@ -50,15 +45,10 @@ const LoginPage = () => {
     try {
       await mutateAsync(data)
       toast.success('Login success!')
-      closeAll()
+      router.push('/')
     } catch (error) {
       GenericError(error)
     }
-  }
-
-  const handleOpenRegister = () => {
-    openRegisterDialog()
-    closeLoginDialog()
   }
 
   return (
@@ -117,13 +107,13 @@ const LoginPage = () => {
               )}
             />
 
-            <button
-              type='button'
-              className='!mt-1 w-full text-end text-base text-gray-600 transition duration-300 hover:underline'
+            <Link
+              href='/forgot-password'
+              className='!mt-1 block w-full text-end text-base text-gray-600 transition duration-300 hover:underline'
             >
               Forgot password?{' '}
               <span className='text-primary-main'>Reset here.</span>
-            </button>
+            </Link>
             <button
               type='submit'
               className='w-full transform rounded-full bg-primary-main py-2 text-white transition-transform hover:scale-105'

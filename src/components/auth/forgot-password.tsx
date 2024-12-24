@@ -13,11 +13,9 @@ import {
   FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { Lock, ArrowRight, XCircle } from 'lucide-react'
+import { Lock } from 'lucide-react'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
-import { useAuthStore } from '@/slice/auth-state-slice'
 import { usePostForgotPassword } from '@/services/api/api-service/auth/forgot-password'
 import { GenericError } from '@/utils/generic-error'
 
@@ -30,7 +28,6 @@ const forgotPasswordSchema = z.object({
 export type ForgotPasswordSchemaProps = z.infer<typeof forgotPasswordSchema>
 
 const ForgotPasswordPage = () => {
-  const { closeAll } = useAuthStore()
 
   const form = useForm<ForgotPasswordSchemaProps>({
     resolver: zodResolver(forgotPasswordSchema)
@@ -48,21 +45,17 @@ const ForgotPasswordPage = () => {
   }
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='relative m-2 h-auto max-h-full w-full max-w-md transform overflow-y-auto rounded-lg bg-white p-8 shadow-lg'>
-        <button
-          onClick={closeAll}
-          className='absolute right-3 top-3 text-gray-600 transition hover:text-red-900'
-        >
-          <XCircle className='h-6 w-6' />
-        </button>
-
-        <h2 className='mb-6 text-center text-3xl font-bold text-green-700'>
+    <div className='flex items-center justify-center md:min-w-[500px]'>
+      <div className='relative w-full max-w-md transform rounded-3xl bg-white p-8 shadow-lg'>
+        <h2 className='my-1 text-start text-3xl font-normal text-primary-text'>
           Reset Password
         </h2>
+        <p className='mb-4 text-base font-normal text-primary-text/80'>
+          Enter your email.
+        </p>
 
         {isSuccess ? (
-          <p>
+          <p className='mb-4 text-base font-normal text-primary-text'>
             Please check your email. <br /> We have sent a link to reset your
             password.
           </p>
@@ -77,13 +70,14 @@ const ForgotPasswordPage = () => {
                 name='email'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='flex items-center gap-2'>
-                      <Lock className='h-5 w-5 text-gray-500' /> Email
+                    <FormLabel className='flex items-center gap-2 text-primary-text'>
+                      <Lock className='h-5 w-5' /> Email
                     </FormLabel>
                     <FormControl>
                       <Input
                         type='email'
                         placeholder='Enter your email'
+                        className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main'
                         {...field}
                       />
                     </FormControl>
@@ -91,19 +85,16 @@ const ForgotPasswordPage = () => {
                   </FormItem>
                 )}
               />
-              <Button
+              <button
                 type='submit'
-                variant='default'
-                className='flex w-full transform items-center justify-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
+                className='w-full transform rounded-full bg-primary-main py-2 text-white transition-transform hover:scale-105'
               >
                 {form.formState.isSubmitting ? (
                   <ButtonLoader />
                 ) : (
-                  <>
-                    Reset Password <ArrowRight className='h-5 w-5' />
-                  </>
+                  <>SEND PASSWORD RESET LINK</>
                 )}
-              </Button>
+              </button>
             </form>
           </Form>
         )}
