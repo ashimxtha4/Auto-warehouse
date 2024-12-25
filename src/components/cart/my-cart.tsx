@@ -11,9 +11,9 @@ import {
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { ImCross } from 'react-icons/im'
-import { ShoppingCart } from 'lucide-react'
 import { listDataProps } from '@/services/api/api-service/cart/cart-list'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
+import { FormRowHeader } from '../get-a-quote/get-a-quote-form'
 
 type MyCartProps = {
   products: listDataProps[] | undefined
@@ -38,11 +38,10 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
     'Action'
   ]
   return (
-    <aside className='rounded-lg bg-white p-6 shadow-lg'>
-      <h2 className='flex items-center py-2 text-left text-base font-bold text-green-700 md:text-xl'>
-        <ShoppingCart className='mr-2 h-6 w-6' />
-        My Cart
-      </h2>
+    <aside className='rounded-3xl bg-white p-6 shadow-lg'>
+      <FormRowHeader className='text-center border-none'>
+        CART
+      </FormRowHeader>
 
       <div className='overflow-x-auto'>
         {products?.length ? (
@@ -70,7 +69,7 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                     <Image
                       src={
                         product.product_image !== '' ||
-                        product.product_image !== null
+                          product.product_image !== null
                           ? `${IMAGE_BASE_URL}${product.product_image}`
                           : DEFAULT_IMAGE
                       }
