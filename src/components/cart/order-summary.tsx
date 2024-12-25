@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
-import { ShoppingCart, Truck } from 'lucide-react';
 import { FormRowHeader, Separator } from '../get-a-quote/get-a-quote-form';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
