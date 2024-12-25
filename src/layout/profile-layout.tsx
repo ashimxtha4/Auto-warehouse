@@ -3,9 +3,9 @@ import MainNavbar from '@/components/home/navbar/main-nav'
 import SearchParts from '@/components/home/search-parts'
 
 function convertPath(inputPath: string) {
-  let result = inputPath.replace(/\//g, ' ').trim();
+  let result = inputPath.replace(/^\//, '');
   result = result.replace(/-/g, ' ');
-  result = result.split(' ')[0];
+  result = result.split('/')[0];
   return result.toUpperCase();
 }
 

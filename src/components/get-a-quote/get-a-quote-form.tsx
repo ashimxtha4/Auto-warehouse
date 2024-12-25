@@ -1,8 +1,6 @@
 'use client'
 
 import React from 'react'
-
-import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -11,7 +9,6 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import FormRow from '@/components/form/form-row'
 import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -23,20 +20,24 @@ import {
   SelectTrigger,
   SelectValue
 } from '../ui/select'
-import { User, Car, Wrench } from 'lucide-react'
+import ButtonLoader from '@/utils/button-loader'
+import { FaArrowRightLong } from 'react-icons/fa6'
 
 const FormRowHeader = ({
   children,
-  Icon
 }: {
   children: React.ReactNode
-  Icon: React.ElementType
 }) => {
   return (
-    <h4 className='flex items-center gap-3 text-xl font-semibold tracking-wide text-green-700 md:text-2xl'>
-      <Icon className='h-7 w-7 rounded-full bg-green-100 p-1.5 text-green-700' />
+    <h4 className='text-2xl font-medium border-b pb-2 tracking-wide text-primary-text md:text-2xl'>
       {children}
     </h4>
+  )
+}
+
+function Separator() {
+  return (
+    <p className='h-[2px] !-mt-[1px] !mb-2 w-[230px] bg-primary-main' />
   )
 }
 
@@ -48,18 +49,19 @@ const GetAQuoteForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 rounded-lg bg-white p-8 shadow-lg'
+          className='space-y-8 rounded-3xl bg-white p-8 shadow-lg'
         >
-          <FormRowHeader Icon={User}>Personal Details</FormRowHeader>
-          <FormRow className='!my-0'>
+          <FormRowHeader>PERSONAL DETAILS</FormRowHeader>
+          <Separator />
+          <div className='!my-0 grid grid-cols-2 w-full gap-2'>
             <FormField
               control={form.control}
               name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>NAME</FormLabel>
                   <FormControl>
-                    <Input placeholder='Name' {...field} />
+                    <Input placeholder='Name' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -70,22 +72,25 @@ const GetAQuoteForm = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>EMAIL</FormLabel>
                   <FormControl>
-                    <Input placeholder='Email' {...field} />
+                    <Input placeholder='Email' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+          </div>
+
+          <div className='!my-4 grid grid-cols-2 w-full gap-2'>
             <FormField
               control={form.control}
               name='phone'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel>PHONE</FormLabel>
                   <FormControl>
-                    <Input placeholder='Phone' {...field} />
+                    <Input placeholder='Phone' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -96,22 +101,24 @@ const GetAQuoteForm = () => {
               name='address'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel>ADDRESS</FormLabel>
                   <FormControl>
-                    <Input placeholder='Address' {...field} />
+                    <Input placeholder='Address' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+          </div>
+          <div className='!my-4 grid grid-cols-2 w-full gap-2'>
             <FormField
               control={form.control}
               name='post_code'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Postal Code</FormLabel>
+                  <FormLabel>POSTAL CODE</FormLabel>
                   <FormControl>
-                    <Input placeholder='Postal Code' {...field} />
+                    <Input placeholder='Postal Code' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -122,14 +129,14 @@ const GetAQuoteForm = () => {
               name='preferred_type'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Preferred Type</FormLabel>
+                  <FormLabel>PREFERRED TYPE</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder='Select Preferred Type' />
+                        <SelectValue className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' placeholder='Select Preferred Type' />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -144,18 +151,19 @@ const GetAQuoteForm = () => {
                 </FormItem>
               )}
             />
-          </FormRow>
+          </div>
 
-          <FormRowHeader Icon={Car}>Vehicle Details</FormRowHeader>
-          <FormRow className='!mt-0'>
+          <FormRowHeader >VEHICLE DETAILS</FormRowHeader>
+          <Separator />
+          <div className='!my-4 grid grid-cols-2 w-full gap-2'>
             <FormField
               control={form.control}
               name='make'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Vehicle Make</FormLabel>
+                  <FormLabel>VEHICLE MAKE</FormLabel>
                   <FormControl>
-                    <Input placeholder='Vehicle Make' {...field} />
+                    <Input placeholder='Vehicle Make' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -166,22 +174,24 @@ const GetAQuoteForm = () => {
               name='model'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Vehicle Model</FormLabel>
+                  <FormLabel>VEHICLE MODEL</FormLabel>
                   <FormControl>
-                    <Input placeholder='Vehicle Model' {...field} />
+                    <Input placeholder='Vehicle Model' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+          </div>
+          <div className='!my-4 grid grid-cols-2 w-full gap-2'>
             <FormField
               control={form.control}
               name='year'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Vehicle Year</FormLabel>
+                  <FormLabel>VEHICLE YEAR</FormLabel>
                   <FormControl>
-                    <Input placeholder='Vehicle Year' {...field} />
+                    <Input placeholder='Vehicle Year' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -192,25 +202,24 @@ const GetAQuoteForm = () => {
               name='body_type'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Body Type</FormLabel>
+                  <FormLabel>BODY TYPE</FormLabel>
                   <FormControl>
-                    <Input placeholder='Body Type' {...field} />
+                    <Input placeholder='Body Type' className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </FormRow>
+          </div>
           <FormField
             control={form.control}
             name='damage_details'
             render={({ field }) => (
               <FormItem>
-                <FormRowHeader Icon={Wrench}>Damage Details</FormRowHeader>
-
-                {/* <FormLabel>Damage Details</FormLabel> */}
+                <FormRowHeader >DAMAGE DETAILS</FormRowHeader>
+                <Separator />
                 <FormControl>
-                  <Textarea placeholder='Damage Details' {...field} />
+                  <Textarea placeholder='Damage Details' className='rounded-2xl border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -221,9 +230,9 @@ const GetAQuoteForm = () => {
             name='additional_comments'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Additional Comments</FormLabel>
+                <FormLabel>ADDITIONAL DETAILS</FormLabel>
                 <FormControl>
-                  <Textarea placeholder='Additional Comments' {...field} />
+                  <Textarea placeholder='Additional Comments' className='rounded-2xl border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -253,18 +262,20 @@ const GetAQuoteForm = () => {
               </FormItem>
             )}
           />
-          <div className='!mt-2 flex gap-2 md:!mt-4'>
-            <Button
+          <div className='!mt-2 flex justify-center md:!mt-4'>
+            <button
               type='submit'
-              variant='default'
-              className='bg-primary-main text-lg font-semibold text-white hover:bg-primary-dark md:text-xl'
+              className='bg-primary-main rounded-full px-4 py-2 self-center font-semibold text-primary-text md:text-base'
             >
               {form.formState.isSubmitting ? (
-                <span className='h-4 w-4 animate-spin rounded-full border-[2px] border-gray-500 border-t-white'></span>
+                <ButtonLoader />
               ) : (
-                'Get Quote'
+                <div className='flex justify-between items-center gap-4'>
+                  <span>GET A QUOTE</span>
+                  <span className='flex justify-center items-center rounded-full bg-primary-text p-2 text-primary-main'><FaArrowRightLong size={18} /></span>
+                </div>
               )}
-            </Button>
+            </button>
           </div>
         </form>
       </Form>

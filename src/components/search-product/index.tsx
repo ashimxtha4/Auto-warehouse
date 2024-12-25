@@ -12,15 +12,14 @@ const SearchProduct = () => {
 
     return (
         <section className='bg-white rounded-3xl p-2'>
+            <p className='text-base text-primary-text my-2 md:my-4 md:text-2xl'>SEARCH</p>
             <form onSubmit={e => {
                 e.preventDefault()
                 router.push(`/shop?keyword=${debounceValue}`)
-            }} className='my-4 flex relative w-full'>
+            }} className='my-2 md:my-4 flex relative w-full'>
                 <Input
                     value={search}
-                    onChange={e => {
-                        setSearch(e.target.value)
-                    }}
+                    onChange={e => setSearch(e.target.value)}
                     type='text'
                     placeholder='Search Store...'
                     className='border-[2px] rounded-full w-full border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text focus-visible:ring-2 focus-visible:ring-primary-main'
