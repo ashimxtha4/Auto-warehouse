@@ -23,7 +23,7 @@ import {
 import ButtonLoader from '@/utils/button-loader'
 import { FaArrowRightLong } from 'react-icons/fa6'
 
-const FormRowHeader = ({
+export const FormRowHeader = ({
   children,
 }: {
   children: React.ReactNode

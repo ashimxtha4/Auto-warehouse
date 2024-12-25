@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import BannerContent from '@/components/home/banner'
 import MainNavbar from '@/components/home/navbar/main-nav'
 import LoginPage from '@/components/auth/login'
@@ -7,6 +7,7 @@ import RegisterPage from '@/components/auth/register'
 import ForgotPasswordPage from '@/components/auth/forgot-password'
 import ResetPasswordForm from '@/components/auth/reset-password-form'
 import OtpVerification from '@/components/auth/otp-verification'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const AuthLandingPage = () => {
   const pathname = usePathname()
@@ -24,8 +25,9 @@ const AuthLandingPage = () => {
           {(pathname === '/login' && <LoginPage />) ||
             (pathname === '/register' && <RegisterPage />) ||
             (pathname === '/forgot-password' && <ForgotPasswordPage />) ||
-            (pathname === '/reset-password' && <ResetPasswordForm />) ||
-            (pathname === '/otp-verification' && <OtpVerification />)}
+            (pathname === '/otp-verification' && <OtpVerification />) ||
+            pathname?.includes('/reset_password_form/') && <Suspense fallback={<LoadingSpinner />}> <ResetPasswordForm /></Suspense>
+          }
         </aside>
       </div>
     </div>

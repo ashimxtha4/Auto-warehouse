@@ -42,7 +42,8 @@ const AutoGlassShopLayout = ({
     pathname === '/login' ||
     pathname === '/register' ||
     pathname === '/forgot-password' ||
-    pathname === '/reset-password'
+    pathname === '/otp-verification' ||
+    pathname?.includes('/reset_password_form/')
   ) {
     return <AuthLayout>{children}</AuthLayout>
   }

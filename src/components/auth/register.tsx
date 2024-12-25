@@ -22,6 +22,7 @@ import ButtonLoader from '@/utils/button-loader'
 import { useUserStore } from '@/slice/user-slice'
 import { GenericError } from '@/utils/generic-error'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const registerSchema = loginSchema
   .extend({
@@ -41,6 +42,7 @@ const registerSchema = loginSchema
 export type registerSchemaProps = z.infer<typeof registerSchema>
 
 const RegisterPage = () => {
+  const router = useRouter()
   const { setNewUserData } = useUserStore()
 
   const form = useForm<registerSchemaProps>({
@@ -60,6 +62,7 @@ const RegisterPage = () => {
     try {
       const response = await mutateAsync(data)
       setNewUserData(response.data.data[0])
+      router.push('/otp-verification')
       return toast.success('Registration successful! Please verify your email.')
     } catch (error) {
       GenericError(error)
