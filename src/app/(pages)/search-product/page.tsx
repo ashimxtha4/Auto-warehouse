@@ -1,10 +1,13 @@
 import SearchProduct from '@/components/search-product'
-import React from 'react'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import React, { Suspense } from 'react'
 
 const Page = () => {
   return (
     <div className='container my-2 md:my-4'>
-      <SearchProduct />
+      <Suspense fallback={<LoadingSpinner />}>
+        <SearchProduct />
+      </Suspense>
     </div>
   )
 }

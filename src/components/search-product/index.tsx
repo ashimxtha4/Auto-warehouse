@@ -1,7 +1,6 @@
 'use client'
 
-import React, { Suspense } from 'react'
-import { LoadingSpinner } from '../ui/loading-spinner'
+import React from 'react'
 import VehicleParts from '../home/vehicle/vehicle-parts'
 import { Input } from '../ui/input'
 import { FaSearch } from 'react-icons/fa'
@@ -33,9 +32,7 @@ const SearchProduct = () => {
                     <FaSearch size={18} />
                 </button>
             </form>
-            <Suspense fallback={<LoadingSpinner />}>
-                <VehicleParts />
-            </Suspense>
+            <VehicleParts />
         </section>
     )
 }
