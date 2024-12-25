@@ -1,37 +1,17 @@
 import React from 'react'
 import { CiSearch } from 'react-icons/ci'
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger
-// } from '@/components/ui/popover'
-// import { Separator } from '@/components/ui/separator'
-// import { Loader2 } from 'lucide-react'
-import { useSearchInput } from '@/hooks/search-input.hook'
+import Link from 'next/link';
 
 const SearchComponent = () => {
-  const {
-    // handleInputClick,
-    // inputRef,
-    // isLoading,
-    // productList,
-    // setSearch,
-    // search,
-    // setOpen,
-    // open,
-    // debounceValue
-    router
-  } = useSearchInput()
 
   return (
     <>
-      <button
+      <Link href='/search-product'
         type='submit'
         className='pl-1 text-base text-primary-text md:text-2xl'
-        onClick={() => router.push(`/shop`)}
       >
         <CiSearch size={18} />
-      </button>
+      </Link>
       {/* <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <form
