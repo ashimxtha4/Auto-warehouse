@@ -14,7 +14,7 @@ const VehiclePartsList = ({
   productList: productProps[] | undefined
   totalNumberOfProducts: number | undefined
 }) => {
-  const { handleSearch, viewType, handleSearchListView } = useVehicleParts()
+  const { handleSearch, viewType, handleSearchListView, vehicle } = useVehicleParts()
   return (
     <aside className='flex-[2]'>
       <header className='mb-4 flex justify-between gap-2 px-2 py-1 md:gap-5'>
@@ -46,7 +46,7 @@ const VehiclePartsList = ({
       <div
         className={cn(
           viewType === null &&
-          'grid grid-cols-1 justify-center justify-items-center gap-2 sm:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 xl:grid-cols-5'
+          'grid grid-cols-1 justify-center justify-items-center gap-2', vehicle ? 'grid-cols-1 md:grid-cols-2 md:justify-items-stretch lg:grid-cols-3 gap-2' : 'sm:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 xl:grid-cols-5'
         )}
       >
         {productList?.length ? (

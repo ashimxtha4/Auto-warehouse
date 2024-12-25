@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams
+} from 'next/navigation'
 import { usePostAddToCart } from '@/services/api/api-service/cart/add-to-cart'
 import toast from 'react-hot-toast'
 import { isAxiosError } from 'axios'
@@ -8,9 +13,11 @@ import { useUserStore } from '@/slice/user-slice'
 export const useVehicleParts = () => {
   const [showFilterProduct, setShowFilterProduct] = useState(true)
   const searchParams = useSearchParams()
+  const params = useParams()
   const router = useRouter()
   const pathname = usePathname()
   const viewType = searchParams?.get('view')
+  const vehicle = params?.vehicle as string | undefined
 
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
 
@@ -63,6 +70,7 @@ export const useVehicleParts = () => {
     handleSearch,
     isPending,
     handleAddToCart,
-    handleSearchListView
+    handleSearchListView,
+    vehicle
   }
 }

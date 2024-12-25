@@ -22,20 +22,23 @@ import {
 } from '../ui/select'
 import ButtonLoader from '@/utils/button-loader'
 import { FaArrowRightLong } from 'react-icons/fa6'
+import { cn } from '@/lib/utils'
 
 export const FormRowHeader = ({
   children,
+  className
 }: {
   children: React.ReactNode
+  className?: string
 }) => {
   return (
-    <h4 className='text-2xl font-medium border-b pb-2 tracking-wide text-primary-text md:text-2xl'>
+    <h4 className={cn('text-2xl font-medium border-b pb-2 tracking-wide text-primary-text md:text-2xl', className)}>
       {children}
     </h4>
   )
 }
 
-function Separator() {
+export function Separator() {
   return (
     <p className='h-[2px] !-mt-[1px] !mb-2 w-[230px] bg-primary-main' />
   )
