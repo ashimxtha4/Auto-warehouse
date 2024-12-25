@@ -3,12 +3,11 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { productProps } from '@/services/api/api-service/product/product-list'
 import ButtonLoader from '@/utils/button-loader'
-import { FaPlus } from 'react-icons/fa'
 import { IoArrowForward } from 'react-icons/io5'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
+import { CiShoppingCart } from 'react-icons/ci'
 
 // product card
 const ProductItem = ({ item }: { item: productProps }) => {
@@ -21,7 +20,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
         viewType === null
           ? 'flex max-w-[290px] flex-col justify-between'
           : 'mb-4 flex w-full items-start gap-4',
-        'relative rounded-lg bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
+        'relative rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
       )}
     >
       <CardHeader
@@ -41,7 +40,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
           height={150}
           loading='lazy'
           className={cn(
-            'rounded-md object-cover',
+            'rounded-3xl border h-[150px] object-cover',
             viewType !== null ? 'h-auto w-full' : 'max-h-[150px] w-full'
           )}
         />
@@ -54,18 +53,22 @@ const ProductItem = ({ item }: { item: productProps }) => {
         )}
       >
         <div className='flex-grow'>
-          <span className='block py-2 text-lg font-bold md:text-xl'>
+          <span className='block py-2 text-base font-semibold text-primary-text md:text-lg'>
             {item?.name ?? '-'}
           </span>
 
-          <span className='block w-fit rounded-full bg-green-200 px-3 py-1 text-xs font-medium text-green-700'>
-            <span>SKU:</span> {item?.sku ?? '-'}
-          </span>
+          <div className='flex items-center justify-between'>
+            <span className='block w-fit rounded-full bg-[#D3F2D0] px-3 py-1 text-xs font-medium text-primary-text'>
+              <span>SKU:</span> {item?.sku ?? '-'}
+            </span>
 
-          <span className='block py-2 text-xl font-bold text-green-700'>
-            <span className='text-sm font-medium text-gray-400'>FROM:</span> $
-            {item?.price ?? 'N/A'}
-          </span>
+            <span className='block py-2 text-primary-text'>
+              <span className='text-xs font-normal'>FROM:</span>
+              <span className='text-base font-semibold'>
+                ${item?.price ?? 'N/A'}
+              </span>
+            </span>
+          </div>
         </div>
 
         <div className='mt-auto'>
@@ -77,8 +80,8 @@ const ProductItem = ({ item }: { item: productProps }) => {
                 : 'flex justify-between gap-1'
             }
           >
-            <Button
-              className='flex items-center justify-center gap-1 bg-green-600 px-4 py-2 text-xs font-semibold text-white transition-transform hover:scale-105 hover:bg-green-700'
+            <button
+              className='flex items-center justify-center gap-1 rounded-full bg-primary-main px-4 py-2 text-xs font-semibold text-white transition-transform hover:scale-105'
               onClick={() => handleAddToCart(item.id)}
               disabled={isPending}
             >
@@ -86,15 +89,17 @@ const ProductItem = ({ item }: { item: productProps }) => {
                 <ButtonLoader />
               ) : (
                 <>
-                  <span className='text-sm font-semibold'>Add to Cart</span>
-                  <FaPlus size={18} />
+                  <CiShoppingCart size={18} />
+                  <span className='text-nowrap text-sm font-medium'>
+                    Add to Cart
+                  </span>
                 </>
               )}
-            </Button>
+            </button>
 
             <Link
               href={`/product?id=${item.id}`}
-              className='flex items-center justify-center gap-1 text-nowrap rounded-md bg-gray-100 px-4 py-2 text-xs font-medium text-gray-600 hover:scale-105 hover:text-gray-700'
+              className='flex items-center justify-center gap-1 text-nowrap text-xs font-medium text-primary-text/60 hover:scale-105'
             >
               <span className='text-sm font-semibold'>View Details</span>
               <IoArrowForward size={18} />

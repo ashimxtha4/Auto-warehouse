@@ -20,6 +20,7 @@ import logo from '@/assets/logo.png'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 const searchUserCartVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -94,7 +95,7 @@ const MainNavbar = () => {
       </div>
 
       {/* nav items */}
-      <ul className='flex items-center gap-2 rounded-full bg-white p-4 md:gap-5'>
+      <ul className='flex items-center gap-2 rounded-full bg-white py-2 px-4 md:gap-5'>
         {navBG && (
           <Button
             type='button'
@@ -124,7 +125,10 @@ const MainNavbar = () => {
 
         {/* cart search ant user */}
         <Suspense fallback={<LoadingSpinner />}>
-          <motion.div variants={searchUserCartVariants}>
+          <motion.div
+            variants={searchUserCartVariants}
+            className='flex items-center justify-center'
+          >
             <SearchBar />
           </motion.div>
         </Suspense>
@@ -133,7 +137,9 @@ const MainNavbar = () => {
             <UserCartProfile />
           </motion.div>
         ) : (
-          <p className='text-base text-primary-text'>LOGIN/REGISTER</p>
+          <Link href='/login' className='text-base text-primary-text'>
+            LOGIN/REGISTER
+          </Link>
         )}
         {/* mobile menu */}
         <div className='relative flex lg:hidden'>

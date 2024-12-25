@@ -13,8 +13,7 @@ import {
   FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { Lock, ArrowRight } from 'lucide-react'
+import { Lock } from 'lucide-react'
 import toast from 'react-hot-toast'
 import ButtonLoader from '@/utils/button-loader'
 import { useParams, useRouter } from 'next/navigation'
@@ -76,11 +75,14 @@ const ResetPasswordForm = () => {
   }
 
   return (
-    <div className='flex min-h-screen items-center justify-center'>
-      <div className='mx-auto min-w-[300px] rounded-md bg-white p-4 md:min-w-[400px]'>
-        <h2 className='mb-6 text-center text-3xl font-bold text-green-700'>
+    <div className='flex items-center justify-center'>
+      <div className='relative w-full max-w-md transform rounded-3xl bg-white p-8 shadow-lg'>
+        <h2 className='my-1 text-start text-3xl font-normal text-primary-text'>
           Reset Password
         </h2>
+        <p className='mb-4 text-base font-normal text-primary-text/80'>
+          Enter following details to reset your password. Thanks.
+        </p>
 
         <Form {...form}>
           <form
@@ -92,13 +94,14 @@ const ResetPasswordForm = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> Email
+                  <FormLabel className='flex items-center gap-2 text-primary-text'>
+                    <Lock className='h-5 w-5' /> Email
                   </FormLabel>
                   <FormControl>
                     <Input
                       type='email'
                       placeholder='Enter your email'
+                      className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main'
                       {...field}
                     />
                   </FormControl>
@@ -111,13 +114,14 @@ const ResetPasswordForm = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> New Password
+                  <FormLabel className='flex items-center gap-2 text-primary-text'>
+                    <Lock className='h-5 w-5' /> New Password
                   </FormLabel>
                   <FormControl>
                     <Input
                       type='password'
                       placeholder='Enter new password'
+                      className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main'
                       {...field}
                     />
                   </FormControl>
@@ -130,14 +134,14 @@ const ResetPasswordForm = () => {
               name='password_confirmation'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='flex items-center gap-2'>
-                    <Lock className='h-5 w-5 text-gray-500' /> Confirm New
-                    Password
+                  <FormLabel className='flex items-center gap-2 text-primary-text'>
+                    <Lock className='h-5 w-5' /> Confirm New Password
                   </FormLabel>
                   <FormControl>
                     <Input
                       type='password'
                       placeholder='Confirm new password'
+                      className='rounded-full border border-[#B0B0B080]/50 text-primary-text placeholder:text-primary-text/60 focus-visible:ring-1 focus-visible:ring-primary-main'
                       {...field}
                     />
                   </FormControl>
@@ -146,20 +150,17 @@ const ResetPasswordForm = () => {
               )}
             />
 
-            <Button
+            <button
               type='submit'
-              variant='default'
-              className='flex w-full transform items-center justify-center gap-2 bg-green-700 text-white transition-transform hover:scale-105 hover:bg-green-600'
+              className='w-full transform rounded-full bg-primary-main py-2 text-white transition-transform hover:scale-105'
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? (
                 <ButtonLoader />
               ) : (
-                <>
-                  Reset Password <ArrowRight className='h-5 w-5' />
-                </>
+                <>RESET PASSWORD</>
               )}
-            </Button>
+            </button>
           </form>
         </Form>
       </div>
