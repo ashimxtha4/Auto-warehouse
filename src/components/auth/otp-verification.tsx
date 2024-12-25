@@ -9,9 +9,11 @@ import { useUserStore } from '@/slice/user-slice'
 import { useGetOTPVerify } from '@/services/api/api-service/auth/verify'
 import toast from 'react-hot-toast'
 import { isAxiosError } from 'axios'
+import { useRouter } from 'next/navigation'
 
 const OtpVerification = () => {
   const [otp, setOtp] = useState('')
+  const router = useRouter()
 
   const { newUserData } = useUserStore()
 
@@ -24,6 +26,7 @@ const OtpVerification = () => {
         otp: parseInt(otp),
         email: newUserData.email
       })
+      router.push('/login')
       return toast.success('OTP Verified Successfully!')
     } catch (error) {
       if (isAxiosError(error)) {
@@ -68,9 +71,9 @@ const OtpVerification = () => {
         <Button
           type='button'
           onClick={handleSubmitOTP}
-          className='mt-6 w-full bg-primary-main text-white hover:bg-primary-main'
+          className='mt-6 rounded-full w-full bg-primary-main text-white hover:bg-primary-main'
         >
-          Submit
+          SUBMIT
         </Button>
       </div>
     </div>

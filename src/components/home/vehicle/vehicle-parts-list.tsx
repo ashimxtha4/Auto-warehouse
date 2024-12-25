@@ -46,7 +46,7 @@ const VehiclePartsList = ({
       <div
         className={cn(
           viewType === null &&
-            'grid grid-cols-1 justify-center justify-items-center gap-2 sm:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 xl:grid-cols-5'
+          'grid grid-cols-1 justify-center justify-items-center gap-2 sm:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 xl:grid-cols-5'
         )}
       >
         {productList?.length ? (
@@ -54,7 +54,7 @@ const VehiclePartsList = ({
             <ProductItem key={index} item={item} />
           ))
         ) : (
-          <p>
+          <p className='w-full text-primary-text'>
             We couldn&apos;t find any products matching your search. <br />{' '}
             Please feel free to contact us for a{' '}
             <Link
