@@ -155,7 +155,7 @@ const MainNavbar = () => {
               )}
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className='mt-3 flex h-max w-screen flex-col items-center justify-start bg-gray-900'>
+            <DropdownMenuContent className='mt-3 flex h-max w-screen flex-col items-center justify-start bg-white'>
               {NAVBAR_ITEMS.map((item, i) => (
                 <MobileMenuItem key={item.key} item={item} index={i} />
               ))}

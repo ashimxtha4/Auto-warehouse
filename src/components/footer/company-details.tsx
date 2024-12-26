@@ -5,7 +5,7 @@ import { FaStar, FaStarHalf } from 'react-icons/fa'
 
 const CompanyDetails = () => {
   return (
-    <section className='lg:col-span-2'>
+    <section className='lg:col-span-2 order-last lg:order-none'>
       <div className='flex flex-col gap-y-1 md:gap-y-2'>
         <Image
           src={logo}
