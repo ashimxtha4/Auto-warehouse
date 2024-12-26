@@ -231,17 +231,17 @@ const RegisterPage = () => {
               />
             </div>
             {/* accept terms and condition */}
-            <div className='!mt-1 flex items-center justify-center text-base'>
-              <p className='text-primary-text'>
+            <div className='!mt-1 text-base'>
+              <p className='text-primary-text w-full'>
                 By registering, I agree to all the
+                <Link
+                  href='/terms-of-use'
+                  type='button'
+                  className='ml-1 inline font-normal text-primary-main hover:underline'
+                >
+                  terms and conditions
+                </Link>
               </p>
-              <Link
-                href='/login'
-                type='button'
-                className='ml-1 flex items-center gap-1 font-normal text-primary-main hover:underline'
-              >
-                terms and conditions
-              </Link>
             </div>
             <Button
               type='submit'

@@ -32,7 +32,7 @@ const SearchForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 rounded-xl xl:rounded-full bg-white p-4 shadow-lg'
+          className='space-y-8 rounded-xl xl:rounded-full bg-white p-2 md:p-4 shadow-lg'
         >
           <FormRow isFormEmpty={isFormEmpty}>
             <FormField
@@ -99,9 +99,9 @@ const SearchForm = () => {
                   options={
                     vehicleBodyData
                       ? Object.entries(vehicleBodyData).map(([key]) => ({
-                          label: key,
-                          value: key
-                        }))
+                        label: key,
+                        value: key
+                      }))
                       : []
                   }
                   title='Body'
@@ -119,9 +119,9 @@ const SearchForm = () => {
                   options={
                     vehicleYearData
                       ? Object.entries(vehicleYearData).map(([key]) => ({
-                          label: key,
-                          value: key
-                        }))
+                        label: key,
+                        value: key
+                      }))
                       : []
                   }
                   title='Year'
@@ -147,12 +147,12 @@ const SearchForm = () => {
                 />
               )}
             />
-            <div className='flex justify-center gap-2'>
+            <div className='flex justify-start gap-2'>
               {!isFormEmpty && (
                 <Button
                   type='reset'
                   variant='outline'
-                  className='text-primary-danger hover:text-primary-danger h-[60px] rounded-full text-base font-semibold'
+                  className='text-primary-danger hover:text-primary-danger h-[50px] md:h-[60px] rounded-full text-base font-semibold'
                   onClick={() => {
                     form.reset()
                     if (Object.values(formValues).some(value => value)) {
@@ -171,7 +171,7 @@ const SearchForm = () => {
               <Button
                 type='submit'
                 variant='default'
-                className='h-[60px] rounded-full bg-primary-main text-base font-semibold text-primary-text hover:bg-primary-main'
+                className='md:h-[60px] h-[50px] rounded-full bg-primary-main text-base font-semibold text-primary-text hover:bg-primary-main'
               >
                 {form.formState.isSubmitting ? (
                   <ButtonLoader />

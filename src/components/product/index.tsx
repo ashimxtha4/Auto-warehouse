@@ -3,13 +3,11 @@
 import React from 'react'
 import { Card } from '../ui/card'
 import Image from 'next/image'
-import { Button } from '../ui/button'
 import { useGetProductDetails } from '@/hooks/product-details.hook'
 import ButtonLoader from '@/utils/button-loader'
 import { LoadingSpinner } from '../ui/loading-spinner'
-import { Plus } from 'lucide-react'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
-import ProductDescription from './product-description'
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 // product details
 const ProductPage = () => {
@@ -32,10 +30,10 @@ const ProductPage = () => {
     <div className='container mx-auto p-6'>
       {productLoading && <LoadingSpinner />}
 
-      <Card className='mb-10 flex flex-col items-center rounded-lg bg-white p-6 shadow-xl md:flex-row md:space-x-10'>
-        <div className='flex max-w-[400px] flex-col items-center md:items-start'>
+      <Card className='mb-10 flex flex-col items-start rounded-3xl bg-white p-6 shadow-xl md:flex-row md:space-x-10'>
+        <div className='flex max-w-[450px] flex-col items-center md:items-start'>
           <div
-            className='relative cursor-pointer overflow-hidden rounded-lg md:w-[80%]'
+            className='relative cursor-pointer overflow-hidden rounded-2xl md:w-[80%]'
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             onClick={() => setIsModalOpen(true)}
@@ -48,10 +46,10 @@ const ProductPage = () => {
               }
               loading='lazy'
               width={400}
-              height={150}
+              height={400}
               alt='Product Image'
               style={zoomStyle}
-              className='h-auto w-full object-cover transition-transform duration-300 ease-in-out'
+              className='h-full w-full object-cover transition-transform duration-300 ease-in-out'
             />
           </div>
 
@@ -65,49 +63,16 @@ const ProductPage = () => {
                 width={64}
                 height={64}
                 onClick={() => setSelectedImageIndex(index)}
-                className={`h-16 w-16 cursor-pointer rounded-lg object-cover transition-transform duration-200 ease-in-out ${
-                  selectedImageIndex === index
-                    ? 'scale-105 ring-2 ring-blue-950'
-                    : 'hover:scale-105'
-                }`}
+                className={`h-16 w-16 cursor-pointer object-cover transition-transform duration-200 ease-in-out ${selectedImageIndex === index
+                  ? 'scale-105 ring-2 ring-primary-main'
+                  : 'hover:scale-105'
+                  }`}
               />
             ))}
           </div>
-        </div>
-        <div className='mt-8 flex-grow text-center md:mt-0 md:text-left'>
-          <h1 className='text-3xl font-bold text-green-700'>
-            {productData?.name || ''}
-          </h1>
-          <p className='my-2'>
-            <span className='w-fit rounded-full bg-green-100 px-2 py-1 font-semibold text-green-700'>
-              SKU: {productData?.sku || ''}
-            </span>
-          </p>
-          <p className='mt-2 text-lg font-medium text-gray-600'>
-            FROM:{' '}
-            <span className='font-bold text-green-700'>
-              ${productData?.price || '0.00'}
-            </span>
-          </p>
-
-          <div className='mt-6 flex justify-center space-x-10 md:justify-start'>
-            <div>
-              <p className='text-gray-500'>SYD In Stock:</p>
-              <p className='text-lg font-medium text-gray-700'>
-                {productData?.syd_stock === 1 ? 'Yes' : 'No'}
-              </p>
-            </div>
-            <div>
-              <p className='text-gray-500'>MEL In Stock:</p>
-              <p className='text-lg font-medium text-gray-700'>
-                {productData?.mel_stock === 1 ? 'Yes' : 'No'}
-              </p>
-            </div>
-          </div>
-
-          <div className='mt-8'>
-            <Button
-              className='flex items-center justify-center rounded-full bg-green-600 px-6 py-3 font-semibold text-white shadow-md transition-transform hover:scale-105 hover:bg-green-700'
+          <div className='mt-8 w-full'>
+            <button
+              className='rounded-full w-full bg-primary-main px-6 py-3 disabled:cursor-not-allowed font-semibold text-white shadow-md transition-transform disabled:hover:scale-100 hover:scale-105 disabled:bg-primary-main/80 hover:bg-primary-main'
               onClick={handleAddToCart}
               disabled={
                 isPending ||
@@ -117,16 +82,75 @@ const ProductPage = () => {
               {isPending ? (
                 <ButtonLoader />
               ) : (
-                <>
-                  Add to Cart
-                  <Plus className='-mr-1 ml-2 h-5 w-5' />
-                </>
+                'ADD TO CART'
               )}
-            </Button>
+            </button>
+          </div>
+        </div>
+        <div className='mt-8 flex-grow text-center md:mt-0 md:text-left'>
+          <h1 className='md:text-3xl text-xl font-normal text-primary-text'>
+            {productData?.name || ''}
+          </h1>
+          <div className='my-2 md:my-4 border-b border-b-[#B0B0B0] pb-3 flex items-center gap-2'>
+            <p className='flex gap-1'>
+              {
+                [1, 2, 3, 4].map((_, index) => (
+                  <FaStar key={index} className='text-[#E8BA17]' />
+                ))
+              }
+              <FaRegStar className='text-[#999999]' />
+            </p>
+            <p className='text-primary-text/80 text-base'>(12 customer reviews)</p>
+          </div>
+          <p className='mt-2 text-base font-normal text-primary-text/80'>
+            FROM:{' '}
+            <span className='font-semibold text-lg text-primary-text'>
+              AUD ${productData?.price || '0.00'}
+            </span>
+          </p>
+          <p className='my-2'>
+            <span className='w-fit rounded-full bg-[#D3F2D0] text-sm px-2 py-1 font-medium text-primary-text'>
+              SKU: {productData?.sku || ''}
+            </span>
+          </p>
+
+          <p className='my-2'>
+            <span className='mt-2 text-base font-normal text-primary-text/80'>
+              Color: <span className='text-primary-text/90'>{productData?.color || 'N/A'}</span>
+            </span>
+          </p>
+
+          <div className='my-2 border-b border-b-[#B0B0B0] pb-3 flex flex-col justify-center md:justify-start'>
+            <div className='flex justify-between gap-1 max-w-[170px]'>
+              <p className='text-primary-text/80 text-base'>Stock in Sydney:</p>
+              <p className='text-base font-medium text-primary-text'>
+                {productData?.syd_stock === 1 ? 'Yes' : 'No'}
+              </p>
+            </div>
+            <div className='flex justify-between gap-1 max-w-[170px]'>
+              <p className='text-primary-text/80 text-base'>Stock in Melbourne: </p>
+              <p className='text-base font-medium text-primary-text'>
+                {productData?.mel_stock === 1 ? 'Yes' : 'No'}
+              </p>
+            </div>
+          </div>
+
+          {/* product details */}
+          <div className='my-2 md:my-5'>
+            <p className='text-lg font-normal text-primary-text/80'>Product Details</p>
+            <ul className='list-disc my-2 list-inside text-base font-normal text-primary-text/80'>
+              <li>Description: <span className='ml-1 text-primary-text/90'>{productData?.description || 'N/A'}</span></li>
+              <li>Position: <span className='ml-1 text-primary-text/90'>{productData?.position || 'N/A'}</span></li>
+              <li>Size: <span className='ml-1 text-primary-text/90'>{productData?.size || 'N/A'}</span></li>
+              <li>Type: <span className='ml-1 text-primary-text/90'>{productData?.vehicle_type || 'N/A'}</span></li>
+              <li>Vehicle Brand: <span className='ml-1 text-primary-text/90'>{productData?.vehicle_brand || 'N/A'}</span></li>
+              <li>Model: <span className='ml-1 text-primary-text/90'>{productData?.vehicle_model || 'N/A'}</span></li>
+              <li>Series: <span className='ml-1 text-primary-text/90'>{productData?.vehicle_series || 'N/A'}</span></li>
+            </ul>
           </div>
         </div>
       </Card>
-      <ProductDescription productData={productData} />
+      {/* <ProductDescription productData={productData} /> */}
 
       {isModalOpen && (
         <div className='fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-75'>

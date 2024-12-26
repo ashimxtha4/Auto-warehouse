@@ -53,7 +53,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
   return (
-    <FormItem {...props} className='mx-auto mb-4 md:mb-0'>
+    <FormItem {...props} className='mx-auto mb-2 md:mb-0'>
       {/* <FormLabel className='block'>{title}</FormLabel> */}
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger asChild>
@@ -62,7 +62,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
               variant='outline'
               role='combobox'
               className={cn(
-                'h-[60px] w-[160px] justify-between rounded-2xl',
+                'md:h-[60px] h-[50px] w-full justify-between rounded-2xl',
                 !field.value && 'text-muted-foreground'
               )}
             >
