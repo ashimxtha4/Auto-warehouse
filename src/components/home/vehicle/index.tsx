@@ -9,9 +9,6 @@ const Vehicle = () => {
   const { vehicle } = useSearchVehicles()
   return (
     <>
-      {/* <div className='container my-2 md:my-4'>
-        <SearchParts />
-      </div> */}
       {vehicle && (
         <>
           <div className='container  my-4 rounded-xl border border-[#B0B0B080] bg-white md:rounded-3xl'>
