@@ -9,6 +9,7 @@ import { LoadingSpinner } from '../ui/loading-spinner'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { cn } from '@/lib/utils'
+import { useScrollRef } from '@/hooks/scroll.hooks'
 
 // product details
 const ProductPage = () => {
@@ -26,9 +27,10 @@ const ProductPage = () => {
     zoomStyle,
     productImages
   } = useGetProductDetails()
+  const { ref } = useScrollRef(100)
 
   return (
-    <div className='container mx-auto p-6'>
+    <section ref={ref} className='container mx-auto p-6'>
       {productLoading && <LoadingSpinner />}
 
       <Card className='mb-10 flex flex-col items-start rounded-3xl bg-white p-6 shadow-xl md:flex-row md:space-x-10'>
@@ -54,7 +56,7 @@ const ProductPage = () => {
             />
           </div>
 
-          <div className='mt-4 flex items-center justify-center space-x-3 md:w-[80%]'>
+          <div className='mt-4 flex items-center justify-center gap-1 space-x-3 md:w-[80%]'>
             {productImages?.map((image, index) => (
               <Image
                 key={index}
@@ -89,7 +91,7 @@ const ProductPage = () => {
           </div>
         </div>
         <div className='mt-8 flex-grow text-center md:mt-0 md:text-left'>
-          <h1 className='md:text-3xl text-xl font-normal text-primary-text'>
+          <h1 className='md:text-3xl text-start text-xl font-normal text-primary-text'>
             {productData?.name || ''}
           </h1>
           <div className='my-2 md:my-4 border-b border-b-[#B0B0B0] pb-3 flex items-center gap-2'>
@@ -103,33 +105,33 @@ const ProductPage = () => {
             </p>
             <p className='text-primary-text/80 text-base'>(12 customer reviews)</p>
           </div>
-          <p className='mt-2 text-base font-normal text-primary-text/80'>
+          <p className='mt-2 text-base text-start font-normal text-primary-text/80'>
             FROM:{' '}
             <span className='font-semibold text-lg text-primary-text'>
               AUD ${productData?.price || '0.00'}
             </span>
           </p>
-          <p className='my-2'>
+          <p className='my-2 text-start'>
             <span className='w-fit rounded-full bg-[#D3F2D0] text-sm px-2 py-1 font-medium text-primary-text'>
               SKU: {productData?.sku || ''}
             </span>
           </p>
 
-          <p className='my-2'>
+          <p className='my-2 text-start'>
             <span className='mt-2 text-base font-normal text-primary-text/80'>
               Color: <span className='text-primary-text/90'>{productData?.color || 'N/A'}</span>
             </span>
           </p>
 
-          <div className='my-2 border-b border-b-[#B0B0B0] pb-3 flex flex-col justify-center md:justify-start'>
-            <div className='flex justify-between gap-1 max-w-[170px]'>
+          <div className='my-2 border-b border-b-[#B0B0B0] pb-3 flex flex-col justify-start'>
+            <div className='flex justify-between gap-1 max-w-[200px]'>
               <p className='text-primary-text/80 text-base'>Stock in Sydney:</p>
               <p className='text-base font-medium text-primary-text'>
                 {productData?.syd_stock === 1 ? 'Yes' : 'No'}
               </p>
             </div>
-            <div className='flex justify-between gap-1 max-w-[170px]'>
-              <p className='text-primary-text/80 text-base'>Stock in Melbourne: </p>
+            <div className='flex justify-between gap-1 max-w-[200px]'>
+              <p className='text-primary-text/80 text-base text-nowrap'>Stock in Melbourne: </p>
               <p className='text-base font-medium text-primary-text'>
                 {productData?.mel_stock === 1 ? 'Yes' : 'No'}
               </p>
@@ -137,7 +139,7 @@ const ProductPage = () => {
           </div>
 
           {/* product details */}
-          <div className='my-2 md:my-5'>
+          <div className='my-2 md:my-5 text-start'>
             <p className='text-lg font-normal text-primary-text/80'>Product Details</p>
             <ul className='list-disc my-2 list-inside text-base font-normal text-primary-text/80'>
               <li>Description: <span className='ml-1 text-primary-text/90'>{productData?.description || 'N/A'}</span></li>
@@ -183,7 +185,7 @@ const ProductPage = () => {
           </div>
         </div>
       )}
-    </div>
+    </section>
   )
 }
 
