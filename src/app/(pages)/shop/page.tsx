@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Suspense, useEffect, useRef } from 'react'
+import React, { Suspense } from 'react'
 import VehicleParts from '@/components/home/vehicle/vehicle-parts'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useScrollRef } from '@/hooks/scroll.hooks'

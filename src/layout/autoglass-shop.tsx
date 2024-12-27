@@ -1,10 +1,11 @@
 'use client'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { usePathname } from 'next/navigation'
 // import ProfileLayout from './profile-layout'
 import DefaultLayout from './default-layout'
 import AuthLayout from './auth-layout'
 import ProfileLayout from './profile-layout'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const AutoGlassShopLayout = ({
   children
@@ -35,7 +36,11 @@ const AutoGlassShopLayout = ({
     pathname === '/product' ||
     pathname === '/search-product'
   ) {
-    return <ProfileLayout pathname={pathname}>{children}</ProfileLayout>
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ProfileLayout pathname={pathname}>{children}</ProfileLayout>
+      </Suspense>
+    )
   }
 
   if (

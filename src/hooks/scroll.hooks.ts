@@ -15,7 +15,7 @@ export const useScrollRef = (topOffset: number) => {
         behavior: 'smooth'
       })
     }
-  }, [])
+  }, [topOffset])
 
   return {
     ref

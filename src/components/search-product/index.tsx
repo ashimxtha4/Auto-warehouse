@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import VehicleParts from '../home/vehicle/vehicle-parts'
 import { Input } from '../ui/input'
 import { FaSearch } from 'react-icons/fa'
