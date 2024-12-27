@@ -6,8 +6,7 @@ export const useScrollRef = (topOffset: number) => {
   useEffect(() => {
     if (ref.current) {
       //   const topOffset = 100
-      const elementPosition =
-        ref.current.getBoundingClientRect().top + window.pageYOffset
+      const elementPosition = ref.current.getBoundingClientRect().top
       const offsetPosition = elementPosition - topOffset
 
       window.scrollTo({

@@ -100,7 +100,8 @@ const MainNavbar = () => {
           <Button
             type='button'
             variant='default'
-            className='rounded-full bg-primary-main p-5 text-base font-semibold text-primary-text hover:bg-primary-main'
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className='rounded-full bg-primary-main px-2 py-1 md:p-5 text-xs md:text-base font-semibold text-primary-text hover:bg-primary-main'
           >
             Find Parts
           </Button>
