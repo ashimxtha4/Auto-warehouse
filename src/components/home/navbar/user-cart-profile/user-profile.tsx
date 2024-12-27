@@ -10,6 +10,7 @@ import { PROFILE_LINKS } from '@/constants/profile-links'
 // import RegisterPage from '@/components/auth/register'
 // import LoginPage from '@/components/auth/login'
 import { useAuthStore } from '@/slice/auth-state-slice'
+import { useRouter } from 'next/navigation'
 // import AuthDialog from './auth-dialog'
 // import OTPDialog from './otp-dialog'
 // import ForgotPasswordDialog from './forgot-password-dialog'
@@ -26,6 +27,8 @@ const UserProfile = () => {
     setHoverCardOpen
     // closeAll
   } = useAuthStore()
+
+  const router = useRouter()
 
   return (
     <HoverCard
@@ -59,6 +62,16 @@ const UserProfile = () => {
               {item.label}
             </Link>
           ))}
+          <button
+            type='button'
+            onClick={() => {
+              window.localStorage.clear()
+              router.push('/')
+            }}
+            className='w-full rounded-lg border bg-white px-2 py-1 text-primary-text/60 transition-all hover:border-[#6EB031] hover:bg-[#D3F2D0] hover:text-primary-text/80 disabled:cursor-not-allowed disabled:text-gray-500'
+          >
+            Logout
+          </button>
           {/* {!isLoggedIn ? (
             <>
               {' '}
