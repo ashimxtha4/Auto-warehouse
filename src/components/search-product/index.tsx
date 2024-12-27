@@ -5,17 +5,18 @@ import VehicleParts from '../home/vehicle/vehicle-parts'
 import { Input } from '../ui/input'
 import { FaSearch } from 'react-icons/fa'
 import { useSearchInput } from '@/hooks/search-input.hook'
+import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const SearchProduct = () => {
 
     const { debounceValue, router, search, setSearch } = useSearchInput()
-
+    const { ref } = useScrollRef(100)
     return (
-        <section className='bg-white rounded-3xl p-2'>
+        <section ref={ref} className='bg-white rounded-3xl p-2'>
             <p className='text-base text-primary-text my-2 md:my-4 md:text-2xl'>SEARCH</p>
             <form onSubmit={e => {
                 e.preventDefault()
-                router.push(`/shop?keyword=${debounceValue}`)
+                router.push(`/search-product?keyword=${debounceValue}`)
             }} className='my-2 md:my-4 flex relative w-full'>
                 <Input
                     value={search}

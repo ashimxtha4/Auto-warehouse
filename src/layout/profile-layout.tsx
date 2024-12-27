@@ -1,6 +1,7 @@
 import Footer from '@/components/footer'
 import MainNavbar from '@/components/home/navbar/main-nav'
 import SearchParts from '@/components/home/search-parts'
+import { useSearchParams } from 'next/navigation';
 
 function convertPath(inputPath: string) {
   let result = inputPath.replace(/^\//, '');
@@ -16,6 +17,11 @@ const ProfileLayout = ({
   children: React.ReactNode
   pathname?: string | null
 }>) => {
+
+  const params = useSearchParams();
+  const keyword = params?.get('keyword')?.toUpperCase()
+
+
   return (
     <>
       <div>
@@ -28,7 +34,7 @@ const ProfileLayout = ({
           </section>
           <div className='rounded-3xl border border-white/50 bg-gradient-to-r from-[#ffffff] to-[#6EB03166] p-4 backdrop-blur-md'>
             <h2 className='text-start text-base font-bold tracking-wide text-primary-text sm:text-xl md:text-5xl'>
-              {convertPath(pathname as string)}
+              {keyword ?? convertPath(pathname as string)}
             </h2>
           </div>
         </div>

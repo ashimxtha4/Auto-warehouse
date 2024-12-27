@@ -8,6 +8,7 @@ import ButtonLoader from '@/utils/button-loader'
 import { LoadingSpinner } from '../ui/loading-spinner'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { cn } from '@/lib/utils'
 
 // product details
 const ProductPage = () => {
@@ -63,10 +64,10 @@ const ProductPage = () => {
                 width={64}
                 height={64}
                 onClick={() => setSelectedImageIndex(index)}
-                className={`h-16 w-16 cursor-pointer object-cover transition-transform duration-200 ease-in-out ${selectedImageIndex === index
+                className={cn('h-16 w-16 cursor-pointer object-cover transition-transform duration-200 ease-in-out', selectedImageIndex === index
                   ? 'scale-105 ring-2 ring-primary-main'
                   : 'hover:scale-105'
-                  }`}
+                )}
               />
             ))}
           </div>
