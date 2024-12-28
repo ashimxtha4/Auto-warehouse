@@ -68,7 +68,7 @@ const UserProfile = () => {
               window.localStorage.clear()
               router.push('/')
             }}
-            className='w-full rounded-lg border bg-white px-2 py-1 text-primary-text/60 transition-all hover:border-[#6EB031] hover:bg-[#D3F2D0] hover:text-primary-text/80 disabled:cursor-not-allowed disabled:text-gray-500'
+            className='w-full rounded-lg text-start border bg-white px-2 py-1 text-primary-text/60 transition-all hover:border-[#6EB031] hover:bg-[#D3F2D0] hover:text-primary-text/80 disabled:cursor-not-allowed disabled:text-gray-500'
           >
             Logout
           </button>
