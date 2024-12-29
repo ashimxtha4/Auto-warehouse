@@ -26,7 +26,7 @@ const BannerContent = () => {
       variants={sectionVariants}
     >
       <h2 className='text-start text-base font-bold tracking-wide text-primary-text sm:text-xl md:text-5xl'>
-        Premium Auto <br className='hidden md:block' /> Glass Solutions{' '}
+        Premium Auto <br className='hidden md:block' /> Glass{' '}
         <span className='my-1 block md:mt-5 md:text-3xl'>
           AT AFFORDABLE PRICES
         </span>

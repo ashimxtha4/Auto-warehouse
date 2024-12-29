@@ -61,10 +61,12 @@ const SearchForm = () => {
                   field={field}
                   form={form}
                   options={
-                    vehicleModelData?.map(item => ({
-                      label: item.name,
-                      value: item.id?.toString()
-                    })) || []
+                    vehicleModelData
+                      ? Object.entries(vehicleModelData).map(([key, value]) => ({
+                        label: key,
+                        value: value.ids.toString()
+                      }))
+                      : []
                   }
                   title='Model'
                   placeholder='Select Model'

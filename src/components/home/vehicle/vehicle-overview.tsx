@@ -9,8 +9,8 @@ import Suv from './vehicle-type/suv'
 import { useSearchVehicles, VehicleMake } from '@/hooks/search-vehicle.hooks'
 
 const VehicleOverview = () => {
-  const { selectedVehicleModel } = useSearchVehicles()
-  const vehicleType = selectedVehicleModel?.vehicle_type?.toUpperCase()
+  const { selectedVehicleModel, selectedVehicleBody } = useSearchVehicles()
+  const vehicleType = selectedVehicleBody?.toUpperCase() ?? selectedVehicleModel?.toUpperCase()
 
   switch (vehicleType) {
     case VehicleMake.VAN:

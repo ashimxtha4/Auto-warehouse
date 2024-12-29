@@ -1,12 +1,19 @@
 import { api } from '@/services/endpoints/api.endpoints'
 import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
-import { VehicleBodyProps } from '../vehicle/vehicle-body'
+
+export interface VehicleSidebarProps {
+  success: boolean
+  message: string
+  data: {
+    [key: string]: string
+  }
+}
 
 const getSidebar = async (
   vehicle_brand_id: number
 ): Promise<{
-  data: VehicleBodyProps
+  data: VehicleSidebarProps
 }> => {
   return await httpClient.post(api.sidebar.post, {
     vehicle_brand_id
