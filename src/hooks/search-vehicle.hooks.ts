@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -39,6 +39,9 @@ export const useSearchVehicles = () => {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const vehicle = params?.vehicle as string | undefined
+  const [modelArray, setModelArray] = useState<
+    string[] | number[] | undefined
+  >()
 
   const { data: vehicleMakeData, mutateAsync: mutateVehicleMake } =
     useGetVehicleMake()
@@ -68,8 +71,25 @@ export const useSearchVehicles = () => {
     resolver: zodResolver(searchPartsSchema)
   })
 
+  const modelValue = form.getValues('model')
+
+  useEffect(() => {
+    if (modelValue) {
+      let modelArrayString = Array.isArray(modelValue)
+        ? modelValue
+        : [modelValue]
+
+      // Convert string array to number array
+      modelArrayString = modelArrayString.flatMap(value =>
+        typeof value === 'string' ? value.split(',').map(Number) : [value]
+      )
+
+      setModelArray(modelArrayString)
+    }
+  }, [modelValue])
+
   const vehicle_brand_id = form.watch('make')
-  const vehicle_model_id = form.watch('model')
+  // const vehicle_model_id = modelArray
   const vehicle_series_id = form.watch('series')
   const vehicle_type_id = form.watch('type')
   const vehicle_year_id = form.watch('year')
@@ -101,30 +121,30 @@ export const useSearchVehicles = () => {
         await mutateSidebar(parseInt(vehicle_brand_id))
       }
 
-      if (vehicle_brand_id || vehicle_model_id || vehicle_year_id) {
+      if (vehicle_brand_id || modelArray || vehicle_year_id) {
         await mutateVehicleSeries({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
-          vehicle_model_id: parseId(vehicle_model_id),
+          vehicle_model_id: modelArray?.map(val => parseInt(val as string)),
           vehicle_year_id: vehicle_year_id
         })
       }
 
-      if (vehicle_brand_id || vehicle_model_id || vehicle_type_id) {
+      if (vehicle_brand_id || modelArray || vehicle_type_id) {
         await mutateVehicleGroup({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
-          vehicle_model_id: parseId(vehicle_model_id),
+          vehicle_model_id: modelArray?.map(val => parseInt(val as string)),
           vehicle_type_id: parseId(vehicle_type_id)
         })
       }
 
-      if (vehicle_brand_id || vehicle_model_id) {
+      if (vehicle_brand_id || modelArray) {
         await mutateVehicleYear({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
-          vehicle_model_id: parseId(vehicle_model_id)
+          vehicle_model_id: modelArray?.map(val => parseInt(val as string))
         })
         await mutateVehicleBody({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
-          vehicle_model_id: parseId(vehicle_model_id)
+          vehicle_model_id: modelArray?.map(val => parseInt(val as string))
         })
       }
     }
@@ -133,7 +153,7 @@ export const useSearchVehicles = () => {
   }, [
     mutateSidebar,
     vehicle_brand_id,
-    vehicle_model_id,
+    modelArray,
     vehicle_series_id,
     vehicle_type_id,
     vehicle_year_id,
@@ -145,9 +165,17 @@ export const useSearchVehicles = () => {
     handleSearchFilter
   ])
 
-  const selectedVehicleModel = vehicleModelData?.data?.data?.find(
-    model => model.id?.toString() === vehicle_model_id
-  )
+  const selectedVehicleBody = vehicleBodyData?.data?.data
+    ? Object.entries(vehicleBodyData.data.data)?.find(([, value]) => {
+        return value.name === form.getValues('type')
+      })?.[1].vehicle_type
+    : undefined
+
+  const selectedVehicleModel = vehicleModelData?.data
+    ? Object.entries(vehicleModelData.data)?.find(([, value]) => {
+        return value.ids == modelArray
+      })?.[1].vehicle_type
+    : undefined
 
   useEffect(() => {
     const model = searchParams?.get('model')
@@ -205,7 +233,7 @@ export const useSearchVehicles = () => {
     router,
     vehicle,
     vehicleMakeData: vehicleMakeData?.data?.data,
-    vehicleModelData: vehicleModelData?.data?.data,
+    vehicleModelData: vehicleModelData?.data,
     vehicleSeriesData: vehicleSeriesData?.data?.data,
     vehicleBodyData: vehicleBodyData?.data?.data,
     vehicleGroupData: vehicleGroupData?.data?.data,
@@ -215,6 +243,7 @@ export const useSearchVehicles = () => {
     handleSearchFilter,
     sidebarData: sidebarData?.data.data,
     sidebarDataPending,
-    searchParams
+    searchParams,
+    selectedVehicleBody
   }
 }

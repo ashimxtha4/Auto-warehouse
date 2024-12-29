@@ -10,7 +10,7 @@ export interface VehicleGroupProps {
 
 const getVehicleGroup = async (data: {
   vehicle_brand_id: number
-  vehicle_model_id?: number
+  vehicle_model_id?: number[]
   vehicle_type_id?: number
 }): Promise<{
   data: { data: VehicleGroupProps[] }

@@ -14,7 +14,7 @@ export interface VehicleSeriesProps {
 
 const getVehicleSeries = async (data: {
   vehicle_brand_id: number
-  vehicle_model_id?: number
+  vehicle_model_id?: number[]
   vehicle_year_id?: string
 }): Promise<{
   data: { data: VehicleSeriesProps[] }
