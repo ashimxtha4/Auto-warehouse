@@ -247,6 +247,7 @@ const RegisterPage = () => {
               type='submit'
               variant='default'
               className='flex w-full transform items-center justify-center gap-2 rounded-full bg-primary-main text-white transition-transform hover:scale-105 hover:bg-primary-main'
+              disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? <ButtonLoader /> : <>REGISTER</>}
             </Button>

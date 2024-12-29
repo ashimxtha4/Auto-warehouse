@@ -117,6 +117,7 @@ const LoginPage = () => {
             <button
               type='submit'
               className='w-full transform rounded-full bg-primary-main py-2 text-white transition-transform hover:scale-105'
+              disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? <ButtonLoader /> : 'LOGIN'}
             </button>

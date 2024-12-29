@@ -14,6 +14,7 @@ import {
   CONTACT_BRANCHES_DATA,
   CONTACT_CALL_DATA
 } from '@/constants/contact-data'
+import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const ContactCard = ({
   icon: Icon,
@@ -34,18 +35,17 @@ const ContactCard = ({
 )
 
 const Contact = () => {
-  const { ref: sectionRef, inView: sectionInView } = useInView({
+  const { inView: sectionInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.3
   })
 
+  const { ref } = useScrollRef(100)
+
   return (
-    <motion.section
+    <section
       className='container my-2 md:my-4'
-      ref={sectionRef}
-      initial={{ opacity: 0, y: 20 }}
-      animate={sectionInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5 }}
+      ref={ref}
     >
       <SectionHeader>Contacts</SectionHeader>
       <motion.div
@@ -97,7 +97,7 @@ const Contact = () => {
           </motion.div>
         </ContactCard>
       </motion.div>
-    </motion.section>
+    </section>
   )
 }
 
