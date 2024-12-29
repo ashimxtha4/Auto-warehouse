@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import GetAQuoteForm from './get-a-quote-form'
 import { useScrollRef } from '@/hooks/scroll.hooks'
