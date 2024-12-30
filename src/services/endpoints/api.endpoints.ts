@@ -45,36 +45,39 @@ export const api = {
     }
   },
   products: {
+    // list: {
+    //   get: (
+    //     keyword?: string,
+    //     brand?: number,
+    //     type?: string,
+    //     model?: number[],
+    //     position?: number,
+    //     series?: number,
+    //     page?: number,
+    //     specific?: string
+    //   ) => {
+    //     let url = '/general/product_list'
+    //     const params = new URLSearchParams()
+
+    //     if (keyword) params.append('keyword', keyword)
+    //     if (specific) params.append('specific', specific)
+    //     if (brand) params.append('brand', brand.toString())
+    //     if (type) params.append('type', type)
+    //     if (model) params.append('model', model.toString())
+    //     if (position) params.append('position', position.toString())
+    //     if (series) params.append('series', series.toString())
+    //     if (page) params.append('page', page.toString())
+
+    //     const queryString = params.toString()
+    //     if (queryString) {
+    //       url += `?${queryString}`
+    //     }
+
+    //     return url
+    //   }
+    // },
     list: {
-      get: (
-        keyword?: string,
-        brand?: number,
-        type?: string,
-        model?: number,
-        position?: number,
-        series?: number,
-        page?: number,
-        specific?: string
-      ) => {
-        let url = '/general/product_list'
-        const params = new URLSearchParams()
-
-        if (keyword) params.append('keyword', keyword)
-        if (specific) params.append('specific', specific)
-        if (brand) params.append('brand', brand.toString())
-        if (type) params.append('type', type)
-        if (model) params.append('model', model.toString())
-        if (position) params.append('position', position.toString())
-        if (series) params.append('series', series.toString())
-        if (page) params.append('page', page.toString())
-
-        const queryString = params.toString()
-        if (queryString) {
-          url += `?${queryString}`
-        }
-
-        return url
-      }
+      post: '/general/product_list'
     },
     product: {
       get: (id: number) => `/general/product_details/${id}`

@@ -1,4 +1,3 @@
-import { useGetProductList } from '@/services/api/api-service/product/product-list'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useDebounce } from './debounce.hook'
@@ -9,8 +8,6 @@ export const useSearchInput = () => {
   const inputRef = useRef<null | HTMLInputElement>(null)
   const [search, setSearch] = useState('')
   const [open, setOpen] = useState(false)
-
-  const { data: productList, isLoading } = useGetProductList()
 
   const debounceValue = useDebounce(search)
 
@@ -36,8 +33,6 @@ export const useSearchInput = () => {
   return {
     inputRef,
     handleInputClick,
-    productList,
-    isLoading,
     setSearch,
     search,
     setOpen,
