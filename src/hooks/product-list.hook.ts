@@ -1,6 +1,5 @@
 import { useGetProductList } from '@/services/api/api-service/product/product-list'
 import { useEffect, useState } from 'react'
-import { useSearchVehicles } from './search-vehicle.hooks'
 import { useSearchParams } from 'next/navigation'
 
 export const useProductList = () => {
