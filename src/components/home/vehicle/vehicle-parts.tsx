@@ -3,14 +3,18 @@
 import React from 'react'
 import VehiclePartsList from './vehicle-parts-list'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import AutoGlassPagination from '@/utils/autoglass-pagination'
 import SidebarFilter from './sidebar-filter'
 import { useProductList } from '@/hooks/product-list.hook'
 
-const VehicleParts = () => {
+interface IVehiclePartsProps {
+  vehicle: string | undefined,
+  handlePageChange: (page: number) => void
+}
+
+const VehicleParts = ({ vehicle, handlePageChange }: IVehiclePartsProps) => {
+
   const { productList, totalNumberOfProducts, isPending, productMeta } = useProductList()
-  const { vehicle, handlePageChange } = useSearchVehicles()
 
   return (
     <section className='my-4 flex gap-5 border-t pt-4'>

@@ -10,6 +10,7 @@ export const useProductList = () => {
   const totalNumberOfProducts = data?.data?.meta?.total
 
   const [selectedArray, setSelectedArray] = useState<number[] | undefined>()
+
   const params = useSearchParams()
   const keyword = params?.get('keyword') || ''
   const brand = params?.get('brand')
@@ -18,7 +19,6 @@ export const useProductList = () => {
   const type = params?.get('type') || ''
   const specific = params?.get('specific') || ''
   const modelParam = params?.get('model')
-  let modelArray: number[]
 
   const position = params?.get('position')
     ? parseInt(params.get('position') as string)
@@ -26,10 +26,12 @@ export const useProductList = () => {
   const series = params?.get('series')
     ? parseInt(params.get('series') as string)
     : undefined
+  const year = params?.get('year') || ''
 
   const page = parseInt(params?.get('page') || '1')
 
   useEffect(() => {
+    let modelArray: number[]
     if (modelParam) {
       modelArray = modelParam.split(',').map(Number)
       setSelectedArray(modelArray)
@@ -37,17 +39,32 @@ export const useProductList = () => {
   }, [modelParam])
 
   useEffect(() => {
-    mutateAsync({
-      keyword,
-      brand,
-      type,
-      model: selectedArray,
-      position,
-      series,
-      page,
-      specific
-    })
-  }, [keyword, brand, type, selectedArray, position, series, page, specific])
+    ;(async () => {
+      await mutateAsync({
+        keyword,
+        brand,
+        type,
+        model: selectedArray,
+        position,
+        series,
+        page,
+        specific,
+        year
+      })
+    })()
+  }, [
+    keyword,
+    brand,
+    type,
+    selectedArray,
+    position,
+    series,
+    page,
+    specific,
+    year,
+    modelParam,
+    mutateAsync
+  ])
 
   return {
     productList,

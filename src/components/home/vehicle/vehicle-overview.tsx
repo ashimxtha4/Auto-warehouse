@@ -6,10 +6,15 @@ import Ute from './vehicle-type/ute'
 import UteTruck from './vehicle-type/ute-truck'
 import Van from './vehicle-type/van'
 import Suv from './vehicle-type/suv'
-import { useSearchVehicles, VehicleMake } from '@/hooks/search-vehicle.hooks'
+import { VehicleMake } from '@/hooks/search-vehicle.hooks'
 
-const VehicleOverview = () => {
-  const { selectedVehicleModel, selectedVehicleBody } = useSearchVehicles()
+interface IVehicleOverviewProps {
+  selectedVehicleBody: string | undefined,
+  selectedVehicleModel: string | undefined
+}
+
+const VehicleOverview = ({ selectedVehicleBody, selectedVehicleModel }: IVehicleOverviewProps) => {
+
   const vehicleType = selectedVehicleBody?.toUpperCase() ?? selectedVehicleModel?.toUpperCase()
 
   switch (vehicleType) {
