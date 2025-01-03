@@ -6,11 +6,13 @@ import { Input } from '../ui/input'
 import { FaSearch } from 'react-icons/fa'
 import { useSearchInput } from '@/hooks/search-input.hook'
 import { useScrollRef } from '@/hooks/scroll.hooks'
+import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 
 const SearchProduct = () => {
 
     const { debounceValue, router, search, setSearch } = useSearchInput()
     const { ref } = useScrollRef(100)
+    const { vehicle, handlePageChange } = useSearchVehicles()
     return (
         <section ref={ref} className='bg-white rounded-3xl p-2'>
             <p className='text-base text-primary-text my-2 md:my-4 md:text-2xl'>SEARCH</p>
@@ -32,7 +34,7 @@ const SearchProduct = () => {
                     <FaSearch size={18} />
                 </button>
             </form>
-            <VehicleParts />
+            <VehicleParts vehicle={vehicle} handlePageChange={handlePageChange} />
         </section>
     )
 }

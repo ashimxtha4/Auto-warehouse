@@ -7,7 +7,7 @@ import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const Vehicle = () => {
-  const { vehicle } = useSearchVehicles()
+  const { vehicle, selectedVehicleModel, selectedVehicleBody, handlePageChange } = useSearchVehicles()
   const { ref } = useScrollRef(100)
   return (
     <>
@@ -18,11 +18,11 @@ const Vehicle = () => {
               Select Your Preferred Glass Type
             </span>
             <div className='relative my-4 mb-12 flex w-full justify-center'>
-              <VehicleOverview />
+              <VehicleOverview selectedVehicleBody={selectedVehicleBody} selectedVehicleModel={selectedVehicleModel} />
             </div>
           </section>
           <div className='container my-4'>
-            <VehicleParts />
+            <VehicleParts vehicle={vehicle} handlePageChange={handlePageChange} />
           </div>
         </>
       )}
