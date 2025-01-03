@@ -62,7 +62,6 @@ export const useProductList = () => {
     page,
     specific,
     year,
-    modelParam,
     mutateAsync
   ])
 
