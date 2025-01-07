@@ -15,6 +15,10 @@ export const api = {
     },
     resetPassword: {
       get: '/customer/reset_password'
+    },
+    detail: {
+      get: (customer_id: number, uid: string) =>
+        `/customer/customer_details?customer_id=${customer_id}&uid=${uid}`
     }
   },
   // vehicle
@@ -104,5 +108,9 @@ export const api = {
   // sidebar
   sidebar: {
     post: '/general/product/sidebar'
+  },
+  // contact
+  contact: {
+    post: '/general/contact_us'
   }
 }

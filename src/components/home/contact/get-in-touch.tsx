@@ -15,34 +15,33 @@ import { isAxiosError } from 'axios'
 import { Input } from '@/components/ui/input'
 import ButtonLoader from '@/utils/button-loader'
 import { FaArrowRightLong } from 'react-icons/fa6'
+import { usePostContactUs } from '@/services/api/api-service/contact/contact-us'
 
-const getAQuoteSchema = z.object({
+const getContactUsSchema = z.object({
   name: z.string({ required_error: 'Please enter your name.' }),
   email: z
     .string({ required_error: 'Please enter your email.' })
     .email({ message: 'Invalid email.' }),
-  phone: z.string({ required_error: 'Please enter your phone number.' }),
+  phone_no: z.string({ required_error: 'Please enter your phone number.' }),
   message: z.string({ required_error: 'Please enter your message.' })
 })
 
-export type TGetAQuoteSchemaProps = z.infer<typeof getAQuoteSchema>
+export type TContactUsSchemaProps = z.infer<typeof getContactUsSchema>
 
-const GetInTouch = () => {
-  // const router = useRouter()
+const ContactUsForm = () => {
+  const { mutateAsync, isPending } = usePostContactUs()
 
-  const form = useForm<Partial<TGetAQuoteSchemaProps>>({
-    resolver: zodResolver(getAQuoteSchema)
+  const form = useForm<TContactUsSchemaProps>({
+    resolver: zodResolver(getContactUsSchema)
   })
 
-  const onSubmit = async (data: Partial<TGetAQuoteSchemaProps>) => {
-    console.log(data, 'data')
-
+  const onSubmit = async (data: TContactUsSchemaProps) => {
     try {
-      // router.push('/')
+      await mutateAsync(data)
       toast.success('Thankyou for reaching out!! We will get to you soon.')
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.message)
+        return toast.error(error.message)
       }
       toast.error('Something went wrong! Try again later')
     }
@@ -69,7 +68,7 @@ const GetInTouch = () => {
                   <FormControl>
                     <Input
                       placeholder='Name'
-                      className='border border-[#B0B0B080]/50 text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
+                      className='border rounded-full text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
                       {...field}
                     />
                   </FormControl>
@@ -85,7 +84,7 @@ const GetInTouch = () => {
                   <FormControl>
                     <Input
                       placeholder='Email'
-                      className='border border-[#B0B0B080]/50 text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
+                      className='border rounded-full text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
                       {...field}
                     />
                   </FormControl>
@@ -97,12 +96,12 @@ const GetInTouch = () => {
           <div className='flex gap-5'>
             <FormField
               control={form.control}
-              name='phone'
+              name='phone_no'
               render={({ field }) => (
                 <FormItem className='w-full'>
                   <FormControl>
                     <Input
-                      className='border border-[#B0B0B080]/50 text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
+                      className='border rounded-full text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
                       placeholder='Phone'
                       {...field}
                     />
@@ -119,7 +118,7 @@ const GetInTouch = () => {
                   <FormControl>
                     <Input
                       placeholder='Message'
-                      className='border border-[#B0B0B080]/50 text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
+                      className='border rounded-full text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white'
                       {...field}
                     />
                   </FormControl>
@@ -132,12 +131,13 @@ const GetInTouch = () => {
             <button
               type='submit'
               className='w-[50%] self-center rounded-full bg-primary-main p-2 text-lg font-semibold text-white md:w-[30%] md:text-xl'
+              disabled={isPending}
             >
-              {form.formState.isSubmitting ? (
+              {(form.formState.isSubmitting || isPending) ? (
                 <ButtonLoader />
               ) : (
                 <div className='flex w-full items-center justify-between'>
-                  <span className='text-primary-text'>SUBMIT</span>
+                  <span className='text-primary-text pl-4'>SUBMIT</span>
                   <span className='ml-2 rounded-full bg-primary-text p-2'>
                     <FaArrowRightLong className='text-primary-main' />
                   </span>
@@ -151,4 +151,4 @@ const GetInTouch = () => {
   )
 }
 
-export default GetInTouch
+export default ContactUsForm

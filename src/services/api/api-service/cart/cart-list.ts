@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { IGenericResponse } from '@/utils/response-types/generic-data-response'
+
 export interface listDataProps {
   id: number
   customer_id: number
