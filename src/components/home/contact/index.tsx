@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Link from 'next/link'
 import { CONTACT_CALL_DATA } from '@/constants/contact-data'
 import { IoCallOutline } from 'react-icons/io5'
 import { CiMail } from 'react-icons/ci'
-import GetInTouch from './get-in-touch'
+import ContactUsForm from './get-in-touch'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 
 const Contact = () => {
   return (
@@ -35,7 +36,9 @@ const Contact = () => {
           <span className='text-end'>sales@autoglassshop.com.au</span>
         </Link>
       </aside>
-      <GetInTouch />
+      <Suspense fallback={<LoadingSpinner />}>
+        <ContactUsForm />
+      </Suspense>
     </section>
   )
 }

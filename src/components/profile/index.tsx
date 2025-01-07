@@ -1,26 +1,39 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Mail, Phone, Edit, Pencil, Home, Building, Hash } from 'lucide-react'
-import toast, { Toaster } from 'react-hot-toast'
+import React, { useEffect } from 'react'
+import { Mail, Phone, Edit, Home } from 'lucide-react'
+// import toast from 'react-hot-toast'
+import { useGetCustomerDetails } from '@/services/api/api-service/customer/customer-detail'
+import { useUserStore } from '@/slice/user-slice'
+import { LoadingSpinner } from '../ui/loading-spinner'
 
 const UserProfile = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  // const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleModalToggle = () => setIsModalOpen(!isModalOpen)
+  // const handleModalToggle = () => setIsModalOpen(!isModalOpen)
 
-  const handleSaveChanges = () => {
-    toast.success('Changes have been saved!')
-    setIsModalOpen(false)
-  }
+  // const handleSaveChanges = () => {
+  //   toast.success('Changes have been saved!')
+  //   setIsModalOpen(false)
+  // }
+
+  const { id, uuid, loadUserFromLocalStorage } = useUserStore()
+
+  useEffect(() => {
+    loadUserFromLocalStorage()
+  }, [loadUserFromLocalStorage])
+
+
+  const { data, isLoading } = useGetCustomerDetails(uuid, id)
+
+  const customerData = data?.data
 
   return (
     <section className='container mx-auto my-8 flex justify-center'>
-      <Toaster position='top-center' reverseOrder={false} />
-
+      {isLoading && <LoadingSpinner />}
       <div className='relative w-full max-w-sm rounded-lg bg-white p-6 shadow-lg'>
         <button
-          onClick={handleModalToggle}
+          // onClick={handleModalToggle}
           className='absolute right-4 top-4 text-primary-text/80 hover:text-primary-text'
         >
           <Edit className='h-5 w-5' />
@@ -28,42 +41,38 @@ const UserProfile = () => {
 
         <div className='mb-6 flex items-center justify-center'>
           <div className='flex h-32 w-32 items-center justify-center rounded-full bg-primary-main'>
-            <span className='text-3xl text-white'>JD</span>
+            <span className='text-3xl text-white'>{customerData?.first_name}</span>
           </div>
         </div>
 
         <div className='text-center'>
           <h2 className='mb-2 text-2xl font-semibold text-primary-main'>
-            John Doe
+            {customerData?.first_name + ' ' + customerData?.last_name}
           </h2>
 
-          <div className='mb-4 flex items-center justify-center'>
+          <div className='mb-4 flex items-center text-left'>
             <Mail className='mr-2 h-4 w-4 text-primary-main' />
-            <span>Email: johndoe@example.com</span>
-          </div>
-
-          <hr className='my-4' />
-
-          <div className='mb-4 flex items-center text-left'>
-            <Phone className='mr-2 h-4 w-4 text-primary-main' /> Phone: +1 (123)
-            456-7890
-          </div>
-          <div className='mb-4 flex items-center text-left'>
-            <Home className='mr-2 h-4 w-4 text-primary-main' /> Address: 123 Main
-            Street
+            <span>Email: {customerData?.email}</span>
           </div>
 
           <div className='mb-4 flex items-center text-left'>
-            <Building className='mr-2 h-4 w-4 text-primary-main' /> City: Melbourne
+            <Phone className='mr-2 h-4 w-4 text-primary-main' /> Phone: {customerData?.phone}
+          </div>
+          <div className='mb-4 flex items-center text-left'>
+            <Home className='mr-2 h-4 w-4 text-primary-main' /> Address: {customerData?.address ?? 'N/A'}
           </div>
 
-          <div className='mb-4 flex items-center text-left'>
+          {/* <div className='mb-4 flex items-center text-left'>
+            <Building className='mr-2 h-4 w-4 text-primary-main' /> City: {customerData?. ?? 'N/A'}
+          </div> */}
+
+          {/* <div className='mb-4 flex items-center text-left'>
             <Hash className='mr-2 h-4 w-4 text-primary-main' /> Postal Code: 3000
-          </div>
+          </div> */}
         </div>
       </div>
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <div className='fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50'>
           <div className='w-full max-w-md rounded-lg bg-white p-6'>
             <div className='mb-6 flex items-center'>
@@ -146,7 +155,7 @@ const UserProfile = () => {
             </form>
           </div>
         </div>
-      )}
+      )} */}
     </section>
   )
 }
