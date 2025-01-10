@@ -16,7 +16,7 @@ const quickLinks = [
   },
   {
     label: 'Reviews',
-    href: '/review'
+    href: '/reviews'
   },
   // {
   //   label: 'Services',

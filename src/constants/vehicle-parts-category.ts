@@ -1,6 +1,6 @@
 export const CATEGORY_ITEMS = [
   {
-    label: 'WindScreen',
+    label: 'Windscreen',
     href: '/shop?keyword=wind screen'
   },
   {

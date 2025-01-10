@@ -11,7 +11,7 @@ import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 const SearchProduct = () => {
 
     const { debounceValue, router, search, setSearch } = useSearchInput()
-    const { ref } = useScrollRef(100)
+    const { ref } = useScrollRef(140)
     const { vehicle, handlePageChange } = useSearchVehicles()
     return (
         <section ref={ref} className='bg-white rounded-3xl p-2'>

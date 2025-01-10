@@ -12,7 +12,7 @@ const AccordionItem = ({ question, answer }: { question: string; answer: string 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center py-4 px-4 text-left focus:outline-none rounded-lg transition-all"
       >
-        <span className="text-lg font-semibold text-green-700">{question}</span>
+        <span className="text-lg font-semibold text-primary-main">{question}</span>
         <svg
           className={`w-5 h-5 transform ${isOpen ? 'rotate-180' : 'rotate-0'} transition-transform`}
           xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const AccordionItem = ({ question, answer }: { question: string; answer: string 
         </svg>
       </button>
       {isOpen && (
-        <div className="pl-4 pr-4 py-2 text-gray-700 bg-white text-sm rounded-b-lg transition-all">
+        <div className="pl-4 pr-4 py-2 text-primary-text bg-white text-sm rounded-b-lg transition-all">
           {answer}
         </div>
       )}

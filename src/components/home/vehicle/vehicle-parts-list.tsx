@@ -54,14 +54,14 @@ const VehiclePartsList = ({
             <ProductItem key={index} item={item} />
           ))
         ) : (
-          <p className='w-full text-primary-text'>
+          <p className='w-full text-primary-text/80 text-lg col-span-full text-center'>
             We couldn&apos;t find any products matching your search. <br />{' '}
             Please feel free to contact us for a{' '}
             <Link
               href='/get-a-quote'
-              className='font-bold text-green-950 underline'
+              className='font-bold text-primary-text underline'
             >
-              personalized quote.
+              PERSONALIZED QUOTE.
             </Link>
           </p>
         )}

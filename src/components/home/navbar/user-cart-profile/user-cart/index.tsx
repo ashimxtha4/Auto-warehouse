@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/hover-card'
 import { CiShoppingCart } from "react-icons/ci";
 import HoverCartLinks from './hover-cart-links'
-// import { useMyCart } from '@/hooks/cart.hooks'
+import { useMyCart } from '@/hooks/cart.hooks'
 
 export type CartDataProps = {
   id: string
@@ -17,15 +17,16 @@ export type CartDataProps = {
 }
 
 const UserCart = () => {
-  // const { products: cartProducts } = useMyCart()
+  const { products: cartProducts } = useMyCart()
+
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <button type='button' className='relative mt-1 text-base md:text-2xl'>
           <CiShoppingCart className='bg-white' size={20} />
-          {/* <span className='absolute -right-[10px] -top-[8px] rounded-full bg-primary-main px-1 text-xs text-white md:-right-4 md:-top-[14px] md:px-2 md:text-base'>
+          <span className='absolute -right-[16px] -top-[8px] rounded-full px-1 text-xs bg-primary-text text-white md:-right-4 md:-top-[14px] md:px-2 md:text-base'>
             {cartProducts?.length ?? 0}
-          </span> */}
+          </span>
         </button>
       </HoverCardTrigger>
       <HoverCardContent className='absolute -left-[210px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 lg:-left-[100px]'>

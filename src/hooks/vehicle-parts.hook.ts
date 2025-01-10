@@ -71,6 +71,7 @@ export const useVehicleParts = () => {
     isPending,
     handleAddToCart,
     handleSearchListView,
-    vehicle
+    vehicle,
+    router
   }
 }

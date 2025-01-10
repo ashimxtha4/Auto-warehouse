@@ -25,7 +25,7 @@ const OrderSummary = ({ total }: { total: number }) => {
         </div>
       </div>
 
-      <Link href="/cart/checkout" className="block my-6">
+      <Link href={`${total < 5 ? '' : '/cart/checkout'}`} className="block my-6">
         <button
           className={cn(
             'w-full p-2 pl-5 bg-primary-main flex justify-between items-center rounded-full text-primary-text hover:bg-primary-main'
@@ -39,8 +39,8 @@ const OrderSummary = ({ total }: { total: number }) => {
       </Link>
 
       {/* payment options */}
-      <FormRowHeader>PAYMENT OPTIONS</FormRowHeader>
-      <Separator />
+      {/* <FormRowHeader>PAYMENT OPTIONS</FormRowHeader>
+      <Separator /> */}
     </aside>
   );
 };

@@ -9,6 +9,7 @@ import Link from 'next/link'
 import defaultImage from '@/assets/default.png'
 import { SectionHeader } from '@/utils/section-header'
 import { cn } from '@/lib/utils'
+import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const UserOrders = () => {
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
@@ -25,8 +26,10 @@ const UserOrders = () => {
 
   const orders = data?.data.data
 
+  const { ref } = useScrollRef(140);
+
   return (
-    <div className='mx-auto max-w-4xl p-6'>
+    <section ref={ref} className='mx-auto max-w-4xl p-6'>
       <SectionHeader>My Orders</SectionHeader>
       <div className='space-y-6'>
         {orders?.length ? (
@@ -82,7 +85,7 @@ const UserOrders = () => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   )
 }
 

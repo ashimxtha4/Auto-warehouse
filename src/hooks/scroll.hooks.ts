@@ -1,7 +1,9 @@
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
 export const useScrollRef = (topOffset: number) => {
   const ref = useRef<HTMLElement | null>(null)
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     if (ref.current) {
@@ -14,7 +16,7 @@ export const useScrollRef = (topOffset: number) => {
         behavior: 'smooth'
       })
     }
-  }, [topOffset])
+  }, [topOffset, searchParams])
 
   return {
     ref

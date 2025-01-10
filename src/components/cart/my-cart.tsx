@@ -14,6 +14,7 @@ import { ImCross } from 'react-icons/im'
 import { listDataProps } from '@/services/api/api-service/cart/cart-list'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { FormRowHeader } from '../get-a-quote/get-a-quote-form'
+import Link from 'next/link'
 
 type MyCartProps = {
   products: listDataProps[] | undefined
@@ -150,8 +151,8 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
             </TableFooter>
           </Table>
         ) : (
-          <div className='py-8 text-center text-gray-500'>
-            No products in cart
+          <div className='py-8 text-center text-primary-text/80'>
+            No products in cart <Link href='/shop' className='text-primary-text underline'>SHOP NOW</Link>
           </div>
         )}
       </div>

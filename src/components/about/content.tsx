@@ -53,7 +53,7 @@ const Content = () => {
         <SectionHeader>About Us</SectionHeader>
         <SectionDescription>
           Since{' '}
-          <span className='font-semibold text-green-700'>
+          <span className='font-semibold text-primary-main'>
             {introduction.year}
           </span>
           , {introduction.description}
@@ -73,10 +73,10 @@ const Content = () => {
         }}
       >
         <SectionHeader>Our Commitment</SectionHeader>
-        <blockquote className='mb-4 border-l-4 border-green-700 pl-4 text-xl italic text-gray-800'>
+        <blockquote className='mb-4 border-l-4 border-primary-main pl-4 text-xl italic text-primary-text'>
           “{commitment.quote}”
         </blockquote>
-        <p className='text-gray-700'>{commitment.description}</p>
+        <p className='text-primary-text'>{commitment.description}</p>
       </motion.section>
 
       <motion.section
@@ -115,8 +115,8 @@ const Content = () => {
                 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <Icon className='mr-3 h-6 w-6 text-green-700' />
-                <span className='text-lg text-gray-700'>
+                <Icon className='mr-3 h-6 w-6 text-primary-main' />
+                <span className='text-lg text-primary-text'>
                   {item.description}
                 </span>
               </motion.div>
@@ -145,7 +145,7 @@ const Content = () => {
           {services.map((service, index) => (
             <motion.p
               key={index}
-              className='border-l-4 border-green-700 pl-4 text-lg text-gray-700'
+              className='border-l-4 border-primary-main pl-4 text-lg text-primary-text'
               variants={{
                 hidden: { opacity: 0, y: 50 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
@@ -171,39 +171,39 @@ const Content = () => {
           }
         }}
       >
-        <SectionHeader>Get in Touch</SectionHeader>
+        <SectionHeader>Contact Us</SectionHeader>
         <SectionDescription>
           Ready to experience quality craftsmanship? Contact us today for a free
           quote or emergency service.
         </SectionDescription>
-        <div className='mx-auto max-w-xl rounded-lg bg-green-50 p-6 shadow-md'>
+        <div className='mx-auto max-w-screen-sm rounded-2xl bg-green-50 p-6 hover:shadow-lg shadow-md'>
           {contact.locations.map((location, index) => (
             <motion.p
               key={index}
-              className='mb-4 flex items-center justify-center text-lg text-gray-700'
+              className='mb-4 flex items-center justify-start text-lg text-primary-text/90'
               whileHover={{ scale: 1.05 }}
             >
-              <MapPin className='mr-2 h-5 w-5 text-green-700' />
-              <span className='font-semibold text-green-700'>
+              <MapPin className='mr-2 h-5 w-5 text-primary-main' />
+              <span className='font-semibold text-primary-main'>
                 {location.label}:
               </span>{' '}
               <a
                 href={`tel:${location.phone}`}
-                className='ml-2 text-green-700 hover:underline'
+                className='ml-2 text-primary-main hover:underline'
               >
                 {location.phone}
               </a>
             </motion.p>
           ))}
           <motion.p
-            className='mb-4 flex items-center justify-center text-lg text-gray-700'
+            className='mb-4 flex items-center justify-start text-lg text-primary-text/90'
             whileHover={{ scale: 1.05 }}
           >
-            <Mail className='mr-2 h-5 w-5 text-green-700' />
-            <span className='font-semibold text-green-700'>Email:</span>{' '}
+            <Mail className='mr-2 h-5 w-5 text-primary-main' />
+            <span className='font-semibold text-primary-main'>Email:</span>{' '}
             <a
               href={`mailto:${contact.email}`}
-              className='ml-2 text-green-700 hover:underline'
+              className='ml-2 text-primary-main hover:underline'
             >
               {contact.email}
             </a>
