@@ -27,7 +27,8 @@ const ProductPage = () => {
     zoomStyle,
     productImages
   } = useGetProductDetails()
-  const { ref } = useScrollRef(100)
+  
+  const { ref } = useScrollRef(140)
 
   return (
     <section ref={ref} className='container mx-auto p-6'>

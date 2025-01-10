@@ -56,7 +56,7 @@ const Slideshow = () => {
               className='rounded-lg'
             />
 
-            <div className='clip-path-right-diagonal absolute inset-y-0 right-0 w-1/2 bg-green-700 bg-opacity-80'></div>
+            <div className='clip-path-right-diagonal absolute inset-y-0 right-0 w-1/2 bg-primary-main bg-opacity-80'></div>
 
             <div className='absolute inset-y-0 right-0 flex w-1/4 items-center justify-end pr-8 text-white'>
               <h2 className='text-medium text-right font-bold sm:text-2xl lg:text-4xl'>
@@ -68,14 +68,14 @@ const Slideshow = () => {
       </div>
       <button
         onClick={prevSlide}
-        className='absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70'
+        className='absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-primary-text bg-opacity-50 p-2 text-white hover:bg-opacity-70'
       >
         <ChevronLeft className='h-6 w-6' />
       </button>
 
       <button
         onClick={nextSlide}
-        className='absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70'
+        className='absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-primary-text bg-opacity-50 p-2 text-white hover:bg-opacity-70'
       >
         <ChevronRight className='h-6 w-6' />
       </button>
@@ -86,7 +86,7 @@ const Slideshow = () => {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-3 w-3 rounded-full ${
-              currentSlide === index ? 'bg-green-700' : 'bg-gray-300'
+              currentSlide === index ? 'bg-primary-main' : 'bg-primary-text/30'
             }`}
           ></button>
         ))}

@@ -105,7 +105,7 @@ export const useSearchVehicles = () => {
       const params = new URLSearchParams(searchParams?.toString())
       params.set('specific', id)
 
-      router.push(`${pathname}?${params.toString()}`, { scroll: false })
+      router.push(`${pathname}?${params.toString()}`)
     },
     [searchParams, router, pathname]
   )

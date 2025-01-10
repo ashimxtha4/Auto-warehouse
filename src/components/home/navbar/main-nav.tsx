@@ -89,7 +89,7 @@ const MainNavbar = () => {
         <Image
           src={logo}
           alt='auto-glass-shop'
-          className='w-20 cursor-pointer object-cover md:w-32'
+          className='w-24 cursor-pointer object-cover md:w-44'
           onClick={() => router.push('/')}
         />
       </div>
@@ -101,7 +101,7 @@ const MainNavbar = () => {
             type='button'
             variant='default'
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className='rounded-full bg-primary-main px-2 py-1 md:p-5 text-xs md:text-base font-semibold text-primary-text hover:bg-primary-main'
+            className='rounded-full bg-primary-main px-2 py-1 text-white md:p-5 text-xs md:text-base font-semibold hover:bg-primary-main'
           >
             Find Parts
           </Button>

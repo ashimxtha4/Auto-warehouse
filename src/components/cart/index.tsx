@@ -19,7 +19,7 @@ export type CartProductsProps = {
 
 const CartPage = () => {
   const { total, isPending, isLoading, ...rest } = useMyCart()
-  const { ref } = useScrollRef(100)
+  const { ref } = useScrollRef(140)
 
   return (
     <section ref={ref} className='container my-2 flex flex-col gap-2 md:gap-5'>

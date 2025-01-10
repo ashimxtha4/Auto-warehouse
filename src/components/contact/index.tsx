@@ -42,7 +42,7 @@ const Contact = () => {
     threshold: 0.1
   })
 
-  const { ref } = useScrollRef(100)
+  const { ref } = useScrollRef(140)
 
   return (
     <section

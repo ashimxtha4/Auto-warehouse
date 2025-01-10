@@ -3,8 +3,8 @@ export const PRODUCT_FILTER_ITEMS = [
     title: 'Select Type of Auto Glass',
     content: [
       {
-        id: 'WindScreen',
-        label: 'WindScreen'
+        id: 'Windscreen',
+        label: 'Windscreen'
       },
       {
         id: 'Front Left Door',

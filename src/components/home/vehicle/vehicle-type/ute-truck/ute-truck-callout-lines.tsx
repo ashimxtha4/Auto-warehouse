@@ -9,16 +9,16 @@ const UteTruckCalloutLines = () => {
 
   return (
     <>
-      {/* WindScreen */}
+      {/* Windscreen */}
       <div className='absolute'>
         <span className='circle-dot left-[10px] top-[100px] md:top-[140px]' />
         <span className='vehicle-line left-[13px] top-[60px] !h-[45px] w-[2px] md:top-[100px]' />
         <span className='vehicle-line left-[13px] top-[60px] w-[80px] md:top-[100px] md:w-[160px]' />
         <Button
-          onClick={() => handleCallOutLines('FRONT WINDSCREEN')}
+          onClick={() => handleCallOutLines('FRONT Windscreen')}
           className='callout-line-title left-[86px] top-[42px] md:left-[144px] md:top-[86px]'
         >
-          WindScreen
+          Windscreen
         </Button>
       </div>
       {/* Front Left door */}

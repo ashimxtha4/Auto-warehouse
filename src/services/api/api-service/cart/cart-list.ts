@@ -33,9 +33,9 @@ const getCartList = async (uid: string, customer_id: number) => {
 
 export const useGetCartList = (uid: string, customer_id: number) => {
   return useQuery({
-    queryKey: [api.cart.get],
+    queryKey: [api.cart.get, api.cart.get.length, 'get'],
     queryFn: () => getCartList(uid, customer_id),
     select: data => data,
-    enabled: !!uid && customer_id !== -1
+    enabled: !!uid && customer_id !== -1,
   })
 }

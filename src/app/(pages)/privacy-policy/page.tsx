@@ -7,9 +7,7 @@ import PrivacyPolicy from '@/components/privacy-policy/privacy-policy';
 const Page = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <div className="container mx-auto p-4">
-        <PrivacyPolicy />
-      </div>
+      <PrivacyPolicy />
     </Suspense>
   );
 };

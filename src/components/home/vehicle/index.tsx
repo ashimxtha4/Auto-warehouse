@@ -8,7 +8,7 @@ import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const Vehicle = () => {
   const { vehicle, selectedVehicleModel, selectedVehicleBody, handlePageChange } = useSearchVehicles()
-  const { ref } = useScrollRef(100)
+  const { ref } = useScrollRef(140)
   return (
     <>
       {vehicle && (

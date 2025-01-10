@@ -17,6 +17,7 @@ export const useMyCart = () => {
   }, [loadUserFromLocalStorage])
 
   const { data, isLoading, isSuccess } = useGetCartList(uuid, id)
+
   const { mutateAsync: removeFromCartAsync, isPending } =
     usePostRemoveFromCart()
 
@@ -82,6 +83,6 @@ export const useMyCart = () => {
     handleRemoveFromCart,
     isPending,
     checkoutPending,
-    handleCartCheckout
+    handleCartCheckout,
   }
 }

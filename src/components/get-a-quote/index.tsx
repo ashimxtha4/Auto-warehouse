@@ -5,7 +5,7 @@ import GetAQuoteForm from './get-a-quote-form'
 import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const GetAQuote = () => {
-  const { ref } = useScrollRef(100)
+  const { ref } = useScrollRef(140)
 
   return (
     <>

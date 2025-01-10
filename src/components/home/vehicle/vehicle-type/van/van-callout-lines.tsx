@@ -9,16 +9,16 @@ const VanCalloutLines = () => {
 
   return (
     <>
-      {/* WindScreen */}
+      {/* Windscreen */}
       <div className='absolute'>
         <span className='circle-dot left-[10px] top-[80px] md:top-[97px]' />
         <span className='vehicle-line left-[13px] top-[38px] !h-[45px] w-[2px] md:top-[55px]' />
         <span className='vehicle-line left-[13px] top-[38px] w-[80px] md:top-[56px] md:w-[160px]' />
         <Button
-          onClick={() => handleCallOutLines('FRONT WINDSCREEN')}
+          onClick={() => handleCallOutLines('FRONT Windscreen')}
           className='callout-line-title left-[86px] top-[20px] md:left-[144px] md:top-[42px]'
         >
-          WindScreen
+          Windscreen
         </Button>
       </div>
       {/* Front Left door */}

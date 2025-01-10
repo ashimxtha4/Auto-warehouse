@@ -12,7 +12,7 @@ import { CiShoppingCart } from 'react-icons/ci'
 // product card
 const ProductItem = ({ item }: { item: productProps }) => {
   const IMAGE_BASE_URL = 'https://backend.autoglassshop.com.au/'
-  const { viewType, isPending, handleAddToCart } = useVehicleParts()
+  const { viewType, isPending, handleAddToCart, router } = useVehicleParts()
 
   return (
     <Card
@@ -20,7 +20,7 @@ const ProductItem = ({ item }: { item: productProps }) => {
         viewType === null
           ? 'flex max-w-[290px] flex-col justify-between'
           : 'mb-4 flex w-full items-start gap-4',
-        'relative rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'
+        'relative rounded-3xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl cursor-pointer'
       )}
     >
       <CardHeader
@@ -40,9 +40,10 @@ const ProductItem = ({ item }: { item: productProps }) => {
           height={150}
           loading='lazy'
           className={cn(
-            'rounded-3xl border h-[150px] object-cover',
+            'rounded-3xl border h-[150px] object-cover cursor-pointer',
             viewType !== null ? 'h-auto w-full' : 'max-h-[150px] w-full'
           )}
+          onClick={() => router.push(`/product?id=${item.id}`)}
         />
       </CardHeader>
 
@@ -53,21 +54,29 @@ const ProductItem = ({ item }: { item: productProps }) => {
         )}
       >
         <div className='flex-grow'>
-          <span className='block py-2 text-base font-semibold text-primary-text md:text-lg'>
+          <span
+            className='block py-2 text-base font-semibold text-primary-text cursor-pointer md:text-lg'
+            onClick={() => router.push(`/product?id=${item.id}`)}
+          >
             {item?.name ?? '-'}
           </span>
 
-          <div className='flex items-center justify-between'>
-            <span className='block w-fit rounded-full bg-[#D3F2D0] px-3 py-1 text-xs font-medium text-primary-text'>
+          <div
+            className='flex items-center justify-between'
+            onClick={() => router.push(`/product?id=${item.id}`)}
+          >
+            <span
+              className='block w-fit rounded-full bg-[#D3F2D0] px-3 py-1 text-xs font-medium text-primary-text'
+            >
               <span>SKU:</span> {item?.sku ?? '-'}
             </span>
 
-            <span className='block py-2 text-primary-text'>
+            <p className='block py-2 text-primary-text'>
               <span className='text-xs font-normal'>FROM:</span>
               <span className='text-base font-semibold'>
                 ${item?.price ?? 'N/A'}
               </span>
-            </span>
+            </p>
           </div>
         </div>
 
