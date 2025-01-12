@@ -38,7 +38,7 @@ export const useMyCart = () => {
 
   const handleAddToCart = async (productId: number) => {
     try {
-      if (productId) {
+      if (productId && id !== -1 && uuid !== '') {
         await addToCartMutateAsync({
           customer_id: id,
           uid: uuid,
@@ -77,7 +77,9 @@ export const useMyCart = () => {
   }
 
   useEffect(() => {
-    ordersMutateAsync({ uid: uuid, customer_id: id })
+    if (id !== -1 && uuid !== '') {
+      ordersMutateAsync({ uid: uuid, customer_id: id })
+    }
   }, [ordersMutateAsync, id, uuid])
 
   useEffect(() => {
