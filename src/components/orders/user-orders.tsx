@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { Card } from '../ui/card'
 import Link from 'next/link'
@@ -8,11 +8,28 @@ import defaultImage from '@/assets/default.png'
 import { SectionHeader } from '@/utils/section-header'
 import { cn } from '@/lib/utils'
 import { useScrollRef } from '@/hooks/scroll.hooks'
-import { useMyCart } from '@/hooks/cart.hooks'
+import { useUserStore } from '@/slice/user-slice'
+import { usePostOrders } from '@/services/api/api-service/order/user-order'
 
 const UserOrders = () => {
   const { ref } = useScrollRef(140);
-  const { ordersList } = useMyCart()
+
+  const { id, uuid, loadUserFromLocalStorage } = useUserStore()
+
+  const { data: orders, mutateAsync: ordersMutateAsync } = usePostOrders()
+
+  const ordersList = orders?.data.data
+
+  useEffect(() => {
+    loadUserFromLocalStorage()
+  }, [loadUserFromLocalStorage])
+
+  useEffect(() => {
+    if (id !== -1 && uuid !== '') {
+      ordersMutateAsync({ uid: uuid, customer_id: id })
+    }
+  }, [ordersMutateAsync, id, uuid])
+
 
   return (
     <section ref={ref} className='mx-auto max-w-4xl p-6'>

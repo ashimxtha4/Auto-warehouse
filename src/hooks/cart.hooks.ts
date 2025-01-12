@@ -2,25 +2,23 @@ import { usePostAddToCart } from '@/services/api/api-service/cart/add-to-cart'
 import { usePostCartCheckout } from '@/services/api/api-service/cart/cart-checkout'
 import { useGetCartList } from '@/services/api/api-service/cart/cart-list'
 import { usePostRemoveFromCart } from '@/services/api/api-service/cart/remove-from-cart'
-import { usePostOrders } from '@/services/api/api-service/order/user-order'
 import { useCartStore } from '@/slice/cart-slice'
 import { useUserStore } from '@/slice/user-slice'
 import { isTokenExpired } from '@/utils/is-token-expired'
 import { isAxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 
 export const useMyCart = () => {
   const router = useRouter()
-  const [total, setTotal] = useState(0)
   const errorMessage = 'Please login to proceed to checkout'
   const cartTotal = useCartStore(state => state.cartTotal)
   const cartProducts = useCartStore(state => state.cart)
 
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
 
-  const { data: cartData, isLoading, isSuccess } = useGetCartList(uuid, id)
+  const { data: cartData, isLoading } = useGetCartList(uuid, id)
 
   const { mutateAsync: addToCartMutateAsync } = usePostAddToCart()
 
@@ -29,8 +27,6 @@ export const useMyCart = () => {
 
   const { mutateAsync: cartCheckoutAsync, isPending: checkoutPending } =
     usePostCartCheckout()
-
-  const { data: ordersList, mutateAsync: ordersMutateAsync } = usePostOrders()
 
   useEffect(() => {
     loadUserFromLocalStorage()
@@ -76,21 +72,15 @@ export const useMyCart = () => {
     cartProducts?.map(item => handleAddToCart(item.id))
   }
 
-  useEffect(() => {
-    if (id !== -1 && uuid !== '') {
-      ordersMutateAsync({ uid: uuid, customer_id: id })
-    }
-  }, [ordersMutateAsync, id, uuid])
-
-  useEffect(() => {
-    if (Array.isArray(cartData?.data.data)) {
-      const newTotal = cartData.data.data.reduce(
-        (acc, product) => acc + parseInt(product?.product_price) * 1,
-        0
-      )
-      setTotal(newTotal as number)
-    }
-  }, [cartData?.data.data, isSuccess])
+  // useEffect(() => {
+  //   if (Array.isArray(cartData?.data.data)) {
+  //     const newTotal = cartData.data.data.reduce(
+  //       (acc, product) => acc + parseInt(product?.product_price) * 1,
+  //       0
+  //     )
+  //     setTotal(newTotal as number)
+  //   }
+  // }, [cartData?.data.data, isSuccess])
 
   const handleRemoveFromCart = async (
     id: number,
@@ -136,7 +126,6 @@ export const useMyCart = () => {
   }
 
   return {
-    total,
     products: cartData?.data.data,
     isLoading,
     handleRemoveFromCart,
@@ -147,6 +136,5 @@ export const useMyCart = () => {
     handleProceedToCheckout,
     cartTotal,
     router,
-    ordersList: ordersList?.data.data
   }
 }

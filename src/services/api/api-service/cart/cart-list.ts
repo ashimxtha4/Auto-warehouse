@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { IGenericResponse } from '@/utils/response-types/generic-data-response'
+import { isTokenExpired } from '@/utils/is-token-expired'
 
 export interface listDataProps {
   id: number
@@ -36,6 +37,9 @@ export const useGetCartList = (uid: string, customer_id: number) => {
     queryKey: [api.cart.get, api.cart.get.length, 'get'],
     queryFn: () => getCartList(uid, customer_id),
     select: data => data,
-    enabled: !!uid && customer_id !== -1,
+    enabled:
+      !!uid &&
+      customer_id !== -1 &&
+      isTokenExpired(localStorage.getItem('token') ?? '')
   })
 }
