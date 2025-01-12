@@ -39,8 +39,6 @@ export const CheckboxGroup = ({ items }: { items: CheckboxGroupProps[] }) => {
     }
   })
 
-  const checkedFilter = form.watch('items')
-
   return (
     <Form {...form}>
       <form className='space-y-8'>

@@ -10,8 +10,6 @@ import {
 } from '@/components/ui/table'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-import { ImCross } from 'react-icons/im'
-import { listDataProps } from '@/services/api/api-service/cart/cart-list'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { FormRowHeader } from '../get-a-quote/get-a-quote-form'
 import Link from 'next/link'

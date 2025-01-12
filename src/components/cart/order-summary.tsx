@@ -6,7 +6,7 @@ import { useMyCart } from '@/hooks/cart.hooks';
 
 const OrderSummary = () => {
 
-  const { handleAddToCart, cartTotal, handleProceedToCheckout } = useMyCart()
+  const { cartTotal, handleProceedToCheckout } = useMyCart()
 
   return (
     <aside className="max-w-[500px] bg-white rounded-3xl shadow-lg p-6">
