@@ -39,37 +39,11 @@ export const useVehicleParts = () => {
     router.push(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
-  const { mutateAsync, isPending } = usePostAddToCart()
-
-  const handleAddToCart = async (productId: number) => {
-    try {
-      if (productId) {
-        await mutateAsync({
-          customer_id: id,
-          uid: uuid,
-          product_id: productId,
-          quantity: 1
-        })
-        toast.success('Product Added to cart successfully!')
-      }
-    } catch (error) {
-      if (!id || !uuid) {
-        toast.error('Please login to add product to cart.')
-      }
-      if (isAxiosError(error)) {
-        toast.error(error.message)
-      }
-      toast.error('Something went wrong! Try again later!')
-    }
-  }
-
   return {
     showFilterProduct,
     setShowFilterProduct,
     viewType,
     handleSearch,
-    isPending,
-    handleAddToCart,
     handleSearchListView,
     vehicle,
     router

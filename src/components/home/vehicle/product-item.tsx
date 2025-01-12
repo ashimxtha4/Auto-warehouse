@@ -8,11 +8,25 @@ import ButtonLoader from '@/utils/button-loader'
 import { IoArrowForward } from 'react-icons/io5'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { CiShoppingCart } from 'react-icons/ci'
+import { useCartStore } from '@/slice/cart-slice'
+import { useState } from 'react'
+import { IMAGE_BASE_URL } from '@/utils/image-base-url'
 
 // product card
 const ProductItem = ({ item }: { item: productProps }) => {
-  const IMAGE_BASE_URL = 'https://backend.autoglassshop.com.au/'
-  const { viewType, isPending, handleAddToCart, router } = useVehicleParts()
+  const [loadingProductId, setLoadingProductId] = useState<number | null>(null);
+
+  const { viewType, router } = useVehicleParts()
+
+  const addToCart = useCartStore(state => state.addToCart);
+
+  const handleAddToCart = (product: productProps) => {
+    setLoadingProductId(product.id);
+    addToCart(product);
+    setTimeout(() => {
+      setLoadingProductId(null);
+    }, 1000);
+  };
 
   return (
     <Card
@@ -91,10 +105,10 @@ const ProductItem = ({ item }: { item: productProps }) => {
           >
             <button
               className='flex items-center justify-center gap-1 rounded-full bg-primary-main px-4 py-2 text-xs font-semibold text-white transition-transform hover:scale-105'
-              onClick={() => handleAddToCart(item.id)}
-              disabled={isPending}
+              onClick={() => handleAddToCart(item)}
+              disabled={loadingProductId === item.id}
             >
-              {isPending ? (
+              {loadingProductId === item.id ? (
                 <ButtonLoader />
               ) : (
                 <>

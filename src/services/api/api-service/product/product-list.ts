@@ -7,7 +7,7 @@ export interface productProps {
   id: number
   name: string
   sku: string
-  price: string
+  price: number
   image: string
 }
 

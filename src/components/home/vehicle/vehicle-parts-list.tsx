@@ -21,7 +21,6 @@ const VehiclePartsList = ({
         <div className='flex items-center gap-1 text-sm font-medium text-primary-text md:gap-3 md:text-2xl'>
           <span>{totalNumberOfProducts ?? 0}</span>
           <span>Products Found</span>
-          {/* <SelectForm /> */}
         </div>
         <div className='flex items-center justify-center gap-1 rounded-md border text-primary-text/80'>
           <CiGrid41

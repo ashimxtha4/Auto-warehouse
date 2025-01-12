@@ -31,7 +31,7 @@ const DesktopNavbar = ({ item }: { item: NavItemsProps }) => {
           <Link
             href={item.href}
             className={cn(
-              'flex items-center gap-1 text-nowrap text-sm font-medium transition-all hover:scale-x-100 hover:border-b-2 hover:border-green-900 hover:text-gray-950',
+              'flex items-center gap-1 text-nowrap text-base font-medium transition-all hover:scale-x-100 hover:border-b-2 hover:border-green-900 hover:text-gray-950',
               isActive
                 ? 'border-b-2 border-primary-main transition-all duration-300'
                 : ''

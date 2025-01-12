@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Card } from '../ui/card'
 import Image from 'next/image'
 import { useGetProductDetails } from '@/hooks/product-details.hook'
@@ -10,12 +10,12 @@ import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { cn } from '@/lib/utils'
 import { useScrollRef } from '@/hooks/scroll.hooks'
+import { useCartStore } from '@/slice/cart-slice'
+import { productProps } from '@/services/api/api-service/product/product-list'
 
 // product details
 const ProductPage = () => {
   const {
-    handleAddToCart,
-    isPending,
     productData,
     productLoading,
     handleMouseLeave,
@@ -27,7 +27,26 @@ const ProductPage = () => {
     zoomStyle,
     productImages
   } = useGetProductDetails()
-  
+
+  const singleProductData = {
+    id: productData?.id ? productData.id : 0,
+    name: productData?.name ? productData.name : '',
+    sku: productData?.sku ? productData.sku : '',
+    price: productData?.price ? Number(productData.price) : 0,
+    image: productImages?.length ? productImages[selectedImageIndex].image : DEFAULT_IMAGE,
+  }
+
+  const [loadingProductId, setLoadingProductId] = useState<number | null>(null);
+  const addToCart = useCartStore(state => state.addToCart);
+
+  const handleAddToCart = (product: productProps) => {
+    setLoadingProductId(product.id);
+    addToCart(product);
+    setTimeout(() => {
+      setLoadingProductId(null);
+    }, 1000);
+  };
+
   const { ref } = useScrollRef(140)
 
   return (
@@ -77,13 +96,13 @@ const ProductPage = () => {
           <div className='mt-8 w-full'>
             <button
               className='rounded-full w-full bg-primary-main px-6 py-3 disabled:cursor-not-allowed font-semibold text-white shadow-md transition-transform disabled:hover:scale-100 hover:scale-105 disabled:bg-primary-main/80 hover:bg-primary-main'
-              onClick={handleAddToCart}
+              onClick={() => handleAddToCart(singleProductData)}
               disabled={
-                isPending ||
+                (loadingProductId === productData?.id) ||
                 (productData?.syd_stock === 0 && productData?.mel_stock === 0)
               }
             >
-              {isPending ? (
+              {(loadingProductId === productData?.id) ? (
                 <ButtonLoader />
               ) : (
                 'ADD TO CART'

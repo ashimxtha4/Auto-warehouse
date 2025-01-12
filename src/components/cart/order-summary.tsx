@@ -1,10 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { FormRowHeader, Separator } from '../get-a-quote/get-a-quote-form';
 import { FaArrowRightLong } from 'react-icons/fa6';
+import { useMyCart } from '@/hooks/cart.hooks';
 
-const OrderSummary = ({ total }: { total: number }) => {
+const OrderSummary = () => {
+
+  const { handleAddToCart, cartTotal, handleProceedToCheckout } = useMyCart()
+
   return (
     <aside className="max-w-[500px] bg-white rounded-3xl shadow-lg p-6">
       <FormRowHeader>CART TOTALS</FormRowHeader>
@@ -12,7 +15,7 @@ const OrderSummary = ({ total }: { total: number }) => {
       <div className="space-y-4">
         <div className="flex justify-between text-primary-text/60">
           <p>Subtotal:</p>
-          <p>${total.toFixed(2)}</p>
+          <p>${cartTotal.toFixed(2)}</p>
         </div>
         <div className="flex justify-between text-primary-text/60">
           <p>Shipping:</p>
@@ -21,23 +24,21 @@ const OrderSummary = ({ total }: { total: number }) => {
         <hr className="my-4 border-gray-300" />
         <div className="flex justify-between font-bold text-primary-text/60">
           <p>Total:</p>
-          <p>${total.toFixed(2)}</p>
+          <p>${cartTotal.toFixed(2)}</p>
         </div>
       </div>
 
-      <Link href={`${total < 5 ? '' : '/cart/checkout'}`} className="block my-6">
-        <button
-          className={cn(
-            'w-full p-2 pl-5 bg-primary-main flex justify-between items-center rounded-full text-primary-text hover:bg-primary-main'
-          )}
-        >
-          PROCEED TO CHECKOUT
-          <span className='bg-primary-text p-2 rounded-full flex justify-between items-center text-primary-main'>
-            <FaArrowRightLong />
-          </span>
-        </button>
-      </Link>
-
+      <button
+        className={cn(
+          'w-full my-2 mt-4 p-2 pl-5 bg-primary-main font-medium flex justify-between items-center rounded-full text-primary-text hover:bg-primary-main'
+        )}
+        onClick={handleProceedToCheckout}
+      >
+        PROCEED TO CHECKOUT
+        <span className='bg-primary-text p-2 rounded-full flex justify-between items-center text-primary-main'>
+          <FaArrowRightLong />
+        </span>
+      </button>
       {/* payment options */}
       {/* <FormRowHeader>PAYMENT OPTIONS</FormRowHeader>
       <Separator /> */}

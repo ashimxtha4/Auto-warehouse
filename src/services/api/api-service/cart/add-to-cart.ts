@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
 
-interface postAddToCartProps {
+export interface postAddToCartProps {
   uid: string
   customer_id: number
   product_id: number

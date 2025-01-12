@@ -5,14 +5,21 @@ import { Button } from '@/components/ui/button'
 import { useMyCart } from '@/hooks/cart.hooks'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import ButtonLoader from '@/utils/button-loader'
+import { useCartStore } from '@/slice/cart-slice'
+import { useScrollRef } from '@/hooks/scroll.hooks'
 
 const Checkout = () => {
-  const { total, isLoading, products, handleCartCheckout, checkoutPending } =
+  const { isLoading, handleCartCheckout, checkoutPending } =
     useMyCart()
   const shippingCost = 5
 
+  const { ref } = useScrollRef(140)
+
+  const { cartTotal, cart } = useCartStore()
+
+
   return (
-    <section className='container my-2 md:my-4'>
+    <section ref={ref} className='container my-2 md:my-4'>
       {isLoading && <LoadingSpinner />}
       <h2 className='mb-4 text-xl font-semibold'>Checkout</h2>
 
@@ -77,11 +84,11 @@ const Checkout = () => {
         <h3 className='mb-2 text-lg font-medium'>Order Summary</h3>
         <div className='flex justify-between'>
           <p>Total no. of Items:</p>
-          <p>{products?.length ?? '0'}</p>
+          <p>{cart?.length ?? '0'}</p>
         </div>
         <div className='flex justify-between'>
           <p>Items Total:</p>
-          <p>${total}</p>
+          <p>${cartTotal}</p>
         </div>
         <div className='flex justify-between'>
           <p>Shipping:</p>
@@ -89,7 +96,7 @@ const Checkout = () => {
         </div>
         <div className='flex justify-between font-bold'>
           <p>Total:</p>
-          <p>${total + shippingCost}</p>
+          <p>${cartTotal + shippingCost}</p>
         </div>
       </div>
 
@@ -97,7 +104,7 @@ const Checkout = () => {
       <Button
         onClick={handleCartCheckout}
         disabled={checkoutPending}
-        className='gradient-bg text-white hover:from-green-600 hover:to-blue-600'
+        className='bg-primary-main rounded-full text-xl hover:bg-primary-main'
       >
         {checkoutPending ? <ButtonLoader /> : 'Place Order'}
       </Button>
