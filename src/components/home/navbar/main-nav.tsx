@@ -20,7 +20,6 @@ import logo from '@/assets/logo.png'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 
 const searchUserCartVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -58,23 +57,11 @@ const MainNavbar = () => {
     threshold: 0.3
   })
 
-  // const { ref: searchRef, inView: searchInView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.3
-  // })
-
   useEffect(() => {
     if (inView) {
       controls.start('visible')
     }
   }, [controls, inView])
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  useEffect(() => {
-    const token = window.localStorage.getItem('token')
-    setIsLoggedIn(!!token)
-  }, [])
 
   return (
     <motion.nav
@@ -133,15 +120,10 @@ const MainNavbar = () => {
             <SearchBar />
           </motion.div>
         </Suspense>
-        {isLoggedIn ? (
-          <motion.div variants={searchUserCartVariants}>
-            <UserCartProfile />
-          </motion.div>
-        ) : (
-          <Link href='/login' className='text-base text-primary-text'>
-            LOGIN/REGISTER
-          </Link>
-        )}
+        <motion.div variants={searchUserCartVariants}>
+          <UserCartProfile />
+        </motion.div>
+
         {/* mobile menu */}
         <div className='relative flex lg:hidden'>
           <DropdownMenu

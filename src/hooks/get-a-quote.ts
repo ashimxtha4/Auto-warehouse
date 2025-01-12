@@ -58,8 +58,6 @@ export const useGetAQuote = () => {
       return
     }
 
-    console.log(data, "data");
-    
     try {
       await mutateAsync(data)
       router.push('/')

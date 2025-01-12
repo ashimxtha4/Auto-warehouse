@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StaticImageData } from 'next/image'
 import {
   HoverCard,
@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/hover-card'
 import { CiShoppingCart } from "react-icons/ci";
 import HoverCartLinks from './hover-cart-links'
-import { useMyCart } from '@/hooks/cart.hooks'
+import { useCartStore } from '@/slice/cart-slice';
 
 export type CartDataProps = {
   id: string
@@ -17,7 +17,11 @@ export type CartDataProps = {
 }
 
 const UserCart = () => {
-  const { products: cartProducts } = useMyCart()
+  const { cart, loadCartFromLocalStorage } = useCartStore()
+
+  useEffect(() => {
+    loadCartFromLocalStorage()
+  }, [loadCartFromLocalStorage])
 
   return (
     <HoverCard openDelay={100} closeDelay={100}>
@@ -25,7 +29,7 @@ const UserCart = () => {
         <button type='button' className='relative mt-1 text-base md:text-2xl'>
           <CiShoppingCart className='bg-white' size={20} />
           <span className='absolute -right-[16px] -top-[8px] rounded-full px-1 text-xs bg-primary-text text-white md:-right-4 md:-top-[14px] md:px-2 md:text-base'>
-            {cartProducts?.length ?? 0}
+            {cart?.length ?? 0}
           </span>
         </button>
       </HoverCardTrigger>

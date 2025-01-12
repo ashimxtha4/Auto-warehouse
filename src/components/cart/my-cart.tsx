@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Table,
   TableBody,
@@ -10,34 +10,29 @@ import {
 } from '@/components/ui/table'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-import { ImCross } from 'react-icons/im'
-import { listDataProps } from '@/services/api/api-service/cart/cart-list'
 import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 import { FormRowHeader } from '../get-a-quote/get-a-quote-form'
 import Link from 'next/link'
+import { useCartStore } from '@/slice/cart-slice'
+import { IMAGE_BASE_URL } from '@/utils/image-base-url'
 
-type MyCartProps = {
-  products: listDataProps[] | undefined
-  total: number
-  handleRemoveFromCart: (
-    id: number,
-    customer_id: number,
-    product_id: number
-  ) => Promise<void>
-}
-
-const IMAGE_BASE_URL = 'https://backend.autoglassshop.com.au/'
-
-const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
+const MyCart = () => {
   const TABLE_HEADER_DATA = [
     'Image',
     'Product',
     'Price',
+    'SKU',
     'Quantity',
     'Subtotal',
-    'In Stock',
     'Action'
   ]
+
+  const { cart, loadCartFromLocalStorage, removeFromCart, cartTotal } = useCartStore()
+
+  useEffect(() => {
+    loadCartFromLocalStorage()
+  }, [loadCartFromLocalStorage])
+
   return (
     <aside className='rounded-3xl bg-white p-6 shadow-lg'>
       <FormRowHeader className='text-center border-none'>
@@ -45,7 +40,7 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
       </FormRowHeader>
 
       <div className='overflow-x-auto'>
-        {products?.length ? (
+        {cart?.length ? (
           <Table>
             <TableHeader>
               <TableRow>
@@ -53,7 +48,7 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                   <TableHead
                     key={item}
                     className={cn(
-                      'bg-green-50 py-2 text-lg text-gray-700',
+                      'bg-white py-2 text-lg text-primary-text',
                       item === 'Image' && 'hidden items-center md:inline-flex'
                     )}
                   >
@@ -64,14 +59,14 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
             </TableHeader>
 
             <TableBody>
-              {products.map(product => (
+              {cart.map(product => (
                 <TableRow key={product.id} className='hover:bg-gray-50'>
                   <TableCell className='hidden md:block'>
                     <Image
                       src={
-                        product.product_image !== '' ||
-                          product.product_image !== null
-                          ? `${IMAGE_BASE_URL}${product.product_image}`
+                        product.image !== '' ||
+                          product.image !== null
+                          ? `${IMAGE_BASE_URL}${product.image}`
                           : DEFAULT_IMAGE
                       }
                       loading='lazy'
@@ -81,56 +76,50 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
                       className='max-w-[75px] rounded-lg object-cover md:max-w-[100px]'
                     />
                   </TableCell>
-                  <TableCell className='font-medium text-gray-800'>
-                    {product.product_name}
+                  <TableCell className='font-medium text-primary-text'>
+                    {product.name}
                   </TableCell>
-                  <TableCell className='text-gray-600'>
-                    ${product.product_price}
+                  <TableCell className='text-primary-text'>
+                    ${product.price}
                   </TableCell>
-                  <TableCell>
-                    <div className='flex items-center'>
+                  <TableCell className='text-primary-text'>
+                    {product.sku}
+                  </TableCell>
+                  <TableCell className='text-center font-medium text-primary-text'>
+                    1
+                    {/* <div className='flex items-center'>
                       <input
                         type='number'
                         min='1'
+                        max='1'
                         value={1}
                         readOnly
-                        className='mr-2 w-12 border-b border-t border-gray-300 text-center text-lg font-medium'
+                        className='mr-2 w-12 text-center text-lg font-medium'
                       />
-                      {/* 
-                      <div className='flex flex-col items-center'>
-                        <button className='text-green-700 hover:text-green-900'>
-                          <IoMdArrowDropupCircle size={20} />
-                        </button>
-                        <button className='text-red-500 hover:text-red-700'>
-                          <IoMdArrowDropdownCircle size={20} />
-                        </button>
-                      </div> 
-                      */}
-                    </div>
+                    </div> */}
                   </TableCell>
-                  <TableCell className='text-gray-600'>
-                    ${product.product_price}
+                  <TableCell className='text-primary-text'>
+                    ${product.price}
                   </TableCell>
                   <TableCell>
-                    <div className='flex flex-col items-center justify-start text-green-700'>
-                      <span>SYD: {product.stock.syd ? 'Yes' : 'No'}</span>
-                      <span>MEL: {product.stock.mel ? 'Yes' : 'No'}</span>
+                    <div className='flex items-center gap-2'>
+                      <button
+                        type='button'
+                        onClick={() =>
+                          removeFromCart(product.id)
+                        }
+                        className='text-white bg-red-500 rounded-full px-2 py-1'
+                      >
+                        Remove
+                      </button>
+                      <Link
+                        href={`/product?id=${product.id}`}
+                        type='button'
+                        className='text-white bg-primary-main rounded-full px-2 py-1'
+                      >
+                        View
+                      </Link>
                     </div>
-                  </TableCell>
-                  <TableCell>
-                    <button
-                      type='button'
-                      onClick={() =>
-                        handleRemoveFromCart(
-                          product.id,
-                          product.customer_id,
-                          product.product_id
-                        )
-                      }
-                      className='text-red-500 hover:text-red-700'
-                    >
-                      <ImCross size={16} />
-                    </button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -140,12 +129,12 @@ const MyCart = ({ products, total, handleRemoveFromCart }: MyCartProps) => {
               <TableRow>
                 <TableCell
                   colSpan={6}
-                  className='border-t text-right font-bold text-gray-700'
+                  className='text-right text-xl font-semibold text-primary-main'
                 >
                   Total
                 </TableCell>
-                <TableCell className='border-t font-bold text-green-700'>
-                  ${total}
+                <TableCell className='text-xl text-right font-semibold text-primary-main'>
+                  ${cartTotal}
                 </TableCell>
               </TableRow>
             </TableFooter>

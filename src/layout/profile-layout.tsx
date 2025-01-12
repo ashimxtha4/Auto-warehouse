@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 function convertPath(inputPath: string) {
   let result = inputPath.replace(/^\//, '');
   result = result.replace(/-/g, ' ');
-  result = result.split('/')[0];
+  result = result.split('/')[1] ? result.split('/')[1] : result.split('/')[0];
   return result.toUpperCase();
 }
 

@@ -14,9 +14,6 @@ const AutoGlassShopLayout = ({
 }>) => {
   const pathname = usePathname()
 
-  console.log('pathname', pathname);
-
-
   // if (/^\/reset_password_form\/[^/]+$/.test(pathname as string)) {
   //   return <AuthLayout>{children}</AuthLayout>
   // }
