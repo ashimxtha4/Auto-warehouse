@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 const FormRow = ({
   children,
@@ -16,7 +16,7 @@ const FormRow = ({
     <div
       className={cn(
         'grid grid-cols-2 items-center justify-around md:justify-center gap-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5',
-        isFormEmpty ? 'xl:grid-cols-7' : 'xl:grid-cols-8',
+        isFormEmpty ? 'xl:grid-cols-6' : 'xl:grid-cols-7',
         className
       )}
     >

@@ -1,39 +1,25 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { Card } from '../ui/card'
-import { usePostOrders } from '@/services/api/api-service/order/user-order'
-import { useUserStore } from '@/slice/user-slice'
 import Link from 'next/link'
 import defaultImage from '@/assets/default.png'
 import { SectionHeader } from '@/utils/section-header'
 import { cn } from '@/lib/utils'
 import { useScrollRef } from '@/hooks/scroll.hooks'
+import { useMyCart } from '@/hooks/cart.hooks'
 
 const UserOrders = () => {
-  const { id, uuid, loadUserFromLocalStorage } = useUserStore()
-
-  const { data, mutateAsync } = usePostOrders()
-
-  useEffect(() => {
-    loadUserFromLocalStorage()
-  }, [loadUserFromLocalStorage])
-
-  useEffect(() => {
-    mutateAsync({ uid: uuid, customer_id: id })
-  }, [mutateAsync, id, uuid])
-
-  const orders = data?.data.data
-
   const { ref } = useScrollRef(140);
+  const { ordersList } = useMyCart()
 
   return (
     <section ref={ref} className='mx-auto max-w-4xl p-6'>
       <SectionHeader>My Orders</SectionHeader>
       <div className='space-y-6'>
-        {orders?.length ? (
-          orders.map(order => (
+        {ordersList?.length ? (
+          ordersList.map(order => (
             <Card
               key={order.id}
               className='flex flex-col items-start space-y-4 p-4 shadow-lg md:flex-row md:space-x-4 md:space-y-0'

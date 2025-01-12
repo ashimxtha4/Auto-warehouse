@@ -2,6 +2,7 @@ import { usePostAddToCart } from '@/services/api/api-service/cart/add-to-cart'
 import { usePostCartCheckout } from '@/services/api/api-service/cart/cart-checkout'
 import { useGetCartList } from '@/services/api/api-service/cart/cart-list'
 import { usePostRemoveFromCart } from '@/services/api/api-service/cart/remove-from-cart'
+import { usePostOrders } from '@/services/api/api-service/order/user-order'
 import { useCartStore } from '@/slice/cart-slice'
 import { useUserStore } from '@/slice/user-slice'
 import { isTokenExpired } from '@/utils/is-token-expired'
@@ -28,6 +29,8 @@ export const useMyCart = () => {
 
   const { mutateAsync: cartCheckoutAsync, isPending: checkoutPending } =
     usePostCartCheckout()
+
+  const { data: ordersList, mutateAsync: ordersMutateAsync } = usePostOrders()
 
   useEffect(() => {
     loadUserFromLocalStorage()
@@ -72,6 +75,10 @@ export const useMyCart = () => {
     }
     cartProducts?.map(item => handleAddToCart(item.id))
   }
+
+  useEffect(() => {
+    ordersMutateAsync({ uid: uuid, customer_id: id })
+  }, [ordersMutateAsync, id, uuid])
 
   useEffect(() => {
     if (Array.isArray(cartData?.data.data)) {
@@ -137,6 +144,7 @@ export const useMyCart = () => {
     handleAddToCart,
     handleProceedToCheckout,
     cartTotal,
-    router
+    router,
+    ordersList: ordersList?.data.data
   }
 }
