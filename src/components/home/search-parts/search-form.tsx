@@ -17,7 +17,6 @@ const SearchForm = () => {
     vehicleBodyData,
     vehicleModelData,
     vehicleSeriesData,
-    vehicleGroupData,
     vehicleYearData,
     router
   } = useSearchVehicles()
@@ -73,7 +72,7 @@ const SearchForm = () => {
                 />
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name='position'
               render={({ field }) => (
@@ -90,7 +89,7 @@ const SearchForm = () => {
                   placeholder='Select Group'
                 />
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name='type'
@@ -149,7 +148,7 @@ const SearchForm = () => {
                 />
               )}
             />
-            <div className='flex justify-start gap-2'>
+            <div className='flex w-full justify-start gap-2'>
               {!isFormEmpty && (
                 <Button
                   type='reset'
