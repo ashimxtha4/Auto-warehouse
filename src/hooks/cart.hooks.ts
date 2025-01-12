@@ -7,7 +7,7 @@ import { useUserStore } from '@/slice/user-slice'
 import { isTokenExpired } from '@/utils/is-token-expired'
 import { isAxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 
 export const useMyCart = () => {
