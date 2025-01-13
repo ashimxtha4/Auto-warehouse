@@ -19,7 +19,7 @@ import ButtonLoader from '@/utils/button-loader'
 import { Mail, Lock } from 'lucide-react'
 import { GenericError } from '@/utils/generic-error'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export const loginSchema = z.object({
   email: z
@@ -34,6 +34,9 @@ export type loginSchemaProps = z.infer<typeof loginSchema>
 
 const LoginPage = () => {
   const router = useRouter()
+  const searchParam = useSearchParams()
+
+  const from = searchParam?.get('from')
 
   const form = useForm<loginSchemaProps>({
     resolver: zodResolver(loginSchema)
@@ -45,7 +48,7 @@ const LoginPage = () => {
     try {
       await mutateAsync(data)
       toast.success('Login success!')
-      router.push('/')
+      router.push(from || '/')
     } catch (error) {
       GenericError(error)
     }

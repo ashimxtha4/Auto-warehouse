@@ -6,12 +6,13 @@ import { useCartStore } from '@/slice/cart-slice'
 import { useUserStore } from '@/slice/user-slice'
 import { isTokenExpired } from '@/utils/is-token-expired'
 import { isAxiosError } from 'axios'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 
 export const useMyCart = () => {
   const router = useRouter()
+  const pathname = usePathname()
   const errorMessage = 'Please login to proceed to checkout'
   const cartTotal = useCartStore(state => state.cartTotal)
   const cartProducts = useCartStore(state => state.cart)
@@ -58,13 +59,13 @@ export const useMyCart = () => {
     }
     if (!token) {
       toast.error(errorMessage)
-      router.push('/login')
+      router.push(`/login?from=${pathname}`, { scroll: true })
     }
     if (token) {
       if (isTokenExpired(token)) {
         localStorage.removeItem('token')
         toast.error(errorMessage)
-        router.push('/login', { scroll: true })
+        router.push(`/login?from=${pathname}`, { scroll: true })
       } else {
         router.push('/cart/checkout')
       }
@@ -135,6 +136,6 @@ export const useMyCart = () => {
     handleAddToCart,
     handleProceedToCheckout,
     cartTotal,
-    router,
+    router
   }
 }
