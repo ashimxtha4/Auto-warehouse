@@ -32,7 +32,7 @@ export const FormRowHeader = ({
   className?: string
 }) => {
   return (
-    <h4 className={cn('text-2xl font-medium border-b pb-2 tracking-wide text-primary-text md:text-2xl', className)}>
+    <h4 className={cn('text-2xl font-medium border-b border-b-primary-text/30 pb-2 tracking-wide text-primary-text md:text-2xl', className)}>
       {children}
     </h4>
   )

@@ -22,7 +22,10 @@ const AuthLandingPage = () => {
           <BannerContent />
         </aside>
         <aside className='container'>
-          {(pathname === '/login' && <LoginPage />) ||
+          {(pathname === '/login' && <Suspense fallback={<LoadingSpinner />}>
+            <LoginPage />
+          </Suspense>
+          ) ||
             (pathname === '/register' && <RegisterPage />) ||
             (pathname === '/forgot-password' && <ForgotPasswordPage />) ||
             (pathname === '/otp-verification' && <OtpVerification />) ||
