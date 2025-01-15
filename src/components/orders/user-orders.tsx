@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils'
 import { useScrollRef } from '@/hooks/scroll.hooks'
 import { useUserStore } from '@/slice/user-slice'
 import { usePostOrders } from '@/services/api/api-service/order/user-order'
+import { IMAGE_BASE_URL } from '@/utils/image-base-url'
 
 const UserOrders = () => {
   const { ref } = useScrollRef(140);
@@ -43,7 +44,7 @@ const UserOrders = () => {
             >
               {/* Order Image */}
               <Image
-                src={defaultImage || order.product_image}
+                src={IMAGE_BASE_URL + order.product_image || defaultImage}
                 alt={order.product_name}
                 width={200}
                 className='h-auto rounded-md object-cover md:w-32'

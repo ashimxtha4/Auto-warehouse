@@ -11,6 +11,12 @@ import { FormRowHeader, Separator } from '@/components/get-a-quote/get-a-quote-f
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { FaArrowRightLong } from 'react-icons/fa6'
+import { Input } from '@/components/ui/input'
+import { IconVisaLine } from '@/assets/icon/visa-line'
+import { IconPaypal } from '@/assets/icon/paypal'
+import { Label } from '@/components/ui/label'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Textarea } from '@/components/ui/textarea'
 
 const OrderSummaryText = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -34,61 +40,126 @@ const Checkout = () => {
     <section ref={ref} className='bg-white p-2 md:p-6 rounded-3xl shadow-lg'>
       {isLoading && <LoadingSpinner />}
       <SectionHeader className='text-start'>CHECKOUT</SectionHeader>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-3 md:mb-6'>
         <aside>
           <FormRowHeader>BILLING DETAILS</FormRowHeader>
           <Separator />
-          <div className='mb-6'>
+          <div>
             <div className='flex flex-col space-y-2'>
-              <input
-                type='text'
-                placeholder='Full Name'
-                className='rounded-md border border-gray-300 p-2'
-              />
-              <input
-                type='text'
-                placeholder='Address'
-                className='rounded-md border border-gray-300 p-2'
-              />
-              <input
-                type='text'
-                placeholder='City'
-                className='rounded-md border border-gray-300 p-2'
-              />
-              <input
-                type='text'
-                placeholder='Postal Code'
-                className='rounded-md border border-gray-300 p-2'
-              />
-              <input
-                type='text'
-                placeholder='Phone Number'
-                className='rounded-md border border-gray-300 p-2'
-              />
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+                <div>
+                  <Label>Full Name</Label>
+                  <Input
+                    type='text'
+                    placeholder='Full Name'
+                    className='rounded-full'
+                  />
+                </div>
+                <div>
+                  <Label>Email</Label>
+                  <Input
+                    type='email'
+                    placeholder='Email'
+                    className='rounded-full'
+                  />
+                </div>
+              </div>
+              <div className='grid grid-cols-1 md:grid-cols-2 w-full gap-2'>
+                <div>
+                  <Label>Address</Label>
+                  <Input
+                    type='text'
+                    placeholder='Address'
+                    className='rounded-full'
+                  />
+                </div>
+                <div>
+                  <Label>City</Label>
+                  <Input
+                    type='text'
+                    placeholder='City'
+                    className='rounded-full'
+                  />
+                </div>
+              </div>
+              <div className='grid grid-cols-1 md:grid-cols-2 w-full gap-2'>
+                <div>
+                  <Label>Postal Code</Label>
+                  <Input
+                    type='text'
+                    placeholder='Postal Code'
+                    className='rounded-full'
+                  />
+                </div>
+                <div>
+                  <Label>Phone Number</Label>
+                  <Input
+                    type='text'
+                    placeholder='Phone Number'
+                    className='rounded-full'
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </aside>
         <aside>
           <FormRowHeader>PAYMENT DETAILS</FormRowHeader>
           <Separator />
-          <div className='mb-6'>
-            <div className='space-y-2'>
-              <div className='flex items-center'>
-                <input
-                  type='radio'
-                  name='payment'
-                  id='credit-card'
-                  className='mr-2'
+          <div className='grid grid-cols-2 gap-2 my-2'>
+            <div className='grid grid-cols-4 items-center gap-2 border border-primary-text/20 p-2 rounded-xl'>
+              <Input
+                type='radio'
+                className='rounded-full'
+              />
+              <label className='text-primary-text col-span-2 text-base'>Credit Card</label>
+              <div className='flex justify-center items-center p-2 border font-medium border-primary-text/20 rounded-2xl'>
+                <IconVisaLine className='w-[60px]' />
+              </div>
+            </div>
+            <div className='grid grid-cols-4 items-center gap-2 border border-primary-text/20 p-2 rounded-xl'>
+              <Input
+                type='radio'
+                className='rounded-full'
+              />
+              <label className='text-primary-text col-span-2 font-medium text-base'>Paypal</label>
+              <div className='flex justify-center items-center p-2 border border-primary-text/20 rounded-2xl'>
+                <IconPaypal className='w-[60px]' />
+              </div>
+            </div>
+          </div>
+          {/* Card Details */}
+          <div>
+            <Label>Card Number</Label>
+            <Input
+              type='text'
+              placeholder='Card Number'
+              className='rounded-full'
+            />
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-2 my-2'>
+              <div className='col-span-2'>
+                <Label>Card Holder Name</Label>
+                <Input
+                  type='text'
+                  placeholder='Card Holder'
+                  className='rounded-full'
                 />
-                <label htmlFor='credit-card'>Credit Card</label>
               </div>
-              <div className='flex items-center'>
-                <input type='radio' name='payment' id='paypal' className='mr-2' />
-                <label htmlFor='paypal'>PayPal</label>
+              <div>
+                <Label>Expiry Date</Label>
+                <Input
+                  type='text'
+                  placeholder='Expiry Date'
+                  className='rounded-full'
+                />
               </div>
-              <div className='flex items-center'>
-                <input type='radio' name='payment' id='cash' className='mr-2' />
-                <label htmlFor='cash'>Cash on Delivery</label>
+              <div>
+                <Label>CVV</Label>
+                <Input
+                  type='text'
+                  placeholder='CVV'
+                  className='rounded-full'
+                />
               </div>
             </div>
           </div>
@@ -99,6 +170,12 @@ const Checkout = () => {
         <aside>
           <FormRowHeader>SHIPPING DETAILS</FormRowHeader>
           <Separator />
+          <div className='flex gap-2 justify-start items-center my-2'>
+            <Checkbox />
+            <p>Ship to a different Address?</p>
+          </div>
+          <Label className='text-base'>Order Notes (Optional)</Label>
+          <Textarea rows={5} placeholder='Notes about your order, special notes for delivery' className='rounded-2xl' />
         </aside>
         <aside className='bg-[#d3f2d0] p-4 md:p-6 rounded-3xl '>
           <FormRowHeader>ORDER SUMMARY</FormRowHeader>
