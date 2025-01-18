@@ -3,11 +3,13 @@ import httpClient from '../../axios-service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
+import { TCheckoutSchemaProps } from '@/hooks/cart.hooks'
 
 interface postCartCheckoutProps {
   uid: string
   customer_id: number
   cart_id: number[]
+  data: Partial<TCheckoutSchemaProps>
 }
 
 const postCartCheckout = async (data: postCartCheckoutProps) => {
