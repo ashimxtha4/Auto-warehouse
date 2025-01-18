@@ -2,13 +2,31 @@ import { usePostAddToCart } from '@/services/api/api-service/cart/add-to-cart'
 import { usePostCartCheckout } from '@/services/api/api-service/cart/cart-checkout'
 import { useGetCartList } from '@/services/api/api-service/cart/cart-list'
 import { usePostRemoveFromCart } from '@/services/api/api-service/cart/remove-from-cart'
+import { useGetCustomerDetails } from '@/services/api/api-service/customer/customer-detail'
 import { useCartStore } from '@/slice/cart-slice'
 import { useUserStore } from '@/slice/user-slice'
 import { isTokenExpired } from '@/utils/is-token-expired'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { isAxiosError } from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { z } from 'zod'
+
+const checkoutSchema = z.object({
+  name: z.string({ required_error: 'Please enter your name.' }),
+  email: z
+    .string({ required_error: 'Please enter your email.' })
+    .email({ message: 'Invalid email.' }),
+  phone: z.string({ required_error: 'Please enter your phone number.' }),
+  post_code: z.string({ required_error: 'Postal Code is required.' }),
+  address: z.string({ required_error: 'Please enter your address.' }),
+  city: z.string().optional(),
+  note: z.string().optional()
+})
+
+export type TCheckoutSchemaProps = z.infer<typeof checkoutSchema>
 
 export const useMyCart = () => {
   const router = useRouter()
@@ -33,6 +51,7 @@ export const useMyCart = () => {
     loadUserFromLocalStorage()
   }, [loadUserFromLocalStorage])
 
+  // #region Add to cart
   const handleAddToCart = async (productId: number) => {
     try {
       if (productId && id !== -1 && uuid !== '') {
@@ -51,6 +70,7 @@ export const useMyCart = () => {
     }
   }
 
+  // #region Proceed to checkout
   const handleProceedToCheckout = () => {
     const token = localStorage.getItem('token')
     if (!cartProducts?.length) {
@@ -73,16 +93,7 @@ export const useMyCart = () => {
     cartProducts?.map(item => handleAddToCart(item.id))
   }
 
-  // useEffect(() => {
-  //   if (Array.isArray(cartData?.data.data)) {
-  //     const newTotal = cartData.data.data.reduce(
-  //       (acc, product) => acc + parseInt(product?.product_price) * 1,
-  //       0
-  //     )
-  //     setTotal(newTotal as number)
-  //   }
-  // }, [cartData?.data.data, isSuccess])
-
+  // #region Remove from cart
   const handleRemoveFromCart = async (
     id: number,
     customer_id: number,
@@ -106,14 +117,41 @@ export const useMyCart = () => {
     }
   }
 
+  // #region Procced with payment || handleCartCheckout
   const cartIds = cartData?.data.data.map(item => item.id)
 
-  const handleCartCheckout = async () => {
+  const form = useForm<Partial<TCheckoutSchemaProps>>({
+    resolver: zodResolver(checkoutSchema)
+  })
+
+  const { data: userData } = useGetCustomerDetails(uuid, id)
+
+  useEffect(() => {
+    if (userData?.data) {
+      form.setValue(
+        'name',
+        userData.data.first_name + ' ' + userData.data.last_name
+      )
+      form.setValue('email', userData.data.email)
+      form.setValue('phone', userData.data.phone || '')
+      form.setValue('address', userData.data.address || '')
+    }
+  }, [userData?.data])
+
+  const shippingCost = cartIds?.length ? 10 : 0
+
+  const handleCartCheckout = async (data: Partial<TCheckoutSchemaProps>) => {
+    if (!cartIds?.length) {
+      toast.error('Please add items to cart to proceed with payment')
+      return
+    }
+
     try {
       await cartCheckoutAsync({
         uid: uuid,
         customer_id: id,
-        cart_id: cartIds as number[]
+        cart_id: cartIds as number[],
+        data
       })
       localStorage.removeItem('cart')
       toast.success('Your order has been placed successfully!')
@@ -136,6 +174,8 @@ export const useMyCart = () => {
     handleAddToCart,
     handleProceedToCheckout,
     cartTotal,
-    router
+    router,
+    form,
+    shippingCost
   }
 }
