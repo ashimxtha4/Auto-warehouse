@@ -98,8 +98,7 @@ const ProductPage = () => {
               className='rounded-full w-full bg-primary-main px-6 py-3 disabled:cursor-not-allowed font-semibold text-white shadow-md transition-transform disabled:hover:scale-100 hover:scale-105 disabled:bg-primary-main/80 hover:bg-primary-main'
               onClick={() => handleAddToCart(singleProductData)}
               disabled={
-                (loadingProductId === productData?.id) ||
-                (productData?.syd_stock === 0 && productData?.mel_stock === 0)
+                (loadingProductId === productData?.id)
               }
             >
               {(loadingProductId === productData?.id) ? (
