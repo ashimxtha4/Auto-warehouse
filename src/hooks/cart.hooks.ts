@@ -3,7 +3,7 @@ import { usePostCartCheckout } from '@/services/api/api-service/cart/cart-checko
 import { useGetCartList } from '@/services/api/api-service/cart/cart-list'
 import { usePostRemoveFromCart } from '@/services/api/api-service/cart/remove-from-cart'
 import { useGetCustomerDetails } from '@/services/api/api-service/customer/customer-detail'
-import { useCartStore } from '@/slice/cart-slice'
+import { CartItemProps, useCartStore } from '@/slice/cart-slice'
 import { useUserStore } from '@/slice/user-slice'
 import { isTokenExpired } from '@/utils/is-token-expired'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -53,14 +53,14 @@ export const useMyCart = () => {
   }, [loadUserFromLocalStorage])
 
   // #region Add to cart
-  const handleAddToCart = async (productId: number) => {
+  const handleAddToCart = async (product: CartItemProps) => {
     try {
-      if (productId && id !== -1 && uuid !== '') {
+      if (product && id !== -1 && uuid !== '') {
         await addToCartMutateAsync({
           customer_id: id,
           uid: uuid,
-          product_id: productId,
-          quantity: 1
+          product_id: product.id,
+          quantity: product.quantity
         })
       }
     } catch (error) {
@@ -91,7 +91,7 @@ export const useMyCart = () => {
         router.push('/cart/checkout')
       }
     }
-    cartProducts?.map(item => handleAddToCart(item.id))
+    cartProducts?.map(item => handleAddToCart(item))
   }
 
   // #region Remove from cart
