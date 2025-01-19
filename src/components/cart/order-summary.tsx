@@ -15,16 +15,16 @@ const OrderSummary = () => {
       <div className="space-y-4">
         <div className="flex justify-between text-primary-text/60">
           <p>Subtotal:</p>
-          <p>${cartTotal.toFixed(2)}</p>
+          <p>AUD ${cartTotal.toFixed(2)}</p>
         </div>
         <div className="flex justify-between text-primary-text/60">
           <p>Shipping:</p>
-          <p>$0.00</p>
+          <p>AUD $0.00</p>
         </div>
         <hr className="my-4 border-gray-300" />
         <div className="flex justify-between font-bold text-primary-text/60">
           <p>Total:</p>
-          <p>${cartTotal.toFixed(2)}</p>
+          <p>AUD ${cartTotal.toFixed(2)}</p>
         </div>
       </div>
 

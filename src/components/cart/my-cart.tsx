@@ -27,7 +27,7 @@ const MyCart = () => {
     'Action'
   ]
 
-  const { cart, loadCartFromLocalStorage, removeFromCart, cartTotal } = useCartStore()
+  const { cart, loadCartFromLocalStorage, removeFromCart, cartTotal, decreaseQuantity, increaseQuantity } = useCartStore()
 
   useEffect(() => {
     loadCartFromLocalStorage()
@@ -80,26 +80,20 @@ const MyCart = () => {
                     {product.name}
                   </TableCell>
                   <TableCell className='text-primary-text'>
-                    ${product.price}
+                    AUD ${product.price}
                   </TableCell>
                   <TableCell className='text-primary-text'>
                     {product.sku}
                   </TableCell>
-                  <TableCell className='text-center font-medium text-primary-text'>
-                    1
-                    {/* <div className='flex items-center'>
-                      <input
-                        type='number'
-                        min='1'
-                        max='1'
-                        value={1}
-                        readOnly
-                        className='mr-2 w-12 text-center text-lg font-medium'
-                      />
-                    </div> */}
+                  <TableCell className='text-primary-text/80'>
+                    <div className='grid grid-cols-3 border border-primary-text/60 rounded-2xl p-1'>
+                      <button type='button' onClick={() => decreaseQuantity(product.id)} className='text-lg border-r border-primary-text/60 cursor-pointer'>-</button>
+                      <div className="text-center border-r border-primary-text/60 text-lg">{product.quantity}</div>
+                      <button type='button' onClick={() => increaseQuantity(product.id)} className='text-lg cursor-pointer'>+</button>
+                    </div>
                   </TableCell>
                   <TableCell className='text-primary-text'>
-                    ${product.price}
+                    AUD ${product.price * product.quantity}
                   </TableCell>
                   <TableCell>
                     <div className='flex items-center gap-2'>
@@ -134,7 +128,7 @@ const MyCart = () => {
                   Total
                 </TableCell>
                 <TableCell className='text-xl text-right font-semibold text-primary-main'>
-                  ${cartTotal}
+                  AUD ${cartTotal}
                 </TableCell>
               </TableRow>
             </TableFooter>
