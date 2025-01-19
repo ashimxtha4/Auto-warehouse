@@ -9,7 +9,7 @@ import { isTokenExpired } from '@/utils/is-token-expired'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { isAxiosError } from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
@@ -29,6 +29,7 @@ const checkoutSchema = z.object({
 export type TCheckoutSchemaProps = z.infer<typeof checkoutSchema>
 
 export const useMyCart = () => {
+  const [cartIds, setCartIds] = useState<number[] | undefined>()
   const router = useRouter()
   const pathname = usePathname()
   const errorMessage = 'Please login to proceed to checkout'
@@ -118,7 +119,12 @@ export const useMyCart = () => {
   }
 
   // #region Procced with payment || handleCartCheckout
-  const cartIds = cartData?.data.data.map(item => item.id)
+
+  useEffect(() => {
+    if (cartData?.data) {
+      setCartIds(cartData.data.data.map(item => item.id))
+    }
+  }, [cartData?.data, id, uuid])
 
   const form = useForm<Partial<TCheckoutSchemaProps>>({
     resolver: zodResolver(checkoutSchema)

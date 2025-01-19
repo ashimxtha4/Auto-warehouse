@@ -40,6 +40,6 @@ export const useGetCartList = (uid: string, customer_id: number) => {
     enabled:
       !!uid &&
       customer_id !== -1 &&
-      isTokenExpired(localStorage.getItem('token') ?? '')
+      !isTokenExpired(localStorage.getItem('token') ?? '')
   })
 }

@@ -47,6 +47,7 @@ const UserOrders = () => {
                 src={IMAGE_BASE_URL + order.product_image || defaultImage}
                 alt={order.product_name}
                 width={200}
+                height={100}
                 className='h-auto rounded-md object-cover md:w-32'
               />
 
