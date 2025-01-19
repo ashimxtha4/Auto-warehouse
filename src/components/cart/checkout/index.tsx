@@ -19,24 +19,24 @@ const Checkout = () => {
 
   return (
     <>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleCartCheckout)}
-        >
-          <section ref={ref} className='bg-white p-2 md:p-6 rounded-3xl shadow-lg'>
+      <section ref={ref} className='bg-white p-2 md:p-6 rounded-3xl shadow-lg'>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleCartCheckout)}
+          >
             {isLoading && <LoadingSpinner />}
             <SectionHeader className='text-start'>CHECKOUT</SectionHeader>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-3 md:mb-6'>
               <BillingDetail form={form} />
+              <CheckoutOrderSummary shippingCost={shippingCost} checkoutPending={checkoutPending} />
               {/* <PaymentDetail /> */}
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               <OptionalNote form={form} />
-              <CheckoutOrderSummary shippingCost={shippingCost} checkoutPending={checkoutPending} />
             </div>
-          </section>
-        </form>
-      </Form>
+          </form>
+        </Form>
+      </section>
     </>
   )
 }
