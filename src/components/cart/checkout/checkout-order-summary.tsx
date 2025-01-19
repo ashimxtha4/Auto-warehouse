@@ -50,7 +50,7 @@ const CheckoutOrderSummary = ({ shippingCost, checkoutPending }: { shippingCost:
             </p>
 
             {/* Place Order Button */}
-            <div className='flex gap-2'>
+            <div className='flex gap-2 flex-col md:flex-row'>
                 <button type='button' onClick={() => router.push('/search-product')} className='bg-white flex-1 border border-primary-main text-primary-text text-center my-2 mt-4 rounded-full text-base font-medium'>
                     SHOP MORE PRODUCTS
                 </button>
@@ -60,7 +60,7 @@ const CheckoutOrderSummary = ({ shippingCost, checkoutPending }: { shippingCost:
                         'w-full flex-1 my-2 mt-4 p-2 pl-5 bg-primary-main font-medium flex justify-between items-center rounded-full text-primary-text hover:bg-primary-main disabled:bg-primary-main/60 disabled:cursor-not-allowed'
                     )}
                     disabled={checkoutPending || !cart?.length}
-                >{checkoutPending ? <ButtonLoader /> : 'PROCEED WITH PAYMENT'}
+                >{checkoutPending ? <ButtonLoader /> : 'PROCEED'}
                     <span className='bg-primary-text p-2 rounded-full flex justify-between items-center text-primary-main'>
                         <FaArrowRightLong />
                     </span>
