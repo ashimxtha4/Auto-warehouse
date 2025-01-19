@@ -86,9 +86,9 @@ const ProductItem = ({ item }: { item: productProps }) => {
             </span>
 
             <p className='block py-2 text-primary-text'>
-              <span className='text-xs font-normal'>FROM:</span>
+              <span className='text-xs font-normal'>FROM: </span>
               <span className='text-base font-semibold'>
-                ${item?.price ?? 'N/A'}
+               AUD$ {item?.price ?? 'N/A'}
               </span>
             </p>
           </div>

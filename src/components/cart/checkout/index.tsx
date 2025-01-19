@@ -6,7 +6,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useScrollRef } from '@/hooks/scroll.hooks'
 import { SectionHeader } from '@/utils/section-header'
 import { Form } from '@/components/ui/form'
-import PaymentDetail from './payment-detail'
+// import PaymentDetail from './payment-detail'
 import BillingDetail from './billing-detail'
 import OptionalNote from './optional-note'
 import CheckoutOrderSummary from './checkout-order-summary'
@@ -28,7 +28,7 @@ const Checkout = () => {
             <SectionHeader className='text-start'>CHECKOUT</SectionHeader>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-3 md:mb-6'>
               <BillingDetail form={form} />
-              <PaymentDetail />
+              {/* <PaymentDetail /> */}
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               <OptionalNote form={form} />
