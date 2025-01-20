@@ -161,7 +161,7 @@ const ProductPage = () => {
           <div className='my-2 md:my-5 text-start'>
             <p className='text-lg font-normal text-primary-text/80'>Product Details</p>
             <ul className='list-disc my-2 list-inside text-base font-normal text-primary-text/80'>
-              <li>Description: <span className='ml-1 text-primary-text/90'>{productData?.description || 'N/A'}</span></li>
+              <li>Description: <span className='ml-1 text-primary-text/90'>{productData?.description || productData?.invoice_description || 'N/A'}</span></li>
               <li>Position: <span className='ml-1 text-primary-text/90'>{productData?.position || 'N/A'}</span></li>
               <li>Size: <span className='ml-1 text-primary-text/90'>{productData?.size || 'N/A'}</span></li>
               <li>Type: <span className='ml-1 text-primary-text/90'>{productData?.vehicle_type || 'N/A'}</span></li>
