@@ -18,7 +18,7 @@ const VehiclePartsList = ({
   productList: productProps[] | undefined
   totalNumberOfProducts: number | undefined
 }) => {
-  const { handleSearch, viewType, handleSearchListView, vehicle, showFilterProduct } = useVehicleParts()
+  const { handleSearch, viewType, handleSearchListView, vehicle } = useVehicleParts()
   const { handleSearchFilter, sidebarData, sidebarDataPending, searchParams } =
     useSearchVehicles()
 
