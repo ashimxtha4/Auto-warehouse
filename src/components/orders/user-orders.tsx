@@ -11,6 +11,7 @@ import { useScrollRef } from '@/hooks/scroll.hooks'
 import { useUserStore } from '@/slice/user-slice'
 import { usePostOrders } from '@/services/api/api-service/order/user-order'
 import { IMAGE_BASE_URL } from '@/utils/image-base-url'
+import AutoGlassPagination from '@/utils/autoglass-pagination'
 
 const UserOrders = () => {
   const { ref } = useScrollRef(140);
@@ -18,8 +19,6 @@ const UserOrders = () => {
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
 
   const { data: orders, mutateAsync: ordersMutateAsync } = usePostOrders()
-
-  const ordersList = orders?.data.data
 
   useEffect(() => {
     loadUserFromLocalStorage()
@@ -30,6 +29,20 @@ const UserOrders = () => {
       ordersMutateAsync({ uid: uuid, customer_id: id })
     }
   }, [ordersMutateAsync, id, uuid])
+
+  const ordersList = orders?.data.data
+  const ordersMeta = orders?.data.meta
+
+  const updateQueryParams = (key: string, value: string) => {
+    const params = new URLSearchParams(window.location.search)
+    params.set(key, value)
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.pushState({}, '', newUrl)
+  }
+
+  const handlePageChange = (page: number) => {
+    updateQueryParams('page', page.toString())
+  }
 
 
   return (
@@ -89,6 +102,18 @@ const UserOrders = () => {
             </Link>
           </div>
         )}
+        <div className='my-4'>
+          {ordersList?.length ? (
+            <AutoGlassPagination
+              currentPage={ordersMeta?.current_page || 1}
+              itemsPerPage={ordersMeta?.per_page as number}
+              totalItems={ordersMeta?.total as number}
+              onPageChange={handlePageChange}
+            />
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </section>
   )
