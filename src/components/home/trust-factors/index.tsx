@@ -17,11 +17,11 @@ const trustItems = [
     title: 'Certified',
     desc: 'Certified technicians ensuring quality vehicle glass replacements.'
   },
-  {
-    image: easyReturn,
-    title: 'Easy Return',
-    desc: '30-day hassle-free return guarantee on all services.'
-  },
+  // {
+  //   image: easyReturn,
+  //   title: 'Easy Return',
+  //   desc: '30-day hassle-free return guarantee on all services.'
+  // },
   {
     image: support,
     title: 'Support',
