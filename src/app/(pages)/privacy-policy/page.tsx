@@ -2,12 +2,13 @@
 
 import React, { Suspense } from 'react';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import PrivacyPolicy from '@/components/privacy-policy/privacy-policy';
+// import PrivacyPolicy from '@/components/privacy-policy/privacy-policy';
 
 const Page = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <PrivacyPolicy />
+      {/* <PrivacyPolicy /> */}
+      <div className='text-center w-full my-4 text-base text-primary-text font-medium'>Privacy Policy</div>
     </Suspense>
   );
 };

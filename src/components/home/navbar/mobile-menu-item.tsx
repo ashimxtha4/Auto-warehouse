@@ -23,7 +23,7 @@ const MobileMenuItem = ({ item, index }: MobileMenuItemProps) => {
         setOpenItem(openItem === index ? null : index)
       }}
     >
-      <span className={cn('flex border-[#B0B0B080]/50 items-center hover:bg-[#D3F2D0] w-[250px] hover:border-primary-main justify-center gap-2 border p-2 rounded-full', openItem === index && item.links.length > 0 && 'bg-[#D3F2D0] border-primary-main')}>
+      <span className={cn('flex border-primary-text/50 items-center hover:bg-[#D3F2D0] w-[250px] hover:border-primary-main justify-center gap-2 border p-2 rounded-full', openItem === index && item.links.length > 0 && 'bg-[#D3F2D0] border-primary-main')}>
         {item.label}
         {item.links.length ? <FaChevronDown /> : ''}
       </span>

@@ -16,7 +16,7 @@ const SuvCalloutLines = () => {
         <span className='vehicle-line left-[13px] top-[60px] w-[80px] md:top-[100px] md:w-[160px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT Windscreen')}
-          className='callout-line-title left-[86px] top-[44px] md:left-[144px] md:top-[86px]'
+          className='callout-line-title left-[75px] top-[44px] md:left-[144px] md:top-[86px]'
         >
           Windscreen
         </Button>
@@ -38,7 +38,7 @@ const SuvCalloutLines = () => {
         <span className='vehicle-line left-[42px] top-[137px] w-[50px] md:left-[58px] md:top-[188px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT DOOR RH')}
-          className='callout-line-title left-[86px] top-[111px] md:left-[144px] md:top-[174px]'
+          className='callout-line-title left-[75px] top-[111px] md:left-[144px] md:top-[174px]'
         >
           Right Front Door
         </Button>
@@ -60,7 +60,7 @@ const SuvCalloutLines = () => {
         <span className='vehicle-line left-[42px] top-[173px] w-[50px] md:left-[58px] md:top-[247px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('REAR DOOR RH')}
-          className='callout-line-title left-[86px] top-[152px] md:left-[144px] md:top-[232px]'
+          className='callout-line-title left-[75px] top-[152px] md:left-[144px] md:top-[232px]'
         >
           Right Back Door
         </Button>
@@ -82,7 +82,7 @@ const SuvCalloutLines = () => {
         <span className='vehicle-line left-[40px] top-[216px] w-[50px] md:left-[58px] md:top-[288px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('right back vent')}
-          className='callout-line-title left-[86px] top-[198px] md:left-[144px] md:top-[274px]'
+          className='callout-line-title left-[75px] top-[198px] md:left-[144px] md:top-[274px]'
         >
           Right Back Vent
         </Button>
