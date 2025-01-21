@@ -3,7 +3,7 @@ import Image from 'next/image'
 import ratingLogo from '@/assets/icon/rating.png'
 import fast from '@/assets/icon/fast.png'
 import certified from '@/assets/icon/certified.png'
-import easyReturn from '@/assets/icon/easy return.png'
+// import easyReturn from '@/assets/icon/easy return.png'
 import support from '@/assets/icon/support.png'
 
 const trustItems = [
