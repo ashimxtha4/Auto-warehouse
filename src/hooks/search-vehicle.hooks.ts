@@ -10,16 +10,27 @@ import { useGetVehicleBody } from '@/services/api/api-service/vehicle/vehicle-bo
 import { useGetVehicleGroup } from '@/services/api/api-service/vehicle/vehicle-group'
 import { isAxiosError } from 'axios'
 import toast from 'react-hot-toast'
-import { useGetVehicleYear } from '@/services/api/api-service/vehicle/vehicle-year'
+// import { useGetVehicleYear } from '@/services/api/api-service/vehicle/vehicle-year'
 import { usePathname } from 'next/navigation'
 import { useGetSidebar } from '@/services/api/api-service/sidebar/get-sidebar'
+
+const numberRegex = /^[0-9]{4}$/
 
 const searchPartsSchema = z.object({
   make: z.string({ required_error: 'Vehicle Brand is required.' }),
   model: z.string({ required_error: 'Vehicle Model is required.' }),
   position: z.string().optional(),
   type: z.string().optional(),
-  year: z.string().optional(),
+  year: z
+    .string()
+    .optional()
+    .refine(
+      value => {
+        if (!value) return true
+        return numberRegex.test(value)
+      },
+      { message: 'Year must be a 4-digit number' }
+    ),
   series: z.string().optional()
 })
 
@@ -55,8 +66,8 @@ export const useSearchVehicles = () => {
   const { data: vehicleBodyData, mutateAsync: mutateVehicleBody } =
     useGetVehicleBody()
 
-  const { data: vehicleYearData, mutateAsync: mutateVehicleYear } =
-    useGetVehicleYear()
+  // const { data: vehicleYearData, mutateAsync: mutateVehicleYear } =
+  //   useGetVehicleYear()
 
   const { data: vehicleGroupData, mutateAsync: mutateVehicleGroup } =
     useGetVehicleGroup()
@@ -121,11 +132,11 @@ export const useSearchVehicles = () => {
         await mutateSidebar(parseInt(vehicle_brand_id))
       }
 
-      if (vehicle_brand_id || modelArray || vehicle_year_id) {
+      if (vehicle_brand_id && (modelArray || vehicle_year_id?.length === 4)) {
         await mutateVehicleSeries({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
           vehicle_model_id: modelArray?.map(val => parseInt(val as string)),
-          vehicle_year_id: vehicle_year_id
+          vehicle_year_id: parseInt(vehicle_year_id as string)
         })
       }
 
@@ -138,10 +149,10 @@ export const useSearchVehicles = () => {
       }
 
       if (vehicle_brand_id || modelArray) {
-        await mutateVehicleYear({
-          vehicle_brand_id: parseInt(vehicle_brand_id as string),
-          vehicle_model_id: modelArray?.map(val => parseInt(val as string))
-        })
+        // await mutateVehicleYear({
+        //   vehicle_brand_id: parseInt(vehicle_brand_id as string),
+        //   vehicle_model_id: modelArray?.map(val => parseInt(val as string))
+        // })
         await mutateVehicleBody({
           vehicle_brand_id: parseInt(vehicle_brand_id as string),
           vehicle_model_id: modelArray?.map(val => parseInt(val as string))
@@ -161,7 +172,7 @@ export const useSearchVehicles = () => {
     mutateVehicleSeries,
     mutateVehicleBody,
     mutateVehicleGroup,
-    mutateVehicleYear,
+    // mutateVehicleYear,
     handleSearchFilter
   ])
 
@@ -237,7 +248,7 @@ export const useSearchVehicles = () => {
     vehicleSeriesData: vehicleSeriesData?.data?.data,
     vehicleBodyData: vehicleBodyData?.data?.data,
     vehicleGroupData: vehicleGroupData?.data?.data,
-    vehicleYearData: vehicleYearData?.data?.data,
+    // vehicleYearData: vehicleYearData?.data?.data,
     selectedVehicleModel,
     handlePageChange,
     handleSearchFilter,

@@ -17,11 +17,13 @@ const SearchForm = () => {
     vehicleBodyData,
     vehicleModelData,
     vehicleSeriesData,
-    vehicleYearData,
     router
   } = useSearchVehicles()
 
   const formValues = form.watch()
+
+  console.log('formValues', form.formState.errors);
+
 
   const isFormEmpty = Object.values(formValues).every(value => !value)
 
@@ -115,16 +117,9 @@ const SearchForm = () => {
               name='year'
               render={({ field }) => (
                 <ComboboxDropdown
+                  year={true}
                   field={field}
                   form={form}
-                  options={
-                    vehicleYearData
-                      ? Object.entries(vehicleYearData).map(([key]) => ({
-                        label: key,
-                        value: key
-                      }))
-                      : []
-                  }
                   title='Year'
                   placeholder='Select Year'
                 />

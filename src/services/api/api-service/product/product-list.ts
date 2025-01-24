@@ -20,7 +20,7 @@ const getProductList = async (data: {
   series?: number
   page?: number
   specific?: string
-  year?: string
+  year?: number
 }) => {
   return await httpClient.post<IGenericResponse<productProps[]>>(
     api.products.list.post,

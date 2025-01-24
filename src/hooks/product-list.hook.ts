@@ -26,7 +26,9 @@ export const useProductList = () => {
   const series = params?.get('series')
     ? parseInt(params.get('series') as string)
     : undefined
-  const year = params?.get('year') || ''
+  const year = params?.get('year')
+    ? parseInt(params.get('year') as string)
+    : undefined
 
   const page = parseInt(params?.get('page') || '1')
 
