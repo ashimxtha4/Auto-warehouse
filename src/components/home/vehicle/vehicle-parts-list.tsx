@@ -1,11 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { CiGrid41 } from 'react-icons/ci'
+import { CiGrid41, CiMenuBurger } from 'react-icons/ci'
 import { useVehicleParts } from '@/hooks/vehicle-parts.hook'
 import ProductItem from './product-item'
 import { productProps } from '@/services/api/api-service/product/product-list'
 import { TbLayoutList } from 'react-icons/tb'
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
+import { SidebarContent } from './sidebar-filter'
 
 const VehiclePartsList = ({
   productList,
@@ -15,9 +19,28 @@ const VehiclePartsList = ({
   totalNumberOfProducts: number | undefined
 }) => {
   const { handleSearch, viewType, handleSearchListView, vehicle } = useVehicleParts()
+  const { handleSearchFilter, sidebarData, sidebarDataPending, searchParams } =
+    useSearchVehicles()
+
+  const specificPart = searchParams?.get('specific')
   return (
     <aside className='flex-[2]'>
       <header className='mb-4 flex justify-between gap-2 px-2 py-1 md:gap-5'>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant='link' className={cn(vehicle ? 'block md:hidden' : 'hidden')}>
+              <CiMenuBurger className='cursor-pointer w-5 h-5' />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-80 flex flex-col gap-1 p-3">
+            <SidebarContent
+              handleSearchFilter={handleSearchFilter}
+              sidebarData={sidebarData}
+              sidebarDataPending={sidebarDataPending}
+              specificPart={specificPart}
+            />
+          </PopoverContent>
+        </Popover>
         <div className='flex items-center gap-1 text-sm font-medium text-primary-text md:gap-3 md:text-2xl'>
           <span>{totalNumberOfProducts ?? 0}</span>
           <span>Products Found</span>

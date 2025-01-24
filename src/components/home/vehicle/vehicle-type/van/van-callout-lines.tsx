@@ -16,7 +16,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line left-[13px] top-[38px] w-[80px] md:top-[56px] md:w-[160px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT Windscreen')}
-          className='callout-line-title left-[86px] top-[20px] md:left-[144px] md:top-[42px]'
+          className='callout-line-title left-[75px] top-[20px] md:left-[144px] md:top-[42px]'
         >
           Windscreen
         </Button>
@@ -38,7 +38,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line left-[48px] top-[86px] w-[50px] md:left-[68px] md:top-[123px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT DOOR RH')}
-          className='callout-line-title left-[86px] top-[64px] md:left-[144px] md:top-[115px]'
+          className='callout-line-title left-[75px] top-[64px] md:left-[144px] md:top-[115px]'
         >
           Right Front Door
         </Button>
@@ -60,7 +60,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line left-[48px] top-[118px] w-[50px] md:left-[68px] md:top-[161px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('REAR DOOR RH')}
-          className='callout-line-title left-[86px] top-[104px] md:left-[144px] md:top-[148px]'
+          className='callout-line-title left-[75px] top-[104px] md:left-[144px] md:top-[148px]'
         >
           Right Back Door
         </Button>
@@ -82,7 +82,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line left-[48px] top-[178px] w-[50px] md:left-[69px] md:top-[241px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('right back vent')}
-          className='callout-line-title left-[86px] top-[162px] md:left-[144px] md:top-[226px]'
+          className='callout-line-title left-[75px] top-[162px] md:left-[144px] md:top-[226px]'
         >
           Right Back Vent
         </Button>
@@ -101,10 +101,10 @@ const VanCalloutLines = () => {
       {/* right back quarter */}
       <div className='absolute'>
         <span className='circle-dot left-[46px] top-[238px] md:left-[66px] md:top-[310px]' />
-        <span className='vehicle-line left-[48px] top-[240px] w-[50px] md:left-[68px] md:top-[313px] md:w-[120px]' />
+        <span className='vehicle-line left-[48px] top-[241px] w-[50px] md:left-[68px] md:top-[313px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('right back quarter')}
-          className='callout-line-title left-[86px] top-[222px] md:left-[144px] md:top-[298px]'
+          className='callout-line-title left-[70px] top-[222px] md:left-[144px] md:top-[298px]'
         >
           Right Back Quarter
         </Button>

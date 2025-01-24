@@ -8,6 +8,7 @@ import { IGenericResponse } from '@/utils/response-types/generic-data-response'
 export interface orderDataProps {
   id: number
   customer_id: number
+  quantity: number
   product_id: number
   product_name: string
   product_price: string

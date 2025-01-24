@@ -28,12 +28,12 @@ const UserCart = () => {
       <HoverCardTrigger>
         <button type='button' className='relative mt-1 text-base md:text-2xl'>
           <CiShoppingCart className='bg-white' size={20} />
-          <span className='absolute -right-[16px] -top-[8px] rounded-full px-1 text-xs bg-primary-text text-white md:-right-4 md:-top-[14px] md:px-2 md:text-base'>
+          <span className='absolute -right-[8px] -top-[8px] rounded-full px-1 text-xs bg-primary-text text-white md:-right-4 md:-top-[14px] md:px-2 md:text-base'>
             {cart?.length ?? 0}
           </span>
         </button>
       </HoverCardTrigger>
-      <HoverCardContent className='absolute -left-[210px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 lg:-left-[100px]'>
+      <HoverCardContent className='absolute -left-[160px] mt-2 rounded-sm bg-white px-2 py-1 dark:bg-gray-800 lg:-left-[100px]'>
         <HoverCartLinks />
       </HoverCardContent>
     </HoverCard>
