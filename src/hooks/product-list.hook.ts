@@ -9,7 +9,12 @@ export const useProductList = () => {
 
   const totalNumberOfProducts = data?.data?.meta?.total
 
-  const [selectedArray, setSelectedArray] = useState<number[] | undefined>()
+  const [selectedArrayModel, setSelectedArrayModel] = useState<
+    number[] | undefined
+  >()
+  const [selectedArraySeries, setSelectedArraySeries] = useState<
+    number[] | undefined
+  >()
 
   const params = useSearchParams()
   const keyword = params?.get('keyword') || ''
@@ -19,6 +24,7 @@ export const useProductList = () => {
   const type = params?.get('type') || ''
   const specific = params?.get('specific') || ''
   const modelParam = params?.get('model')
+  const seriesParam = params?.get('series')
 
   const position = params?.get('position')
     ? parseInt(params.get('position') as string)
@@ -36,9 +42,17 @@ export const useProductList = () => {
     let modelArray: number[]
     if (modelParam) {
       modelArray = modelParam.split(',').map(Number)
-      setSelectedArray(modelArray)
+      setSelectedArrayModel(modelArray)
     }
   }, [modelParam])
+
+  useEffect(() => {
+    let seriesArray: number[]
+    if (seriesParam) {
+      seriesArray = seriesParam.split(',').map(Number)
+      setSelectedArraySeries(seriesArray)
+    }
+  }, [seriesParam])
 
   useEffect(() => {
     ;(async () => {
@@ -46,9 +60,9 @@ export const useProductList = () => {
         keyword,
         brand,
         type,
-        model: selectedArray,
+        model: selectedArrayModel,
         position,
-        series,
+        series: selectedArraySeries,
         page,
         specific,
         year
@@ -58,9 +72,9 @@ export const useProductList = () => {
     keyword,
     brand,
     type,
-    selectedArray,
+    selectedArrayModel,
     position,
-    series,
+    selectedArraySeries,
     page,
     specific,
     year,

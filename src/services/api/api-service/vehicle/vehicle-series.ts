@@ -3,13 +3,9 @@ import httpClient from '../../axios-service'
 import { useMutation } from '@tanstack/react-query'
 
 export interface VehicleSeriesProps {
-  id: number
-  name: string
-  vechicle_model_id: number
-  vechicle_model: string
-  start_date: string
-  end_date: string
-  status: string
+  [key: string]: {
+    ids: number[]
+  }
 }
 
 const getVehicleSeries = async (data: {
@@ -17,7 +13,7 @@ const getVehicleSeries = async (data: {
   vehicle_model_id?: number[]
   vehicle_year_id?: number
 }): Promise<{
-  data: { data: VehicleSeriesProps[] }
+  data: VehicleSeriesProps[]
 }> => {
   return await httpClient.post(api.vehicle.series.post, data)
 }
