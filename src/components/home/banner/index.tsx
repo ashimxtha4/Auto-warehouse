@@ -25,12 +25,12 @@ const BannerContent = () => {
       animate={inView ? 'visible' : 'hidden'}
       variants={sectionVariants}
     >
-      <h2 className='text-start text-base font-bold tracking-wide text-primary-text sm:text-xl md:text-5xl'>
+      <h1 className='text-start text-base font-bold tracking-wide text-primary-text sm:text-xl md:text-5xl'>
         Premium Auto <br className='hidden md:block' /> Glass{' '}
         <span className='my-1 block md:mt-5 md:text-3xl'>
           AT AFFORDABLE PRICES
         </span>
-      </h2>
+      </h1>
       <div className='grid w-full grid-cols-2 justify-center md:my-4'>
         {BANNER_ITEMS.map(item => (
           <div key={item.id}>

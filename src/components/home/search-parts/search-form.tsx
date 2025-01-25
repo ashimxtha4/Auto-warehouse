@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
@@ -101,14 +101,14 @@ const SearchForm = () => {
                   onClick={() => {
                     yearRef.current?.focus()
                   }}
-                  className='border border-input bg-background shadow-sm px-4 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground h-[50px] w-full rounded-2xl md:h-[60px]'
+                  className='border border-input bg-background shadow-sm px-4 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground h-[50px] w-full rounded-2xl md:h-[60px] mb-2 md:mb-0'
                 >
-                  <FormLabel className='!text-primary-text/80 text-sm'>Year</FormLabel>
+                  <p className='!text-primary-text/80 text-sm self-start font-medium -mt-[5.5px] md:-mt-[1px]'>Year</p>
                   <FormControl>
                     <Input
                       placeholder='Enter Year'
                       type='text'
-                      className={cn('outline-none border-none active:border-none active:outline-none focus-within:border-none focus-within:outline-none p-0 !m-0 h-auto ring-0 focus:text-accent-foreground focus-visible:ring-0 placeholder:text-base placeholder:text-primary-text/60 placeholder:font-medium', field.value ? 'text-accent-foreground font-medium' : 'text-muted-foreground')}
+                      className={cn('outline-none border-none shadow-none active:border-none active:outline-none focus-within:border-none focus-within:outline-none p-0 !m-0 h-auto ring-0 focus:text-accent-foreground focus-visible:ring-0 placeholder:text-base placeholder:text-primary-text/60 placeholder:font-medium', field.value ? 'text-accent-foreground font-medium' : 'text-muted-foreground')}
                       {...field}
                       ref={yearRef}
                     />

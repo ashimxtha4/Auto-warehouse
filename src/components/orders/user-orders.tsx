@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { Card } from '../ui/card'
 import Link from 'next/link'
-import defaultImage from '@/assets/default.png'
 import { SectionHeader } from '@/utils/section-header'
 import { cn } from '@/lib/utils'
 import { useScrollRef } from '@/hooks/scroll.hooks'
@@ -12,6 +11,7 @@ import { useUserStore } from '@/slice/user-slice'
 import { usePostOrders } from '@/services/api/api-service/order/user-order'
 import { IMAGE_BASE_URL } from '@/utils/image-base-url'
 import AutoGlassPagination from '@/utils/autoglass-pagination'
+import { DEFAULT_IMAGE } from '@/utils/default-image-url'
 
 const UserOrders = () => {
   const { ref } = useScrollRef(140);
@@ -57,7 +57,7 @@ const UserOrders = () => {
             >
               {/* Order Image */}
               <Image
-                src={IMAGE_BASE_URL + order.product_image || defaultImage}
+                src={IMAGE_BASE_URL + order.product_image || DEFAULT_IMAGE}
                 alt={order.product_name}
                 width={200}
                 height={100}

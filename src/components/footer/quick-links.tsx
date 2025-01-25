@@ -11,6 +11,14 @@ const quickLinks = [
     href: '/about'
   },
   {
+    label: 'Contact Us',
+    href: '/contact'
+  },
+  {
+    label: 'Get A Quote',
+    href: '/get-a-quote'
+  },
+  {
     label: 'Our Shop',
     href: '/shop'
   },
@@ -26,10 +34,6 @@ const quickLinks = [
     label: 'FAQs',
     href: '/faqs'
   },
-  {
-    label: 'Contact Us',
-    href: '/contact'
-  }
 ]
 
 const QuickLinks = () => {
