@@ -17,7 +17,7 @@ const getProductList = async (data: {
   type?: string
   model?: number[]
   position?: number
-  series?: number
+  series?: number[]
   page?: number
   specific?: string
   year?: number

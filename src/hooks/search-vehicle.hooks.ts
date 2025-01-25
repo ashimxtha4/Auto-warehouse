@@ -245,7 +245,7 @@ export const useSearchVehicles = () => {
     vehicle,
     vehicleMakeData: vehicleMakeData?.data?.data,
     vehicleModelData: vehicleModelData?.data,
-    vehicleSeriesData: vehicleSeriesData?.data?.data,
+    vehicleSeriesData: vehicleSeriesData?.data,
     vehicleBodyData: vehicleBodyData?.data?.data,
     vehicleGroupData: vehicleGroupData?.data?.data,
     // vehicleYearData: vehicleYearData?.data?.data,

@@ -22,9 +22,6 @@ const SearchForm = () => {
 
   const formValues = form.watch()
 
-  console.log('formValues', form.formState.errors);
-
-
   const isFormEmpty = Object.values(formValues).every(value => !value)
 
   return (
@@ -121,7 +118,7 @@ const SearchForm = () => {
                   field={field}
                   form={form}
                   title='Year'
-                  placeholder='Select Year'
+                  placeholder='Vehicle Year'
                 />
               )}
             />
@@ -133,10 +130,12 @@ const SearchForm = () => {
                   field={field}
                   form={form}
                   options={
-                    vehicleSeriesData?.map(item => ({
-                      label: item.name,
-                      value: item.id?.toString()
-                    })) || []
+                    vehicleSeriesData
+                      ? Object.entries(vehicleSeriesData).map(([key, value]) => ({
+                        label: key,
+                        value: value.ids.toString()
+                      }))
+                      : []
                   }
                   title='Series'
                   placeholder='Select Series'
