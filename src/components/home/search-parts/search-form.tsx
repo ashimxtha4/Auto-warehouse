@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormField } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import FormRow from '@/components/form/form-row'
 import ComboboxDropdown from '@/components/form/combox'
@@ -8,6 +8,8 @@ import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
 import ButtonLoader from '@/utils/button-loader'
 import { FaArrowRight } from 'react-icons/fa6'
 import { RxCrossCircled } from 'react-icons/rx'
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 const SearchForm = () => {
   const {
@@ -23,6 +25,8 @@ const SearchForm = () => {
   const formValues = form.watch()
 
   const isFormEmpty = Object.values(formValues).every(value => !value)
+
+  const yearRef = React.useRef<HTMLInputElement | null>(null)
 
   return (
     <>
@@ -91,6 +95,30 @@ const SearchForm = () => {
             /> */}
             <FormField
               control={form.control}
+              name='year'
+              render={({ field }) => (
+                <FormItem
+                  onClick={() => {
+                    yearRef.current?.focus()
+                  }}
+                  className='border border-input bg-background shadow-sm px-4 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground h-[50px] w-full rounded-2xl md:h-[60px]'
+                >
+                  <FormLabel className='!text-primary-text/80 text-sm'>Year</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder='Enter Year'
+                      type='text'
+                      className={cn('outline-none border-none active:border-none active:outline-none focus-within:border-none focus-within:outline-none p-0 !m-0 h-auto ring-0 focus:text-accent-foreground focus-visible:ring-0 placeholder:text-base placeholder:text-primary-text/60 placeholder:font-medium', field.value ? 'text-accent-foreground font-medium' : 'text-muted-foreground')}
+                      {...field}
+                      ref={yearRef}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name='type'
               render={({ field }) => (
                 <ComboboxDropdown
@@ -106,19 +134,6 @@ const SearchForm = () => {
                   }
                   title='Body'
                   placeholder='Select Body'
-                />
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='year'
-              render={({ field }) => (
-                <ComboboxDropdown
-                  year={true}
-                  field={field}
-                  form={form}
-                  title='Year'
-                  placeholder='Vehicle Year'
                 />
               )}
             />

@@ -22,7 +22,6 @@ import {
 } from '../ui/command'
 import { TSearchPartsProps } from '@/hooks/search-vehicle.hooks'
 import { MdKeyboardArrowDown } from 'react-icons/md'
-import { Input } from '../ui/input'
 
 type OptionsProps = {
   label: string
@@ -39,7 +38,6 @@ type ComboboxDropdownProps = {
     keyof TSearchPartsProps
   >
   form: UseFormReturn<Partial<TSearchPartsProps>>,
-  year?: boolean
 }
 
 const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
@@ -49,7 +47,6 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
   form,
   placeholder,
   description,
-  year,
   ...props
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
@@ -70,12 +67,7 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
             >
               <div className='flex flex-col items-start justify-between'>
                 <p className='text-sm text-primary-text/80'>{title}</p>
-                {year
-                  ?
-                  form.getValues('year') || <p className='text-base text-primary-text/60'>
-                    {placeholder}
-                  </p>
-                  :
+                {
                   field.value
                     ?
                     (
@@ -93,48 +85,37 @@ const ComboboxDropdown: React.FC<ComboboxDropdownProps> = ({
           </FormControl>
         </PopoverTrigger>
         <PopoverContent className='p-0'>
-          {
-            year ?
-              <div className='p-2 md:p-4'>
-                <Input
-                  placeholder={'Enter vehicle year'}
-                  className='h-9'
-                  {...field}
-                />
-                <FormMessage />
-              </div> :
-              <Command>
-                <CommandInput
-                  placeholder={placeholder ?? 'Search...'}
-                  className='h-9'
-                />
-                <CommandList>
-                  <CommandEmpty>No {title.toLowerCase()} found.</CommandEmpty>
-                  <CommandGroup>
-                    {options?.map(option => (
-                      <CommandItem
-                        value={option.label}
-                        key={option.value}
-                        onSelect={() => {
-                          form.setValue(field.name, option.value)
-                          setIsPopoverOpen(prev => !prev)
-                        }}
-                      >
-                        {option.label}
-                        <CheckIcon
-                          className={cn(
-                            'ml-auto h-4 w-4',
-                            option.value === field.value
-                              ? 'opacity-100'
-                              : 'opacity-0'
-                          )}
-                        />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-          }
+          <Command>
+            <CommandInput
+              placeholder={placeholder ?? 'Search...'}
+              className='h-9'
+            />
+            <CommandList>
+              <CommandEmpty>No {title.toLowerCase()} found.</CommandEmpty>
+              <CommandGroup>
+                {options?.map(option => (
+                  <CommandItem
+                    value={option.label}
+                    key={option.value}
+                    onSelect={() => {
+                      form.setValue(field.name, option.value)
+                      setIsPopoverOpen(prev => !prev)
+                    }}
+                  >
+                    {option.label}
+                    <CheckIcon
+                      className={cn(
+                        'ml-auto h-4 w-4',
+                        option.value === field.value
+                          ? 'opacity-100'
+                          : 'opacity-0'
+                      )}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
         </PopoverContent>
       </Popover>
       {description && <FormDescription>{description}</FormDescription>}
