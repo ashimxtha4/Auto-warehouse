@@ -4,7 +4,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import Contact from '@/components/contact'
 import { PageMetadata } from '@/utils/meta-data'
 
-export const metadata: Metadata = PageMetadata('Contact Us', 'Contact us for all your vehicle glass replacement needs.')
+export const metadata: Metadata = PageMetadata('Contact Us', 'Get in touch with us for any inquiries about auto glass products, orders, or support. Our team is ready to assist you with expert advice and quick responses.')
 
 const Page = () => {
   return (

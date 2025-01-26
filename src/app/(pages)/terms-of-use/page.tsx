@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { PageMetadata } from '@/utils/meta-data';
 // import TermsAndReturn from '@/components/terms-and-return';
 
-export const metadata: Metadata = PageMetadata('Terms of Use & Return Policy', 'Terms of Use & Return Policy');
+export const metadata: Metadata = PageMetadata('Terms of Use & Return Policy', 'Review our terms and conditions to understand your rights and obligations when using our website and purchasing our auto glass products.');
 
 const Page = () => {
 

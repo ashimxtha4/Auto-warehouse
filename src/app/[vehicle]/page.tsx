@@ -4,7 +4,7 @@ import Vehicle from '@/components/home/vehicle'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { PageMetadata } from '@/utils/meta-data'
 
-export const metadata: Metadata = PageMetadata('Glass Type', 'Your preferred auto glass shop for all your vehicle glass replacement needs.')
+export const metadata: Metadata = PageMetadata('Glass Type', 'Find the right auto glass for your vehicle by filtering by make, model, year, and more. Find exactly what you need with our advanced search filters.')
 
 const Page = () => {
   return (

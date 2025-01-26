@@ -4,7 +4,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { PageMetadata } from '@/utils/meta-data';
 // import PrivacyPolicy from '@/components/privacy-policy/privacy-policy';
 
-export const metadata: Metadata = PageMetadata('Privacy Policy');
+export const metadata: Metadata = PageMetadata('Privacy Policy', 'Learn about our privacy practices, how we collect, use, and protect your personal data when you shop with us. Read our full privacy policy here.');
 
 const Page = () => {
   return (

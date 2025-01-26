@@ -9,11 +9,14 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Auto Glass Shop | Online Ordering Platform',
-  description: 'An online store for selling different parts of cars.',
+  description: 'Discover high-quality auto glass products for all vehicle types. Shop windscreen, flat lam, and more with fast shipping and excellent customer support.',
   keywords: seoKeywords,
   category: 'Auto Glass Shop',
   icons: {
     icon: '/favicon.ico',
+  },
+  twitter: {
+    card: 'summary_large_image'
   },
   openGraph: {
     countryName: 'Australia',

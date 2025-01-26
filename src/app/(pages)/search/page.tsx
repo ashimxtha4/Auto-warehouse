@@ -4,7 +4,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import type { Metadata } from 'next'
 import { PageMetadata } from '@/utils/meta-data'
 
-export const metadata: Metadata = PageMetadata('Search Product', 'Search product for all your vehicle glass replacement needs.')
+export const metadata: Metadata = PageMetadata('Search Product', 'Search for auto glass products by make, model, year, and more. Find exactly what you need with our advanced search filters.')
 
 const Page = () => {
   return (
