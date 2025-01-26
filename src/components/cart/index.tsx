@@ -4,6 +4,7 @@ import React from 'react'
 import MyCart from './my-cart'
 import OrderSummary from './order-summary'
 import { useScrollRef } from '@/hooks/scroll.hooks'
+
 export type CartProductsProps = {
   id: number
   name: string

@@ -4,16 +4,10 @@ import React, { Suspense } from 'react';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import ReviewList from '@/components/review/review-list';
 import { useScrollRef } from '@/hooks/scroll.hooks';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import { PageMetadata } from '@/utils/meta-data';
 
-export const metadata: Metadata = {
-  title: 'Reviews | Auto Glass Shop',
-  description: 'Read reviews from our satisfied customers.',
-  category: 'Auto Glass Shop',
-  icons: {
-    icon: '/favicon.ico',
-  },
-}
+export const metadata: Metadata = PageMetadata('Reviews', 'Read reviews from our satisfied customers.')
 
 const Page = () => {
   const { ref } = useScrollRef(140);

@@ -1,8 +1,12 @@
 "use client";
 
 import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { PageMetadata } from '@/utils/meta-data';
 // import PrivacyPolicy from '@/components/privacy-policy/privacy-policy';
+
+export const metadata: Metadata = PageMetadata('Privacy Policy');
 
 const Page = () => {
   return (

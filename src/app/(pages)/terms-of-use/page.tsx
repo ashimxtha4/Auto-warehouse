@@ -2,7 +2,11 @@
 
 import React, { Suspense } from 'react';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import type { Metadata } from 'next';
+import { PageMetadata } from '@/utils/meta-data';
 // import TermsAndReturn from '@/components/terms-and-return';
+
+export const metadata: Metadata = PageMetadata('Terms of Use & Return Policy', 'Terms of Use & Return Policy');
 
 const Page = () => {
 

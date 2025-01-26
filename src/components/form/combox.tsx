@@ -20,7 +20,7 @@ import {
   CommandItem,
   CommandList
 } from '../ui/command'
-import { TSearchPartsProps } from '@/hooks/search-vehicle.hooks'
+import type { TSearchPartsProps } from '@/hooks/search-vehicle.hooks'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
 type OptionsProps = {

@@ -5,16 +5,10 @@ import VehicleParts from '@/components/home/vehicle/vehicle-parts'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { useScrollRef } from '@/hooks/scroll.hooks'
 import { useSearchVehicles } from '@/hooks/search-vehicle.hooks'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
+import { PageMetadata } from '@/utils/meta-data'
 
-export const metadata: Metadata = {
-  title: 'Shop | Auto Glass Shop',
-  description: 'Shop for all your vehicle glass replacement needs.',
-  category: 'Auto Glass Shop',
-  icons: {
-    icon: '/favicon.ico',
-  },
-}
+export const metadata: Metadata = PageMetadata('Shop', 'Shop for all your vehicle glass replacement needs.')
 
 const Page = () => {
   const { ref } = useScrollRef(140)

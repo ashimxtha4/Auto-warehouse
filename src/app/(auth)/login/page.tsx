@@ -1,13 +1,8 @@
-import { Metadata } from 'next'
 import React from 'react'
+import type { Metadata } from 'next'
+import { PageMetadata } from '@/utils/meta-data'
 
-export const metadata: Metadata = {
-  title: 'Login | Auto Glass Shop',
-  category: 'Auto Glass Shop',
-  icons: {
-    icon: '/favicon.ico',
-  },
-}
+export const metadata: Metadata = PageMetadata('Login')
 
 const Page = () => {
   return <></>
