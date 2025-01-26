@@ -1,5 +1,3 @@
-"use client";
-
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';

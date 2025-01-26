@@ -1,22 +1,16 @@
-"use client";
-
 import React, { Suspense } from 'react';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import ReviewList from '@/components/review/review-list';
-import { useScrollRef } from '@/hooks/scroll.hooks';
 import type { Metadata } from 'next';
 import { PageMetadata } from '@/utils/meta-data';
+import UserReview from '@/components/review';
 
 export const metadata: Metadata = PageMetadata('Reviews', 'Read reviews from our satisfied customers.')
 
 const Page = () => {
-  const { ref } = useScrollRef(140);
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <section ref={ref} className="container mx-auto p-4">
-        <ReviewList />
-      </section>
+      <UserReview />
     </Suspense>
   );
 };

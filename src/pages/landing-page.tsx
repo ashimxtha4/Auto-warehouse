@@ -5,7 +5,7 @@ import SearchParts from '@/components/home/search-parts'
 
 const LandingPage = () => {
   return (
-    <div>
+    <>
       <section className='fixed top-0 z-[9999] w-full'>
         <MainNavbar />
       </section>
@@ -17,7 +17,7 @@ const LandingPage = () => {
           <SearchParts />
         </section>
       </div>
-    </div>
+    </>
   )
 }
 

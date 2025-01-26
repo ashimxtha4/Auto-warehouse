@@ -13,7 +13,7 @@ const HomePageSection = ({ children }: { children: React.ReactNode }) => {
 
 const HomePage = () => {
   return (
-    <main>
+    <>
       <HomePageSection>
         <TrustFactors />
       </HomePageSection>
@@ -29,7 +29,7 @@ const HomePage = () => {
       <HomePageSection>
         <Contact />
       </HomePageSection>
-    </main>
+    </>
   )
 }
 
