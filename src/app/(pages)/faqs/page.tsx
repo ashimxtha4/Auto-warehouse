@@ -5,6 +5,16 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import FAQAccordion from '@/components/faq/accordion';
 import { SectionDescription, SectionHeader } from '@/utils/section-header';
 import { useScrollRef } from '@/hooks/scroll.hooks';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'FAQS | Auto Glass Shop',
+  description: 'Find answers to the most common questions about our services.',
+  category: 'Auto Glass Shop',
+  icons: {
+    icon: '/favicon.ico',
+  },
+}
 
 const Page = () => {
     const { ref } = useScrollRef(140);

@@ -2,14 +2,14 @@ export const ABOUT_US_ITEMS = {
     introduction: {
       year: "2000",
       description:
-        "We’ve been Western Australia’s trusted go-to for vehicle glass repair and replacement. As a proudly Australian-owned business, we embrace the unique challenges of our climate—from the blazing sun to rugged outback roads.",
+        "We've been Australia's trusted go-to for vehicle glass repair and replacement. As a proudly Australian-owned business, we embrace the unique challenges of our climate—from the blazing sun to rugged outback roads.",
     },
     commitment: {
-      years: "[years here]",
+      years: "20",
       quote:
-        "With over [years here] years of hands-on experience, we guarantee the quality and safety of every job. From Windscreen replacements to chip repairs, we bring unparalleled expertise and quality standards.",
+        "With over 20 years of hands-on experience, we guarantee the quality and safety of every job. From Windscreen replacements to chip repairs, we bring unparalleled expertise and quality standards.",
       description:
-        "Our certified technicians work with the highest-quality materials that meet or exceed Australian Safety Standards. Your vehicle’s safety and your satisfaction are our top priorities.",
+        "Our certified technicians work with the highest-quality materials that meet or exceed Australian Safety Standards. Your vehicle's safety and your satisfaction are our top priorities.",
     },
     whyChooseUs: [
       {
@@ -18,7 +18,7 @@ export const ABOUT_US_ITEMS = {
       },
       {
         icon: "Wrench",
-        description: "Mobile Service: We come to your location across [city].",
+        description: "Mobile Service: We come to your location across Melbourne and Sydney.",
       },
       {
         icon: "Shield",
