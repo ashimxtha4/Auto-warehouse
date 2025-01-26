@@ -11,8 +11,10 @@ const CompanyDetails = () => {
           src={logo}
           alt='logo'
           height={320}
+          width={320}
           loading='lazy'
-          className='w-32'
+          className='w-32 cursor-pointer'
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         />
         <p className='mt-4 h-[0.5px] w-[60%] bg-primary-text/40 md:w-[50%] lg:w-[40%]' />
         <p className='flex items-center gap-1 py-2 font-medium md:py-5'>

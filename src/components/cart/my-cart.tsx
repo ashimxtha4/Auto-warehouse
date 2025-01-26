@@ -107,7 +107,11 @@ const MyCart = () => {
                         Remove
                       </button>
                       <Link
-                        href={`/product?id=${product.id}`}
+                        // href={`/product?id=${product.id}`}
+                        href={{
+                          pathname: '/product',
+                          query: { id: product.id }
+                        }}
                         type='button'
                         className='text-white bg-primary-main rounded-full px-2 py-1'
                       >
