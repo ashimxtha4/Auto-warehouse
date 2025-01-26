@@ -1,6 +1,6 @@
 export const PageMetadata = (title: string, description?: string) => {
   return {
-    title: title + ' | Auto Glass Shop',
+    title: title,
     description: description,
     category: 'Auto Glass Shop',
     icons: {

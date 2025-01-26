@@ -8,7 +8,10 @@ import { cn } from '@/lib/utils'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Auto Glass Shop | Online Ordering Platform',
+  title: {
+    default: 'Auto Glass Shop | Online Ordering Platform',
+    template: '%s | Auto Glass Shop',
+  },
   description: 'Discover high-quality auto glass products for all vehicle types. Shop windscreen, flat lam, and more with fast shipping and excellent customer support.',
   keywords: seoKeywords,
   category: 'Auto Glass Shop',
@@ -17,16 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image'
-  },
-  openGraph: {
-    countryName: 'Australia',
-    siteName: 'Auto Glass Shop',
-    title: 'Auto Glass Shop | Online Ordering Platform',
-    description: 'Premium Auto Glass At Affordable Prices. Comprehensive solutions for all your vehicle glass replacement needs.',
-    type: 'website',
-    url: 'https://www.autoglassshop.com.au',
-    emails: 'sales@autoglassshop.com.au',
-  },
+  }
 }
 
 const jsonLd = {
