@@ -217,7 +217,7 @@ export const useSearchVehicles = () => {
       const queryString = queryParams.toString()
       const url = queryString ? `${data.make}?${queryString}` : `${data.make}`
 
-      router.push(url)
+      router.push(`/vehicle/${url}`)
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.message)

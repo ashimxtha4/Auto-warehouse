@@ -12,6 +12,33 @@ import { cn } from '@/lib/utils'
 import { useScrollRef } from '@/hooks/scroll.hooks'
 import { useCartStore } from '@/slice/cart-slice'
 import { productProps } from '@/services/api/api-service/product/product-list'
+// import { Metadata } from 'next'
+
+// export async function generateMetadata(): Promise<Metadata> {
+//   const { productData, productImages } = useGetProductDetails()
+
+//   const singleProductData = {
+//     name: productData?.name ? productData.name : '',
+//     sku: productData?.sku ? productData.sku : '',
+//     price: productData?.price ? Number(productData.price) : 0,
+//     image: productImages?.length ? productImages[0].image : DEFAULT_IMAGE,
+//   }
+
+//   return {
+//     title: singleProductData.name,
+//     description: `Product SKU: ${singleProductData.sku} | Price: AUD ${singleProductData.price} | Description: ${productData?.description || productData?.invoice_description || 'N/A'} | Position: ${productData?.position || 'N/A'} | Size: ${productData?.size || 'N/A'} | Type: ${productData?.vehicle_type || 'N/A'} | Vehicle Brand: ${productData?.vehicle_brand || 'N/A'} | Model: ${productData?.vehicle_model || 'N/A'} | Series: ${productData?.vehicle_series || 'N/A'}`,
+//     openGraph: {
+//       images: [
+//         {
+//           url: singleProductData.image,
+//           width: 1200,
+//           height: 630,
+//           alt: singleProductData.name,
+//         }
+//       ]
+//     }
+//   }
+// }
 
 // product details
 const ProductPage = () => {
