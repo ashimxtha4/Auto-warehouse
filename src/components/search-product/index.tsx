@@ -18,7 +18,7 @@ const SearchProduct = () => {
             <p className='text-base text-primary-text my-2 md:my-4 md:text-2xl'>SEARCH</p>
             <form onSubmit={e => {
                 e.preventDefault()
-                router.push(`/search-product?keyword=${debounceValue}`)
+                router.push(`/search?keyword=${debounceValue}`)
             }} className='my-2 md:my-4 flex relative w-full'>
                 <Input
                     value={search}

@@ -3,6 +3,10 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/`,
+      priority: 1
+    },
+    {
       url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/about`,
       priority: 0.8
     },
@@ -15,8 +19,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8
     },
     {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/search?keyword=caddy`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/search?keyword=caddy%20van`,
+      priority: 0.8
+    },
+    {
       url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop`,
       priority: 1
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=wind%20screen`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=flat%20lam`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=rear%20left%20vent`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=rear%20right%20vent`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=back%20left%20side%20door`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=back%20right%20side%20door`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=front%20right%20side%20door`,
+      priority: 0.8
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=front%20left%20side%20door`,
+      priority: 0.8
     },
     {
       url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/contact`,

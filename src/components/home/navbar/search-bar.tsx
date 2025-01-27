@@ -6,7 +6,7 @@ const SearchComponent = () => {
 
   return (
     <>
-      <Link href='/search-product'
+      <Link href='/search'
         type='submit'
         className='pl-1 text-base text-primary-text md:text-2xl'
       >
