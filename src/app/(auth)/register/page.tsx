@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import React from 'react'
 
 
-export const metadata: Metadata = PageMetadata('Register')
+export const metadata: Metadata = PageMetadata('Register', 'Register for an account.')
 
 const Page = () => {
   return <></>
