@@ -1,6 +1,22 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const keywords = [
+    'wind%20screen',
+    'flat%20lam',
+    'rear%20left%20vent',
+    'rear%20right%20vent',
+    'back%20left%20side%20door',
+    'back%20right%20side%20door',
+    'front%20right%20side%20door',
+    'front%20left%20side%20door'
+  ]
+
+  const keywordUrls: MetadataRoute.Sitemap = keywords.map(keyword => ({
+    url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=${keyword}`,
+    priority: 0.8
+  }))
+
   return [
     {
       url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/`,
@@ -30,38 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop`,
       priority: 1
     },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=wind%20screen`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=flat%20lam`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=rear%20left%20vent`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=rear%20right%20vent`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=back%20left%20side%20door`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=back%20right%20side%20door`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=front%20right%20side%20door`,
-      priority: 0.8
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/shop?keyword=front%20left%20side%20door`,
-      priority: 0.8
-    },
+    ...keywordUrls,
     {
       url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/contact`,
       priority: 1

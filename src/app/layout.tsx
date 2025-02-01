@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   category: 'Auto Glass Shop',
   icons: {
     icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   twitter: {
     card: 'summary_large_image'
