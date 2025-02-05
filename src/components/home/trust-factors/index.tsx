@@ -8,25 +8,25 @@ import support from '@/assets/icon/support.png'
 
 const trustItems = [
   {
-    image: fast,
-    title: 'Fast',
-    desc: 'Quick, hassle-free glass replacement done on your schedule.'
-  },
-  {
     image: certified,
     title: 'Certified',
-    desc: 'Certified technicians ensuring quality vehicle glass replacements.'
+    desc: 'Certified auto glass products accredited by global quality certification including the US DOT, the European ECE and CSI AS/NZS 2080:2019 standards.'
+  },
+  {
+    image: support,
+    title: 'Support',
+    desc: 'Dedicated team who are experts in the auto glass industry to assist you in identifying the correct auto glass.'
+  },
+  {
+    image: fast,
+    title: 'Fast',
+    desc: 'Easy-to-use online catalogue.'
   },
   // {
   //   image: easyReturn,
   //   title: 'Easy Return',
   //   desc: '30-day hassle-free return guarantee on all services.'
   // },
-  {
-    image: support,
-    title: 'Support',
-    desc: 'Dedicated support for seamless glass replacement assistance.'
-  }
 ]
 
 const TrustFactors = () => {
@@ -34,11 +34,10 @@ const TrustFactors = () => {
     <section className='grid grid-cols-1 items-start justify-between gap-5 rounded-2xl bg-white p-5 shadow-md lg:grid-cols-2'>
       <aside>
         <p className='text-3xl font-normal text-primary-text'>
-          Comprehensive solutions for all your vehicle glass replacement needs.
+          Comprehensive solutions for all your vehicle glass needs
         </p>
         <p className='py-5 text-base font-normal text-primary-text/60'>
-          Discover our expert services, from windshield replacements to chip
-          repairs, ensuring your vehicle glass is restored to perfection.
+          Discover our comprehensive online catalogue to find your glass, place an online order and talk to our dedicated team to secure your glass.
         </p>
         <div className='flex items-center gap-2'>
           <Image
