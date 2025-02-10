@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import mobileService from '@/assets/mobile-service.png'
+import mobileService from '@/assets/mobile-service.jpeg'
 import { FaArrowRightLong } from 'react-icons/fa6'
 
 const MobileService = () => {
