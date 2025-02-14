@@ -27,7 +27,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line -left-[98px] top-[86px] w-[50px] md:-left-[195px] md:top-[123px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT DOOR LH')}
-          className='callout-line-title -left-[185px] top-[64px] md:-left-[260px] md:top-[115px]'
+          className='callout-line-title -left-[185px] top-[64px] md:-left-[260px] md:top-[105px]'
         >
           Left Front Door
         </Button>
@@ -38,7 +38,7 @@ const VanCalloutLines = () => {
         <span className='vehicle-line left-[48px] top-[86px] w-[50px] md:left-[68px] md:top-[123px] md:w-[120px]' />
         <Button
           onClick={() => handleCallOutLines('FRONT DOOR RH')}
-          className='callout-line-title left-[75px] top-[64px] md:left-[144px] md:top-[115px]'
+          className='callout-line-title left-[75px] top-[64px] md:left-[144px] md:top-[105px]'
         >
           Right Front Door
         </Button>
@@ -107,6 +107,17 @@ const VanCalloutLines = () => {
           className='callout-line-title left-[70px] top-[222px] md:left-[144px] md:top-[298px]'
         >
           Right Back Quarter
+        </Button>
+      </div>
+      {/* rear Windscreen */}
+      <div className='absolute'>
+        <span className='circle-dot left-[10px] top-[288px] md:top-[386px]' />
+        <span className='vehicle-line left-[13px] top-[291px] w-[80px] md:top-[389px] md:w-[160px]' />
+        <Button
+          onClick={() => handleCallOutLines('rear windscreen')}
+          className='callout-line-title left-[75px] top-[272px] md:left-[144px] md:top-[370px]'
+        >
+          Rear Windscreen
         </Button>
       </div>
     </>

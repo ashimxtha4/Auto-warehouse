@@ -109,6 +109,18 @@ const UteTruckCalloutLines = () => {
           Right Back Quarter
         </Button>
       </div>
+      {/* rear Windscreen */}
+      <div className='absolute'>
+        <span className='circle-dot left-[10px] top-[270px] md:top-[368px]' />
+        <span className='vehicle-line left-[13px] top-[270px] !h-[30px] w-[2px] md:hidden' />
+        <span className='vehicle-line left-[13px] top-[300px] w-[80px] md:top-[371px] md:w-[160px]' />
+        <Button
+          onClick={() => handleCallOutLines('rear windscreen')}
+          className='callout-line-title left-[75px] top-[280px] md:left-[144px] md:top-[353px]'
+        >
+          Rear Windscreen
+        </Button>
+      </div>
     </>
   )
 }
