@@ -114,7 +114,7 @@ const VanCalloutLines = () => {
         <span className='circle-dot left-[10px] top-[288px] md:top-[386px]' />
         <span className='vehicle-line left-[13px] top-[291px] w-[80px] md:top-[389px] md:w-[160px]' />
         <Button
-          onClick={() => handleCallOutLines('rear windscreen')}
+          onClick={() => handleCallOutLines('rear window')}
           className='callout-line-title left-[75px] top-[272px] md:left-[144px] md:top-[370px]'
         >
           Rear Windscreen
