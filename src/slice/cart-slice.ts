@@ -15,6 +15,7 @@ interface CartState {
   increaseQuantity: (id: number) => void
   decreaseQuantity: (id: number) => void
   calculateCartTotal: () => void
+  clearCart: () => void
 }
 
 export const useCartStore = create<CartState>(set => ({
@@ -133,5 +134,11 @@ export const useCartStore = create<CartState>(set => ({
           0
         ) || 0
     }))
+  },
+  clearCart: () => {
+    set(() => {
+      localStorage.removeItem('cart')
+      return { cart: [], cartTotal: 0 }
+    })
   }
 }))

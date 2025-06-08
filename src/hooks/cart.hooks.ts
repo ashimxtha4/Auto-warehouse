@@ -35,6 +35,7 @@ export const useMyCart = () => {
   const errorMessage = 'Please login to proceed to checkout'
   const cartTotal = useCartStore(state => state.cartTotal)
   const cartProducts = useCartStore(state => state.cart)
+  const { clearCart } = useCartStore()
 
   const { id, uuid, loadUserFromLocalStorage } = useUserStore()
 
@@ -159,7 +160,10 @@ export const useMyCart = () => {
         cart_id: cartIds as number[],
         data
       })
-      localStorage.removeItem('cart')
+      if (cartProducts && cartProducts.length) {
+        clearCart()
+      }
+      // localStorage.removeItem('cart')
       toast.success('Your order has been placed successfully!')
       router.push('/orders', { scroll: true })
     } catch (error) {

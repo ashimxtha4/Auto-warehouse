@@ -17,10 +17,10 @@ const OrderSummary = () => {
           <p>Subtotal:</p>
           <p>AUD ${cartTotal.toFixed(2)}</p>
         </div>
-        <div className="flex justify-between text-primary-text/60">
+        {/* <div className="flex justify-between text-primary-text/60">
           <p>Shipping:</p>
           <p>AUD $0.00</p>
-        </div>
+        </div> */}
         <hr className="my-4 border-gray-300" />
         <div className="flex justify-between font-bold text-primary-text/60">
           <p>Total:</p>
