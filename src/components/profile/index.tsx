@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { Mail, Phone, Edit, Home } from 'lucide-react'
+// import { Mail, Phone, Edit, Home } from 'lucide-react'
 // import toast from 'react-hot-toast'
 import { useGetCustomerDetails } from '@/services/api/api-service/customer/customer-detail'
 import { useUserStore } from '@/slice/user-slice'
