@@ -27,7 +27,7 @@ const MobileService = () => {
         <Image
           src={mobileService}
           alt='mobile service'
-          className='max-h-[400px] w-full lg:h-full'
+          className='max-h-[400px] w-full lg:h-full rounded-[40px]'
         />
       </aside>
     </section>

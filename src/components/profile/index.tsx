@@ -31,7 +31,7 @@ const UserProfile = () => {
   return (
     <section className='container mx-auto my-8 flex justify-center'>
       {isLoading && <LoadingSpinner />}
-      <div className='relative w-full max-w-sm rounded-lg bg-white p-6 shadow-lg'>
+      {/* <div className='relative w-full max-w-sm rounded-lg bg-white p-6 shadow-lg'>
         <button
           // onClick={handleModalToggle}
           className='absolute right-4 top-4 text-primary-text/80 hover:text-primary-text'
@@ -61,14 +61,59 @@ const UserProfile = () => {
           <div className='mb-4 flex items-center text-left'>
             <Home className='mr-2 h-4 w-4 text-primary-main' /> Address: {customerData?.address ?? 'N/A'}
           </div>
+        </div>
+      </div> */}
+      <div className='flex items-start justify-center bg-green-50 rounded-2xl font-sans text-gray-800'>
+        <div className='w-full max-w-4xl overflow-hidden rounded-2xl border border-green-200 bg-white shadow-lg'>
+          {/* Header */}
+          <div className='flex flex-col items-center bg-green-100 px-6 py-8'>
+            <img
+              className='h-28 w-28 rounded-full border-4 border-green-200 shadow'
+              src='https://i.pravatar.cc/150?img=32'
+              alt='Profile'
+            />
+            <h2 className='mt-4 text-2xl font-bold text-green-700'>Jane Doe</h2>
+            <p className='text-green-600'>Product Manager</p>
+          </div>
 
-          {/* <div className='mb-4 flex items-center text-left'>
-            <Building className='mr-2 h-4 w-4 text-primary-main' /> City: {customerData?. ?? 'N/A'}
-          </div> */}
+          {/* Body */}
+          <div className='grid grid-cols-1 gap-6 bg-green-50 px-8 py-6 md:grid-cols-2'>
+            <div>
+              <h3 className='mb-2 text-lg font-semibold text-green-800'>
+                Contact Information
+              </h3>
+              <p>
+                <strong>Email:</strong> {customerData?.email}
+              </p>
+              <p>
+                <strong>Phone:</strong> {customerData?.phone}
+              </p>
+              <p>
+                <strong>Location:</strong> {customerData?.address ?? 'N/A'}
+              </p>
+            </div>
+            <div>
+              <h3 className='mb-2 text-lg font-semibold text-green-800'>
+                Account Details
+              </h3>
+              <p>
+                <strong>Username:</strong> {customerData?.first_name + ' ' + customerData?.last_name}
+              </p>
+              {/* <p>
+                <strong>Member since:</strong> March 2022
+              </p>
+              <p>
+                <strong>Status:</strong> Active
+              </p> */}
+            </div>
+          </div>
 
-          {/* <div className='mb-4 flex items-center text-left'>
-            <Hash className='mr-2 h-4 w-4 text-primary-main' /> Postal Code: 3000
-          </div> */}
+          {/* Footer */}
+          <div className='bg-green-100 px-6 py-4 text-right'>
+            <button className='rounded-xl bg-green-500 px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-green-600'>
+              Edit Profile
+            </button>
+          </div>
         </div>
       </div>
 
