@@ -26,10 +26,10 @@ const BannerContent = () => {
       variants={sectionVariants}
     >
       <h1 className='text-start text-base font-bold tracking-wide text-primary-text sm:text-xl md:text-5xl'>
-        Premium Auto <br className='hidden md:block' /> Glass{' '}
+        {/* Premium Auto <br className='hidden md:block' /> Glass{' '}
         <span className='my-1 block md:mt-5 md:text-3xl'>
           AT AFFORDABLE PRICES
-        </span>
+        </span> */}
       </h1>
       <div className='grid w-full grid-cols-2 justify-center md:my-4'>
         {BANNER_ITEMS.map(item => (

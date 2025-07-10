@@ -1,17 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
-import Link from 'next/link';
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const SearchComponent = () => {
+  const [search, setSearch] = useState('')
+  const router = useRouter()
+  function searchAction(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    router.push(`/search?keyword=${search}`)
+  }
 
   return (
     <>
-      <Link href='/search'
+      <Link
+        href='/search'
         type='submit'
-        className='pl-1 text-base text-primary-text md:text-2xl'
+        className='block pl-1 text-base text-primary-text md:text-2xl lg:hidden'
       >
         <CiSearch size={18} />
       </Link>
+      <form
+        onSubmit={searchAction}
+        className='relative hidden lg:block'
+      >
+        <input
+          type='text'
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder='Search'
+          className={'w-[200px] rounded-lg border border-stone-300 px-3 py-2'}
+        />
+        <button
+          type='submit'
+          className='absolute right-0 top-0 z-[1] h-full flex items-center px-2'
+        >
+          <CiSearch size={18} />
+        </button>
+      </form>
       {/* <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <form

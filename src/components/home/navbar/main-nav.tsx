@@ -67,12 +67,12 @@ const MainNavbar = () => {
     <motion.nav
       ref={ref}
       className={cn(
-        'flex items-center justify-between px-[1rem] py-2 font-medium lg:px-[2rem] xl:px-[2.5rem]',
+        'flex items-center justify-between gap-2 px-[1rem] py-2 font-medium lg:px-[2rem] xl:px-[2.5rem]',
         navBG ? 'bg-white' : 'bg-transparent'
       )}
     >
       {/* logo */}
-      <div>
+      <div className='min-w-[110px]'>
         <Image
           src={logo}
           alt='auto-glass-shop'
@@ -80,15 +80,14 @@ const MainNavbar = () => {
           onClick={() => router.push('/')}
         />
       </div>
-
       {/* nav items */}
-      <ul className='flex items-center gap-2 rounded-full bg-white py-2 px-4 md:gap-5'>
+      <ul className='flex items-center gap-2 rounded-full bg-white px-4 py-2 md:gap-5'>
         {navBG && (
           <Button
             type='button'
             variant='default'
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className='rounded-full bg-primary-main px-2 py-1 text-white md:p-5 text-xs md:text-base font-semibold hover:bg-primary-main'
+            className='rounded-full bg-primary-main px-2 py-1 text-xs font-semibold text-white hover:bg-primary-main md:p-5 md:text-base'
           >
             Find Parts
           </Button>
